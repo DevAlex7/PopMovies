@@ -1,10 +1,23 @@
 html{
-    background-color:white;
+    font-family: 'Raleway', sans-serif;
+    background-color:#00161E;
 }
 .Navigation{
-    background-color: #0BA01A;
+    background-color: #D7263D;
 }
 #LogoPublic{
     height:4rem;
     width: 4.3rem;
+}
+#VisionCard{
+    background-color:#0E455A;
+}
+#MisionCard{
+    background-color:#0E455A;
+}
+#ValorCard{
+    background-color:#0E455A;
+}
+#Oferts{
+    background-color:#F7EDC7;
 }

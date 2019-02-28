@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../../resources/public/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/public/css/css.index.css">
+    <link href="../../resources/public/css/css.font.css" rel="stylesheet">
+
 </head>
 <body>
 <header>
@@ -15,11 +17,11 @@
     <div class="navbar-fixed ">
         <nav class="Navigation">
             <div class="nav-wrapper">
-                <a class="brand-logo center black-text"> PopMovies </a>
+                <a class="brand-logo center white-text"> PopMovies </a>
                 <a href="/"> <img id="LogoPublic" src="../../resources/public/img/Logo.ico" alt=""> </a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a class="black-text" href="">Sass</a></li>
-                    <li><a class="black-text" href="badges.html">Components</a></li>
+                    <li><a class="white-text" href="">iniciofsdfsdf</a></li>
+                    <li><a class="white-text" href="badges.html">Components</a></li>
                 </ul>
             </div>
         </nav>
@@ -42,7 +44,7 @@
 <div class="row">
     <div class="col s12 m12">
     
-    <div class="card" style="background-color:black;">
+    <div class="card" style="background-color:#C02821;">
         <div class="card-content">
             <span class="card-title white-text">Presentación</span>
             <div class="card horizontal z-depth-4">
@@ -69,36 +71,45 @@
 <!--Objetivos Empresariales -->
 <div class="row ">
     <div class="col s12 m4">
-        <div class="card" style="background-color:black;">
+        <div class="card" id="VisionCard">
             <div class="card-content">
             <span class="card-title white-text">Visión</span>                
                 <div class="card">
-                    <div class="card-content z-depth-4">
-                        <p>Hola</p>
+                    <div class="card-content center">
+                        <p><i class="material-icons">check</i></p>
+                        <div class="card-content center ">
+                          <p>Hola hola hola</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="col s12 m4">
-        <div class="card" style="background-color:black;">
+        <div class="card" id="MisionCard">
             <div class="card-content">
             <span class="card-title white-text">Misión</span>                
                 <div class="card">
-                    <div class="card-content z-depth-4">
-                        <p>Hola</p>
+                    <div class="card-content center">
+                        <p><i class="material-icons">add</i></p>
+                        <div class="card-content center ">
+                          <p>Hola hola hola</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="col s12 m4">
-        <div class="card" style="background-color:black;">
+        <div class="card" id="ValorCard">
             <div class="card-content">
-                <span class="card-title white-text">Calidad</span>                
+                <span class="card-title white-text">Valores</span>                
                 <div class="card">
-                    <div class="card-content z-depth-4">
-                        <p>Hola</p>
+                    <div class="card-content center z-depth-4">
+                        <p><i class="material-icons">done_all</i></p>
+                        <div class="card-content center ">
+                          <p>Hola hola hola</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,7 +120,7 @@
 <section>
 <div class="row">
     <div class="col s12 m12">
-        <div class="card">
+        <div class="card" id="Oferts">
             <div class="card-content">
                 <span class="card-title">¿Que ofrecemos?</span>
                 <div class="row">
@@ -120,12 +131,12 @@
                     </div>
                     <div class="col s12 m4">
                         <div class="card">
-                            <div class="card-content">Reserva y compra</div>
+                            <div class="card-content">Calidad</div>
                         </div>
                     </div>
                     <div class="col s12 m4">
                         <div class="card">
-                            <div class="card-content">Reserva y compra</div>
+                            <div class="card-content">Disponibilidad</div>
                         </div>
                     </div>
                 </div>
@@ -134,6 +145,23 @@
     </div>
 </div>
 </section>
+<!--Lo que sea xd -->
+<section>
+        |{}´
+            '¿90jgddddddsassawqertrtyhbvcxx'
+</section>
+<!--Lo que sea xd -->
+
+<!--Lo que sea xd -->
+
+<!--Lo que sea xd -->
+
+<!--Lo que sea xd -->
+
+<!--Lo que sea xd -->
+
+<!--Lo que sea xd -->
+
 </main>
 <script src="../../resources/public/js/jquery-3.2.1.min.js"></script>    
 <script src="../../resources/public/js/materialize.min.js"></script> 
