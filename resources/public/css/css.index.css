@@ -3,9 +3,11 @@ html{
     background-color:#00161E;
 }
 .Navigation{
-    background-color: #D7263D;
+    background-color: black;
 }
 #LogoPublic{
+    position: relative;
+    left: 1rem;
     height:4rem;
     width: 4.3rem;
 }

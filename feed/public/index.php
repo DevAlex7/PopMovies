@@ -166,5 +166,6 @@
 <script src="../../resources/public/js/jquery-3.2.1.min.js"></script>    
 <script src="../../resources/public/js/materialize.min.js"></script> 
 <script src="../../resources/public/js/slider-public.js"></script>    
+<script src="../../resources/public/js/indexpage.js"></script>  
 </body>
 </html>
