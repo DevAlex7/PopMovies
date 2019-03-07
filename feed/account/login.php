@@ -6,30 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     <link rel="stylesheet" href="../../resources/public/css/materialize.min.css">
-    <link rel="stylesheet" href="../../resources/dashboard/privatelogin.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/privatelogin.css">
+    <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     
 </head>
 <body>
     
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m12">
-                <div class="card red">
-                    <div class="card-content">
-                       
-                       <div class="card black">
-                        <div class="card-content">
-                            <p>Hola</p>
-                        </div>
-                       </div>
-
+<main>
+<nav class="red">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">PopMovies</a>
+    </div>
+  </nav>
+   
+<div class="row">
+    <div class="card col s12 m4 offset-m4 red white-text" id="Login">
+        <div class="card-content">
+            <div class="row">
+                <form>
+                    <span class="card-title col s10 offset-s1">Iniciar Sesion</span>
+                    <div class="input-field col s10 offset-s1">
+                        <input id="icon_prefix"  class="white-text" type="text">
+                        <label for="icon_prefix">First Name</label>
                     </div>
-                </div>
+                    <div class="input-field col s10 offset-s1">
+                         <input id="icon_telephone" class="white-text" type="password" >
+                         <label for="icon_telephone">Contraseña</label>
+                    </div>
+                   <div class="col s10 offset-s1">
+                        <button class="btn col s12 black">enviar</button>
+                   </div>
+                </form>
             </div>
+
         </div>
     </div>
+</div>
 
-<script src="../../resources/public/js/jquery-3.2.1.min.js"></script>   
-<script src="../../resources/public/js/materialize.js"></script>   
+</main>
+
+<script src="../../resources/globaljs/jquery-3.2.1.min.js"></script>
+<script src="../../resources/globaljs/materialize.min.js"></script>  
 </body>
 </html>
