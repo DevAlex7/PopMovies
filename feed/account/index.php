@@ -20,17 +20,17 @@
   </nav>
    
 <div class="row">
-    <div class="card col s12 m4 offset-m4 red white-text" id="Login">
+    <div class="card col s12 m4 offset-m4 white white-text" id="Login">
         <div class="card-content">
             <div class="row">
                 <form>
-                    <span class="card-title col s10 offset-s1">Iniciar Sesion</span>
+                    <span class="card-title col s10 offset-s1 red-text">Iniciar Sesion</span>
                     <div class="input-field col s10 offset-s1">
-                        <input id="icon_prefix"  class="white-text" type="text">
+                        <input id="icon_prefix"  class="red-text" type="text">
                         <label for="icon_prefix">First Name</label>
                     </div>
                     <div class="input-field col s10 offset-s1">
-                         <input id="icon_telephone" class="white-text" type="password" >
+                         <input id="icon_telephone" class="red-text" type="password" >
                          <label for="icon_telephone">Contraseña</label>
                     </div>
                    <div class="col s10 offset-s1">
@@ -39,6 +39,9 @@
                 </form>
             </div>
 
+        </div>
+        <div class="card-action center">
+            <a href="resetpassword.php" class="black-text">olvide mi contraseña</a>
         </div>
     </div>
 </div>
