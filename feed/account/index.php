@@ -34,7 +34,7 @@
                          <label for="icon_telephone">Contraseña</label>
                     </div>
                    <div class="col s10 offset-s1">
-                        <button class="btn col s12 black">enviar</button>
+                        <a href="home.php" class="btn col s12 black">enviar</a>
                    </div>
                 </form>
             </div>

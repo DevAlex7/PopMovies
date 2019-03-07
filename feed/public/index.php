@@ -163,8 +163,8 @@
 <!--Lo que sea xd -->
 
 </main>
-<script src="../../resources/public/js/jquery-3.2.1.min.js"></script>    
-<script src="../../resources/public/js/materialize.min.js"></script> 
+<script src="../../resources/globaljs/jquery-3.2.1.min.js"></script>    
+<script src="../../resources/globaljs/materialize.min.js"></script> 
 <script src="../../resources/public/js/slider-public.js"></script>    
 <script src="../../resources/public/js/indexpage.js"></script>  
 </body>
