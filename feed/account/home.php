@@ -64,40 +64,18 @@
     </div>
 
     <div class="row">
-      <div class="col s12 m12">
-          <div class="card">
-              <div class="card-content">
-              <span class="card-title">Customers</span>
-                <table class="highlight">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Empresa</th>
-                            <th>Contacto</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Andre</td>
-                            <td>Walmart</td>
-                            <td>andre@gmail.com</td>
-                            </tr>
-                            <tr>
-                            <td>John</td>
-                            <td>PriceSmart</td>
-                            <td>John@gmail.com</td>
-                            </tr>
-                            <tr>
-                            <td>Jonathan</td>
-                            <td>Samborns</td>
-                            <td>Jonat@gmail.com</td>
-                        </tr>
-                    </tbody>
-                </table>
-              </div>
-          </div>
-      </div>
+        <div class="col s12 m12">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title" id="CustomerTitle"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="Customers">
+           
+        </div>
     </div>
+    
 </main>
 
 <footer>
@@ -105,5 +83,8 @@
 <script src="../../resources/globaljs/jquery-3.2.1.min.js"></script>
 <script src="../../resources/globaljs/materialize.min.js"></script> 
 <script src="../../resources/dashboard/js/sidenav.js"></script> 
+<script src="../../global/helpers/functions.js"></script>
+<script src="../../resources/dashboard/controllers/customers.js"></script>
+
 </body>
 </html>
