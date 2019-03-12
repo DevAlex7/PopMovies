@@ -32,21 +32,7 @@
                 </div>
             </div>
         </div>
-        <!--Modal add Actor-->
-        <div id="addactor" class="modal">
-            <div class="modal-content">
-               <div class="card">
-                <div class="card-content">
-                    <span class="card-title">Agregar Actor</span>
-                    <input type="text" placeholder="ingrese nombre de actor">
-                    <button class="btn small blue white-text">Agregar</button>
-                </div>
-               </div>
-            </div>
-            <div class="modal-footer">
-                <a class="modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
-        </div> 
+
         <!--Tabla de actores -->
         <div class="row">
             <div class="card z-depht-3">
@@ -55,34 +41,87 @@
                         
                         <thead>
                             <tr>
-                                <th><span class="card-title">Actor Name</span></th>
+                                
                             </tr>
                         </thead>
 
-                        <tbody>
-                            <tr>
-                                <td>Alvin</td>
-                                
-                            </tr>
-                            <tr>
-                                <td>Alan</td>
-                                
-                            </tr>
-                            <tr>
-                                <td>Jonathan</td>
-                                
-                            </tr>
+                        <tbody id="ActorsRead">
+                           
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
+        <!--Modal add Actor-->
+        <div id="addactor" class="modal">
+            <div class="modal-content">
+                <div class="card">
+                    <div class="card-content">
+                        <form method="post" id="form-create" enctype="multipart/form-data">
+                            <span class="card-title">Agregar Actor</span>
+                                <input type="text" name="NameActor" id="NameActor" placeholder="ingrese nombre de actor">
+                                <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Crear">Agregar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+            </div>
+            </form>
+        </div> 
+
+        <!--Modal Update Actor -->
+        <div id="updateActor" class="modal">
+            <div class="modal-content">
+                <div class="card">
+                    <div class="card-content">
+                        <form method="post" id="ActorFormUpdate" enctype="multipart/form-data">
+                                <span class="card-title">Actualizar Actor</span>
+                                <input type="hidden" name="idUpdateActor" id="idUpdateActor" placeholder="id">
+                                <input type="text" name="UpdateNameActor" id="UpdateNameActor" placeholder="ingrese nombre de actor">
+                                
+                                <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Crear">Actualizar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+            </div>
+            </form>
+        </div> 
+
+        <!--Modal Delete Actor -->
+        <div id="deleteActor" class="modal">
+            <div class="modal-content">
+                <div class="card">
+                    <div class="card-content">
+                        <form method="post" id="DeleteActorForm" enctype="multipart/form-data">
+                            <span class="card-title">Eliminar Actor</span>
+                            <input type="hidden" name="idDeleteNameActor" id="idDeleteNameActor" placeholder="ingrese nombre de actor">
+                                <input type="text" disabled  name="DeleteNameActor" class="disable" id="DeleteNameActor" placeholder="ingrese nombre de actor">
+                                <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Crear">Eliminar</button>
+                            </div>
+                            <div class="modal-footer">
+                                <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+           
+            </form>
+        </div> 
+        
+       
     </main>
 <footer>
 </footer>
 <script src="../../resources/globaljs/jquery-3.2.1.min.js"></script>
 <script src="../../resources/globaljs/materialize.min.js"></script> 
 <script src="../../resources/dashboard/js/sidenav.js"></script> 
+<script src="../../global/helpers/functions.js"></script>
 <script src="../../resources/dashboard/controllers/ActorsController.js"></script>
 </body>
 </html>

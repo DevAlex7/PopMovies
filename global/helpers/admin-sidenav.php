@@ -10,8 +10,8 @@ class AdminSideNav{
             <div class="card center">
             <span class="card-title ">PopMovies</span>
             </div>
-            <a href="#name"><span class="black-text name">John Doe</span></a>
-            <a href="#email"><span class="black-text email">jdandturk@gmail.com</span></a>
+            <a href="#name"><span class="black-text name">Alejandro Gonzalez</span></a>
+            <a href="#email"><span class="black-text email">alexgve7@gmail.com</span></a>
             </div>
             </li>
             <li><a href="/PopMovies/feed/account/home.php"><i class="material-icons">dashboard</i>Inicio</a></li>
