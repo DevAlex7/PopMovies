@@ -177,7 +177,7 @@ function ShowInformationDelete(id)
             if (result.status) {
                 console.log(result.dataset);
                 $('#idDeleteNameActor').val(result.dataset.id);                
-                $('#DeleteNameActor').val(result.dataset.name);
+                $('#DeleteActor').html("¿Desea Eliminar al Actor: "+result.dataset.name+"?");
             } else {
 
             }

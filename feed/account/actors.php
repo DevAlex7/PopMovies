@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="../../resources/public/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
-    <link rel="stylesheet" href="../../resources/dashboard/css/css.home.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/css.actors.css">
     <link href="../../resources/public/css/css.font.css" rel="stylesheet">
 
 </head>
@@ -59,8 +59,8 @@
                 <div class="card">
                     <div class="card-content">
                         <form method="post" id="form-create" enctype="multipart/form-data">
-                            <span class="card-title">Agregar Actor</span>
-                                <input type="text" name="NameActor" id="NameActor" placeholder="ingrese nombre de actor">
+                                <span class="card-title">Agregar Actor</span>
+                                <input type="text" name="NameActor" class="" id="NameActor" placeholder="ingrese nombre de actor">
                                 <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Crear">Agregar</button>
                             </div>
                         </form>
@@ -100,8 +100,8 @@
                     <div class="card-content">
                         <form method="post" id="DeleteActorForm" enctype="multipart/form-data">
                             <span class="card-title">Eliminar Actor</span>
-                            <input type="hidden" name="idDeleteNameActor" id="idDeleteNameActor" placeholder="ingrese nombre de actor">
-                                <input type="text" disabled  name="DeleteNameActor" class="disable" id="DeleteNameActor" placeholder="ingrese nombre de actor">
+                                <input type="hidden" name="idDeleteNameActor" id="idDeleteNameActor" placeholder="ingrese nombre de actor">
+                                <span class="card-title" id="DeleteActor" name="DeleteActor"></span>
                                 <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Crear">Eliminar</button>
                             </div>
                             <div class="modal-footer">

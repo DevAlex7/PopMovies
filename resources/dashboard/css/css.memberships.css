@@ -1,0 +1,26 @@
+header, main, footer {
+    padding-left: 300px;
+    }
+    
+    @media only screen and (max-width : 992px) {
+        header, main, footer {
+            padding-left: 0;
+        }
+    
+    }
+    #NameMembership:focus {
+        border-bottom: 1px solid #64A7EA;
+        box-shadow: 0 1px 0 0  #64A7EA;
+    }
+      
+    #NameMembership:focus + label {
+        color:  #64A7EA;
+    }
+
+    #IconAddMembership:focus {
+        border-bottom: 1px solid #64A7EA;
+        box-shadow: 0 1px 0 0  #64A7EA;
+    }
+    #IconAddMembership:focus +  {
+        color:  #64A7EA;
+    }

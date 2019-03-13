@@ -1,0 +1,28 @@
+header, main, footer {
+    padding-left: 300px;
+    }
+    
+    @media only screen and (max-width : 992px) {
+        header, main, footer {
+            padding-left: 0;
+        }
+    
+    }
+    #NameActor:focus {
+        border-bottom: 1px solid #64A7EA;
+        box-shadow: 0 1px 0 0  #64A7EA;
+    }
+      
+    #NameActor:focus + label {
+        color:  #64A7EA;
+    }
+    
+    #UpdateNameActor{
+        border-bottom: 1px solid #64A7EA;
+        box-shadow: 0 1px 0 0  #64A7EA;
+    }
+      
+    #UpdateNameActor:focus + label {
+        color:  #64A7EA;
+    }
+  
