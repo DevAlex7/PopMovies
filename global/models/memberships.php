@@ -13,9 +13,14 @@ class Memberships{
     }
     public function ShowMemberships()
     {
-        $sql='SELECT membership, price FROM memberships';
+        $sql='SELECT id, membership, price FROM memberships';
         $params = array(null);
         return Database::getRows($sql, $params);
+    }
+    public function GetMembershipbyId(){
+        $sql = 'SELECT id, membership, price FROM memberships WHERE id= ?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
     }
     public function updateMembership(){
 

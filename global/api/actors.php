@@ -41,7 +41,8 @@
                 case 'showActor':
                     
                     if(empty($_POST['id']))
-                    {$result['exception'] = 'Actor incorrecto';
+                    {
+                        $result['exception'] = 'Actor incorrecto';
                        
                     }
                     else
@@ -74,21 +75,22 @@
 
                     }
                     break;
-                     //Update Actor
-                case 'deleteActor':
+                
+                    //Delete Actor
+                    case 'deleteActor':
+                    if(empty($_POST['idDeleteNameActor']) )
+                    {
+                        print 'Codigo incorrecto';
+                    }
+                    else
+                    {
+                        $actors->id = $_POST['idDeleteNameActor'];
+                        $actors->DeleteActor();
+                        $result['status']=1;
 
-                if( empty($_POST['idDeleteNameActor']) )
-                {
-                    print 'Codigo incorrecto';
-                }
-                else
-                {
-                    $actors->id = $_POST['idDeleteNameActor'];
-                    $actors->DeleteActor();
-                    $result['status']=1;
-
-                }
-                break;
+                    }
+                    break;
+                
                 default:
                     exit('accion no disponible');
             }

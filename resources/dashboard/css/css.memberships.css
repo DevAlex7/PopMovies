@@ -8,19 +8,30 @@ header, main, footer {
         }
     
     }
-    #NameMembership:focus {
-        border-bottom: 1px solid #64A7EA;
-        box-shadow: 0 1px 0 0  #64A7EA;
+    
+    .input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+    color: #64A7EA !important;
     }
-      
-    #NameMembership:focus + label {
-        color:  #64A7EA;
+    .input-field input[type=number]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+    color: #64A7EA !important;
     }
+    .input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #64A7EA !important;
+    box-shadow: 0 1px 0 0 #64A7EA !important;
+    }
+    .input-field input[type=number]:focus, .materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #64A7EA !important;
+    box-shadow: 0 1px 0 0 #64A7EA !important;
+    }
+ 
 
-    #IconAddMembership:focus {
-        border-bottom: 1px solid #64A7EA;
-        box-shadow: 0 1px 0 0  #64A7EA;
+    #IconBookmark
+    {
+        position: relative;
+        top:1.5px;
     }
-    #IconAddMembership:focus +  {
-        color:  #64A7EA;
+    #IconMoney
+    {
+        position: relative;
+        top:1.5px;
     }

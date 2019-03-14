@@ -3,8 +3,10 @@ $(document).ready(function(){
     ShowAllMemberships();
 });
 
+//API Memberships
 const APIMemberships = '../../global/api/memberships.php?site=dashboard&action=';
 
+//Show All Memberships
 function ShowAllMemberships()
 {
   $.ajax({
@@ -25,10 +27,16 @@ function ShowAllMemberships()
             result.dataset.forEach(function(row){
                 content += `
                     <div class="col s12 m4">
-                        <div class="card">
+                        <div class="card z-depth-3">
                             <div class="card-content">
-                                <span class="card-title">${row.membership}</span>    
-                                <p>Precio: ${row.price}</p>
+                                <span class="card-title">Información</span>
+                                <div class="divider"></div>
+                                <span class="card-title"> <i class="material-icons blue-text" id="IconBookmark">bookmark</i>  ${row.membership}</span>    
+                                <span class="card-title"> <i class="material-icons green-text" id="IconMoney">attach_money</i> Precio: ${row.price}</span>
+                            </div>
+                            <div class="card-action">
+                            <a href="" onclick="ShowMembership(${row.id})" class="blue-text tooltipped modal-trigger" data-target="ShowMembership" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
+                            <a href="" onclick="ShowInformation(${row.id})" class="red-text tooltipped modal-trigger" data-target="DeleteMembership" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
                             </div>
                         </div>
                     </div>
@@ -52,11 +60,12 @@ function ShowAllMemberships()
 });
 }
 
+//Add a Memberships
 $('#form-create').submit(function(){
     event.preventDefault();
     $.ajax({
         url: APIMemberships + 'addMembership',
-      type: 'post',
+      type: 'POST',
       data: new FormData($('#form-create')[0]),
       datatype: 'json',
       cache: false,
@@ -69,12 +78,15 @@ $('#form-create').submit(function(){
           if (result.status) {
               $('#form-create')[0].reset();
              
-              if (result.status == 1) {
+              if (result.status) {
                   M.toast({html: 'Membresia Creada Correctamente!'})
                   ShowAllMemberships()
+                }
+                else{
+                    M.toast({html: result.exception})    
                 } 
           } else {
-              alert(result.exception);
+                M.toast({html: result.exception})
           }
       } else {
           console.log(response);
@@ -86,4 +98,38 @@ $('#form-create').submit(function(){
     });
 
 })
+
+//Show Membership - Edit
+function ShowMembership(id){
+    console.log(id);
+    $.ajax({
+        url: APIMemberships + 'GetMembershipbyId',
+        type: 'POST',
+        data:{
+            id: id
+        },
+        datatype: 'json',
+    })
+    .done(function(response){
+        console.log(response);
+        if (isJSONString(response)) {
+
+            const result = JSON.parse(response);
+            if (result.status) {
+                console.log(result.dataset);
+                $('#idUpdateMembership').val(result.dataset.id);  
+                $('#NameUpdateMembership').val(result.dataset.membership);
+                $('#UpdatePriceMembership').val(result.dataset.price);
+
+            } else {
+                console.log(result.exception);
+            }
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
 

@@ -13,39 +13,56 @@
         {
             switch($_GET['action']){
 
-                //Get Memberships
-                case 'GetMemberships':
-                
-                    if ($result['dataset'] = $memberships->ShowMemberships()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'No hay customers disponibles';
-                    }
+            //Get Memberships
+            case 'GetMemberships':
+            
+                if ($result['dataset'] = $memberships->ShowMemberships()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay customers disponibles';
+                }
 
-                break;
-                
-                //Add Membership
-                case 'addMembership':
+            break;
+            
+            //Add Membership
+            case 'addMembership':
 
-                    if(!empty($memberships->membership = $_POST['NameMembership']))
-                    {
-                        
-                        if(!empty($memberships->price = $_POST['priceMembership'])){
+                if(!empty($memberships->membership = $_POST['NameMembership']))
+                {
+                    if(!empty($memberships->price = $_POST['priceMembership'])){
 
-                            $memberships->SaveMembership();
-                            $result['status']=1;
-
-                        }
-                        else
-                        {
-                            print 'precio vacio :v';
-                        }
+                        $memberships->SaveMembership();
+                        $result['status']=1;
                     }
                     else
                     {
-                        print 'Nombre vacio :v';
+                        $result['exception']='precio vacio';
                     }
-                break;
+                }
+                else
+                {
+                    $result['exception']='Nombre vacio';
+                }
+            break;
+
+            case 'GetMembershipbyId':
+
+                if(empty($_POST['id']))
+                {
+                    $result['exception'] = 'Membresia incorrecta o identificador invalido';
+                }
+                else
+                {
+                    $memberships->id = $_POST['id'];
+                    if($result['dataset'] = $memberships->GetMembershipbyId())
+                    {
+                        $result['status'] = 1;
+                    }
+                    else
+                    {
+                        $result['exception'] = 'Membresia inexistente';
+                    }
+                }
             }
         }
         else

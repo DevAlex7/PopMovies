@@ -34,7 +34,7 @@
         </div>
 
         <!--Tabla de actores -->
-        <div class="row">
+        <div class="row" id="ActorsList">
             <div class="card z-depht-3">
                 <div class="card-content">
                     <table class="highlight z-depht-5">
@@ -98,11 +98,11 @@
             <div class="modal-content">
                 <div class="card">
                     <div class="card-content">
-                        <form method="post" id="DeleteActorForm" enctype="multipart/form-data">
+                        <form method="POST" id="DeleteActorForm">
                             <span class="card-title">Eliminar Actor</span>
-                                <input type="hidden" name="idDeleteNameActor" id="idDeleteNameActor" placeholder="ingrese nombre de actor">
+                                <input type="hidden" name="idDeleteNameActor" id="idDeleteNameActor">
                                 <span class="card-title" id="DeleteActor" name="DeleteActor"></span>
-                                <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Crear">Eliminar</button>
+                                <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Eliminar">Eliminar</button>
                             </div>
                             <div class="modal-footer">
                                 <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
