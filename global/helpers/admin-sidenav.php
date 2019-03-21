@@ -21,9 +21,9 @@ class AdminSideNav{
             <li><a class="subheader">Menu</a></li>
             <li><a href="/PopMovies/feed/account/movies.php"><i class="material-icons">movies</i>Stock</a></li>
             <li><a href=""><i class="material-icons">list</i>Clasificaciones</a></li>
-            <li><a href="#!"><i class="material-icons">reorder</i>Generos</a></li>
+            <li><a href="/PopMovies/feed/account/genders.php"><i class="material-icons">sentiment_satisfied_alt</i>Generos</a></li>
             <li><a href="#!"><i class="material-icons">shop</i>Ventas</a></li>
-            <li><a href="#!"><i class="material-icons">business</i>Proveedores</a></li>
+            <li><a href="/PopMovies/feed/account/customers.php"><i class="material-icons">business</i>Proveedores</a></li>
             <li><a href="#!"><i class="material-icons">account_circle</i>Administradores</a></li>
             <li><a href="#!"><i class="material-icons">accessibility</i>Usuarios</a></li>
             <li><a href="/PopMovies/feed/account/memberships.php"><i class="material-icons">bookmark</i>Membresias</a></li>

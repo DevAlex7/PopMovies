@@ -7,7 +7,7 @@
     if(isset($_GET['site']) && isset($_GET['action']))
     {
         session_start();
-        $actors = new Actor();
+        $actor = new Actor();
         $result = array('status' => 0, 'exception' =>'');
         if($_GET['site']=='dashboard')
         {
@@ -17,20 +17,27 @@
                 //Create Actor
                 case 'createActor':
 
-                   if(empty($actors->name = $_POST['NameActor'])){
+                   if(empty($actor->name = $_POST['NameActor'])){
                         $result['exception'] = 'Nombre incorrecto';
                    }
                    else
                    {
-                        $actors->SaveActor();
-                        $result['status']=1;
-                   }
+                       //verify if Actor exists
+                       if(! $actor->exists()){
+                        $actor->create();
+                        $result['status'] = 1;
+                       }
+                       else
+                       {
+                        $result['exception']  = 'Actor existente';
+                       }
+                    }
                 break;
                 
                 //Table
                 case 'showActors':
                 
-                    if ($result['dataset'] = $actors->GetActors()) {
+                    if ($result['dataset'] = $actor->all()) {
                         $result['status'] = 1;
                     } else {
                         $result['exception'] = 'No hay Actores registradas';
@@ -43,12 +50,11 @@
                     if(empty($_POST['id']))
                     {
                         $result['exception'] = 'Actor incorrecto';
-                       
                     }
                     else
                     {
-                        $actors->id = $_POST['id'];
-                        if($result['dataset'] = $actors->ShowInformation())
+                        $actor->id = $_POST['id'];
+                        if($result['dataset'] = $actor->find())
                         {
                             $result['status'] = 1;
                         }
@@ -68,9 +74,9 @@
                     }
                     else
                     {
-                        $actors->id = $_POST['idUpdateActor'];
-                        $actors->name = $_POST['UpdateNameActor'];
-                        $actors->UpdateActor();
+                        $actor->id = $_POST['idUpdateActor'];
+                        $actor->name = $_POST['UpdateNameActor'];
+                        $actor->update();
                         $result['status']=1;
 
                     }
@@ -84,8 +90,8 @@
                     }
                     else
                     {
-                        $actors->id = $_POST['idDeleteNameActor'];
-                        $actors->DeleteActor();
+                        $actor->id = $_POST['idDeleteNameActor'];
+                        $actor->delete();
                         $result['status']=1;
 
                     }
@@ -105,7 +111,4 @@
     {
         exit('recurso denegado');
     }
-
-
-
 ?>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboard | Memberships</title>
+    <title>Dashboard | Membresias</title>
 
     <link rel="stylesheet" href="../../resources/public/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
@@ -42,7 +42,7 @@
                 <div class="card">
                     <div class="card-content">
                     <span class="card-title">Agregar Membresia</span>
-                        <form class="col s12" method="POST" id="form-create" enctype="multipart/form-data">
+                        <form class="col s12" method="POST" id="form-createMembership" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col s12">
                                     <div class="row">
@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer white">
                                 <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Crear">Agregar</button>
                                 <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
                             </div>
@@ -75,7 +75,7 @@
                 <div class="card">
                     <div class="card-content">
                     <span class="card-title">Información de la membresia</span>
-                        <form class="col s12" method="POST" id="form-update" enctype="multipart/form-data">
+                        <form class="col s12" method="POST" id="UpdateMembership" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col s12">
                                     <div class="row">
@@ -91,9 +91,34 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Crear">Editar</button>
+                            <div class="modal-footer white">
+                                <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Editar">Editar</button>
                                 <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        </div>
+
+        <!--Modal Delete Membership -->
+        <div id="ShowMembershipDelete" class="modal">
+            <div class="modal-content">
+                <div class="card">
+                    <div class="card-content">  
+                        <form class="col s12" method="POST" id="DeleteMembership" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col s12">
+                                    <div class="row">
+                                        <span class="card-title">¿Desea eliminar esta membresia?</span>
+                                        <span class="card-title" id="DeleteNameMembership"></span>
+                                        <input type="hidden" id="idDeleteMembership" name="idDeleteMembership" class="validate">
+                                    </div>
+                                    <div class="modal-footer white">
+                                        <button type="submit" class="btn small red white-text tooltipped" data-tooltip="Eliminar">Eliminar</button>
+                                        <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>

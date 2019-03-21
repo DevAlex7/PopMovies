@@ -21,7 +21,7 @@
     <main>
         <div class="card">
             <div class="card-content">
-                <span class="card-title">Actores</span>
+                <span class="card-title"> <i class="material-icons" id="IconActors">face</i> Actores</span>
             </div>
         </div>       
         <!--Barra de opciones --> 

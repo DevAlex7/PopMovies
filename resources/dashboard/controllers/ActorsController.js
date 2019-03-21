@@ -25,7 +25,7 @@ $('#form-create').submit(function(){
             M.toast({html: 'Actor Creado Correctamente!'})
             showTable();
         } else {
-            alert(result.exception);
+            M.toast({html:result.exception});
         }
     } else {
         console.log(response);
@@ -37,6 +37,7 @@ $('#form-create').submit(function(){
   });
 
 })
+
 //Show all Actors
 function fillTable(rows)
 {
@@ -69,11 +70,11 @@ function showTable()
     .done(function(response){
         if (isJSONString(response)) {
             const result = JSON.parse(response);
-            if (result.status) {
-                fillTable(result.dataset);
-            } else {
-                M.toast({html: 'No hay actores registrados'})
-            }
+            if (!result.status) {
+                M.toast({html: 'No h$ay actores registrados'})
+            } 
+            fillTable(result.dataset);
+            
         } else {
             console.log(response);
         }
@@ -86,7 +87,6 @@ function showTable()
 //Show Actor
 function ShowInformation(id)
 {
-    console.log(id);
         $.ajax({
         url: APIActors + 'showActor',
         type: 'post',
@@ -174,6 +174,7 @@ function ShowInformationDelete(id)
             } else {    
                 console.log(result.exception);
             }
+            showTable();
         } else {
             console.log(response);
         }
@@ -210,7 +211,6 @@ $('#DeleteActorForm').submit(function()
         
     })
     .fail(function(jqXHR){
-        //Se muestran en consola los posibles errores de la solicitud AJAX
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 })

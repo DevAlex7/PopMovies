@@ -5,30 +5,36 @@ class Actor extends Validator{
     public $id;
     public $name;
 
-    public function SaveActor()
+    public function exists(){
+      $sql = 'SELECT name FROM actors WHERE name=?';
+      $params = array($this->name);
+      return Database::getRow($sql, $params);
+    }
+
+    public function create()
     {
       $sql = 'INSERT INTO actors(name) VALUES(?)';
       $params = array($this->name);
       return Database::executeRow($sql, $params);
     }
-    public function GetActors()
+    public function all()
     {
       $sql = 'SELECT id, name FROM actors';
       $params = array(null);
       return Database::getRows($sql, $params);
     }
-    public function ShowInformation()
+    public function find()
     {
       $sql = 'SELECT id, name FROM actors WHERE id= ?';
       $params = array($this->id);
       return Database::getRow($sql, $params);
     }
-    public function UpdateActor(){
+    public function update(){
       $sql = 'UPDATE actors SET name = ? WHERE id = ?';
       $params = array($this->name, $this->id);
       return Database::executeRow($sql, $params);
     }
-    public function DeleteActor()
+    public function delete()
     {
       $sql = 'DELETE FROM actors WHERE id = ?';
       $params = array($this->id);

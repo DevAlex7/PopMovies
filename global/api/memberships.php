@@ -7,31 +7,75 @@
     if(isset($_GET['site']) && isset($_GET['action']) )
     {
         session_start();
-        $memberships = new Memberships();
+        $membership = new Membership();
         $result = array('status'=>0, 'exception'=>'');
         if($_GET['site'] == 'dashboard')
         {
             switch($_GET['action']){
-
             //Get Memberships
             case 'GetMemberships':
-            
-                if ($result['dataset'] = $memberships->ShowMemberships()) {
+                if ($result['dataset'] = $membership->all()) {
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = 'No hay customers disponibles';
                 }
-
             break;
             
             //Add Membership
             case 'addMembership':
 
-                if(!empty($memberships->membership = $_POST['NameMembership']))
+                if(!empty($membership->membership = $_POST['NameMembership']))
                 {
-                    if(!empty($memberships->price = $_POST['priceMembership'])){
+                    if(!empty($membership->price = $_POST['priceMembership'])){
+                        //verify if memberships exists
+                       if(! $membership->exist())
+                       {
+                            $membership->create();
+                            $result['status'] = 1;
+                       }
+                       else{
+                        $result['exception']='Membresia existente';
+                       }
+                    }
+                    else
+                    {
+                        $result['exception']='precio vacio';
+                    }
+                }
+                else
+                {
+                    $result['exception']='Nombre vacio';
+                }
+            break;
 
-                        $memberships->SaveMembership();
+            //Show Information by Id
+            case 'GetMembershipbyId':
+                if(empty($_POST['id']))
+                {
+                    $result['exception'] = 'Membresia incorrecta o identificador invalido';
+                }
+                else
+                {
+                    $membership->id = $_POST['id'];
+                    if($result['dataset'] = $memberships->find())
+                    {
+                        $result['status'] = 1;
+                    }
+                    else
+                    {
+                        $result['exception'] = 'Membresia inexistente';
+                    }
+                }
+            break;
+
+            //Update Membership
+            case 'UpdateMembership':
+
+                if(!empty($membership->membership = $_POST['NameUpdateMembership']))
+                {
+                    if(!empty($membership->price = $_POST['UpdatePriceMembership'])){
+                        $membership->id = $_POST['idUpdateMembership'];
+                        $membership->update();
                         $result['status']=1;
                     }
                     else
@@ -45,24 +89,20 @@
                 }
             break;
 
-            case 'GetMembershipbyId':
+            case 'DeleteMembership':
 
-                if(empty($_POST['id']))
-                {
-                    $result['exception'] = 'Membresia incorrecta o identificador invalido';
-                }
-                else
-                {
-                    $memberships->id = $_POST['id'];
-                    if($result['dataset'] = $memberships->GetMembershipbyId())
-                    {
-                        $result['status'] = 1;
-                    }
-                    else
-                    {
-                        $result['exception'] = 'Membresia inexistente';
-                    }
-                }
+            if(!empty($membership->id = $_POST['idDeleteMembership'])){
+                $membership->id = $_POST['idDeleteMembership'];
+                $membership->delete();
+                $result['status']=1;
+            }
+            else
+            {
+                $result['exception']='identificador vacio';
+            }
+        break;
+            default:
+            exit('accion no disponible');
             }
         }
         else
@@ -75,5 +115,4 @@
     {
         exit('recurso denegado');
     }
-
 ?>
