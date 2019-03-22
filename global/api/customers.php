@@ -29,6 +29,11 @@
                     
                 break;
 
+                case 'SendEmail':
+                
+                break;
+
+
                 default:
                     exit('accion no disponible');
             }

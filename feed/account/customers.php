@@ -67,13 +67,30 @@
                     <div class="card-action grey lighten-4">
                         <a href="" class="white-text btn small blue accent-4 tooltipped" data-position="bottom" data-tooltip="Información"><i class="material-icons">info</i></a>
                         <a href="" class="white-text btn small blue accent-4 tooltipped" data-position="top" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
-                        <a href="" class="white-text btn small blue accent-4 tooltipped" data-position="bottom" data-tooltip="Enviar un correo"><i class="material-icons">send</i></a>
+                        <a href="" class="white-text btn small blue accent-4 tooltipped modal-trigger" data-target="ModalSendEmail" data-position="bottom" data-tooltip="Enviar un correo"><i class="material-icons">send</i></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
+    <!--Modal Send Message -->
+    <div class="modal" id="ModalSendEmail">
+    
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">¡Envianos un Mensaje!</span>
+                    <textarea class="materialize-textarea" placeholder="Escribe tu mensaje" name="" id="" cols="30" rows="10"></textarea>
+                        <button class="btn"> <i class="material-icons right">send</i> Enviar </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+    <!--Modal Create Customer -->
     <div class="modal" id="ModalAddCustomer">
         <div class="modal-content">
             <div class="card">
