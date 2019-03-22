@@ -15,7 +15,7 @@
 <body>
     
 <header>
-    <?php  AdminSideNav::SideNav();?>
+    <?php AdminSideNav::SideNav();?>
 </header>
 <main>
 
@@ -61,8 +61,13 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">sfsdf</span>
+                        <span class="card-title">sa</span>
                         <span class="card-title">sfsdf</span>
-                        <span class="card-title">sfsdf</span>
+                    </div>
+                    <div class="card-action grey lighten-4">
+                        <a href="" class="white-text btn small blue accent-4 tooltipped" data-position="bottom" data-tooltip="Información"><i class="material-icons">info</i></a>
+                        <a href="" class="white-text btn small blue accent-4 tooltipped" data-position="top" data-tooltip="Eliminar"><i class="material-icons">delete</i></a>
+                        <a href="" class="white-text btn small blue accent-4 tooltipped" data-position="bottom" data-tooltip="Enviar un correo"><i class="material-icons">send</i></a>
                     </div>
                 </div>
             </div>
