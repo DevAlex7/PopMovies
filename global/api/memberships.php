@@ -57,7 +57,7 @@
                 else
                 {
                     $membership->id = $_POST['id'];
-                    if($result['dataset'] = $memberships->find())
+                    if($result['dataset'] = $membership->find())
                     {
                         $result['status'] = 1;
                     }

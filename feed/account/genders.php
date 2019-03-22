@@ -71,21 +71,28 @@
 
 <!--Modal Delete -->
     <div id="ModalDeleteGender" class="modal">
-            <div class="modal-content white">
-                <h6 class="card-title">Eliminar Genero</h6>
-                <p id="NameGender"></p>
-                <form method="POST">
-                    <div class="row">
-                        <div class="s12 m5">
-                            <input type="text" placeholder="Id">
-                            <button type="submit" class="btn small red white-text tooltipped" data-tooltip="Eliminar">Eliminar</button>
-                        </div>
+        <div class="modal-content white">
+            <h6 class="card-title">Eliminar Genero</h6>
+            <p id="NameGender"></p>
+            <form method="POST" id="DeleteGender">
+                <div class="row">
+                    <div class="s12 m5">
+
+                        <div class="card red white-text">
+                            <div class="card-content">
+                                <span class="card-title">¿Desea eliminar el genero seleccionado?</span>
+                                <span class="card-title" name="ShowNameGender" id="ShowNameGender"></span>
+                                <input type="hidden" name="idGender" id="idGender" placeholder="Id">
+                            </div>
+                        </div> 
+                        
+                        <button type="submit" class="btn small red white-text tooltipped" data-tooltip="Eliminar"> <i class="material-icons left">check</i> Eliminar</button>
+                        <a class="modal-close waves-effect waves-white blue darken-1 btn small white-text"> <i class="material-icons left">clear</i> Cancelar</a>
+                    
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer white">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
+                </div>
+            </form>
+        </div>
     </div>
 </main>    
 <footer>

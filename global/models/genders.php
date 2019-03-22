@@ -31,7 +31,9 @@ class Gender extends Validator{
         return Database::getRow($sql, $params);
     }
     public function find(){
-        
+        $sql='SELECT id, gender FROM genders WHERE id=?';
+        $params=array($this->id);
+        return Database::getRow($sql, $params);
     }
     public function all()
     {
@@ -45,12 +47,11 @@ class Gender extends Validator{
         $params = array($this->name);
         return Database::executeRow($sql, $params);
     }
-    public function update(){
-
-    }
     public function delete()
     {
-
+        $sql ='DELETE FROM genders WHERE id=?';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
     }
 }
 

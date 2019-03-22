@@ -40,7 +40,6 @@ function showTableGenders(){
         if(!result.status){
           M.toast({html:'No hay generos registrados'});
         }
-        console.log(result);
         FillGenders(result.dataset);
       }
       else
@@ -90,15 +89,63 @@ $('#form-createGender').submit(function(){
 })
 function InformationbyId(id){
     $.ajax({
-      url:APIGenders + '';
+      url:APIGenders + 'getGender',
+      type:'POST',
+      data:{
+        id:id
+      },
+      datatype:'JSON'
     })
     .done(function(response){
-
+      if(isJSONString(response)){
+        const result = JSON.parse(response);
+        if(result.status){
+          $('#idGender').val(result.dataset.id);
+          $('#ShowNameGender').text("Genero seleccionado: "+result.dataset.gender);
+        }
+        else{
+          console.log(result.exception);
+        }
+      }
+      else
+      {
+        console.log(response);
+      }
     })
     .fail(function(jqXHR){
-
+      console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     })
 } 
+$('#DeleteGender').submit(function(){
+    event.preventDefault();
+    $.ajax({
+      url:APIGenders+'destroy',
+      type:'POST',
+      data: $('#DeleteGender').serialize(),
+      dataype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status)
+            {
+              $('#ModalDeleteGender').modal('close');
+              M.toast({html:'Genero eliminado correctamente'});
+            }
+            else{
+              console.log(result.exception);
+            }
+            showTableGenders();
+        }
+        else{
+          console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+      console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    })
+})
+
 
 
 

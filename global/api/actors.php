@@ -1,4 +1,4 @@
-<?php 
+    <?php 
 
     require_once('../helpers/instance.php');
     require_once('../helpers/validator.php');

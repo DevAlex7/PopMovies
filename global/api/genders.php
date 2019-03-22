@@ -42,7 +42,32 @@ if(isset($_GET['site']) && isset($_GET['action'])){
                 $result['exception'] = 'Campo Vacio';
             }
             break;
+            case 'getGender':
+            //Validate is a number the id
+                if($gender->id($_POST['id'])){
+                    //receive row dataset and find the id
+                    if($result['dataset'] = $gender->find()){
+                        $result['status']=1;
+                    }
+                    else{
+                    }
+                }
+                else{
+                    $result['exception']='identificador incorrecto';
+                }
+            break;
+
+            case 'destroy':
+                if($gender->id($_POST['idGender'])){
+                    
+                    $gender->delete();
+                    $result['status']=1;
+                }
+                else{
+                    $result['exception']='Operacion fallida';
+                }
             
+            break;
             
             default:
             exit('accion no disponible');

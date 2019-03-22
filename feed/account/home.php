@@ -30,7 +30,7 @@
     </div>
 
     <div class="row blue">
-      <div class="col s12 m6">
+      <div class="col s12 m4">
           <div class="card">
               <div class="card-content">
                  <span class="card-title" id="Shop"></span>
@@ -39,7 +39,7 @@
               </div>
           </div>
       </div>
-      <div class="col s12 m6">
+      <div class="col s12 m4">
           <div class="card">
               <div class="card-content">
                 <span class="card-title" id="Products"></span>
@@ -48,7 +48,7 @@
               </div>
           </div>
       </div>
-      <div class="col s12 m6">
+      <div class="col s12 m4">
           <div class="card">
               <div class="card-content">
                 <span class="card-title" id="Customers"></span>

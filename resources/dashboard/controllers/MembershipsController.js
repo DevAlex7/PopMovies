@@ -227,7 +227,6 @@ $('#DeleteMembership').submit(function(){
                 console.log(result.exception);
             }
             ShowAllMemberships();
-
         }
         else
         {

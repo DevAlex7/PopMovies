@@ -8,3 +8,10 @@ header, main, footer {
         }
     
     }
+#CardAdd{
+    height: 11rem;
+}
+#AddCustomerBtn{
+    position: relative;
+    top:1rem;
+}

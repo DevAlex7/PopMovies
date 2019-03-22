@@ -71,7 +71,7 @@ function showTable()
         if (isJSONString(response)) {
             const result = JSON.parse(response);
             if (!result.status) {
-                M.toast({html: 'No h$ay actores registrados'})
+                M.toast({html: 'No hay actores registrados'})
             } 
             fillTable(result.dataset);
             
@@ -93,12 +93,10 @@ function ShowInformation(id)
         data:{
             id: id
         },
-        datatype: 'json',
+        datatype: 'json'
     })
     .done(function(response){
-        console.log(response);
         if (isJSONString(response)) {
-
             const result = JSON.parse(response);
             if (result.status) {
                 console.log(result.dataset);
