@@ -1,17 +1,22 @@
 header, main, footer {
-    padding-left: 300px;
-    }
-    
-    @media only screen and (max-width : 992px) {
-        header, main, footer {
-            padding-left: 0;
-        }
-    
-    }
-#CardAdd{
-    height: 11rem;
+padding-left: 300px;
 }
-#AddCustomerBtn{
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
+
+}
+#OptionsDropDown{
     position: relative;
-    top:1rem;
+    margin-right: 1rem;
+}
+#SearchBar{
+    position: relative;
+    right:1.5rem;    
+    margin-top: 2rem;
+}
+#OptionsIcons{
+    margin-left: 10rem;
 }

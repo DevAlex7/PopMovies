@@ -76,7 +76,6 @@ $('#form-createMembership').submit(function(){
           const result = JSON.parse(response);
           if (result.status) {
               $('#form-createMembership')[0].reset();
-             
               if (result.status) {
                   M.toast({html: 'Membresia Creada Correctamente!'})
                   $('#addMembership').modal('close');  
@@ -84,7 +83,7 @@ $('#form-createMembership').submit(function(){
                 else{
                     M.toast({html: result.exception})    
                 }
-                ShowAllMemberships()
+                ShowAllMemberships();
 
           } else {
                 M.toast({html: result.exception})
@@ -116,7 +115,6 @@ function ShowMembership(id){
 
             const result = JSON.parse(response);
             if (result.status) {
-                console.log(result.dataset);
                 $('#idUpdateMembership').val(result.dataset.id);  
                 $('#NameUpdateMembership').val(result.dataset.membership);
                 $('#UpdatePriceMembership').val(result.dataset.price);

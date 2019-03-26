@@ -46,12 +46,12 @@
                             <div class="row">
                                 <div class="col s12">
                                     <div class="row">
-                                        <div class="input-field col s6">
+                                        <div class="input-field col s12 m5">
                                             <i class="material-icons prefix blue-text">bookmark</i>
                                             <input id="icon_prefix" type="text" id="NameMembership" name="NameMembership" class="validate">
                                             <label for="icon_prefix">Nombre de membresia</label>
                                         </div>
-                                        <div class="input-field col s6">
+                                        <div class="input-field col s12 m5">
                                             <i class="material-icons prefix green-text">attach_money</i>
                                             <input id="icon_price" name="priceMembership" type="number" step="0.01" min="1" max="20" class="validate">
                                             <label for="icon_price">Precio</label>

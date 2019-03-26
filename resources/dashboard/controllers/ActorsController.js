@@ -87,13 +87,13 @@ function showTable()
 //Show Actor
 function ShowInformation(id)
 {
-        $.ajax({
-        url: APIActors + 'showActor',
-        type: 'post',
-        data:{
-            id: id
-        },
-        datatype: 'json'
+    $.ajax({
+    url: APIActors + 'showActor',
+    type: 'post',
+    data:{
+        id: id
+    },
+    datatype: 'json'
     })
     .done(function(response){
         if (isJSONString(response)) {
