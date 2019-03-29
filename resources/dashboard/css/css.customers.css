@@ -1,12 +1,30 @@
 header, main, footer {
 padding-left: 300px;
+background-color:transparent;
+}
+#HeaderPart{
+    position: relative;
+    top:-0.5rem;
+    background-color: #E92F1D;
+}
+html{
+    background-color: #040516;
 }
 
 @media only screen and (max-width : 992px) {
     header, main, footer {
         padding-left: 0;
     }
+}
 
+#Actions{
+    background-color: #CECCCC;
+}
+#InfoIcon{
+    color:#313A9F;
+}
+#DeleteIcon{
+    color:red;
 }
 #OptionsDropDown{
     position: relative;
@@ -20,3 +38,20 @@ padding-left: 300px;
 #OptionsIcons{
     margin-left: 10rem;
 }
+#BtnAddCustomer{
+    position: relative;
+    right:0.8rem;    
+}
+ 
+.input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+    color: black !important;
+}
+.input-field input[type=email]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+color: black !important;
+}
+.input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+border-bottom: 1px solid black !important;
+box-shadow: 0 1px 0 0 black !important;
+}
+
+

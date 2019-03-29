@@ -60,7 +60,7 @@ class Customers extends Validator{
         
         public function all()
 	    {
-            $sql = 'SELECT name, email, enterprise FROM customers';
+            $sql = 'SELECT * FROM customers';
             $params = array(null);
             return Database::getRows($sql, $params);
         }
@@ -68,11 +68,6 @@ class Customers extends Validator{
 	    {
             $sql = 'SELECT COUNT(*) FROM customers AS count';
             $params = array(null);
-            return Database::getRow($sql, $params);
-        }
-        public function exist(){
-            $sql = 'SELECT email FROM customers WHERE email=?';
-            $params = array($this->email);
             return Database::getRow($sql, $params);
         }
         public function create(){
@@ -87,13 +82,13 @@ class Customers extends Validator{
 
         }
         public function find(){
-            $sql = 'SELECT name FROM customers WHERE name=?';
-            $params = array($this->name);
+            $sql = 'SELECT * FROM customers WHERE id=?';
+            $params = array($this->id);
             return Database::getRow($sql, $params);
         }
-        public function findallbynamefields(){
-            $sql= 'SELECT name, email, enterprise FROM customers WHERE name=? OR email=? OR enterprise=?';
-            $params = array($this->search, $this->search, $this->search);
+        public function findall(){
+            $sql= 'SELECT * FROM customers WHERE name LIKE ? OR email LIKE ? OR enterprise LIKE ?';
+            $params = array("%$this->search%", "%$this->search%", "%$this->search%");
             return Database::getRows($sql, $params);
         }
     }

@@ -99,7 +99,6 @@ function ShowInformation(id)
         if (isJSONString(response)) {
             const result = JSON.parse(response);
             if (result.status) {
-                console.log(result.dataset);
                 $('#idUpdateActor').val(result.dataset.id);                
                 $('#UpdateNameActor').val(result.dataset.name);
             } else {
@@ -165,7 +164,6 @@ function ShowInformationDelete(id)
 
             const result = JSON.parse(response);
             if (result.status) {
-                console.log(result.dataset);
                 $('#idDeleteNameActor').val(result.dataset.id);                
                 $('#DeleteActor').html("¿Desea Eliminar al Actor: "+result.dataset.name+"?");
                 $('#deleteActor').modal('open');

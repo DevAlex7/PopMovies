@@ -25,7 +25,7 @@
 
             case 'Search':
                 if($customers->search($_POST['search'])){
-                    if ($result['dataset'] = $customers->findallbynamefields()) {
+                    if ($result['dataset'] = $customers->findall()) {
                         $result['status'] = 1;
                     }
                     else {
@@ -35,7 +35,44 @@
                 else{
                     $result['exception']='esta vacio';
                 }
-            
+            break;
+
+            case 'createCustomer':
+                if($customers->name($_POST['NameProvider'])){
+                    if($customers->email($_POST['EmailProvider'])){
+                        
+                        if($customers->enterprise($_POST['EnterpriseProvider'])){
+                            $customers->create();
+                            $result['status']=1;
+                        }
+                        else{
+                            $result['exception']='Campo vacio de empresa';
+                        }
+                    }
+                    else
+                    {
+                        $result['exception']='Correo incorrecto o campo vacio';
+                    }
+                }
+                else{
+                    $result['exception']='Nombre incorrecto o campo vacio';
+                }
+            break;  
+            case 'showCustomer':
+
+            if($customers->id($_POST['id'])){
+                if($result['dataset'] = $customers->find()){
+                    
+                    $result['status']=1;
+                }
+                else{
+                    $result['exception'] = 'identificador incorrecto';
+                }
+            }
+            else{
+                $result['exception'] = 'Esta vacio we :v';
+            }
+                
             break;
             
             default:

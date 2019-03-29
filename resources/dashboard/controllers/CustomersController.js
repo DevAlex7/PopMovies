@@ -2,10 +2,10 @@ $(document).ready(function () {
     ShowCustomers();
     $(".dropdown-trigger").dropdown();
     $('.tooltipped').tooltip();
+    $(".modal").modal();
 });
 
-const APICustomers = '../../global/api/customers.php?site=dashboard&action=';;
-
+const APICustomers = '../../global/api/customers.php?site=dashboard&action=';
 
 function FillCardsCustomers(cards){
 
@@ -21,10 +21,9 @@ function FillCardsCustomers(cards){
                     <p>${card.email}</p>
                     <p>${card.enterprise}</p>
                     </div>
-                    <div class="card-action yellow">
-                    <a href="#"> <i class="material-icons black-text">info</i> </a>
-                    <a href="#"> <i class="material-icons red-text">delete</i> </a>
-                    <a href="#"> <i class="material-icons black-text">message</i> </a>
+                    <div class="card-action" id="Actions">
+                    <a href="#EditCustomerModal" class="modal-trigger" onClick="ViewCustomer(${card.id})"> <i class="material-icons" id="InfoIcon">info</i> </a>
+                    <a href="#ModalDeleteCustomer" class="modal-trigger" onClick="DeleteCustomer(${card.id})"> <i class="material-icons" id="DeleteIcon">delete</i> </a>
                     </div>
                 </div>
             </div>
@@ -32,7 +31,6 @@ function FillCardsCustomers(cards){
         })
     }
     $('#CustomersList').html(content);
-
 }
 
 function ShowCustomers(){
@@ -62,6 +60,7 @@ function ShowCustomers(){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 }
+
 $("#SearchField").submit(function (e) { 
     e.preventDefault();
 
@@ -88,7 +87,89 @@ $("#SearchField").submit(function (e) {
     });
 
 });
+
+//Clear SearchBar
 function ClearSearchBar(){
     ShowCustomers();
     $("#search").val('');
 }
+//Create Customer
+$("#AddCustomerForm").submit(function(e){
+
+    e.preventDefault();
+
+    $.ajax({
+        url:APICustomers+'createCustomer',
+        type:'POST',
+        data: new FormData($('#AddCustomerForm')[0]),
+        datatype:'JSON',
+        cache:false,
+        contentType:false,
+        processData:false
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                $('#AddCustomerForm')[0].reset();
+                M.toast({html:'Proveedor agregado satisfactoriamente'});
+                ShowCustomers();
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            M.toast({html:response});
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+});
+
+//Show-Edit Customer
+function ViewCustomer(id){
+    
+    $.ajax({
+        url:APICustomers + 'showCustomer',
+        type:'POST',
+        data:{
+            id:id
+        },
+        datatype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                $('#EditidProvider').val(result.dataset.id);
+                $('#EditNameProvider').val(result.dataset.name);
+                $('#EditEmailProvider').val(result.dataset.email);
+                $('#EditEnterpriseProvider').val(result.dataset.enterprise);
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    })
+}
+
+$('#EditCustomer').submit(function(){
+    
+    event.preventDefault();
+    $.ajax({
+        url: APICustomers + '',
+    })
+
+})
+function DeleteCustomer(id){
+    
+}
+

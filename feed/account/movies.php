@@ -28,7 +28,7 @@
                     <div class="col s12 m4">
                         <div class="card z-depth-3">
                             <div class="card-content">
-                                <p>+</p>
+                                
                             </div>
                         </div>
                     </div>

@@ -87,6 +87,7 @@ $('#form-createGender').submit(function(){
   });
 
 })
+
 function InformationbyId(id){
     $.ajax({
       url:APIGenders + 'getGender',
