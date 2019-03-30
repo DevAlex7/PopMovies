@@ -28,14 +28,14 @@
                     <span class="card-title col s10 offset-s1 red-text">Iniciar Sesion</span>
                     <div class="input-field col s10 offset-s1">
                         <input id="icon_prefix"  class="red-text" type="text">
-                        <label for="icon_prefix">First Name</label>
+                        <label for="icon_prefix">Email</label>
                     </div>
                     <div class="input-field col s10 offset-s1">
                          <input id="icon_telephone" class="red-text" type="password" >
                          <label for="icon_telephone">Contraseña</label>
                     </div>
                    <div class="col s10 offset-s1">
-                        <a href="home.php" class="btn col s12 black">enviar</a>
+                        <a href="home.php" class="btn col s12 black">Entrar</a>
                    </div>
                 </form>
             </div>

@@ -28,7 +28,7 @@ class AdminSideNav{
             <li><a href=""><i class="material-icons">accessibility</i>Usuarios</a></li>
             <li><a href="/PopMovies/feed/account/memberships.php"><i class="material-icons">bookmark</i>Membresias</a></li>
             <li><a href="/PopMovies/feed/account/actors.php"><i class="material-icons">face</i>Actores</a></li>
-            <li><a href="/PopMovies/feed/account/signup.php"><i class="material-icons">exit_to_app</i>Cerrar Sesión</a></li>
+            <li><a href="/PopMovies/feed/account/"><i class="material-icons">exit_to_app</i>Cerrar Sesión</a></li>
         </ul>  
         ');
     }

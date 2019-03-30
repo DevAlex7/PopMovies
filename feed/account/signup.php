@@ -23,30 +23,34 @@
       <div class="card-content">
       <span class="card-title center">¡Registrate!</span>
         <div class="row">
-          <form class="col s12 m12">
+          <form class="col s12 m12" method="POST" id="CreateUserForm">
             <div class="row">
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix black-text">account_circle</i>
-                <input id="icon_prefix" type="text" placeholder="Ingrese su nombre">
+                <input id="AdminUserName" type="text" name="AdminUserName" placeholder="Ingrese su nombre">
               </div>
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix  black-text">account_circle</i>
-                <input id="icon_prefix" type="text" placeholder="Ingrese sus apellidos">
+                <input id="AdminUserLastName" type="text" name="AdminUserLastName" placeholder="Ingrese sus apellidos">
+              </div>
+              <div class="input-field col s10 offset-s1">
+                <i class="material-icons prefix  black-text">assignment_ind</i>
+                <input id="AdminUserName" name="AdminUserName" type="text" placeholder="Ingrese su nombre de usuario">
               </div>
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix  black-text">mail</i>
-                <input id="icon_prefix" type="text" placeholder="Ingrese su correo">
+                <input id="AdminUserEmail" name="AdminUserEmail" type="text" placeholder="Ingrese su correo">
               </div>
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix  black-text">vpn_key</i>
-                <input id="icon_prefix" type="password" placeholder="Ingrese su contraseña">
+                <input id="AdminUserPassword" name="AdminUserPassword" type="password" placeholder="Ingrese su contraseña">
               </div>
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix  black-text">vpn_key</i>
-                <input id="icon_prefix" type="password" placeholder="Repita su contraseña">
+                <input id="AdminUserRepeatPassword" name="AdminUserRepeatPassword"  type="password" placeholder="Repita su contraseña">
               </div>
               <div class="input-field col s10 offset-s1">
-                <button class="btn col s12 red">Registrarme</button>
+                <button class="btn col s12 red" type="submit">Registrarme</button>
               </div>
             </div>
           </form>
@@ -57,6 +61,8 @@
 </main>
 
 <script src="../../resources/globaljs/jquery-3.2.1.min.js"></script>
-<script src="../../resources/globaljs/materialize.min.js"></script>  
+<script src="../../resources/globaljs/materialize.min.js"></script>
+<script src="../../global/helpers/functions.js"></script>
+<script src="../../resources/dashboard/controllers/SignUpController.js"></script>  
 </body>
 </html>
