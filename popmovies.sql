@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-03-2019 a las 22:15:14
+-- Tiempo de generación: 30-03-2019 a las 18:24:27
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -60,9 +60,19 @@ CREATE TABLE `actorsmovie` (
 
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
+  `name` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `lastname` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `username` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `admins`
+--
+
+INSERT INTO `admins` (`id`, `name`, `lastname`, `username`, `email`, `password`) VALUES
+(1, 'Alejandro ', 'Gonzalez', 'Alexgve7', 'alexgve7@gmail.com', '$2y$10$ndDsJq.MiwQlcYZCAxcu4e0f0K0M7yUgOR5WYXDGC5H06ArNsN.uK');
 
 -- --------------------------------------------------------
 
@@ -104,7 +114,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `enterprise`) VALUES
-(1, 'adsa', 'asda', 'asdasd');
+(1, 'Alejandro', 'alexgve7@gmail.com', 'Walmart'),
+(2, 'Manuel Gonzalez ', 'Manu@gmail.com', 'Elaniin');
 
 -- --------------------------------------------------------
 
@@ -134,7 +145,9 @@ CREATE TABLE `genders` (
 --
 
 INSERT INTO `genders` (`id`, `gender`) VALUES
-(23, 'Accion');
+(25, 'Miedo'),
+(26, 'Accion'),
+(27, 'Drama');
 
 -- --------------------------------------------------------
 
@@ -147,6 +160,14 @@ CREATE TABLE `memberships` (
   `membership` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `price` float(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `memberships`
+--
+
+INSERT INTO `memberships` (`id`, `membership`, `price`) VALUES
+(1, 'Gold', 10.99),
+(2, 'Black', 20.00);
 
 -- --------------------------------------------------------
 
@@ -206,6 +227,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `lastname` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `username` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `membership` int(11) NOT NULL
@@ -251,7 +273,8 @@ ALTER TABLE `clasifications`
 -- Indices de la tabla `customers`
 --
 ALTER TABLE `customers`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indices de la tabla `favorites`
@@ -318,7 +341,7 @@ ALTER TABLE `actors`
 -- AUTO_INCREMENT de la tabla `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `binnacle`
@@ -333,6 +356,12 @@ ALTER TABLE `clasifications`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `favorites`
 --
 ALTER TABLE `favorites`
@@ -342,13 +371,13 @@ ALTER TABLE `favorites`
 -- AUTO_INCREMENT de la tabla `genders`
 --
 ALTER TABLE `genders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `memberships`
 --
 ALTER TABLE `memberships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `movies`
