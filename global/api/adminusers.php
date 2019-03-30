@@ -1,5 +1,4 @@
 <?php 
-
         require_once('../helpers/validator.php');    
         require_once('../models/adminusers.php');
         require_once('../helpers/instance.php');
@@ -51,6 +50,15 @@
                         else{
                             $result['exception']= 'Nombre incorrecto o campo vacio';
                         }
+                    break;
+             
+                    case 'checkUsers':
+                        if($result['dataset']=$userAdmin->checkUsers()){
+                            $result['status']=1;
+                        }
+                        else{
+                                $result['exception'] = '../../feed/account/signup.php';
+                            }
                     break;
                 }
             }

@@ -21,6 +21,7 @@ $('#CreateUserForm').submit(function(e){
             const result = JSON.parse(response);
             if(result.status){
                 M.toast({html:'Usuario agregado correctamente'});
+                $(location).attr('href','../../feed/account/');
             }
             else{
                 M.toast({html:result.exception})

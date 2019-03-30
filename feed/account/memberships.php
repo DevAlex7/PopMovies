@@ -130,7 +130,7 @@
     
     <footer>
     </footer>
-    <script src="../../resources/globaljs/jquery-3.2.1.min.js"></script>
+<script src="../../resources/globaljs/jquery-3.2.1.min.js"></script>
 <script src="../../resources/globaljs/materialize.min.js"></script> 
 <script src="../../resources/dashboard/js/sidenav.js"></script> 
 <script src="../../global/helpers/functions.js"></script>

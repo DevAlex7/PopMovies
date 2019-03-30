@@ -82,6 +82,11 @@ class adminusers extends Validator{
 		}
     }
 
+    public function checkUsers(){
+        $sql='SELECT name, lastname, username, email FROM admins ORDER BY lastname';
+        $params = array(null);
+        return Database::getRows($sql, $params);
+    }
     public function create(){
         $hash=password_hash($this->password, PASSWORD_DEFAULT);
         $sql='INSERT INTO admins (name, lastname, username, email, password) VALUES (?,?,?,?,?)';
