@@ -117,7 +117,7 @@ function ShowInformation(id)
 //Update Actor
 $('#ActorFormUpdate').submit(function()
 {
-    event.preventDefault();
+    
     $.ajax({
         url: APIActors + 'updateActor',
         type: 'post',

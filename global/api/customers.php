@@ -74,7 +74,40 @@
             }
                 
             break;
-            
+            case 'updateCustomer':
+                if($customers->id($_POST['EditidProvider'])){
+                    if($customers->name($_POST['EditNameProvider'])){
+                        if($customers->email($_POST['EditEmailProvider'])){
+                            if($customers->enterprise($_POST['EditEnterpriseProvider'])){
+                                $customers->update();
+                                $result['status']=1;
+                            }
+                            else{
+                                $result['exception']='Empresa incorrecta o campo vacio';
+                            }
+                        }
+                        else{
+                            $result['exception']='Formato erroneo de email o campo vacio';
+                        }
+                    }
+                    else{
+                        $result['exception']='Nombre incorrecto o campo vacio';    
+                    }
+                }
+                else{
+                    $result['exception']='identificador incorrecto';
+                }
+            break;
+            case 'deleteCustomer':
+                if($customers->id($_POST['DeleteCustomerinput'])){
+                    
+                    $customers->delete();
+                    $result['status']=1;
+                }
+                else{
+                    $result['exception']='Error al eliminar';
+                }
+            break;
             default:
                 exit('accion no disponible');
             }

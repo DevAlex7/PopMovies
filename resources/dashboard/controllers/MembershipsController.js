@@ -157,7 +157,6 @@ $('#UpdateMembership').submit(function()
                 console.log(result.exception);
             }
             ShowAllMemberships();
-
         }
         else
         {
@@ -172,7 +171,6 @@ $('#UpdateMembership').submit(function()
 
 //Show Membership - Delete
 function ShowMembershipDelete(id){
-    console.log(id);
     $.ajax({
         url: APIMemberships + 'GetMembershipbyId',
         type: 'POST',
@@ -187,7 +185,6 @@ function ShowMembershipDelete(id){
 
             const result = JSON.parse(response);
             if (result.status) {
-                console.log(result.dataset);
                 $('#idDeleteMembership').val(result.dataset.id);  
                 $('#DeleteNameMembership').text("Nombre membresia: "+result.dataset.membership);
 

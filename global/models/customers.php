@@ -76,10 +76,14 @@ class Customers extends Validator{
             return Database::executeRow($sql, $params);
         }
         public function update(){
-
+            $sql='UPDATE customers SET name=?, email=?, enterprise=? WHERE id=?';
+            $params=array($this->name, $this->email,$this->enterprise, $this->id);
+            return Database::executeRow($sql, $params);
         }
         public function delete(){
-
+            $sql='DELETE FROM customers WHERE id=?';
+            $params=array($this->id);
+            return Database::executeRow($sql, $params);
         }
         public function find(){
             $sql = 'SELECT * FROM customers WHERE id=?';

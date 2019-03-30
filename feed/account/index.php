@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +14,7 @@
     
 <main>
 <nav class="red">
+
     <div class="nav-wrapper">
       <a href="#" class="brand-logo center">PopMovies</a>
     </div>
