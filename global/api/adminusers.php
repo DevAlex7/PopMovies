@@ -17,11 +17,31 @@
                     case 'createAdminUser':
                         if($userAdmin->name($_POST['AdminUserName'])){
                             if($userAdmin->lastname($_POST['AdminUserLastName'])){
-                                if($userAdmin->em){
-
+                                if($userAdmin->username($_POST['Username'])){
+                                    if($userAdmin->email($_POST['AdminUserEmail'])){
+                                        if($_POST['AdminUserPassword'] == $_POST['AdminUserRepeatPassword']){
+                                            if($userAdmin->password($_POST['AdminUserPassword'])){
+                                                if($userAdmin->create()){
+                                                    $result['status']=1;
+                                                }
+                                                else{
+                                                    $result['exception'] = 'Operación fallida';
+                                                }
+                                            }
+                                            else{
+                                                $result['exception'] = 'Clave menor a 6 caracteres';
+                                            }
+                                        }
+                                        else{
+                                            $result['exception'] = 'Las contraseñas son diferentes';
+                                        }
+                                    }
+                                    else{
+                                        $result['exception']='Formato incorrecto de correo o campo vacio';
+                                    }
                                 }
                                 else{
-
+                                    $result['exception']='Usuario incorrecto o campo vacio';
                                 }
                             }
                             else{

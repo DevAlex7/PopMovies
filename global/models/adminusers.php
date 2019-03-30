@@ -62,7 +62,6 @@ class adminusers extends Validator{
 
     public function email($value)
     {
-        
 		if ($this->validateEmail($value)) {
 			$this->email = $value;
 			return true;
@@ -74,8 +73,7 @@ class adminusers extends Validator{
         return $this->email;
     }
 
-    public function password(){
-
+    public function password($value){
         if ($this->validatePassword($value)) {
 			$this->password = $value;
 			return true;

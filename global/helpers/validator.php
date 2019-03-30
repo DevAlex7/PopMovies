@@ -42,6 +42,14 @@ class Validator{
 			return false;
 		}
 	}
+	public function validatePassword($value)
+	{
+		if (strlen($value) > 5) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 ?>

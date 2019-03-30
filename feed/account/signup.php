@@ -35,7 +35,7 @@
               </div>
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix  black-text">assignment_ind</i>
-                <input id="AdminUserName" name="AdminUserName" type="text" placeholder="Ingrese su nombre de usuario">
+                <input id="Username" name="Username" type="text" placeholder="Ingrese su nombre de usuario">
               </div>
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix  black-text">mail</i>
@@ -49,9 +49,7 @@
                 <i class="material-icons prefix  black-text">vpn_key</i>
                 <input id="AdminUserRepeatPassword" name="AdminUserRepeatPassword"  type="password" placeholder="Repita su contraseña">
               </div>
-              <div class="input-field col s10 offset-s1">
-                <button class="btn col s12 red" type="submit">Registrarme</button>
-              </div>
+                <button type="submit" class="btn col s12 red">Registrarme</button>
             </div>
           </form>
         </div>
