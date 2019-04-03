@@ -88,7 +88,7 @@
     <div class="col s12 m4">
         <div class="card" id="MisionCard">
             <div class="card-content">
-            <span class="card-title white-text">Misión</span>                
+            <span class="card-title white-text">Misión</span>
                 <div class="card">
                     <div class="card-content center">
                         <p><i class="material-icons">add</i></p>
