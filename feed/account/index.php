@@ -24,7 +24,7 @@
     <div class="card col s12 m4 offset-m4 white white-text" id="Login">
         <div class="card-content">
             <div class="row">
-                <form>
+                <form id="LoginForm" method="POST">
                     <span class="card-title col s10 offset-s1 red-text">Iniciar Sesion</span>
                     <div class="input-field col s10 offset-s1">
                         <input id="icon_prefix"  class="red-text" type="text">
@@ -35,7 +35,7 @@
                          <label for="icon_telephone">Contraseña</label>
                     </div>
                    <div class="col s10 offset-s1">
-                        <a href="home.php" class="btn col s12 black">Entrar</a>
+                        <button type="submit" class="btn col s12 black">Entrar</button>
                    </div>
                 </form>
             </div>

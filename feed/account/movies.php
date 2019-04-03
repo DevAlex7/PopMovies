@@ -14,34 +14,30 @@
 
 </head>
 <body>
-        <header>
-            <?php AdminSideNav::SideNav(); ?>
-        </header>
-        <main>
-                <div class="card">
+<header>
+    <?php AdminSideNav::SideNav(); ?>
+</header>
+<main>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Peliculas</span>
+            </div>
+        </div>
+        <!--Todas las peliculas-->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="card z-depth-3">
                     <div class="card-content">
-                        <span class="card-title">Peliculas</span>
+                      <div class="chip">
+                        <p>miedo</p>
+                      </div>
+                      <div class="chip">
+                        <p>miedo</p>
+                      </div>
                     </div>
                 </div>
-                <!--Boton para agregar -->
-                <div class="row">
-                    <div class="col s12 m4">
-                        <div class="card z-depth-3">
-                            <div class="card-content">
-                            </div>
-                        </div>
-                    </div>
-                    <!--Todas las peliculas-->
-                    <div class="row">
-                        <div class="col s12 m4">
-                            <div class="card z-depth-3">
-                                <div class="card-content">
-                                    <p>fsdf</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </main>
+            </div>
+        </div>
+</main>
 </body>
 </html>

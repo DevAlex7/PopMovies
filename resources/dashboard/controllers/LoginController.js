@@ -23,7 +23,29 @@ function CheckUsers(){
             console.log(response);
         }
     })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+
+$('#LoginForm').submit(function(){
+
+    event.preventDefault();
+    $.ajax({
+        url:APIAdminusers+'login',
+        type:'POST',
+        data:$('#LoginForm').serialize(),
+        dataype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            
+        }else{
+            console.log(response);
+        }
+    })
     .fail(function(){
 
     });
-}
+
+});
