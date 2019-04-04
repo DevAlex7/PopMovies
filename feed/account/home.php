@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard | Home</title>
 
-    <link rel="stylesheet" href="../../resources/public/css/materialize.min.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.home.css">
 
@@ -19,9 +19,9 @@
 
 <main class="blue">
 
-<div class="row blue">
-    <div class="card">
-        <div class="card-content"></div>
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">Bienvenido</span>
     </div>
 </div>
     

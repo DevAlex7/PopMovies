@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard | Generos</title>
 
-    <link rel="stylesheet" href="../../resources/public/css/materialize.min.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.genders.css">
 
@@ -21,7 +21,7 @@
     <div class="row">
         <div class="card">
             <div class="card-panel">
-                <span class="card-title"> <i class="material-icons" id="IconGenders">sentiment_satisfied_alt</i> Generos</span>
+                <span class="card-title"> Generos</span>
             </div>
         </div>
     </div>

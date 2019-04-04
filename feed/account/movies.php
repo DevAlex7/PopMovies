@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard | Peliculas</title>
     
-    <link rel="stylesheet" href="../../resources/public/css/materialize.min.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
-    <link rel="stylesheet" href="../../resources/dashboard/css/css.home.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/css.movies.css">
 
 </head>
 <body>

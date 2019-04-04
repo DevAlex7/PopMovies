@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard | Membresias</title>
 
-    <link rel="stylesheet" href="../../resources/public/css/materialize.min.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.memberships.css">
 </head>
@@ -21,7 +21,7 @@
         <div class="row">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title"> <i class="material-icons">bookmark</i> Membresias </span>
+                    <span class="card-title"> Membresias </span>
                 </div>
                 <div class="card blue">
                     <div class="card-content">

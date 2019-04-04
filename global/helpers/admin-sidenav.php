@@ -30,7 +30,7 @@ class AdminSideNav{
                     <li><div class="divider"></div></li>
                     <li><a class="subheader white   -text">Menu</a></li>
                     <li><a href="/PopMovies/feed/account/movies.php"><i class="material-icons">movies</i>Stock</a></li>
-                    <li><a href=""><i class="material-icons">list</i>Clasificaciones</a></li>
+                    <li><a href="/PopMovies/feed/account/clasifications.php"><i class="material-icons">list</i>Clasificaciones</a></li>
                     <li><a href="/PopMovies/feed/account/genders.php"><i class="material-icons">sentiment_satisfied_alt</i>Generos</a></li>
                     <li><a href="#!"><i class="material-icons">shop</i>Ventas</a></li>
                     <li><a href="/PopMovies/feed/account/customers.php"><i class="material-icons">business</i>Proveedores</a></li>
@@ -73,7 +73,7 @@ class AdminSideNav{
     }
     private function modals(){
         print('
-        <div class="modal red" id="ModalCloseSession">
+        <div class="modal blue" id="ModalCloseSession">
             <div class="modal-content col s5">
                 <div class="card">
                     <div class="card-content center">

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard | Actores</title>
 
-    <link rel="stylesheet" href="../../resources/dashboard/css/materialize.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.actors.css">
 
@@ -20,7 +20,7 @@
     <main>
         <div class="card">
             <div class="card-content">
-                <span class="card-title"> <i class="material-icons" id="IconActors">face</i> Actores</span>
+                <span class="card-title"> Actores</span>
             </div>
         </div>       
         <!--Barra de opciones --> 
