@@ -81,6 +81,36 @@ class adminusers extends Validator{
 			return false;
 		}
     }
+    public function getPassword(){
+        return $this->password;
+    }
+
+    public function checkUsername()
+	{
+		$sql = 'SELECT id, name, lastname FROM admins WHERE username = ?';
+		$params = array($this->username);
+		$data = Database::getRow($sql, $params);
+		if ($data) {
+			$this->id = $data['id'];
+			$this->name = $data['name'];
+			$this->lastname = $data['lastname'];
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function checkPassword()
+	{
+		$sql = 'SELECT password FROM admins WHERE id = ?';
+		$params = array($this->id);
+		$data = Database::getRow($sql, $params);
+		if (password_verify($this->password, $data['password'])) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
     public function checkUsers(){
         $sql='SELECT name, lastname, username, email FROM admins ORDER BY lastname';

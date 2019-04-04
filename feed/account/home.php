@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../../resources/public/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.home.css">
-    <link href="../../resources/public/css/css.font.css" rel="stylesheet">
 
 </head>
 <body>
@@ -20,44 +19,11 @@
 
 <main class="blue">
 
-    <div class="row">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">Bienvenido Administrador</span>
-                <span class="card-title"></span>
-            </div>
-        </div>
+<div class="row blue">
+    <div class="card">
+        <div class="card-content"></div>
     </div>
-
-    <div class="row blue">
-      <div class="col s12 m4">
-          <div class="card">
-              <div class="card-content">
-                 <span class="card-title" id="Shop"></span>
-                 <div class="divider"></div>
-                 <a class="waves-effect waves-light btn-small transparent blue-text" id="ShowShops"><i class="material-icons left">shop</i>ir a ventas</a>
-              </div>
-          </div>
-      </div>
-      <div class="col s12 m4">
-          <div class="card">
-              <div class="card-content">
-                <span class="card-title" id="Products"></span>
-                <div class="divider"></div>
-                <a class="waves-effect waves-light btn-small transparent blue-text" id="ShowProducts"><i class="material-icons left">movie</i>ver productos</a>
-              </div>
-          </div>
-      </div>
-      <div class="col s12 m4">
-          <div class="card">
-              <div class="card-content">
-                <span class="card-title" id="Customers"></span>
-                <div class="divider"></div>
-                <a class="waves-effect waves-light btn-small transparent blue-text" id="ShowProducts"><i class="material-icons left">movie</i>ver productos</a>
-              </div>
-          </div>
-      </div>
-    </div>
+</div>
     
 </main>
 

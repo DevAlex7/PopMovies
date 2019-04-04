@@ -2,6 +2,7 @@ $(document).ready(function()
 {
     //ViewCustomers();
     CountCustomers();
+  
     CountsShops();
     GetProductsMovies();
 })

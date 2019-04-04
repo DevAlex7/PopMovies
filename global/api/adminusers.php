@@ -2,12 +2,12 @@
         require_once('../helpers/validator.php');    
         require_once('../models/adminusers.php');
         require_once('../helpers/instance.php');
-
         if(isset($_GET['site']) && isset($_GET['action']) )
         {
             session_start();
             $userAdmin = new adminusers();
-            $result = array('status'=>0,'exception'=>'');
+            
+            $result = array('status'=>0,'exception'=>'','site'=>'');
 
             if($_GET['site']=='dashboard'){
                 
@@ -59,6 +59,41 @@
                         else{
                                 $result['exception'] = '../../feed/account/signup.php';
                             }
+                    break;
+                    case 'login':
+                        if($userAdmin->username($_POST['Username'])){
+                            if($userAdmin->checkUsername()){
+                                if($userAdmin->password($_POST['Password'])){
+                                    if($userAdmin->checkPassword()){
+                                       
+                                        $_SESSION['idUsername']= $userAdmin->getId();
+                                        $_SESSION['AdminUsername']=$userAdmin->getUsername();
+                                        $_SESSION['AdminName']=$userAdmin->getName();
+                                        $_SESSION['AdminLastname']=$userAdmin->getLastname();
+                                        $result['status']=1;
+                                        $result['site']='../../feed/account/home.php';
+                                    }
+                                    else{
+                                        $result['exception']='Contraseña o usuario incorrecto';
+                                    }
+                                }
+                                else{
+                                    $result['exception']='Campo vacio';
+                                }
+                            }
+                            else{
+                                $result['exception']='Usuario inexistente';
+                            }
+                        }else{
+                            $result['exception']='Campo vacio';
+                        }
+                    break;
+                    case 'logOff':
+                    if (session_destroy()) {
+                        header('location: ../../feed/account/');
+                    } else {
+                        header('location: ../../feed/account/home.php');
+                    }
                     break;
                 }
             }

@@ -51,7 +51,7 @@
 
 </div>
 
-<!-Modal add Customer -->
+<!--Modal add Customer -->
 <div class="modal red" id="ModalCreateCustomer">
     <div class="modal-content">
         <div class="card">
@@ -132,8 +132,8 @@
         <div class="card">
             <form method="POST" id="DeleteCustomerForm">
                 <div class="card-content center">
-                        <span class="card-title">¿Desea eliminar a este proveedor?</span>
-                        <input type="text" name="DeleteCustomerinput" id="DeleteCustomerinput">
+                    <span class="card-title">¿Desea eliminar a este proveedor?</span>
+                    <input type="hidden" name="DeleteCustomerinput" id="DeleteCustomerinput">
                 </div>
                 <div class="card-action center">
                     <button class="btn red"> <i class="material-icons left">check</i> Aceptar</button>
