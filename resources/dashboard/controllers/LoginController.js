@@ -41,7 +41,6 @@ $('#LoginForm').submit(function(){
         if(isJSONString(response)){
             const dataset = JSON.parse(response);
             if(dataset.status){
-                M.toast({html:'Autenticación correcta'});
                 $(location).attr('href',dataset.site);
             }
             else{
