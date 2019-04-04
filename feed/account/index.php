@@ -27,11 +27,11 @@
                 <form id="LoginForm" method="POST">
                     <span class="card-title col s10 offset-s1 red-text">Iniciar Sesion</span>
                     <div class="input-field col s10 offset-s1">
-                        <input id="icon_prefix"  class="red-text" type="text">
+                        <input id="Username" name="Username"  class="red-text" type="text">
                         <label for="icon_prefix">Email</label>
                     </div>
                     <div class="input-field col s10 offset-s1">
-                         <input id="icon_telephone" class="red-text" type="password" >
+                         <input id="Password" id="Password" class="red-text" type="password" >
                          <label for="icon_telephone">Contraseña</label>
                     </div>
                    <div class="col s10 offset-s1">
