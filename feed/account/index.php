@@ -31,7 +31,7 @@
                         <label for="icon_prefix">Email</label>
                     </div>
                     <div class="input-field col s10 offset-s1">
-                         <input id="Password" id="Password" class="red-text" type="password" >
+                         <input id="Password" name="Password" class="red-text" type="password" >
                          <label for="icon_telephone">Contraseña</label>
                     </div>
                    <div class="col s10 offset-s1">

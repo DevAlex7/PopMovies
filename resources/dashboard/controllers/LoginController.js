@@ -39,7 +39,14 @@ $('#LoginForm').submit(function(){
     })
     .done(function(response){
         if(isJSONString(response)){
-            
+            const dataset = JSON.parse(response);
+            if(dataset.status){
+                M.toast({html:'Autenticación correcta'});
+                $(location).attr('href',dataset.site);
+            }
+            else{
+                M.toast({html:dataset.exception})
+            }
         }else{
             console.log(response);
         }

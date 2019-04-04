@@ -7,7 +7,7 @@
         {
             session_start();
             $userAdmin = new adminusers();
-            $result = array('status'=>0,'exception'=>'');
+            $result = array('status'=>0,'exception'=>'','site'=>'');
 
             if($_GET['site']=='dashboard'){
                 
@@ -59,6 +59,31 @@
                         else{
                                 $result['exception'] = '../../feed/account/signup.php';
                             }
+                    break;
+                    case 'login':
+                        if($userAdmin->username($_POST['Username'])){
+                            if($userAdmin->checkUsername()){
+                                if($userAdmin->password($_POST['Password'])){
+                                    if($userAdmin->checkPassword()){
+                                        $_SESSION['idUsername']= $userAdmin->getId();
+                                        $_SESSION['AdminUsername']=$userAdmin->getUsername();
+                                        $result['status']=1;
+                                        $result['site']='../../feed/account/home.php';
+                                    }
+                                    else{
+                                        $result['exception']='Contraseña o usuario incorrecto';
+                                    }
+                                }
+                                else{
+                                    $result['exception']='Campo vacio';
+                                }
+                            }
+                            else{
+                                $result['exception']='Usuario inexistente';
+                            }
+                        }else{
+                            $result['exception']='Campo vacio';
+                        }
                     break;
                 }
             }
