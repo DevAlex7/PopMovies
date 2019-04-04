@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-03-2019 a las 18:24:27
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.2
+-- Tiempo de generación: 04-04-2019 a las 23:48:10
+-- Versión del servidor: 10.1.36-MariaDB
+-- Versión de PHP: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -72,7 +72,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `lastname`, `username`, `email`, `password`) VALUES
-(1, 'Alejandro ', 'Gonzalez', 'Alexgve7', 'alexgve7@gmail.com', '$2y$10$ndDsJq.MiwQlcYZCAxcu4e0f0K0M7yUgOR5WYXDGC5H06ArNsN.uK');
+(3, 'Alejandro ', 'Gonzalez', 'Alexgve7', 'alexgve7@gmail.com', '$2y$10$K5xbF5Eo5n9mIgl2YE3F3.e52kzNUFf6YOlH8TZ0kC749dK.ow2JK');
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,8 @@ CREATE TABLE `binnacle` (
 
 CREATE TABLE `clasifications` (
   `id` int(11) NOT NULL,
-  `clasification` varchar(30) COLLATE utf8_spanish_ci NOT NULL
+  `clasification` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `description` varchar(100) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -108,14 +109,6 @@ CREATE TABLE `customers` (
   `email` varchar(70) NOT NULL,
   `enterprise` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `customers`
---
-
-INSERT INTO `customers` (`id`, `name`, `email`, `enterprise`) VALUES
-(1, 'Alejandro', 'alexgve7@gmail.com', 'Walmart'),
-(2, 'Manuel Gonzalez ', 'Manu@gmail.com', 'Elaniin');
 
 -- --------------------------------------------------------
 
@@ -147,7 +140,8 @@ CREATE TABLE `genders` (
 INSERT INTO `genders` (`id`, `gender`) VALUES
 (25, 'Miedo'),
 (26, 'Accion'),
-(27, 'Drama');
+(27, 'Drama'),
+(28, 'Terror');
 
 -- --------------------------------------------------------
 
@@ -341,7 +335,7 @@ ALTER TABLE `actors`
 -- AUTO_INCREMENT de la tabla `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `binnacle`
@@ -359,7 +353,7 @@ ALTER TABLE `clasifications`
 -- AUTO_INCREMENT de la tabla `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `favorites`
@@ -371,7 +365,7 @@ ALTER TABLE `favorites`
 -- AUTO_INCREMENT de la tabla `genders`
 --
 ALTER TABLE `genders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `memberships`
