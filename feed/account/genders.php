@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../../resources/public/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.genders.css">
-    <link href="../../resources/public/css/css.font.css" rel="stylesheet">
 
 </head>
 <body>

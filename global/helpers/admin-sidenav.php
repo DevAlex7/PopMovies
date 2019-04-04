@@ -17,14 +17,12 @@ class AdminSideNav{
                 <ul id="slide-out" class="sidenav sidenav-fixed">
                     <li>
                         <div class="user-view">
-                        <a href="#name"><span class="black-text name">'. $_SESSION['AdminUsername'].'</span></a>
-                        <a href="#email"><span class="black-text email">'. $_SESSION['AdminName'].$_SESSION['AdminLastname'] .'</span></a>
-                    
+                            <a href="#name"><span class="black-text name">'. $_SESSION['AdminUsername'].'</span></a>
+                            <a href="#email"><span class="black-text email">'. $_SESSION['AdminName'].$_SESSION['AdminLastname'] .'</span></a>
                             <div class="card center">
-                            <span class="card-title">PopMovies</span>
-                            
+                                <span class="card-title">PopMovies</span>
+                            </div>
                         </div>
-                           </div>
                     </li>
                     <li><a href="/PopMovies/feed/account/home.php"><i class="material-icons">dashboard</i>Inicio</a></li>
                     <li><a href=""><i class="material-icons">person</i>Mi perfil</a></li>
