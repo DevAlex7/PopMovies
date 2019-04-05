@@ -9,7 +9,7 @@ class Clasification extends Validator{
     private $search;
 
     public function search($value){
-        if($this->validateAlphanumeric($value, 1, 50)){
+        if($this->validateAlphanumeric($value, 1, 100)){
             $this->search=$value;
             return true;
         }
@@ -38,13 +38,8 @@ class Clasification extends Validator{
         }
     }
     public function descriptionClasification($value){
-        if($this->validateAlphanumeric($value, 1, 255)){
-            $this->descriptionClasification=$value;
-            return true;
-        }
-        else{
-            return false;
-        }
+        $this->descriptionClasification=$value;
+        return true;
     }
     public function findall(){
         $sql='SELECT id, clasification, description FROM clasifications WHERE clasification LIKE ?';

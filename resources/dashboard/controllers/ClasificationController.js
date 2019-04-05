@@ -46,6 +46,7 @@ function showTableClasifications(){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 }
+
 $('#ClasificationAddForm').submit(function(e){
     e.preventDefault();
     $.ajax({
@@ -78,3 +79,11 @@ $('#ClasificationAddForm').submit(function(e){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 });
+function ClearSearchField(){
+    $('#search').val('');
+    showTableClasifications();
+
+}
+$('#SearchFieldClasification').submit(function(){
+    alert("Hola");
+})

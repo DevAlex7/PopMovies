@@ -28,11 +28,11 @@
                     <div class="card-content">
                         <nav class="white">
                             <div class="nav-wrapper">
-                                <form>
+                                <form id="SearchFieldClasification">
                                     <div class="input-field">
-                                        <input id="search" type="search" placeholder="Buscar clasificación">
+                                        <input id="search" name"SearchClasification" type="search" placeholder="Buscar clasificación">
                                         <label class="label-icon"><i class="material-icons black-text">search</i></label>
-                                        <i class="material-icons">close</i>
+                                        <i class="material-icons" onClick="ClearSearchField()">close</i>
                                     </div>
                                 </form>
                             </div>
@@ -43,7 +43,8 @@
                             <table class="highlight">
                                 <thead>
                                     <tr>
-                                        
+                                        <th>Clasificación</th>
+                                        <th>Descripción</th>
                                     </tr>
                                 </thead>
                                 <tbody id="ClasificationsList">
@@ -56,6 +57,8 @@
             </div>
         </div>
     </div>
+
+    <!--Modal Add Clasification -->
     <div class="modal" id="ModalAddClasification">
         <div class="modal-content">
             <div class="card">
@@ -70,7 +73,7 @@
                             </div>
                             <div class="input-field col s12 m12">
                                 <i class="material-icons prefix black-text">view_headline</i>
-                                <textarea name="DescriptionClasification" id="DescriptionClasification" class="materialize-textarea" placeholder="Descripción de la clasificación" id="" cols="30" rows="10"></textarea>
+                                <textarea name="DescriptionClasification" class="materialize-textarea" placeholder="Descripción de la clasificación" id="DescriptionClasification" cols="30" rows="10"></textarea>
                             </div>
                             <div class="input-field col s12 m12">
                                 <button type="submit" class="btn green white-text"> <i class="material-icons left">add</i> Agregar</button>

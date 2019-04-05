@@ -40,7 +40,7 @@
                         
                         <thead>
                             <tr>
-                                
+                                <th>Actor</th>
                             </tr>
                         </thead>
 

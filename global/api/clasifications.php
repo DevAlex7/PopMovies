@@ -39,6 +39,7 @@
                     $result['exception']='No hay clasificaciones en lista';
                 }
                 break;
+                
                 //Search clasifications
                 case 'searchBy':
                 if($clasification->search($_POST[''])){
