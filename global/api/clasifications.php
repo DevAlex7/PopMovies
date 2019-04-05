@@ -1,8 +1,9 @@
 <?php 
 
     require_once('../helpers/validator.php');
-    require_once('../helpers/instance.php');
     require_once('../models/clasifications.php');
+    require_once('../helpers/instance.php');
+ 
     
     if(isset($_GET['site']) && isset($_GET['action'])){
         session_start();
@@ -27,9 +28,25 @@
                     else{
                         $result['exception']='Nombre incorrecto o campo vacio';
                     }
-                    
                 break;
 
+                //Show All Clasifications
+                case 'all':
+                if($result['dataset']=$clasification->all()){
+                    $result['status']=1;
+                }
+                else{
+                    $result['exception']='No hay clasificaciones en lista';
+                }
+                break;
+                //Search clasifications
+                case 'searchBy':
+                if($clasification->search($_POST[''])){
+
+                }else{
+
+                }
+                break;
                 default:
                 exit('accion no disponible');
             }

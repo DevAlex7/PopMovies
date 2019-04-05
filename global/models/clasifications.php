@@ -3,8 +3,20 @@
 class Clasification extends Validator{
     
     private $id;
-    private $nameClasifition;
+    private $nameClasification;
     private $descriptionClasification;
+
+    private $search;
+
+    public function search($value){
+        if($this->validateAlphanumeric($value, 1, 50)){
+            $this->search=$value;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     public function id($value){
         if($this->validateId($value)){
@@ -16,7 +28,8 @@ class Clasification extends Validator{
         }
     }
     public function nameClasification($value){
-        if($this->validateAlphabetic($value)){
+        
+        if($this->validateAlphabetic($value, 1, 50)){
             $this->nameClasification=$value;
             return true;
         }
@@ -25,13 +38,24 @@ class Clasification extends Validator{
         }
     }
     public function descriptionClasification($value){
-        if($this->validateAlphabetic($value)){
+        if($this->validateAlphanumeric($value, 1, 255)){
             $this->descriptionClasification=$value;
             return true;
         }
         else{
             return false;
         }
+    }
+    public function findall(){
+        $sql='SELECT id, clasification, description FROM clasifications WHERE clasification LIKE ?';
+        $params = array("%$this->search%");
+        return Database::getRows($sql, $params);
+    }
+    public function all(){
+        $sql='SELECT * FROM clasifications';
+        $params=array(null);
+        return Database::getRows($sql,$params);
+
     }
     public function create(){
         $sql='INSERT INTO clasifications (clasification, description) VALUES (?,?)';

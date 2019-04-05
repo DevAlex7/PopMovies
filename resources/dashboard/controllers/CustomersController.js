@@ -121,7 +121,7 @@ $("#AddCustomerForm").submit(function(e){
             }
         }
         else{
-            M.toast({html:response});
+            console.log(response);
         }
     })
     .fail(function(jqXHR){

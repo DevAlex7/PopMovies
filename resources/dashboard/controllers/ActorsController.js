@@ -117,7 +117,6 @@ function ShowInformation(id)
 //Update Actor
 $('#ActorFormUpdate').submit(function()
 {
-    
     $.ajax({
         url: APIActors + 'updateActor',
         type: 'post',
@@ -132,6 +131,7 @@ $('#ActorFormUpdate').submit(function()
             const result = JSON.parse(response);
             if (result.status) {
                     M.toast({html: 'Actor Actualizado Correctamente!'})
+                    $('#ActorFormUpdate')[0].reset();
                     showTable();
             } else {
                 console.log(result.exception);

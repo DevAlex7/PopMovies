@@ -40,33 +40,16 @@
                         <p id="searchbarsugestion" class="green-text">Sugerencia de busqueda: AA, A, B, B15, C, D</p>
                         <span class="card-title" id="TitleTable">Lista de clasificaciones</span>
                         <div id="ClasificationsTable">
-                        <table class="highlight">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Item Name</th>
-                                    <th>Item Price</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>Alvin</td>
-                                    <td>Eclair</td>
-                                    <td>$0.87</td>
-                                </tr>
-                                <tr>
-                                    <td>Alan</td>
-                                    <td>Jellybean</td>
-                                    <td>$3.76</td>
-                                </tr>
-                                <tr>
-                                    <td>Jonathan</td>
-                                    <td>Lollipop</td>
-                                    <td>$7.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                            <table class="highlight">
+                                <thead>
+                                    <tr>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody id="ClasificationsList">
+                           
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -78,27 +61,25 @@
             <div class="card">
                 <div class="card-content">
                 <span class="card-title">Agregar Clasificación</span>
-                <form method="post" id="ClasificationAddForm">
                     <div class="row">
-                        <div class="col s12">
+                        <form class="col s12" method="POST" id="ClasificationAddForm">
                             <div class="row">
-                                <div class="input-field col s12 m6">
-                                    <i class="material-icons prefix black-text">list</i>
-                                    <input type="text" name="NameClasification" id="NameClasification" placeholder="Ingrese nombre de clasificación">
-                                </div>
-                                <div class="input-field col s12 m6">
-                                    <i class="material-icons prefix black-text">view_headline</i>
-                                    <textarea class="materialize-textarea" id="DescriptionClasification" name="DescriptionClasification" type="text" name="" placeholder="Ingrese descripción de la clasificación" id="" cols="30" rows="10"></textarea>
-                                </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix black-text">view_list</i>
+                                <input id="NameClasification" name="NameClasification" type="text" class="input-field" placeholder="Nombre de la clasificación">
                             </div>
-                        </div>
+                            <div class="input-field col s12 m12">
+                                <i class="material-icons prefix black-text">view_headline</i>
+                                <textarea name="DescriptionClasification" id="DescriptionClasification" class="materialize-textarea" placeholder="Descripción de la clasificación" id="" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="input-field col s12 m12">
+                                <button type="submit" class="btn green white-text"> <i class="material-icons left">add</i> Agregar</button>
+                                <a class="btn modal-close grey">Cancelar</a>
+                            </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="modal-footer white">
-                    <button class="btn green white-text" type="submit"> <i class="material-icons left">add</i> Agregar</button>
-                    <a class="modal-close btn red"> <i class="material-icons left">close</i> Cancelar</a>
-                </div>
-                </form>
             </div>
         </div>
     </div>
