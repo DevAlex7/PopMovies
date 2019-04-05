@@ -27,15 +27,15 @@
                 <div class="card">
                     <div class="card-content">
                         <nav class="white">
+                        <form method="POST" id="SearchFieldClasification">
                             <div class="nav-wrapper">
-                                <form id="SearchFieldClasification">
                                     <div class="input-field">
-                                        <input id="search" name"SearchClasification" type="search" placeholder="Buscar clasificación">
+                                        <input id="search" name="search" type="search" placeholder="Buscar clasificación">
                                         <label class="label-icon"><i class="material-icons black-text">search</i></label>
                                         <i class="material-icons" onClick="ClearSearchField()">close</i>
                                     </div>
-                                </form>
                             </div>
+                        </form> 
                         </nav>
                         <p id="searchbarsugestion" class="green-text">Sugerencia de busqueda: AA, A, B, B15, C, D</p>
                         <span class="card-title" id="TitleTable">Lista de clasificaciones</span>
@@ -45,6 +45,7 @@
                                     <tr>
                                         <th>Clasificación</th>
                                         <th>Descripción</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="ClasificationsList">
@@ -77,6 +78,63 @@
                             </div>
                             <div class="input-field col s12 m12">
                                 <button type="submit" class="btn green white-text"> <i class="material-icons left">add</i> Agregar</button>
+                                <a class="btn modal-close grey">Cancelar</a>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal Edit Clasification -->
+    <div class="modal" id="ModalEditClasification">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-content">
+                <span class="card-title">Editar Clasificación</span>
+                    <div class="row">
+                        <form class="col s12" method="POST" id="ClasificationAddForm">
+                            <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix black-text">view_list</i>
+                                <input id="EditNameClasification" name="EditNameClasification" type="text" class="input-field" placeholder="Nombre de la clasificación">
+                            </div>
+                            <div class="input-field col s12 m12">
+                                <i class="material-icons prefix black-text">view_headline</i>
+                                <textarea name="EditDescriptionClasification" id="EditDescriptionClasification" class="materialize-textarea" placeholder="Descripción de la clasificación" id="DescriptionClasification" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="input-field col s12 m12">
+                                <button type="submit" class="btn green white-text"> <i class="material-icons left">edit</i> Agregar</button>
+                                <a class="btn modal-close grey">Cancelar</a>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal Delete Clasification -->
+    <div class="modal" id="ModalDeleteClasification">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-content">
+                <span class="card-title">Agregar Clasificación</span>
+                    <div class="row">
+                        <form class="col s12" method="POST" id="ClasificationAddForm">
+                            <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix black-text">view_list</i>
+                                <input id="EditNameClasification" name="EditNameClasification" type="text" class="input-field" placeholder="Nombre de la clasificación">
+                            </div>
+                            <div class="input-field col s12 m12">
+                                <i class="material-icons prefix black-text">view_headline</i>
+                                <textarea name="EditDescriptionClasification" id="EditDescriptionClasification" class="materialize-textarea" placeholder="Descripción de la clasificación" id="DescriptionClasification" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="input-field col s12 m12">
+                                <button type="submit" class="btn green white-text"> <i class="material-icons left">edit</i> Agregar</button>
                                 <a class="btn modal-close grey">Cancelar</a>
                             </div>
                             </div>

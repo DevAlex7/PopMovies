@@ -6,11 +6,11 @@ class Clasification extends Validator{
     private $nameClasification;
     private $descriptionClasification;
 
-    private $search;
+    public $search;
 
     public function search($value){
-        if($this->validateAlphanumeric($value, 1, 100)){
-            $this->search=$value;
+        if($this->validateAlphabetic($value, 1, 50)){
+            $this->search = $value;
             return true;
         }
         else{

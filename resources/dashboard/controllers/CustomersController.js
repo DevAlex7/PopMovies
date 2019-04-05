@@ -62,8 +62,8 @@ function ShowCustomers(){
 }
 
 $("#SearchField").submit(function (e) { 
+    
     e.preventDefault();
-
     $.ajax({
         url: APICustomers + 'Search',
         type: 'POST',
@@ -76,7 +76,7 @@ $("#SearchField").submit(function (e) {
             if (result.status) {
                 FillCardsCustomers(result.dataset);
             } else {
-                console.log(result.exception);
+                M.toast({html:result.exception});   
             }
         } else {
             console.log(response);

@@ -32,21 +32,25 @@
 
                 //Show All Clasifications
                 case 'all':
-                if($result['dataset']=$clasification->all()){
-                    $result['status']=1;
-                }
-                else{
-                    $result['exception']='No hay clasificaciones en lista';
-                }
+                    if($result['dataset']=$clasification->all()){
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['exception']='No hay clasificaciones en lista';
+                    }
                 break;
                 
                 //Search clasifications
                 case 'searchBy':
-                if($clasification->search($_POST[''])){
-
-                }else{
-
-                }
+                    if($clasification->search($_POST['search'])){
+                        if($result['dataset'] = $clasification->findall()){
+                            $result['status']=1;
+                        }else{
+                            $result['exception']='Sin resultados';
+                        }
+                    }else{
+                        $result['exception']='Campo vacio';
+                    }
                 break;
                 default:
                 exit('accion no disponible');

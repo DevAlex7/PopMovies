@@ -27,14 +27,15 @@
             <div class="col s12 m4">
                 <div class="card z-depth-3">
                     <div class="card-content">
+                    <span class="card-title">Capitan America</span>
                       <div class="chip">
-                        <p>miedo</p>
+                        <p>accion</p>
                       </div>
                       <div class="chip">
-                        <p>miedo</p>
+                        <p>drama</p>
                       </div>
                       <div class="chip">
-                        <p>miedo</p>
+                        <p>comedia</p>
                       </div>
                     </div>
                 </div>

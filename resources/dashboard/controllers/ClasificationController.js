@@ -13,8 +13,8 @@ function FillTable(rows){
                 <td>${row.clasification}</td>
                 <td>${row.description}</td>
                 <td>
-                    <a href="" onclick="ShowInformation(${row.id})" class="blue-text tooltipped modal-trigger" data-target="updateActor" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
-                    <a href="" onclick="ShowInformationDelete(${row.id})" class="red-text tooltipped modal-trigger" data-target="deleteActor" data-tooltip="Elimar"><i class="material-icons">delete</i></a>
+                    <a href="" onclick="ShowInformation(${row.id})" class="blue-text tooltipped modal-trigger" data-target="ModalEditClasification"><i class="material-icons">mode_edit</i></a>
+                    <a href="" onclick="ShowInformationDelete(${row.id})" class="red-text tooltipped modal-trigger" data-target="deleteActor"><i class="material-icons">delete</i></a>
                 </td>
             </tr>
             `;
@@ -23,6 +23,7 @@ function FillTable(rows){
     $('#ClasificationsList').html(content);
 }
 
+//Show list Clasifications
 function showTableClasifications(){
     $.ajax({
         url: APIClasifications + 'all',
@@ -47,6 +48,7 @@ function showTableClasifications(){
     });
 }
 
+//Add Clasification
 $('#ClasificationAddForm').submit(function(e){
     e.preventDefault();
     $.ajax({
@@ -79,11 +81,69 @@ $('#ClasificationAddForm').submit(function(e){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 });
+
+//Clear Search Field
 function ClearSearchField(){
     $('#search').val('');
     showTableClasifications();
 
 }
-$('#SearchFieldClasification').submit(function(){
-    alert("Hola");
+//Search all Clasifications
+$('#SearchFieldClasification').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url:APIClasifications + 'searchBy',
+        type:'POST',
+        data:$('#SearchFieldClasification').serialize(),
+        datatype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                console.log(result.dataset);
+                FillTable(result.dataset);
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
 })
+
+//Show to edit 
+function ShowInformation(id){
+    $.ajax({
+        url: APIClasifications + '',
+        type:'POST',
+        data:{
+            id:id
+        },
+        datatype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+}
+
+//Show to delete
+function ShowInformationDelete(id){
+
+}
