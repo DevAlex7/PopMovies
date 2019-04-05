@@ -33,6 +33,9 @@
                       <div class="chip">
                         <p>miedo</p>
                       </div>
+                      <div class="chip">
+                        <p>miedo</p>
+                      </div>
                     </div>
                 </div>
             </div>
