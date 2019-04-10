@@ -87,6 +87,7 @@
             </div>
         </div>
     </div>
+
     <!--Modal Edit Clasification -->
     <div class="modal" id="ModalEditClasification">
         <div class="modal-content">
@@ -94,8 +95,9 @@
                 <div class="card-content">
                 <span class="card-title">Editar Clasificación</span>
                     <div class="row">
-                        <form class="col s12" method="POST" id="ClasificationAddForm">
+                        <form class="col s12" method="POST" id="ClasificationEditForm">
                             <div class="row">
+                            <input id="idEditClasification" name="idEditClasification" type="hidden" class="input-field" placeholder="Nombre de la clasificación">
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix black-text">view_list</i>
                                 <input id="EditNameClasification" name="EditNameClasification" type="text" class="input-field" placeholder="Nombre de la clasificación">

@@ -24,6 +24,7 @@
                         else{
                             $result['exception']='Campo vacio';
                         }
+                        
                     }
                     else{
                         $result['exception']='Nombre incorrecto o campo vacio';
@@ -50,6 +51,42 @@
                         }
                     }else{
                         $result['exception']='Campo vacio';
+                    }
+                break;
+
+                //Find by ID
+                case 'findbyId':
+                    if($clasification->id($_POST['id'])){
+                        if($result['dataset']=$clasification->findById()){
+                            $result['status']=1;
+                        }
+                        else{
+                            $result['exception']='Algo ha ocurrido mal';
+                        }
+                    }
+                    else{
+                        $result['exception']='Identificador no encontrado';
+                    }
+                break;
+                
+                //Edit Clasification
+                case 'editClasification':
+                    if($clasification->id($_POST['idEditClasification'])){
+                        if($clasification->nameClasification($_POST['EditNameClasification'])){
+                            if($clasification->descriptionClasification($_POST['EditDescriptionClasification'])){
+                                $clasification->edit();
+                                $result['status']=1;
+                            }
+                            else{
+                                $result['exception']='Descripción vacia';
+                            }
+                        }
+                        else{
+                            $result['exception']='Nombre incorrecto o vacio';
+                        }
+                    }
+                    else{
+                        $result['exception']='Identificador incorrecto o vacio';
                     }
                 break;
                 default:

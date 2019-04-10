@@ -50,12 +50,21 @@ class Clasification extends Validator{
         $sql='SELECT * FROM clasifications';
         $params=array(null);
         return Database::getRows($sql,$params);
-
+    }
+    public function findById(){
+        $sql='SELECT * FROM clasifications WHERE id=?';
+        $params=array($this->id);
+        return Database::getRow($sql, $params);
     }
     public function create(){
         $sql='INSERT INTO clasifications (clasification, description) VALUES (?,?)';
         $params = array($this->nameClasification, $this->descriptionClasification);
         return Database::executeRow($sql,$params);
+    }
+    public function edit(){
+        $sql = 'UPDATE clasifications SET clasification=?, description=? WHERE id=?';
+        $params = array($this->nameClasification, $this->descriptionClasification, $this->id);
+        return Database::executeRow($sql, $params);
     }
 }
 

@@ -120,7 +120,7 @@ $('#SearchFieldClasification').submit(function(e){
 //Show to edit 
 function ShowInformation(id){
     $.ajax({
-        url: APIClasifications + '',
+        url: APIClasifications + 'findbyId',
         type:'POST',
         data:{
             id:id
@@ -131,7 +131,9 @@ function ShowInformation(id){
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(result.status){
-                
+                $('#idEditClasification').val(result.dataset.id);
+                $('#EditNameClasification').val(result.dataset.clasification);
+                $('#EditDescriptionClasification').val(result.dataset.description);
             }
             else{
                 M.toast({html:result.exception});
@@ -141,7 +143,42 @@ function ShowInformation(id){
             console.log(response);
         }
     })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+
 }
+//Update Clasification
+$("#ClasificationEditForm").submit(function(e){
+    
+    e.preventDefault();
+    $.ajax({
+        url: APIClasifications + 'editClasification',
+        type:'POST',
+        data: new FormData($('#ClasificationEditForm')[0]),
+        datatype:'JSON',
+        cache:false,
+        contentType:false,
+        processData:false
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            M.toast({html:'Clasificación actualizada correctamente!'});
+            $('#ModalEditClasification').modal('close');
+            $('#ClasificationEditForm')[0].reset();
+            showTableClasifications();
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    
+
+})
 
 //Show to delete
 function ShowInformationDelete(id){

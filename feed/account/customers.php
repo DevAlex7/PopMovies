@@ -47,7 +47,6 @@
 
 <!--Information -->
 <div class="row" id="CustomersList">
-
 </div>
 
 <!--Modal add Customer -->
