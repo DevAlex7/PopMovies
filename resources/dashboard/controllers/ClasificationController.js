@@ -14,7 +14,7 @@ function FillTable(rows){
                 <td>${row.description}</td>
                 <td>
                     <a href="" onclick="ShowInformation(${row.id})" class="blue-text tooltipped modal-trigger" data-target="ModalEditClasification"><i class="material-icons">mode_edit</i></a>
-                    <a href="" onclick="ShowInformationDelete(${row.id})" class="red-text tooltipped modal-trigger" data-target="deleteActor"><i class="material-icons">delete</i></a>
+                    <a href="" onclick="ShowInformationDelete(${row.id})" class="red-text tooltipped modal-trigger" data-target="ModalDeleteClasification"><i class="material-icons">delete</i></a>
                 </td>
             </tr>
             `;
@@ -35,7 +35,7 @@ function showTableClasifications(){
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(!result.status){
-                M.toast({html:'No hay clasificaciones en lista!'});
+                M.toast({html:'No hay clasificaciones en lista!', classes:'toasterror'});
             }
             FillTable(result.dataset);
         }
@@ -65,12 +65,12 @@ $('#ClasificationAddForm').submit(function(e){
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(result.status){
-                M.toast({html:'Clasificacion agregada a la lista'});
+                M.toast({html:'Clasificacion agregada a la lista', classes:'toastsuccess',});
                 $('#ClasificationAddForm')[0].reset();
                 $("#ModalAddClasification").modal('close');
                 showTableClasifications();
             }else{
-                M.toast({html:result.exception});
+                M.toast({html:result.exception, classes:'toasterror'});
             }
         }
         else{
@@ -105,7 +105,7 @@ $('#SearchFieldClasification').submit(function(e){
                 FillTable(result.dataset);
             }
             else{
-                M.toast({html:result.exception});
+                M.toast({html:result.exception, classes:'toasterror'});
             }
         }
         else{
@@ -136,7 +136,7 @@ function ShowInformation(id){
                 $('#EditDescriptionClasification').val(result.dataset.description);
             }
             else{
-                M.toast({html:result.exception});
+                M.toast({html:result.exception, classes:'toasterror'});
             }
         }
         else{
@@ -164,7 +164,7 @@ $("#ClasificationEditForm").submit(function(e){
     .done(function(response){
         if(isJSONString(response)){
             const result = JSON.parse(response);
-            M.toast({html:'Clasificación actualizada correctamente!'});
+            M.toast({html:'Clasificación actualizada correctamente!', classes:'toastsuccess '});
             $('#ModalEditClasification').modal('close');
             $('#ClasificationEditForm')[0].reset();
             showTableClasifications();
@@ -176,11 +176,65 @@ $("#ClasificationEditForm").submit(function(e){
     .fail(function(jqXHR){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
-    
-
 })
+
 
 //Show to delete
 function ShowInformationDelete(id){
-
+    $.ajax({
+        url:APIClasifications+'findbyId',
+        type:'POST',
+        data:{
+            id:id
+        },
+        dataype:'JSON'
+    })
+    .done(function(response){
+        const result = JSON.parse(response);
+        if(result.status){
+            $('#idDeleteClasification').val(result.dataset.id);
+            $('#deleteClasificationSpan').text("¿Desea eliminar esta categoria seleccionada?");
+            $('#showNameDeleteSpan').text(result.dataset.clasification);
+        }
+        else{
+            M.toast({htlm:result.exception});
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
 }
+
+//Delete clasification
+('#ClasificationDeleteForm').submit(function(){
+
+    $.ajax({
+        url:APIClasifications+'deleteClasification',
+        type:'POST',
+        data:new FormData($('#ClasificationDeleteForm')[0]),
+        datatype:'JSON',
+        cache:false,
+        contentType:false,
+        processData:false
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status)
+            {
+                M.toast({html:'Clasificación eliminada correctamente', classes:'toastsuccess'});
+                
+            }
+            else{
+                M.toast({html:result.exception, classes:'toasterror'})
+            }           
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+
+})

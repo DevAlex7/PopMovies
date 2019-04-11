@@ -89,6 +89,10 @@
                         $result['exception']='Identificador incorrecto o vacio';
                     }
                 break;
+                //Delete clasifications
+                case 'deleteClasification':
+                    
+                break;
                 default:
                 exit('accion no disponible');
             }

@@ -121,22 +121,19 @@
     <!--Modal Delete Clasification -->
     <div class="modal" id="ModalDeleteClasification">
         <div class="modal-content">
-            <div class="card">
+            <div class="card red">
                 <div class="card-content">
-                <span class="card-title">Agregar Clasificación</span>
+                <span class="card-title white-text">Eliminar clasificación</span>
                     <div class="row">
-                        <form class="col s12" method="POST" id="ClasificationAddForm">
+                        <form class="col s12" method="POST" id="ClasificationDeleteForm">
                             <div class="row">
+                            <input type="hidden" name="idDeleteClasification" id="idDeleteClasification">
                             <div class="input-field col s12 m6">
-                                <i class="material-icons prefix black-text">view_list</i>
-                                <input id="EditNameClasification" name="EditNameClasification" type="text" class="input-field" placeholder="Nombre de la clasificación">
+                                <span id="deleteClasificationSpan" name="deleteClasificationSpan" class="card-title white-text"></span>
+                                <span class="card-title white-text" id="showNameDeleteSpan" name="showNameDeleteSpan" ></span>
                             </div>
                             <div class="input-field col s12 m12">
-                                <i class="material-icons prefix black-text">view_headline</i>
-                                <textarea name="EditDescriptionClasification" id="EditDescriptionClasification" class="materialize-textarea" placeholder="Descripción de la clasificación" id="DescriptionClasification" cols="30" rows="10"></textarea>
-                            </div>
-                            <div class="input-field col s12 m12">
-                                <button type="submit" class="btn green white-text"> <i class="material-icons left">edit</i> Agregar</button>
+                                <button type="submit" class="btn red white-text"> <i class="material-icons left">delete</i> Eliminar</button>
                                 <a class="btn modal-close grey">Cancelar</a>
                             </div>
                             </div>

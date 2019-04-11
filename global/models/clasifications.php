@@ -9,7 +9,7 @@ class Clasification extends Validator{
     public $search;
 
     public function search($value){
-        if($this->validateAlphabetic($value, 1, 50)){
+        if($this->validateAlphanumeric($value, 1, 50)){
             $this->search = $value;
             return true;
         }
@@ -29,7 +29,7 @@ class Clasification extends Validator{
     }
     public function nameClasification($value){
         
-        if($this->validateAlphabetic($value, 1, 50)){
+        if($this->validateAlphanumeric($value, 1, 50)){
             $this->nameClasification=$value;
             return true;
         }
