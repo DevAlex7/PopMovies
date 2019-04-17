@@ -91,8 +91,15 @@
                 break;
                 //Delete clasifications
                 case 'deleteClasification':
-                    
+                    if($clasification->id($_POST['idDeleteClasification'])){
+                        $clasification->destroy();
+                        $result['status']=1;
+                    }   
+                    else{
+                        $result['exception']='identificador incorrecto';
+                    } 
                 break;
+
                 default:
                 exit('accion no disponible');
             }

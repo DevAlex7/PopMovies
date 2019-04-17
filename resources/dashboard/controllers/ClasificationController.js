@@ -206,8 +206,9 @@ function ShowInformationDelete(id){
 }
 
 //Delete clasification
-('#ClasificationDeleteForm').submit(function(){
+$('#ClasificationDeleteForm').submit(function(e){
 
+    e.preventDefault();
     $.ajax({
         url:APIClasifications+'deleteClasification',
         type:'POST',
@@ -223,7 +224,9 @@ function ShowInformationDelete(id){
             if(result.status)
             {
                 M.toast({html:'Clasificación eliminada correctamente', classes:'toastsuccess'});
-                
+                $('#ClasificationDeleteForm')[0].reset();
+                $('#ModalDeleteClasification').modal('close');
+                showTableClasifications();
             }
             else{
                 M.toast({html:result.exception, classes:'toasterror'})

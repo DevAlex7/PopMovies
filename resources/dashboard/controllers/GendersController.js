@@ -19,6 +19,7 @@ function FillGenders(rows){
       <tr>
         <td>${row.gender}</td>
         <td>
+            <a href="" onclick="InformationbyIdEdit(${row.id})" class="red-text tooltipped modal-trigger" data-target="EditModalGender" data-tooltip="Editar"><i class="material-icons orange-text">edit</i></a>
             <a href="" onclick="InformationbyId(${row.id})" class="red-text tooltipped modal-trigger" data-target="ModalDeleteGender" data-tooltip="Elimar"><i class="material-icons">delete</i></a>
         </td>
       </tr>
@@ -88,6 +89,7 @@ $('#form-createGender').submit(function(){
 
 })
 
+//Show all information
 function InformationbyId(id){
     $.ajax({
       url:APIGenders + 'getGender',
@@ -117,6 +119,69 @@ function InformationbyId(id){
       console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     })
 } 
+function InformationbyIdEdit(id){
+  $.ajax({
+    url:APIGenders + 'getGender',
+    type:'POST',
+    data:{
+      id:id
+    },
+    datatype:'JSON'
+  })
+  .done(function(response){
+    if(isJSONString(response)){
+      const result = JSON.parse(response);
+      if(result.status){
+        $('#idEditGender').val(result.dataset.id);
+        $('#NameEditGender').val(result.dataset.gender);
+      }
+      else{
+        console.log(result.exception);
+      }
+    }
+    else
+    {
+      console.log(response);
+    }
+  })
+  .fail(function(jqXHR){
+    console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+  })
+} 
+
+
+//Update Gender
+$('#FormEditGender').submit(function(){
+
+  $.ajax({
+    url:APIGenders+'edit',
+    type:'POST',
+    data: new FormData($('#FormEditGender')[0]),
+    dataype:'JSON',
+    cache:false,
+    contentType:false,
+    processData:false
+  })
+  .done(function(response){
+    if(isJSONString(response)){
+      const result = JSON.parse(response);
+      if(result.status){
+        M.toast({html:'Genero Actualizado correctamente', 'classes':'toastsuccess'});
+      }
+      else{
+        M.toast({html:result.exception, classes:'toasterror'})
+      }
+    }else{
+      console.log(response);
+    }
+  })
+  .fail(function(jqXHR){
+
+  })
+
+})
+
+//Delete Gender
 $('#DeleteGender').submit(function(){
     event.preventDefault();
     $.ajax({

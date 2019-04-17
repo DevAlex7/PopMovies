@@ -127,15 +127,15 @@
                     <div class="row">
                         <form class="col s12" method="POST" id="ClasificationDeleteForm">
                             <div class="row">
-                            <input type="hidden" name="idDeleteClasification" id="idDeleteClasification">
-                            <div class="input-field col s12 m6">
-                                <span id="deleteClasificationSpan" name="deleteClasificationSpan" class="card-title white-text"></span>
-                                <span class="card-title white-text" id="showNameDeleteSpan" name="showNameDeleteSpan" ></span>
-                            </div>
-                            <div class="input-field col s12 m12">
-                                <button type="submit" class="btn red white-text"> <i class="material-icons left">delete</i> Eliminar</button>
-                                <a class="btn modal-close grey">Cancelar</a>
-                            </div>
+                                <input type="hidden" name="idDeleteClasification" id="idDeleteClasification">
+                                <div class="input-field col s12 m6">
+                                    <span id="deleteClasificationSpan" name="deleteClasificationSpan" class="card-title white-text"></span>
+                                    <span class="card-title white-text" id="showNameDeleteSpan" name="showNameDeleteSpan" ></span>
+                                </div>
+                                <div class="input-field col s12 m12">
+                                    <button type="submit" class="btn red white-text"> <i class="material-icons left">delete</i> Eliminar</button>
+                                    <a class="btn modal-close grey">Cancelar</a>
+                                </div>
                             </div>
                         </form>
                     </div>

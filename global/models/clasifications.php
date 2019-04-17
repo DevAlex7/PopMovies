@@ -66,6 +66,11 @@ class Clasification extends Validator{
         $params = array($this->nameClasification, $this->descriptionClasification, $this->id);
         return Database::executeRow($sql, $params);
     }
+    public function destroy(){
+        $sql='DELETE FROM clasifications WHERE id=?';
+        $params=array($this->id);
+        return Database::executeRow($sql, $params);
+    }
 }
 
 ?>

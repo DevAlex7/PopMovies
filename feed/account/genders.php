@@ -26,6 +26,7 @@
         </div>
     </div>
 
+<!--Add Gender -->
     <div class="row">
         <div class="col s12 m6">
             <div class="card">
@@ -48,6 +49,7 @@
             </div>
         </div>
 
+<!--Table Genders -->
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
@@ -76,7 +78,6 @@
             <form method="POST" id="DeleteGender">
                 <div class="row">
                     <div class="s12 m5">
-
                         <div class="card red white-text">
                             <div class="card-content">
                                 <span class="card-title">¿Desea eliminar el genero seleccionado?</span>
@@ -84,15 +85,34 @@
                                 <input type="hidden" name="idGender" id="idGender" placeholder="Id">
                             </div>
                         </div> 
-                        
                         <button type="submit" class="btn small red white-text tooltipped" data-tooltip="Eliminar"> <i class="material-icons left">check</i> Eliminar</button>
                         <a class="modal-close waves-effect waves-white blue darken-1 btn small white-text"> <i class="material-icons left">clear</i> Cancelar</a>
-                    
                     </div>
                 </div>
             </form>
         </div>
     </div>
+<!--Modal Edit Gender -->
+<div class="modal" id="EditModalGender">
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-content">
+            <span class="card-title">Editar Genero</span>
+                <form method="POST" id="FormEditGender" class="col s12">
+                <p>Genero seleccionado:</p>
+                    <div class="row">
+                        <div class="col s4">
+                            <input type="hidden" id="idEditGender" name="idEditGender">
+                            <input type="text" id="NameEditGender" name="NameEditGender">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn blue"> <i class="material-icons left">edit</i> Editar</button>
+                    <a class="btn red modal-close"> <i class="material-icons left">close</i>Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </main>    
 <footer>
 

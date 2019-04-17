@@ -56,7 +56,16 @@ if(isset($_GET['site']) && isset($_GET['action'])){
                     $result['exception']='identificador incorrecto';
                 }
             break;
+            //Update Gender
+            case 'edit':
+                if($gender->id($_POST['idEditGender'])){
 
+                }
+                else{
+                    
+                }
+            break;
+            //Delete Gender
             case 'destroy':
                 if($gender->id($_POST['idGender'])){
                     
