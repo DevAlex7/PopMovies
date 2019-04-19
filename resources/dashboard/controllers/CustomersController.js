@@ -15,7 +15,7 @@ function FillCardsCustomers(cards){
         cards.forEach(function(card){
             content += `
             <div class="col s12 m6">
-                <div class="card">
+                <div class="card z-depth-2">
                     <div class="card-content black-text">
                     <span class="card-title">${card.name}</span>
                     <p>${card.email}</p>

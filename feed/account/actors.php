@@ -61,14 +61,11 @@
                                 <span class="card-title">Agregar Actor</span>
                                 <input type="text" name="NameActor" class="" id="NameActor" placeholder="ingrese nombre de actor">
                                 <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Crear">Agregar</button>
-                            </div>
+                                <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
                         </form>
                     </div>
                 </div>
-            <div class="modal-footer">
-                <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
             </div>
-            </form>
         </div> 
 
         <!--Modal Update Actor -->
@@ -101,16 +98,15 @@
                             <span class="card-title">Eliminar Actor</span>
                                 <input type="hidden" name="idDeleteNameActor" id="idDeleteNameActor">
                                 <span class="card-title" id="DeleteActor" name="DeleteActor"></span>
-                                <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Eliminar">Eliminar</button>
                             </div>
                             <div class="modal-footer">
+                            <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Eliminar">Eliminar</button>
                                 <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
                             </div>
                         </form>
                     </div>
                 </div>
-           
-            </form>
+            </div>
         </div> 
         
        

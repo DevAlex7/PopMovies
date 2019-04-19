@@ -151,8 +151,9 @@ function InformationbyIdEdit(id){
 
 
 //Update Gender
-$('#FormEditGender').submit(function(){
+$('#FormEditGender').submit(function(e){
 
+  e.preventDefault();
   $.ajax({
     url:APIGenders+'edit',
     type:'POST',
@@ -166,7 +167,10 @@ $('#FormEditGender').submit(function(){
     if(isJSONString(response)){
       const result = JSON.parse(response);
       if(result.status){
-        M.toast({html:'Genero Actualizado correctamente', 'classes':'toastsuccess'});
+        M.toast({html:'Genero Actualizado correctamente', classes:'toastsuccess'});
+        $('#EditModalGender').modal('close');
+        $('#FormEditGender')[0].reset();
+        showTableGenders();
       }
       else{
         M.toast({html:result.exception, classes:'toasterror'})

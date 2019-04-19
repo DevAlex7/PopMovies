@@ -159,9 +159,7 @@ function ShowInformationDelete(id)
         datatype: 'json',
     })
     .done(function(response){
-        console.log(response);
         if (isJSONString(response)) {
-
             const result = JSON.parse(response);
             if (result.status) {
                 $('#idDeleteNameActor').val(result.dataset.id);                

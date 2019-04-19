@@ -59,10 +59,17 @@ if(isset($_GET['site']) && isset($_GET['action'])){
             //Update Gender
             case 'edit':
                 if($gender->id($_POST['idEditGender'])){
-
+                    if($gender->name($_POST['NameEditGender'])){
+                        
+                        $gender->edit();
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['nombre incorrecto o campo vacio'];
+                    }
                 }
                 else{
-                    
+                    $result['exception']='identificador incorrecto';
                 }
             break;
             //Delete Gender

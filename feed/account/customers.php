@@ -22,7 +22,7 @@
     <div class="row">
         <div class="card" id="HeaderPart">
             <div class="card-content">
-                <span class="card-title white-text">Proveedores</span>
+                <span class="card-title black-text">Proveedores</span>
                 <div class="row">
                     <div class="col s12 m6">
                         <nav id="SearchBar">
@@ -34,7 +34,7 @@
                                     <i class="material-icons" onClick="ClearSearchBar()">close</i>
                                 </div>
                                 <div class="input-field col s12">
-                                    <a href="" id="BtnAddCustomer" data-target="ModalCreateCustomer" class="btn modal-trigger white black-text">Agregar Proveedor</a>
+                                    <a href="" id="BtnAddCustomer" data-target="ModalCreateCustomer" class="btn modal-trigger blue white-text">Agregar Proveedor</a>
                                 </div>
                             </div>
                         </form>
@@ -50,7 +50,7 @@
 </div>
 
 <!--Modal add Customer -->
-<div class="modal red" id="ModalCreateCustomer">
+<div class="modal" id="ModalCreateCustomer">
     <div class="modal-content">
         <div class="card">
             <div class="card-content">
@@ -125,17 +125,17 @@
 </div>
 
 <!--Modal Delete Customer -->
-<div class="modal red" id="ModalDeleteCustomer">
+<div class="modal" id="ModalDeleteCustomer">
     <div class="modal-content col s5">
         <div class="card">
             <form method="POST" id="DeleteCustomerForm">
-                <div class="card-content center">
+                <div class="card-content">
                     <span class="card-title">¿Desea eliminar a este proveedor?</span>
                     <input type="hidden" name="DeleteCustomerinput" id="DeleteCustomerinput">
-                </div>
-                <div class="card-action center">
-                    <button class="btn red"> <i class="material-icons left">check</i> Aceptar</button>
-                    <button class="btn grey modal-close"> <i class="material-icons left">close</i> Cancelar</button>
+                    <div class="modal-footer">
+                        <button class="btn red"> <i class="material-icons left">check</i> Aceptar</button>
+                        <a class="btn-flat black-text modal-close"> <i class="material-icons left">close</i> Cancelar</a>
+                    </div>
                 </div>
             </form>
         </div>
