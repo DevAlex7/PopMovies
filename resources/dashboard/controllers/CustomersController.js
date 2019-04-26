@@ -15,7 +15,7 @@ function FillCardsCustomers(cards){
         cards.forEach(function(card){
             content += `
             <div class="col s12 m6">
-                <div class="card">
+                <div class="card z-depth-2">
                     <div class="card-content black-text">
                     <span class="card-title">${card.name}</span>
                     <p>${card.email}</p>
@@ -61,9 +61,10 @@ function ShowCustomers(){
     });
 }
 
+//Search Provider
 $("#SearchField").submit(function (e) { 
+    
     e.preventDefault();
-
     $.ajax({
         url: APICustomers + 'Search',
         type: 'POST',
@@ -76,7 +77,7 @@ $("#SearchField").submit(function (e) {
             if (result.status) {
                 FillCardsCustomers(result.dataset);
             } else {
-                console.log(result.exception);
+                M.toast({html:result.exception});   
             }
         } else {
             console.log(response);
@@ -121,7 +122,7 @@ $("#AddCustomerForm").submit(function(e){
             }
         }
         else{
-            M.toast({html:response});
+            console.log(response);
         }
     })
     .fail(function(jqXHR){

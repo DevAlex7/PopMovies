@@ -25,7 +25,7 @@ class Actor extends Validator{
     }
     public function find()
     {
-      $sql = 'SELECT id, name FROM actors WHERE id= ?';
+      $sql = 'SELECT * FROM actors WHERE id= ?';
       $params = array($this->id);
       return Database::getRow($sql, $params);
     }

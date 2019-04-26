@@ -5,10 +5,10 @@ background-color:transparent;
 #HeaderPart{
     position: relative;
     top:-0.5rem;
-    background-color: #E92F1D;
+    background-color: white;
 }
 html{
-    background-color: #040516;
+    background-color: white;
 }
 
 @media only screen and (max-width : 992px) {
@@ -47,19 +47,12 @@ html{
     color: black !important;
 }
 
-.input-field input[type=password]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
-color: black !important;
-}
 
 .input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
 border-bottom: 1px solid black !important;
 box-shadow: 0 1px 0 0 black !important;
 }
 
-.input-field input[type=password]:focus, .materialize-textarea:focus:not([readonly]) {
-    border-bottom: 1px solid black !important;
-    box-shadow: 0 1px 0 0 black !important;
-}
 
 
 

@@ -47,6 +47,11 @@ class Gender extends Validator{
         $params = array($this->name);
         return Database::executeRow($sql, $params);
     }
+    public function edit(){
+        $sql='UPDATE genders SET gender=? WHERE id=?';
+        $params=array($this->name, $this->id);
+        return Database::executeRow($sql, $params);
+    }
     public function delete()
     {
         $sql ='DELETE FROM genders WHERE id=?';

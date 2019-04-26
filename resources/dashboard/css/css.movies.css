@@ -1,0 +1,47 @@
+header, main, footer {
+    padding-left: 300px;
+    }
+    
+    @media only screen and (max-width : 992px) {
+        header, main, footer {
+            padding-left: 0;
+        }
+    
+    }
+#AllMovies{
+    margin-top: 1rem;
+}
+#TextAllMovies{
+
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+#Details{
+    margin-top: 2rem;
+}
+#ListActors{
+    margin-top: 1.5rem;
+}
+#ListGenders{
+    margin-top: 1.5rem;
+}
+#ListClasifications{
+    margin-top: 1.5rem;
+}   
+#TagText{
+    font-size: 1rem;
+}
+/* Error messages */
+.toasterror{
+	background-color:red;
+    background-color: red;
+	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.28), 0 1px 10px 0 rgba(0, 0, 0, 0.24), 0 2px 4px -1px rgba(0, 0, 0, 0.6);
+}
+/* Success messages */
+.toastsuccess{
+	background-color:green;
+    background-color: green;
+	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.28), 0 1px 10px 0 rgba(0, 0, 0, 0.24), 0 2px 4px -1px rgba(0, 0, 0, 0.6);
+}

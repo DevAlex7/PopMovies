@@ -8,18 +8,26 @@ header, main, footer {
         }
     
     }
-    
-#IconGenders{
+#searchbarsugestion{
+    margin-top: 10px;
+}
+#TitleTable{
+    margin-top: 2rem;
+}
+#ClasificationsTable{
     position: relative;
-    top:0.3rem;
+    margin-top: 2rem;
 }
-#ButtonAdd{
-    position: relative;
-    top:0.8rem;
+
+/*All inputs */
+.input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+    color: black !important;
 }
-#PanelAddGender{
-    height: 6rem;
+.input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+border-bottom: 1px solid black !important;
+box-shadow: 0 1px 0 0 black !important;
 }
+
 /* Error messages */
 .toasterror{
 	background-color:red;
@@ -32,3 +40,4 @@ header, main, footer {
     background-color: green;
 	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.28), 0 1px 10px 0 rgba(0, 0, 0, 0.24), 0 2px 4px -1px rgba(0, 0, 0, 0.6);
 }
+

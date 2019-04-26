@@ -7,37 +7,143 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard | Peliculas</title>
     
-    <link rel="stylesheet" href="../../resources/public/css/materialize.min.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
-    <link rel="stylesheet" href="../../resources/dashboard/css/css.home.css">
-    <link href="../../resources/public/css/css.font.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../resources/dashboard/css/css.movies.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 </head>
 <body>
 <header>
-    <?php AdminSideNav::SideNav(); ?>
+    <?php AdminSideNav::SideNav();?>
 </header>
 <main>
         <div class="card">
             <div class="card-content">
                 <span class="card-title">Peliculas</span>
+                <button 
+
+                data-target="ModalAddMovie" 
+                class="btn blue modal-trigger"
+
+                > <i class="material-icons left">movie</i> Agregar pelicula</button>
             </div>
         </div>
-        <!--Todas las peliculas-->
-        <div class="row">
-            <div class="col s12 m4">
-                <div class="card z-depth-3">
-                    <div class="card-content">
-                      <div class="chip">
-                        <p>miedo</p>
+
+        <!--Search Bar -->
+        <div class="container">
+          <nav class="white">
+            <div class="nav-wrapper">
+              <form>
+                <div class="input-field">
+                  <input id="search" type="search" placeholder="Filtrar por genero, actor, clasificación o nombre de pelicula">
+                  <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </div>
+          </nav>
+        </div>                
+
+        
+        <!-- All Movies -->
+        <div class="row" id="AllMovies">
+        </div>
+
+  <!--Modals -->
+        <!--Modal Add Movie -->
+        <div class="modal" id="ModalAddMovie">
+          <div class="modal-content">
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title">Agregar pelicula</span>
+                <div class="divider"></div>
+                <div class="row">
+                  <form class="col s12" method="POST" id="FormMovieCreate" enctype="multipart/form-data">
+                    <div class="row">
+                      <div class="input-field col s10">
+                        <i class="material-icons prefix black-text">movie</i>
+                        <input 
+                          type="text" 
+                          placeholder="Nombre de la pelicula"
+                          name="CreateMovieName"
+                          id="CreateMovieName">
                       </div>
-                      <div class="chip">
-                        <p>miedo</p>
+                      <div class="input-field col s10">
+                        <i class="material-icons prefix black-text">reorder</i>
+                        <input 
+                          type="text"
+                          placeholder="Sipnosis de la pelicula"
+                          name="CreateSipnosisMovie"
+                          id="CreateSipnosisMovie">
+                      </div>
+                      <div class="input-field col s12 m12">
+                        <span class="card-title">Detalles de la pelicula</span>
+                      </div>
+                      <div class="input-field col s12 m6" id="TimeSection">
+                        <i class="material-icons prefix">access_time</i>
+                        <input 
+                        type="text" 
+                        placeholder="Hora de duración de la pelicula"
+                        name="CreateTimeMovie"
+                        id="CreateTimeMovie">
+                      </div>
+                      <div class="file-field input-field col s12 m6" id="TimeSection">
+                        <div class="btn waves-effect">
+                            <span><i class="material-icons">image</i></span>
+                            <input 
+                            id="FileMovieCover" 
+                            type="file" 
+                            name="FileMovieCover" 
+                            required/>
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input type="text" class="file-path validate" placeholder="Seleccione una imagen"/>
+                        </div>
+                      </div>
+                      <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">attach_money</i>
+                        <input 
+                        type="number" 
+                        min="1" 
+                        step="any" 
+                        placeholder="Precio de la pelicula"
+                        name="CreatePriceMoney"
+                        id="CreatePriceMoney"/>
+                      </div>
+                      <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">add</i>
+                        <input 
+                        type="number" 
+                        min="1" 
+                        max="100" 
+                        placeholder="Cantidad de existencia"
+                        name="CreateStockMovie"
+                        id="CreateStockMovie">
+                      </div>
+                      <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">person</i>
+                        <select name="ComboCustomers" id="ComboCustomers"></select>
+                      </div>
+                      <div class="input-field center col s12 m12">
+                        <button type="submit" class="btn blue">Agregar</button>
+                        <a class="btn grey modal-close">Cancelar</a>
                       </div>
                     </div>
+                  </form>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
 </main>
+<footer></footer>
+<script src="../../resources/globaljs/jquery-3.2.1.min.js"></script>
+<script src="../../resources/globaljs/materialize.min.js"></script> 
+<script src="../../resources/dashboard/js/sidenav.js"></script>
+<script src="../../global/helpers/functions.js"></script>
+<script src="../../resources/dashboard/controllers/ViewMovieController.js"></script>
+<script src="../../resources/dashboard/controllers/MovieController.js"></script>
+
 </body>
 </html>

@@ -45,20 +45,23 @@
             </ul>
         </header>
 
-        <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="images/office.jpg">
-            </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                <p><a href="#">This is a link</a></p>
-            </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        <div>
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="https://cdni.rt.com/actualidad/public_images/2019.02/article/5c743571e9180fbf138b4567.jpg">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                    <p><a href="#">This is a link</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
             </div>
         </div>
-        <script src=""></script>
+        <script src="../../../resources/globaljs/jquery-3.2.1.min.js" type="text/javascript"></script>
+        <script src="../../../resources/globaljs/materialize.min.js" type="text/javascript"></script>
         <script src="../../../resources/public/js/init.js" type="text/javascript"></script>
     </body>
 </html>

@@ -7,10 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard | Actores</title>
 
-    <link rel="stylesheet" href="../../resources/public/css/materialize.min.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.actors.css">
-    <link href="../../resources/public/css/css.font.css" rel="stylesheet">
 
 </head>
 <body>
@@ -21,7 +20,7 @@
     <main>
         <div class="card">
             <div class="card-content">
-                <span class="card-title"> <i class="material-icons" id="IconActors">face</i> Actores</span>
+                <span class="card-title"> Actores</span>
             </div>
         </div>       
         <!--Barra de opciones --> 
@@ -41,7 +40,7 @@
                         
                         <thead>
                             <tr>
-                                
+                                <th>Actor</th>
                             </tr>
                         </thead>
 
@@ -62,14 +61,11 @@
                                 <span class="card-title">Agregar Actor</span>
                                 <input type="text" name="NameActor" class="" id="NameActor" placeholder="ingrese nombre de actor">
                                 <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Crear">Agregar</button>
-                            </div>
+                                <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
                         </form>
                     </div>
                 </div>
-            <div class="modal-footer">
-                <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
             </div>
-            </form>
         </div> 
 
         <!--Modal Update Actor -->
@@ -102,16 +98,15 @@
                             <span class="card-title">Eliminar Actor</span>
                                 <input type="hidden" name="idDeleteNameActor" id="idDeleteNameActor">
                                 <span class="card-title" id="DeleteActor" name="DeleteActor"></span>
-                                <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Eliminar">Eliminar</button>
                             </div>
                             <div class="modal-footer">
+                            <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Eliminar">Eliminar</button>
                                 <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
                             </div>
                         </form>
                     </div>
                 </div>
-           
-            </form>
+            </div>
         </div> 
         
        
