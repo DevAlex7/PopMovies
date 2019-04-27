@@ -22,11 +22,9 @@
             <div class="card-content">
                 <span class="card-title">Peliculas</span>
                 <button 
-
                 data-target="ModalAddMovie" 
                 class="btn blue modal-trigger"
-
-                > <i class="material-icons left">movie</i> Agregar pelicula</button>
+                ><i class="material-icons left">movie</i> Agregar pelicula</button>
             </div>
         </div>
 
@@ -116,14 +114,32 @@
                         <input 
                         type="number" 
                         min="1" 
-                        max="100" 
+                        max="5000" 
                         placeholder="Cantidad de existencia"
                         name="CreateStockMovie"
-                        id="CreateStockMovie">
+                        id="CreateStockMovie"
+                        validate>
                       </div>
                       <div class="input-field col s12 m6">
                         <i class="material-icons prefix">person</i>
                         <select name="ComboCustomers" id="ComboCustomers"></select>
+                      </div>
+                      <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">calendar_today</i>
+                        <input 
+                        type="text" 
+                        name="YearMovie" 
+                        id="YearMovie"
+                        placeholder="Año">
+                      </div>
+                      <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">live_tv</i>
+                        <textarea 
+                        name="TrailerMovie" 
+                        id="TrailerMovie"
+                        class="materialize-textarea" 
+                        cols="30" 
+                        rows="10" placeholder="HTML"></textarea>
                       </div>
                       <div class="input-field center col s12 m12">
                         <button type="submit" class="btn blue">Agregar</button>
@@ -142,7 +158,6 @@
 <script src="../../resources/globaljs/materialize.min.js"></script> 
 <script src="../../resources/dashboard/js/sidenav.js"></script>
 <script src="../../global/helpers/functions.js"></script>
-<script src="../../resources/dashboard/controllers/ViewMovieController.js"></script>
 <script src="../../resources/dashboard/controllers/MovieController.js"></script>
 
 </body>

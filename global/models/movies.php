@@ -10,6 +10,8 @@ class Movies extends Validator{
     private $imageroot='../../resources/dashboard/img/covers/';
     private $price;
     private $count;
+    private $year;
+    private $trailer;
     private $customer;
 
     public function id($value){
@@ -83,6 +85,29 @@ class Movies extends Validator{
             return false;
         }
     }
+    public function year($value){
+        if($this->validateAlphanumeric($value,1,5)){
+            if($value>0 && $value>1000 && $value<2020){
+                $this->year = $value;
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+    }
+    public function trailer($value){
+        if($value != strip_tags($value)){
+            $this->trailer=$value;
+            return true;
+           }else{
+            
+            return false;
+           }
+    }
     public function getImage(){
         return $this->cover;
     }
@@ -97,7 +122,13 @@ class Movies extends Validator{
         return Database::getRow($sql, $params);
     }
     public function findbyId(){
-        $sql='SELECT * FROM movies WHERE id=?';
+        $sql='SELECT movies.name, movies.sinopsis, movies.time, 
+                     movies.cover, movies.year, movies.trailer, 
+                     movies.price, movies.count, 
+                     customers.id AS IdCustomer,
+                     customers.enterprise AS EnterpriseCustomer
+                     FROM customers, movies 
+                     WHERE customers.id=movies.customer AND movies.id=?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
@@ -107,8 +138,8 @@ class Movies extends Validator{
         return Database::getRows($sql, $params);
     }
     public function create(){
-        $sql = 'INSERT INTO movies(name, sinopsis, time, cover, price, count, customer) VALUES (?,?,?,?,?,?,?)';
-        $params= array($this->name, $this->sipnosis, $this->time, $this->cover, $this->price, $this->count, $this->customer);
+        $sql = 'INSERT INTO movies(name, sinopsis, time, cover, price, count, year, trailer, customer) VALUES (?,?,?,?,?,?,?,?,?)';
+        $params= array($this->name, $this->sipnosis, $this->time, $this->cover, $this->price, $this->count, $this->year, $this->trailer ,$this->customer);
         return Database::executeRow($sql , $params);
     }
 }

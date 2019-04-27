@@ -6,9 +6,9 @@ $(document).ready(function(){
 const APIActors = '../../global/api/actors.php?site=dashboard&action=';
 
 //Create Actor
-$('#form-create').submit(function(){
+$('#form-create').submit(async () =>{
     event.preventDefault();
-    $.ajax({
+    const response = await $.ajax({
       url: APIActors + 'createActor',
       type: 'post',
       data: new FormData($('#form-create')[0]),
@@ -17,7 +17,9 @@ $('#form-create').submit(function(){
       contentType: false,
       processData: false
     })
-    .done(function(response){
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+      });
       if (isJSONString(response)) {
         const result = JSON.parse(response);
         if (result.status) {
@@ -30,11 +32,7 @@ $('#form-create').submit(function(){
     } else {
         console.log(response);
     }
-
-  })
-  .fail(function(jqXHR){
-    console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
-  });
+  
 
 })
 

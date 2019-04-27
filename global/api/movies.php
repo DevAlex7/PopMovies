@@ -74,12 +74,22 @@
                                             if($movie->saveFile($_FILES['FileMovieCover'], $movie->getRoot(), $movie->getImage())){
                                                 if($movie->price($_POST['CreatePriceMoney'])){
                                                     if($movie->count($_POST['CreateStockMovie'])){
-                                                        if($movie->customer($_POST['ComboCustomers'])){
-                                                            $movie->create();
-                                                            $result['status']=1;
+                                                        if($movie->year($_POST['YearMovie'])){
+                                                            if($movie->trailer($_POST['TrailerMovie'])){
+                                                                if($movie->customer($_POST['ComboCustomers'])){
+                                                                    $movie->create();
+                                                                    $result['status']=1;
+                                                                }
+                                                                else{
+                                                                    $result['exception']='Campo vacio';
+                                                                }
+                                                            }
+                                                            else{
+                                                                $result['exception']='Formato incorrecto de video o campo vacio';
+                                                            }
                                                         }
                                                         else{
-                                                            $result['exception']='Campo vacio';
+                                                            $result['exception']='Formato incorrecto de año o campo vacio';
                                                         }
                                                     }
                                                     else{
@@ -126,7 +136,7 @@
                     }                
                 break;
                 case 'getById':
-                if($movie->id($_POST['get'])){
+                if($movie->id($_POST['getId'])){
                     if($result['dataset']=$movie->findbyId()){
                         $result['status']=1;
                     }else{
@@ -137,7 +147,15 @@
                     $result['exception']='Identificador incorrecto';
                 }
                 break;
-
+                case 'editMovie':
+                    if($movie->name($_POST['TitleMovieEdit'])){
+                        $result['status']=1;
+                        
+                    }
+                    else{
+                        $result['exception']='No llego';
+                    }
+                break;
                 default:
                 exit('accion no disponible');
             }

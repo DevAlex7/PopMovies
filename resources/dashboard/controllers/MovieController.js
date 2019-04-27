@@ -7,17 +7,10 @@ $(document).ready(function()
     ShowMovieCards();
 })
 
-var idMovie;
 
 const APIMovies = '../../global/api/movies.php?site=dashboard&action=';
 
-function SetID(id){
-    idMovie=id;
-    alert(idMovie);
-}
-function getid(){
-    return idMovie;
-}
+
 //ComboBox Genders
 function SelectGenders(Select, value){
     $.ajax({
@@ -137,7 +130,6 @@ function SelectCustomers(Select, value){
         datatype: 'JSON'
     })
     .done(function(response){
-        console.log(response);
         if (isJSONString(response)) {
             const result = JSON.parse(response);
             if (result.status) {
@@ -169,13 +161,11 @@ function FillCardMovie(rows){
     let content ='';
     if(rows.length>0){
         rows.forEach(function(row){
-        
         content += `
         <div class="col s12 m4">
             <div class="card">
                 <div class="card-image">
                     <img src="../../resources/dashboard/img/covers/${row.cover}">
-                    
                 </div>
                 <div class="card-content">
                 <span class="card-title">${row.name}</span>
@@ -188,9 +178,7 @@ function FillCardMovie(rows){
         </div>
         `;
         })
-        
     }
-    console.log("gika");
     $('#AllMovies').html(content);
 }
 function ShowMovieCards(){
@@ -202,13 +190,11 @@ function ShowMovieCards(){
     })
     .done(function(response){
         if(isJSONString(response)){
-            console.log(response);
             const result = JSON.parse(response);
             if(!result.status){
                 M.toast({html:'No hay peliculas en lista!', classes:'toasterror'});
             }
             FillCardMovie(result.dataset);
-            console.log(result.dataset);
         }  
         else{
             console.log(response);
