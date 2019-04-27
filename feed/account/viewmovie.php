@@ -27,7 +27,6 @@
                         <div class="card-image">
                          <img src="" id="ImageCover">
                         </div>
-                       
                         <div class="video-container" id="VideoTrailer">
                         </div>
                     </div>
@@ -35,15 +34,15 @@
                 <div class="col s12 m6">
                    <form method="post" id="EditFormMovie">
                         <span class="card-title">Descripción de la pelicula</span>
-                        <blockquote><span class="card-title"> Titulo </span></blockquote>
+                        <span class="card-title"> Titulo </span>
                         <input type="text" id="TitleMovieEdit" name="TitleMovieEdit">
                         <div id="MovieSipnosisPart">
-                            <blockquote><span class="card-title">Sipnosis</span></blockquote>
+                            <span class="card-title">Sipnosis</span>
                             <textarea name="SipnosisEdit" id="SipnosisEdit" class="materialize-textarea"></textarea>
                         </div>
-                        <blockquote><span class="card-title">Tiempo de duración</span></blockquote>
+                       <span class="card-title">Tiempo de duración</span>
                         <input type="text" id="TimeMovieEdit" name="TimeMovieEdit">
-                        <blockquote><span class="card-title">Imagen de la pelicula</span></blockquote>
+                        <span class="card-title">Imagen de la pelicula</span>
                         <div class="file-field input-field ">
                             <div class="btn waves-effect">
                                 <span><i class="material-icons">image</i></span>
@@ -57,15 +56,16 @@
                                 <input type="text" name="ImageCoverEdit" id="ImageCoverEdit" class="file-path validate" placeholder="Seleccione una imagen"/>
                             </div>
                         </div>
-                        <blockquote><span class="card-title">Precio</span></blockquote>
+                        <span class="card-title">Precio</span></blockquote>
                         <input type="text" name="PriceEdit" id="PriceEdit">
-                        <blockquote><span class="card-title">Cantidad de existencia:</span></blockquote>
+                        <span class="card-title">Cantidad de existencia:</span>
                         <input type="text" name="CountMovieEdit" id="CountMovieEdit">
-                        <blockquote><span class="card-title">Customer:</span></blockquote>
+                        <span class="card-title">Proveedor:</span>
                         <select name="EditCustomerMovie" id="EditCustomerMovie">
                         </select>
                         <div class="card-action center">
-                            <button type="submit" class="btn">Hola</button>
+                            <button type="submit" class="btn blue"> <i class="material-icons left">edit</i> Editar </button>
+                            <a href="movies.php" class="btn red"><i class="material-icons left">close</i>Cancelar</a>
                         </div>
                    </form>
                 </div>

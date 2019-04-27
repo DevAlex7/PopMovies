@@ -3,7 +3,7 @@ $(document).ready(function () {
     getId = $('#MovieId').val();
     getMoviebyId();
 });
-const APIViewMovies = '../../global/api/movies.php?site=dashboard&action=';
+const APIViewMovies = '../../global/api/dashboard/movies.php?site=dashboard&action=';
 
 //Get all customers in ComboBox
 function SelectCustomers(Select, value){
@@ -86,6 +86,7 @@ function getMoviebyId(){
 }
 
 
+//Edit Movie
 $('#EditFormMovie').submit(function(e){
     e.preventDefault();
     $.ajax({

@@ -3,7 +3,7 @@ $(document).ready(function(){
     showTable();
 });
 
-const APIActors = '../../global/api/actors.php?site=dashboard&action=';
+const APIActors = '../../global/api/dashboard/actors.php?site=dashboard&action=';
 
 //Create Actor
 $('#form-create').submit(async () =>{

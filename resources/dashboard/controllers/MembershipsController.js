@@ -4,7 +4,7 @@ $(document).ready(function(){
 });
 
 //API Memberships
-const APIMemberships = '../../global/api/memberships.php?site=dashboard&action=';
+const APIMemberships = '../../global/api/dashboard/memberships.php?site=dashboard&action=';
 
 function FillCards(cards){
     let content ='';

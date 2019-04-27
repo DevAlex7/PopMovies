@@ -1,6 +1,6 @@
 //Create User-Admin
 
-const APIUsers = '../../global/api/adminusers.php?site=dashboard&action=';
+const APIUsers = '../../global/api/dashboard/adminusers.php?site=dashboard&action=';
 
 $('#CreateUserForm').submit(function(e){
 

@@ -7,9 +7,9 @@ $(document).ready(function()
     GetProductsMovies();
 })
 
-const APICustomers = '../../global/api/customers.php?site=dashboard&action=';
-const APIShops = '../../global/api/shop.php?site=dashboard&action=';
-const APIProducts = '../../global/api/movies.php?site=dashboard&action=';
+const APICustomers = '../../global/api/dashboard/customers.php?site=dashboard&action=';
+const APIShops = '../../global/api/dashboard/shop.php?site=dashboard&action=';
+const APIProducts = '../../global/api/dashboard/movies.php?site=dashboard&action=';
 //Mostrar los Customers en Dashboard
 function ViewCustomers(){
     $.ajax({

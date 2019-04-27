@@ -8,7 +8,7 @@ $(document).ready(function()
 })
 
 
-const APIMovies = '../../global/api/movies.php?site=dashboard&action=';
+const APIMovies = '../../global/api/dashboard/movies.php?site=dashboard&action=';
 
 
 //ComboBox Genders

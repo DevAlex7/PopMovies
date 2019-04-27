@@ -4,7 +4,7 @@ $(document).ready(function(){
     showTableGenders();
   });
 
-const APIGenders = '../../global/api/genders.php?site=dashboard&action=';
+const APIGenders = '../../global/api/dashboard/genders.php?site=dashboard&action=';
 
 //Fill Genders
 function FillGenders(rows){

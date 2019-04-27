@@ -1,7 +1,7 @@
 $(document).ready(function () {
     CheckUsers();
 });
-const APIAdminusers='../../global/api/adminusers.php?site=dashboard&action='
+const APIAdminusers='../../global/api/dashboard/adminusers.php?site=dashboard&action='
 
 function CheckUsers(){
     $.ajax({

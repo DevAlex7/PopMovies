@@ -2,7 +2,7 @@ $(document).ready(function(){
     $(".modal").modal();
     showTableClasifications();
 });
-const APIClasifications = '../../global/api/clasifications.php?site=dashboard&action=';
+const APIClasifications = '../../global/api/dashboard/clasifications.php?site=dashboard&action=';
 
 function FillTable(rows){
     let content = '';
