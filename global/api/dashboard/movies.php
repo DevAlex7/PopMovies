@@ -1,12 +1,12 @@
 <?php 
 
-    require_once('../helpers/instance.php');
-    require_once('../helpers/validator.php');
-    require_once('../models/actors.php');
-    require_once('../models/movies.php');
-    require_once('../models/genders.php');
-    require_once('../models/clasifications.php');
-    require_once('../models/customers.php');
+    require_once('../../helpers/instance.php');
+    require_once('../../helpers/validator.php');
+    require_once('../../models/actors.php');
+    require_once('../../models/movies.php');
+    require_once('../../models/genders.php');
+    require_once('../../models/clasifications.php');
+    require_once('../../models/customers.php');
 
     
 
