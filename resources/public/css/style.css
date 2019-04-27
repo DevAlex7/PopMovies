@@ -3616,12 +3616,6 @@ html [type='button'],
     background-color: rgba(0, 0, 0, .18);
 }
 
-/* opacity 0 */
-.opacity-0
-{
-    opacity: 0;
-}
-
 /* Border None & Shadow None */
 .border-none
 {
@@ -3744,10 +3738,10 @@ html [type='button'],
 
 .display-flex
 {
-    display: -webkit-box;
+    display:  -webkit-box;
     display: -webkit-flex;
-    display:    -moz-box;
-    display: -ms-flexbox;
+    display:     -moz-box;
+    display:  -ms-flexbox;
     display:         flex;
 }
 
@@ -3789,10 +3783,10 @@ ul.list-type-bullet li
 
 .justify-content-end
 {
-    -webkit-box-pack: end;
+           -webkit-box-pack: end;
     -webkit-justify-content: flex-end;
-       -moz-box-pack: end;
-    -ms-flex-pack: end;
+              -moz-box-pack: end;
+              -ms-flex-pack: end;
             justify-content: flex-end;
 }
 

@@ -1,7 +1,7 @@
     .login-bg
     {
            background-image: url('../img/BG.jpg');
-          background-repeat: no-repeat;
+          background-repeat: repeat;
     -webkit-background-size: cover;
             background-size: cover;
     }
@@ -14,7 +14,7 @@
     display: -ms-flexbox;
     display: flex;
 
-    height: 87vh;
+    height: 120vh;
 
     -webkit-box-pack: center;
     -webkit-justify-content: center;
