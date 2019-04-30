@@ -114,7 +114,6 @@
                         <input 
                         type="number" 
                         min="1" 
-                        max="5000" 
                         placeholder="Cantidad de existencia"
                         name="CreateStockMovie"
                         id="CreateStockMovie"
@@ -127,9 +126,12 @@
                       <div class="input-field col s12 m6">
                         <i class="material-icons prefix">calendar_today</i>
                         <input 
-                        type="text" 
+                        type="number"
+                        min="1000"
+                        max="2020" 
                         name="YearMovie" 
                         id="YearMovie"
+                        validate
                         placeholder="Año">
                       </div>
                       <div class="input-field col s12 m6">

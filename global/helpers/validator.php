@@ -144,6 +144,14 @@ class Validator{
 			return false;
 		}
 	}
+	public function ValidateInt($value){
+		if(preg_match('/^\d+$/', $value)){
+			return true;	
+		} 
+		else {
+			return false;
+		}
+	}
 	public function validateAlphanumeric($value, $minimum, $maximum)
 	{
 		if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.]{'.$minimum.','.$maximum.'}$/', $value)) {

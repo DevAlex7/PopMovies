@@ -2,8 +2,10 @@ var getId;
 $(document).ready(function () {
     getId = $('#MovieId').val();
     getMoviebyId();
+    ActorTags();
 });
 const APIViewMovies = '../../global/api/dashboard/movies.php?site=dashboard&action=';
+const APIactorsmovie ='../../global/api/dashboard/actorsmovie.php?site=dashboard&action=';
 
 //Get all customers in ComboBox
 function SelectCustomers(Select, value){
@@ -62,14 +64,17 @@ function getMoviebyId(){
                 $('#TitleMovieEdit').val(result.dataset.name);
                 $('#SipnosisEdit').val(result.dataset.sinopsis);
                 $('#TimeMovieEdit').val(result.dataset.time);
-                $('#ImageCoverEdit').val(result.dataset.cover);   
+                $('#ImageCoverEdit').val(result.dataset.cover);
+                $('#YearMovieEdit').val(result.dataset.year);
                 $('#PriceEdit').val(result.dataset.price);
                 $('#CountMovieEdit').val(result.dataset.count);
                 $('#VideoTrailer').html(result.dataset.trailer);
                 content =  `<option value=${result.dataset.IdCustomer}>${result.dataset.EnterpriseCustomer}</option>'`
                 SelectCustomers('EditCustomerMovie', result.dataset.IdCustomer);
                 $('#EditCustomerMovie').html(content);
+                $('#TrailerMovieEdit').val(result.dataset.trailer);
                 $('select').formSelect();
+
             }
             else{
                 //redirect if id is not in the URL
@@ -84,8 +89,6 @@ function getMoviebyId(){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 }
-
-
 //Edit Movie
 $('#EditFormMovie').submit(function(e){
     e.preventDefault();
@@ -102,7 +105,8 @@ $('#EditFormMovie').submit(function(e){
         {
             const result = JSON.parse(response);
             if(result.status){
-                console.log("Si llego");
+                M.toast({html:'¡Pelicula actualizada correctamente!'});
+                getMoviebyId();
             }
             else{
                 console.log(result.exception);
@@ -117,3 +121,73 @@ $('#EditFormMovie').submit(function(e){
     });
 })
 
+//Delete Selected Movie
+function DeleteMoviebyId(){
+    $.ajax({
+        url:APIViewMovies+'deleteMovie',
+        type:'POST',
+        data:{
+            getId
+        },
+        datatype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                    $(location).attr('href','movies.php');
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+
+//Tags to Actors
+function FillActorTags(rows){
+    let content = '';
+    if(rows.length>0){
+        rows.forEach(function(row){
+            content += `
+            <div class="chip">
+                <span>${row.actorname}</span>
+            </div> 
+            `;
+        }); 
+    }
+    $('#ActorsTags').html(content)
+}
+//Call actors to tags
+function ActorTags(){
+    $.ajax({
+        url:APIactorsmovie+'getActorsinMovie',
+        type:'POST',
+        data:{
+            getId
+        },
+        datatype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            console.log(response);
+            if(!result.status){
+                M.toast({html: 'No hay actores registrados'})
+            }
+            FillActorTags(result.dataset);
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}

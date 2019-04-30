@@ -1,10 +1,12 @@
 $(document).ready(function(){
     $('.modal').modal();
     showTable();
+    ListActors('ActorsSelect',null);
+    ListMovies('MoviesSelect', null);
 });
 
 const APIActors = '../../global/api/dashboard/actors.php?site=dashboard&action=';
-
+const APIactorsmovie='../../global/api/dashboard/actorsmovie.php?site=dashboard&action=';
 //Create Actor
 $('#form-create').submit(async () =>{
     event.preventDefault();
@@ -32,8 +34,6 @@ $('#form-create').submit(async () =>{
     } else {
         console.log(response);
     }
-  
-
 })
 
 //Show all Actors
@@ -109,7 +109,6 @@ function ShowInformation(id)
     .fail(function(jqXHR){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
-    
 }
 
 //Update Actor
@@ -174,7 +173,6 @@ function ShowInformationDelete(id)
     .fail(function(jqXHR){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
-    
 }
 
 //Delete Actor
@@ -200,13 +198,111 @@ $('#DeleteActorForm').submit(function()
         } else {
             console.log(response);
         }
-        
     })
     .fail(function(jqXHR){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 })
 
+//Fill Select with Actors
+function ListActors(Select, value){
+    $.ajax({
+        url: APIActors + 'showActors',
+        type: 'POST',
+        data: null,
+        datatype: 'JSON'
+    })
+    .done(function(response){
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            if (result.status) {
+                let content = '';
+                if (!value) {
+                    content += '<option value="" disabled selected>Seleccione Actor</option>';
+                }
+                result.dataset.forEach(function(row){
+                    if (row.id != value) {
+                        content += `<option value="${row.id}">${row.name}</option>`;
+                    } else {
+                        content += `<option value="${row.id}" selected>${row.name}</option>`;
+                    }
+                });
+                $('#' + Select).html(content);
+            } else {
+                $('#' + Select).html('<option value="">No hay actores en lista</option>');
+            }
+            $('select').formSelect();
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+//Fill Select with Movies
+function ListMovies(Select, value){
+    $.ajax({
+        url: APIActors + 'getMovies',
+        type: 'POST',
+        data: null,
+        datatype: 'JSON'
+    })
+    .done(function(response){
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            if (result.status) {
+                let content = '';
+                if (!value) {
+                    content += '<option value="" disabled selected>Seleccione pelicula</option>';
+                }
+                result.dataset.forEach(function(row){
+                    if (row.id != value) {
+                        content += `<option value="${row.id}">${row.name}</option>`;
+                    } else {
+                        content += `<option value="${row.id}" selected>${row.name}</option>`;
+                    }
+                });
+                $('#' + Select).html(content);
+            } else {
+                $('#' + Select).html('<option value="">No hay peliculas en lista</option>');
+            }
+            $('select').formSelect();
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+
+//Create List 
+$('#ListMoviesinActors').submit(function()
+{
+        event.preventDefault();
+        $.ajax({
+            url: APIactorsmovie + 'createList',
+            type: 'POST',
+            data: $('#ListMoviesinActors').serialize(),
+            datatype: 'JSON'
+        })
+        .done(function(response){
+            if (isJSONString(response)) {
+                const result = JSON.parse(response);
+                if (result.status) {
+                    M.toast({html:'Se agrego correctamente'});
+                } else {
+                    M.toast({html:result.exception});
+                }
+            } else {
+                console.log(response);
+            }
+        })
+        .fail(function(jqXHR){
+            console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        });
+})
 
 
 

@@ -172,7 +172,7 @@ function FillCardMovie(rows){
                     <p>${row.sinopsis}</p>
                 </div>
                 <div class="card-action">
-                    <a href="/PopMovies/feed/account/viewmovie.php?category=movies&movie=${row.id}" onClick=SetID(${row.id})>This is a link</a>
+                    <a class="btn blue" href="/PopMovies/feed/account/viewmovie.php?category=movies&movie=${row.id}" onClick=SetID(${row.id})>Ver detalles</a>
                 </div>
             </div>
         </div>
@@ -205,6 +205,7 @@ function ShowMovieCards(){
     });
 }
 
+//Create Movie
 $('#FormMovieCreate').submit(function (e) { 
     e.preventDefault();
     $.ajax({
@@ -217,11 +218,13 @@ $('#FormMovieCreate').submit(function (e) {
         processData:false
     })
     .done(function(response){
+        
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(result.status){
-                M.toast({html:'Pelicula agregada correctamente', classes:'toastsucess'});
-
+                M.toast({html:'Pelicula agregada correctamente', classes:'toastsuccess'});
+                ShowMovieCards();
+                $('#ModalAddMovie').modal('close');
             }
             else{
                 M.toast({html:result.exception})

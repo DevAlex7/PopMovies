@@ -77,6 +77,7 @@
                                                         if($movie->year($_POST['YearMovie'])){
                                                             if($movie->trailer($_POST['TrailerMovie'])){
                                                                 if($movie->customer($_POST['ComboCustomers'])){
+                                                                    
                                                                     $movie->create();
                                                                     $result['status']=1;
                                                                 }
@@ -148,12 +149,78 @@
                 }
                 break;
                 case 'editMovie':
-                    if($movie->name($_POST['TitleMovieEdit'])){
-                        $result['status']=1;
-                        
+                if($movie->name($_POST['TitleMovieEdit'])){
+                    if($movie->sipnosis($_POST['SipnosisEdit'])){
+                        if($movie->time($_POST['TimeMovieEdit'])){
+                            if(is_uploaded_file($_FILES['FileMovieCover']['tmp_name'])){
+                                if($movie->cover($_FILES['FileMovieCover'], null)){
+                                        if($movie->saveFile($_FILES['FileMovieCover'], $movie->getRoot(), $movie->getImage())){
+                                            if($movie->price($_POST['PriceEdit'])){
+                                                if($movie->count($_POST['CountMovieEdit'])){
+                                                    if($movie->year($_POST['YearMovieEdit'])){
+                                                        if($movie->trailer($_POST['TrailerMovieEdit'])){
+                                                            if($movie->customer($_POST['EditCustomerMovie'])){
+                                                                if($movie->id($_POST['MovieId'])){
+                                                                    $movie->edit();
+                                                                    $result['status']=1;
+                                                                }
+                                                                else{
+                                                                    $result['exception']='Identificador no encontrado';
+                                                                }
+                                                            }
+                                                            else{
+                                                                $result['exception']='Campo vacio';
+                                                            }
+                                                        }
+                                                        else{
+                                                            $result['exception']='Formato incorrecto de video o campo vacio';
+                                                        }
+                                                    }
+                                                    else{
+                                                        $result['exception']='Formato incorrecto de año o campo vacio';
+                                                    }
+                                                }
+                                                else{
+                                                    $result['exception']='Formato incorrecto de ingreso o campo vacio';
+                                                }
+                                            }
+                                            else{
+                                                $result['exception']='Formato incorrecto de precio o campo vacio';
+                                            }
+                                        }
+                                        else{
+                                            $result['status'] = 2;
+                                            $result['exception'] = 'No se guardó el archivo';
+                                        }
+                                }
+                                else{
+                                    $result['exception'] = $producto->getImageError();
+                                }
+                            }
+                            else{
+                                $result['exception'] = 'Seleccione una imagen';
+                            }
+                        }
+                        else{
+                            $result['exception']='Formato de hora incorrecta';
+                        }
                     }
                     else{
-                        $result['exception']='No llego';
+                        $result['exception']='Campo vacio';
+                    }
+
+                }
+                else{
+                    $result['exception']='Nombre incorrecto o vacio';
+                }
+                break;
+                case 'deleteMovie':
+                    if($movie->id($_POST['getId'])){
+                        $movie->destroy();
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['exception']='No hay un identificador';
                     }
                 break;
                 default:

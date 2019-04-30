@@ -7,7 +7,7 @@ class Movies extends Validator{
     private $sipnosis;
     private $time;
     private $cover;
-    private $imageroot='../../resources/dashboard/img/covers/';
+    private $imageroot='../../../resources/dashboard/img/covers/';
     private $price;
     private $count;
     private $year;
@@ -86,18 +86,15 @@ class Movies extends Validator{
         }
     }
     public function year($value){
-        if($this->validateAlphanumeric($value,1,5)){
+       
             if($value>0 && $value>1000 && $value<2020){
                 $this->year = $value;
                 return true;
             }
             else{
                 return false;
-            }
-        }
-        else{
-            return false;
-        }
+            }        
+      
     }
     public function trailer($value){
         if($value != strip_tags($value)){
@@ -139,8 +136,19 @@ class Movies extends Validator{
     }
     public function create(){
         $sql = 'INSERT INTO movies(name, sinopsis, time, cover, price, count, year, trailer, customer) VALUES (?,?,?,?,?,?,?,?,?)';
-        $params= array($this->name, $this->sipnosis, $this->time, $this->cover, $this->price, $this->count, $this->year, $this->trailer ,$this->customer);
+        $params= array($this->name, $this->sipnosis, $this->time, $this->cover, $this->price, $this->count, $this->year, $this->trailer, $this->customer);
         return Database::executeRow($sql , $params);
+    }
+    public function edit(){
+        $sql = 'UPDATE movies SET name =?, sinopsis=?, time=?, cover=?, price=?, count=?, year=?, trailer=?, customer=? WHERE id=?';
+        $params= array($this->name, $this->sipnosis, $this->time, $this->cover, $this->price, $this->count, $this->year, $this->trailer, $this->customer, $this->id);
+        return Database::executeRow($sql , $params);
+
+    }
+    public function destroy(){
+        $sql = 'DELETE FROM movies WHERE id=?';
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
     }
 }
 

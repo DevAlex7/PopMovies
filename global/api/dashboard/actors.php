@@ -3,11 +3,13 @@
     require_once('../../helpers/instance.php');
     require_once('../../helpers/validator.php');
     require_once('../../models/actors.php');
+    require_once('../../models/movies.php');
 
     if(isset($_GET['site']) && isset($_GET['action']))
     {
         session_start();
         $actor = new Actor();
+        $movie = new Movies();
         $result = array('status' => 0, 'exception' =>'');
         if($_GET['site']=='dashboard')
         {
@@ -94,6 +96,13 @@
                         $actor->delete();
                         $result['status']=1;
 
+                    }
+                    break;
+                    case 'getMovies':
+                    if ($result['dataset'] = $movie->all()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'No hay peliculas registradas';
                     }
                     break;
                 

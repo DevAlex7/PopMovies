@@ -5,6 +5,18 @@ class Actor extends Validator{
     public $id;
     public $name;
 
+    public function id($value){
+      if($this->validateId($value)){
+          $this->id=$value;
+          return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+
+
     public function exists(){
       $sql = 'SELECT name FROM actors WHERE name=?';
       $params = array($this->name);

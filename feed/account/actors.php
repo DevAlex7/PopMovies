@@ -37,17 +37,38 @@
             <div class="card z-depht-3">
                 <div class="card-content">
                     <table class="highlight z-depht-5">
-                        
                         <thead>
                             <tr>
                                 <th>Actor</th>
                             </tr>
                         </thead>
-
                         <tbody id="ActorsRead">
-                           
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <div class="chip">¡Agrega un actor a cada pelicula!</div>
+                <div id="AddActorstoMovies">
+                   <div class="row">
+                       <form class="col s12" id="ListMoviesinActors" name="ListMoviesinActors" method="POST">
+                           <div class="row">
+                               <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">movie</i>
+                                    <select name="ActorsSelect" id="ActorsSelect"></select>
+                               </div>
+                               <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">movie</i>
+                                    <select name="MoviesSelect" id="MoviesSelect"></select>
+                               </div>
+                           </div>
+                           <div class="card-action center">
+                           <button type="submit" class="btn blue align-center">Agregar</button>
+                           </div>
+                       </form>
+                   </div>
                 </div>
             </div>
         </div>
