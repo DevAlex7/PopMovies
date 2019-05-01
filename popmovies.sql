@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2019 a las 06:46:36
+-- Tiempo de generación: 01-05-2019 a las 20:14:41
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -123,9 +123,16 @@ INSERT INTO `clasifications` (`id`, `clasification`, `description`) VALUES
 
 CREATE TABLE `clasificationsmovie` (
   `id` int(11) NOT NULL,
-  `movie` int(11) NOT NULL,
-  `clasification` int(11) NOT NULL
+  `clasification` int(11) NOT NULL,
+  `movie` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `clasificationsmovie`
+--
+
+INSERT INTO `clasificationsmovie` (`id`, `clasification`, `movie`) VALUES
+(1, 1, 17);
 
 -- --------------------------------------------------------
 
@@ -441,7 +448,7 @@ ALTER TABLE `clasifications`
 -- AUTO_INCREMENT de la tabla `clasificationsmovie`
 --
 ALTER TABLE `clasificationsmovie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `customers`
