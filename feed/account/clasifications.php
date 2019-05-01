@@ -59,28 +59,29 @@
         </div>
     </div>
     
+    <!--Add Clasifications to Movies -->
     <div class="card">
         <div class="card-content">
             <div class="chip">¡Agrega una clasificación a tus peliculas!</div>
             <div id="AddClasificationtoMovies">
-                    <div class="row">
-                       <form class="col s12" id="ListMoviesinActors" name="ListMoviesinActors" method="POST">
-                           <div class="row">
-                               <div class="input-field col s12 m6">
-                                    <i class="material-icons prefix">movie</i>
-                                    <select name="ClasificationsSelect" id="ClasificationsSelect"></select>
-                               </div>
-                               <div class="input-field col s12 m6">
-                                    <i class="material-icons prefix">movie</i>
-                                    <select name="MoviesSelect" id="MoviesSelect"></select>
-                               </div>
-                           </div>
-                           <div class="card-action center">
-                           <button type="submit" class="btn blue align-center">Agregar</button>
-                           </div>
-                       </form>
-                    </div>
+                <div class="row">
+                    <form class="col s12" id="ListClasificationsinMovies" name="ListClasificationsinMovies" method="POST">
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">movie</i>
+                                <select name="ClasificationsSelect" id="ClasificationsSelect"></select>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">movie</i>
+                                <select name="MoviesSelect" id="MoviesSelect"></select>
+                            </div>
+                        </div>
+                        <div class="card-action center">
+                        <button type="submit" class="btn blue align-center">Agregar</button>
+                        </div>
+                    </form>
                 </div>
+            </div>
         </div>
     </div>
 

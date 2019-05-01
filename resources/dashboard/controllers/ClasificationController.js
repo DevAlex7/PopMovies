@@ -1,8 +1,87 @@
 $(document).ready(function(){
     $(".modal").modal();
     showTableClasifications();
+    ListClasifications('ClasificationsSelect',null);
+    ListMovies('MoviesSelect',null);
 });
 const APIClasifications = '../../global/api/dashboard/clasifications.php?site=dashboard&action=';
+const APIClasificationsMovie = '../../global/api/dashboard/clasificationsmovie.php?site=dashboard&action=';
+
+function ListMovies(Select, value){
+    $.ajax({
+        url:APIClasifications+'getMovies',
+        type: 'POST',
+        data: null,
+        datatype: 'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if (result.status) {
+                let content = '';
+                if (!value) {
+                    content += '<option value="" disabled selected>Seleccione Pelicula</option>';
+                }
+                result.dataset.forEach(function(row){
+                    if (row.id != value) {
+                        content += `<option value="${row.id}">${row.name}</option>`;
+                    } else {
+                        content += `<option value="${row.id}" selected>${row.name}</option>`;
+                    }
+                });
+                $('#' + Select).html(content);
+            } else {
+                $('#' + Select).html('<option value="">No hay actores en lista</option>');
+            }
+            $('select').formSelect();
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+
+function ListClasifications(Select, value){
+    
+    $.ajax({
+        url:APIClasifications+'all',
+        type: 'POST',
+        data: null,
+        datatype: 'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if (result.status) {
+                let content = '';
+                if (!value) {
+                    content += '<option value="" disabled selected>Seleccione Clasificación</option>';
+                }
+                result.dataset.forEach(function(row){
+                    if (row.id != value) {
+                        content += `<option value="${row.id}">${row.clasification}</option>`;
+                    } else {
+                        content += `<option value="${row.id}" selected>${row.clasification}</option>`;
+                    }
+                });
+                $('#' + Select).html(content);
+            } else {
+                $('#' + Select).html('<option value="">No hay actores en lista</option>');
+            }
+            $('select').formSelect();
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+
+}
 
 function FillTable(rows){
     let content = '';
@@ -239,5 +318,31 @@ $('#ClasificationDeleteForm').submit(function(e){
     .fail(function(jqXHR){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
-
+})
+//Add clasification to Movie
+$('#ListClasificationsinMovies').submit(function(){
+    event.preventDefault();
+    $.ajax({
+        url: APIClasificationsMovie + 'CreateList',
+            type: 'POST',
+            data: $('#ListClasificationsinMovies').serialize(),
+            datatype: 'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                M.toast({html:'tiene valor'});
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
 })
