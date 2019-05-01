@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-04-2019 a las 02:29:49
+-- Tiempo de generación: 01-05-2019 a las 06:46:36
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -60,8 +60,7 @@ CREATE TABLE `actorsmovie` (
 --
 
 INSERT INTO `actorsmovie` (`id`, `Actor`, `Movie`) VALUES
-(1, 1, 14),
-(2, 4, 14);
+(3, 4, 17);
 
 -- --------------------------------------------------------
 
@@ -190,9 +189,16 @@ INSERT INTO `genders` (`id`, `gender`) VALUES
 
 CREATE TABLE `gendersmovie` (
   `id` int(11) NOT NULL,
-  `movie` int(11) NOT NULL,
-  `gender` int(11) NOT NULL
+  `gender` int(11) NOT NULL,
+  `movie` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `gendersmovie`
+--
+
+INSERT INTO `gendersmovie` (`id`, `gender`, `movie`) VALUES
+(1, 26, 17);
 
 -- --------------------------------------------------------
 
@@ -238,7 +244,7 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`id`, `name`, `sinopsis`, `time`, `cover`, `year`, `trailer`, `price`, `count`, `customer`) VALUES
-(14, 'John Wick 3', 'Un mercenario en busca de venganza', '01:21:51', '5cc773873d9bc.jpg', 2012, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/-CVqvdgLHm8\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 10.50, 50, 2);
+(17, 'Capitana Marvel', 'aSADASD', '01:21:51', '5cc7d13769f4a.jpeg', 2019, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0LHxvxdRnYc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 25.25, 20, 2);
 
 -- --------------------------------------------------------
 
@@ -411,7 +417,7 @@ ALTER TABLE `actors`
 -- AUTO_INCREMENT de la tabla `actorsmovie`
 --
 ALTER TABLE `actorsmovie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `admins`
@@ -459,7 +465,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT de la tabla `gendersmovie`
 --
 ALTER TABLE `gendersmovie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `memberships`
@@ -471,7 +477,7 @@ ALTER TABLE `memberships`
 -- AUTO_INCREMENT de la tabla `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `shop`
