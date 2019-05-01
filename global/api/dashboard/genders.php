@@ -3,11 +3,13 @@
 require_once('../../helpers/instance.php');
 require_once('../../helpers/validator.php');
 require_once('../../models/genders.php');
+require_once('../../models/movies.php');
 
 if(isset($_GET['site']) && isset($_GET['action'])){
  
     session_start();
     $gender= new Gender();
+    $movie = new Movies();
     $result = array('status'=>0, 'exception'=>'');
     
     if($_GET['site']=='dashboard')
@@ -39,7 +41,7 @@ if(isset($_GET['site']) && isset($_GET['action'])){
                 }
             }
             else{
-                $result['exception'] = 'Campo Vacio';
+                $result['exception'] = 'Campo Vacio :v';
             }
             break;
             case 'getGender':
@@ -83,6 +85,13 @@ if(isset($_GET['site']) && isset($_GET['action'])){
                     $result['exception']='Operacion fallida';
                 }
             
+            break;
+            case 'getMovies':
+                if ($result['dataset'] = $movie->all()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay peliculas registradas';
+                }
             break;
             
             default:

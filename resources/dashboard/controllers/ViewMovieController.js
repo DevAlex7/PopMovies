@@ -1,11 +1,14 @@
 var getId;
+var getImage;
 $(document).ready(function () {
     getId = $('#MovieId').val();
     getMoviebyId();
     ActorTags();
+    GenderTags();
 });
 const APIViewMovies = '../../global/api/dashboard/movies.php?site=dashboard&action=';
 const APIactorsmovie ='../../global/api/dashboard/actorsmovie.php?site=dashboard&action=';
+const APIGendersMovie ='../../global/api/dashboard/gendersmovie.php?site=dashboard&action=';
 
 //Get all customers in ComboBox
 function SelectCustomers(Select, value){
@@ -64,6 +67,7 @@ function getMoviebyId(){
                 $('#TitleMovieEdit').val(result.dataset.name);
                 $('#SipnosisEdit').val(result.dataset.sinopsis);
                 $('#TimeMovieEdit').val(result.dataset.time);
+                getImage=result.dataset.cover;
                 $('#ImageCoverEdit').val(result.dataset.cover);
                 $('#YearMovieEdit').val(result.dataset.year);
                 $('#PriceEdit').val(result.dataset.price);
@@ -127,7 +131,7 @@ function DeleteMoviebyId(){
         url:APIViewMovies+'deleteMovie',
         type:'POST',
         data:{
-            getId
+            getId, getImage
         },
         datatype:'JSON'
     })
@@ -135,7 +139,12 @@ function DeleteMoviebyId(){
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(result.status){
-                    $(location).attr('href','movies.php');
+                   if(result.status == 1){
+                        M.toast({html:'Producto eliminado correctamente'});
+                   }
+                   else{
+                    M.toast({html:'Producto eliminado'});
+                   }
             }
             else{
                 M.toast({html:result.exception});
@@ -164,6 +173,7 @@ function FillActorTags(rows){
     }
     $('#ActorsTags').html(content)
 }
+
 //Call actors to tags
 function ActorTags(){
     $.ajax({
@@ -177,11 +187,50 @@ function ActorTags(){
     .done(function(response){
         if(isJSONString(response)){
             const result = JSON.parse(response);
-            console.log(response);
             if(!result.status){
-                M.toast({html: 'No hay actores registrados'})
+                $('#exception').text("No hay actores registrados");
             }
             FillActorTags(result.dataset);
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+//Tags for Genders
+function FillGenders(rows){
+    let content = '';
+    if(rows.length>0){
+        rows.forEach(function(row){
+            content += `
+            <div class="chip">
+                <span>${row.gender}</span>
+            </div> 
+            `;
+        }); 
+    }
+    $('#GendersTags').html(content)
+}
+//Call genders to tags
+function GenderTags(){
+    $.ajax({
+        url:APIGendersMovie+'getGendersinMovie',
+        type:'POST',
+        data:{
+            getId
+        },
+        datatype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(!result.status){
+                $('#exception').text("No hay Generos registrados");
+            }
+            FillGenders(result.dataset);
         }
         else{
             console.log(response);

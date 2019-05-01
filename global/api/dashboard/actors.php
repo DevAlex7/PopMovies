@@ -99,11 +99,11 @@
                     }
                     break;
                     case 'getMovies':
-                    if ($result['dataset'] = $movie->all()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'No hay peliculas registradas';
-                    }
+                        if ($result['dataset'] = $movie->all()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'No hay peliculas registradas';
+                        }
                     break;
                 
                 default:

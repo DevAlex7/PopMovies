@@ -86,6 +86,7 @@
                     <div class="card">
                         <div class="card-content">
                             <p>Actores</p>
+                            <p id="exception"></p>
                             <div id="ActorsTags">
                                       
                             </div>
@@ -97,6 +98,7 @@
                     <div class="card">
                         <div class="card-content">
                             <p>Generos</p>
+                            <p id="exception"></p>
                             <div id="GendersTags">
 
                             </div>
@@ -108,6 +110,8 @@
                     <div class="card">
                         <div class="card-content">
                             <p>Clasificación</p>
+                            <p id="exception"></p>
+                            <p id="clasification"></p>
                         </div>
                     </div>
                 </div> 

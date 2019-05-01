@@ -32,3 +32,11 @@ header, main, footer {
     background-color: green;
 	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.28), 0 1px 10px 0 rgba(0, 0, 0, 0.24), 0 2px 4px -1px rgba(0, 0, 0, 0.6);
 }
+#MoviesGender{
+    margin-top: 1rem;
+}
+#TitleChip{
+    position: relative;
+    left: 1rem;
+}
+

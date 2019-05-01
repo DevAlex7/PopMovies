@@ -215,9 +215,19 @@
                 }
                 break;
                 case 'deleteMovie':
-                    if($movie->id($_POST['getId'])){
-                        $movie->destroy();
-                        $result['status']=1;
+                    if($movie->id($_POST['getId']) ){
+                      if($movie->destroy()){
+                        if($movie->deleteFile($movie->getRoot(), $_POST['getImage'])){
+                            $result['status'] = 1;
+                        }
+                        else{
+                            $result['status'] = 2;
+                            $result['exception'] = 'No se borró el archivo';
+                        }
+                      }
+                      else{
+                       $result['exception']='Operación fallida';
+                      }
                     }
                     else{
                         $result['exception']='No hay un identificador';

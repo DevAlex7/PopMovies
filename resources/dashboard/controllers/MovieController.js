@@ -5,12 +5,9 @@ $(document).ready(function()
     SelectClasifications('ComboClasifications', null);*/
     SelectCustomers('ComboCustomers', null);
     ShowMovieCards();
+    
 })
-
-
 const APIMovies = '../../global/api/dashboard/movies.php?site=dashboard&action=';
-
-
 //ComboBox Genders
 function SelectGenders(Select, value){
     $.ajax({

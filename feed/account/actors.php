@@ -52,7 +52,7 @@
             <div class="card-content">
                 <div class="chip">¡Agrega un actor a cada pelicula!</div>
                 <div id="AddActorstoMovies">
-                   <div class="row">
+                    <div class="row">
                        <form class="col s12" id="ListMoviesinActors" name="ListMoviesinActors" method="POST">
                            <div class="row">
                                <div class="input-field col s12 m6">
@@ -68,7 +68,7 @@
                            <button type="submit" class="btn blue align-center">Agregar</button>
                            </div>
                        </form>
-                   </div>
+                    </div>
                 </div>
             </div>
         </div>
