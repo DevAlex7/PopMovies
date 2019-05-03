@@ -41,7 +41,7 @@ function ShowCustomers(){
         datatype: 'JSON'
     })
     .done(function (response){
-        
+        console.log("hola");
         if(isJSONString(response))
         {
             const result = JSON.parse(response);

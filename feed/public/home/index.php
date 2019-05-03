@@ -29,13 +29,15 @@
                         <li><a href="sass.html">Favoritos</a></li>
                         <li><a href="../login.php"><i class="tiny material-icons">power_settings_new</i></a></li>
                         <li><a> </a></li>
-                        <!-- Dropdown Trigger
-                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>-->
                     </ul>
                 </div>
             </nav>
             <ul id="slide-out" class="sidenav sidenav-fixed">
                 <li><a class="subheader">Géneros</a></li>
+                <div id="gen">
+
+                </div>
+                <li><a class="subheader">Configuración</a></li>
                 <li><a href="account.php"><i class="material-icons">settings</i>Ajustes de la cuenta</a></li>
                 <li><a href="users.php"><i class="material-icons">people</i>Usuarios del sistema</a></li>
                 <li><a href="../login.php"><i class="material-icons">power_settings_new</i>Cerrar Sesión</a></li>
@@ -45,23 +47,28 @@
             </ul>
         </header>
 
-        <div>
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="https://cdni.rt.com/actualidad/public_images/2019.02/article/5c743571e9180fbf138b4567.jpg">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                    <p><a href="#">This is a link</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        <main>
+            <div class="row">
+                <div class="card col s12 m6 l4">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="https://cdni.rt.com/actualidad/public_images/2019.02/article/5c743571e9180fbf138b4567.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                        <p><a href="#">This is a link</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </main>
+
         <script src="../../../resources/globaljs/jquery-3.2.1.min.js" type="text/javascript"></script>
         <script src="../../../resources/globaljs/materialize.min.js" type="text/javascript"></script>
+        <script src="../../../global/helpers/functions.js"></script>
         <script src="../../../resources/public/js/init.js" type="text/javascript"></script>
+        <script src="../../../resources/public/controllers/indexpage.js" type="text/javascript"></script>
     </body>
 </html>
