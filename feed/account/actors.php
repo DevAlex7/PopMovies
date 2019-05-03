@@ -48,6 +48,8 @@
                 </div>
             </div>
         </div>
+
+        <!--Add Actor to movie -->
         <div class="card">
             <div class="card-content">
                 <div class="chip">¡Agrega un actor a cada pelicula!</div>
@@ -70,9 +72,60 @@
                        </form>
                     </div>
                 </div>
+                <table class="highlight centered">
+                    <thead>
+                        <tr>
+                            <th>Pelicula</th>
+                            <th>Actor</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ActorsInMovies">
+            
+                    </tbody>
+                </table>
             </div>
         </div>
+<!-- ---------- Modals Actors in movies ---------->
 
+<!--Modal edit Actors in Movies -->
+<div class="modal" id="ModalEditActorsInMovies">
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-content">
+                <form method="POST">
+                    <div class="row">
+                        <form class="col s12" id="FormEditActortoMovie">
+                            <div class="row">
+                            <span class="card-title">Editar Actor para</span>
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">face</i>
+                                    <select name="SelectEditActortoMovie" id="SelectEditActortoMovie"></select>
+                                </div>
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">movie</i>
+                                    <select name="SelectEditMovie" id="SelectEditMovie"></select>
+                                </div>
+                                <div class="center">
+                                    <button type="submit" class="btn blue center-align"> <i class="material-icons left">edit</i>Editar</button> 
+                                    <a class="btn grey modal-close"> <i class="material-icons left">close</i> Cancelar </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal delete Actors in Movies -->
+<div class="modal" id="DeleteActorsInMovies">
+
+</div>
+
+
+<!-- ---------- Modals  Actors in movies ---------->
         <!--Modal add Actor-->
         <div id="addactor" class="modal">
             <div class="modal-content">
@@ -129,8 +182,6 @@
                 </div>
             </div>
         </div> 
-        
-       
     </main>
 <footer>
 </footer>

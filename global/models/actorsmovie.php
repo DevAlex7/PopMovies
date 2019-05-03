@@ -40,8 +40,15 @@ class Actormovie extends Validator{
         $params = array($this->id_actor,$this->id_movie);
         return Database::executeRow($sql, $params);
     }
+    public function getListbyId(){
+        $sql='SELECT * FROM actorsmovie WHERE id=?';
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
+    }
     public function getActors_in_Movies(){
-        $sql='  SELECT actors.id, actors.name, movies.id, movies.name 
+        $sql='  SELECT 
+                actors.id AS IdActor, actors.name AS Actorname, 
+                movies.id AS IdMovie, movies.name AS Moviename
                 FROM actors, movies, actorsmovie 
                 WHERE actors.id=actorsmovie.Actor 
                   AND movies.id=actorsmovie.Movie';

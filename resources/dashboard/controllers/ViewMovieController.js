@@ -165,7 +165,7 @@ function FillActorTags(rows){
     if(rows.length>0){
         rows.forEach(function(row){
             content += `
-            <div class="chip">
+            <div class="chip blue white-text">
                 <span>${row.actorname}</span>
             </div> 
             `;
@@ -206,7 +206,7 @@ function FillGenders(rows){
     if(rows.length>0){
         rows.forEach(function(row){
             content += `
-            <div class="chip">
+            <div class="chip green accent-3 white-text">
                 <span>${row.gender}</span>
             </div> 
             `;
@@ -228,7 +228,6 @@ function GenderTags(){
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(!result.status){
-                $('#exception').text("No hay Generos registrados");
             }
             FillGenders(result.dataset);
         }

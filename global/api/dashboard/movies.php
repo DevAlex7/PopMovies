@@ -7,6 +7,7 @@
     require_once('../../models/genders.php');
     require_once('../../models/clasifications.php');
     require_once('../../models/customers.php');
+    require_once('../../models/gendersmovie.php');
 
     
 
@@ -18,6 +19,7 @@
         $gender = new Gender();
         $clasification = new Clasification();
         $customer = new Customers();
+        $gendermovie = new Gendermovie();
         $result = array('status'=>0, 'exception'=>'');
 
         if($_GET['site']=='dashboard'){
@@ -26,7 +28,7 @@
 
                 case 'GetMovies':
                     if($result['dataset'] = $movie->GetMovies()){
-                        $result['status']= 1;
+                            $result['status']= 1;
                     }
                     else
                     {

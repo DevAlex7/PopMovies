@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2019 a las 20:14:41
+-- Tiempo de generación: 03-05-2019 a las 16:00:40
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -41,7 +41,8 @@ INSERT INTO `actors` (`id`, `name`) VALUES
 (1, 'Chris Evans'),
 (2, 'Steven'),
 (3, 'Sas'),
-(4, 'Josh Brolin');
+(4, 'Josh Brolin'),
+(5, 'Rolin Azmitia');
 
 -- --------------------------------------------------------
 
@@ -60,7 +61,9 @@ CREATE TABLE `actorsmovie` (
 --
 
 INSERT INTO `actorsmovie` (`id`, `Actor`, `Movie`) VALUES
-(3, 4, 17);
+(14, 2, 17),
+(15, 4, 18),
+(16, 5, 18);
 
 -- --------------------------------------------------------
 
@@ -205,7 +208,7 @@ CREATE TABLE `gendersmovie` (
 --
 
 INSERT INTO `gendersmovie` (`id`, `gender`, `movie`) VALUES
-(1, 26, 17);
+(6, 28, 18);
 
 -- --------------------------------------------------------
 
@@ -251,7 +254,8 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`id`, `name`, `sinopsis`, `time`, `cover`, `year`, `trailer`, `price`, `count`, `customer`) VALUES
-(17, 'Capitana Marvel', 'aSADASD', '01:21:51', '5cc7d13769f4a.jpeg', 2019, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0LHxvxdRnYc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 25.25, 20, 2);
+(17, 'Capitana Marvel', 'Capitana Marvel regresa a la tierra a conocer su propia vida pasada de ser una heroina', '01:21:51', '5ccaf5936493e.jpeg', 2019, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0LHxvxdRnYc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 25.25, 20, 2),
+(18, 'John Wick', 'Un mercenario', '01:42:25', '5ccb34f1be2a9.jpg', 2012, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0LHxvxdRnYc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 10.00, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -312,9 +316,8 @@ ALTER TABLE `actors`
 --
 ALTER TABLE `actorsmovie`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `Actor_2` (`Actor`),
-  ADD KEY `Actor` (`Actor`),
-  ADD KEY `Movie` (`Movie`);
+  ADD KEY `Movie` (`Movie`),
+  ADD KEY `Actor` (`Actor`);
 
 --
 -- Indices de la tabla `admins`
@@ -418,13 +421,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `actors`
 --
 ALTER TABLE `actors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `actorsmovie`
 --
 ALTER TABLE `actorsmovie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `admins`
@@ -472,7 +475,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT de la tabla `gendersmovie`
 --
 ALTER TABLE `gendersmovie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `memberships`
@@ -484,7 +487,7 @@ ALTER TABLE `memberships`
 -- AUTO_INCREMENT de la tabla `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `shop`
@@ -512,8 +515,8 @@ ALTER TABLE `users`
 -- Filtros para la tabla `actorsmovie`
 --
 ALTER TABLE `actorsmovie`
-  ADD CONSTRAINT `actorsmovie_ibfk_1` FOREIGN KEY (`Actor`) REFERENCES `actors` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `actorsmovie_ibfk_2` FOREIGN KEY (`Movie`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `actorsmovie_ibfk_2` FOREIGN KEY (`Movie`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `actorsmovie_ibfk_3` FOREIGN KEY (`Actor`) REFERENCES `actors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `clasificationsmovie`

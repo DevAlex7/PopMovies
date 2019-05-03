@@ -119,7 +119,7 @@ class Movies extends Validator{
         return Database::getRow($sql, $params);
     }
     public function findbyId(){
-        $sql='SELECT movies.name, movies.sinopsis, movies.time, 
+        $sql='SELECT movies.id, movies.name, movies.sinopsis, movies.time, 
                      movies.cover, movies.year, movies.trailer, 
                      movies.price, movies.count, 
                      customers.id AS IdCustomer,

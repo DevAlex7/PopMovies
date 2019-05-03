@@ -40,12 +40,20 @@ class Gendermovie extends Validator{
         $params = array($this->gender_id, $this->movie_id);
         return Database::executeRow($sql, $params);
     }
+    public function getGenders(){
+        $sql='SELECT genders.id, genders.gender 
+        FROM movies, genders, gendersmovie
+        WHERE movies.id=gendersmovie.gender
+        AND genders.id=gendersmovie.gender';
+        $params=array(null);
+        return Database::executeRow($sql,$params);
+    }
     public function getGenders_in_MoviesbyId(){
         $sql =' SELECT genders.id, genders.gender, movies.id, movies.name 
                 FROM genders, movies, gendersmovie 
                 WHERE genders.id=gendersmovie.gender 
                 AND movies.id=gendersmovie.movie 
-                AND movies.id=17';
+                AND movies.id=?';
         $params = array($this->movie_id);
         return Database::getRows($sql, $params);
     }

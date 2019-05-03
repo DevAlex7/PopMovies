@@ -1,5 +1,8 @@
+var id;
+var chips;
 $(document).ready(function()
 {
+   
     /*SelectActors('ActorMovie', null);
     SelectGenders('GendersCombo', null);
     SelectClasifications('ComboClasifications', null);*/
@@ -8,6 +11,8 @@ $(document).ready(function()
     
 })
 const APIMovies = '../../global/api/dashboard/movies.php?site=dashboard&action=';
+const APIGendersMovie ='../../global/api/dashboard/gendersmovie.php?site=dashboard&action=';
+var content ='';
 //ComboBox Genders
 function SelectGenders(Select, value){
     $.ajax({
@@ -154,10 +159,13 @@ function SelectCustomers(Select, value){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 }
+
+//Body Card Movie
 function FillCardMovie(rows){
-    let content ='';
+    content ='';
     if(rows.length>0){
         rows.forEach(function(row){
+        id=row.id;
         content += `
         <div class="col s12 m4">
             <div class="card">
@@ -175,6 +183,7 @@ function FillCardMovie(rows){
         </div>
         `;
         })
+       
     }
     $('#AllMovies').html(content);
 }
@@ -189,7 +198,7 @@ function ShowMovieCards(){
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(!result.status){
-                M.toast({html:'No hay peliculas en lista!', classes:'toasterror'});
+                M.toast({html:'No hay generos en lista!', classes:'toasterror'});
             }
             FillCardMovie(result.dataset);
         }  
