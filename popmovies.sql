@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-05-2019 a las 16:00:40
--- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.2
+-- Tiempo de generación: 03-05-2019 a las 16:33:58
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -85,7 +83,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `lastname`, `username`, `email`, `password`) VALUES
-(3, 'Alejandro ', 'Gonzalez', 'Alexgve7', 'alexgve7@gmail.com', '$2y$10$K5xbF5Eo5n9mIgl2YE3F3.e52kzNUFf6YOlH8TZ0kC749dK.ow2JK');
+(3, 'Alejandro ', 'Gonzalez', 'Alexgve7', 'alexgve7@gmail.com', '$2y$10$K5xbF5Eo5n9mIgl2YE3F3.e52kzNUFf6YOlH8TZ0kC749dK.ow2JK'),
+(4, 'Gaby', 'Ramos', 'Akat', 'wen@gmail.com', '$2y$10$K5xbF5Eo5n9mIgl2YE3F3.e52kzNUFf6YOlH8TZ0kC749dK.ow2JK');
 
 -- --------------------------------------------------------
 
@@ -186,9 +185,20 @@ CREATE TABLE `genders` (
 --
 
 INSERT INTO `genders` (`id`, `gender`) VALUES
-(25, 'Miedo'),
-(26, 'Accion'),
+(26, 'Acción'),
+(41, 'Animados'),
+(32, 'Aventura'),
+(34, 'Ciencia Ficción'),
+(35, 'Clásico'),
+(29, 'Comedia'),
+(40, 'Documentales'),
 (27, 'Drama'),
+(37, 'Fantasía'),
+(39, 'Historia'),
+(25, 'Miedo'),
+(33, 'Musicales'),
+(38, 'Romance'),
+(30, 'Suspenso'),
 (28, 'Terror');
 
 -- --------------------------------------------------------
@@ -366,7 +376,8 @@ ALTER TABLE `favorites`
 -- Indices de la tabla `genders`
 --
 ALTER TABLE `genders`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `gender` (`gender`);
 
 --
 -- Indices de la tabla `gendersmovie`
@@ -422,91 +433,76 @@ ALTER TABLE `users`
 --
 ALTER TABLE `actors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT de la tabla `actorsmovie`
 --
 ALTER TABLE `actorsmovie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
 --
 -- AUTO_INCREMENT de la tabla `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `binnacle`
 --
 ALTER TABLE `binnacle`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `clasifications`
 --
 ALTER TABLE `clasifications`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT de la tabla `clasificationsmovie`
 --
 ALTER TABLE `clasificationsmovie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT de la tabla `customers`
 --
 ALTER TABLE `customers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT de la tabla `favorites`
 --
 ALTER TABLE `favorites`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `genders`
 --
 ALTER TABLE `genders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT de la tabla `gendersmovie`
 --
 ALTER TABLE `gendersmovie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT de la tabla `memberships`
 --
 ALTER TABLE `memberships`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT de la tabla `movies`
 --
 ALTER TABLE `movies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
 --
 -- AUTO_INCREMENT de la tabla `shop`
 --
 ALTER TABLE `shop`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `state`
 --
 ALTER TABLE `state`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- Restricciones para tablas volcadas
 --
@@ -558,7 +554,6 @@ ALTER TABLE `shop`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`membership`) REFERENCES `memberships` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
