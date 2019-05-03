@@ -1,23 +1,18 @@
+var id;
+var chips;
 $(document).ready(function()
 {
+   
     /*SelectActors('ActorMovie', null);
     SelectGenders('GendersCombo', null);
     SelectClasifications('ComboClasifications', null);*/
     SelectCustomers('ComboCustomers', null);
     ShowMovieCards();
+    
 })
-
-var idMovie;
-
-const APIMovies = '../../global/api/movies.php?site=dashboard&action=';
-
-function SetID(id){
-    idMovie=id;
-    alert(idMovie);
-}
-function getid(){
-    return idMovie;
-}
+const APIMovies = '../../global/api/dashboard/movies.php?site=dashboard&action=';
+const APIGendersMovie ='../../global/api/dashboard/gendersmovie.php?site=dashboard&action=';
+var content ='';
 //ComboBox Genders
 function SelectGenders(Select, value){
     $.ajax({
@@ -137,7 +132,6 @@ function SelectCustomers(Select, value){
         datatype: 'JSON'
     })
     .done(function(response){
-        console.log(response);
         if (isJSONString(response)) {
             const result = JSON.parse(response);
             if (result.status) {
@@ -165,32 +159,32 @@ function SelectCustomers(Select, value){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 }
+
+//Body Card Movie
 function FillCardMovie(rows){
-    let content ='';
+    content ='';
     if(rows.length>0){
         rows.forEach(function(row){
-        
+        id=row.id;
         content += `
         <div class="col s12 m4">
             <div class="card">
                 <div class="card-image">
                     <img src="../../resources/dashboard/img/covers/${row.cover}">
-                    
                 </div>
                 <div class="card-content">
                 <span class="card-title">${row.name}</span>
                     <p>${row.sinopsis}</p>
                 </div>
                 <div class="card-action">
-                    <a href="/PopMovies/feed/account/viewmovie.php?category=movies&movie=${row.id}" onClick=SetID(${row.id})>This is a link</a>
+                    <a class="btn blue" href="/PopMovies/feed/account/viewmovie.php?category=movies&movie=${row.id}" onClick=SetID(${row.id})>Ver detalles</a>
                 </div>
             </div>
         </div>
         `;
         })
-        
+       
     }
-    console.log("gika");
     $('#AllMovies').html(content);
 }
 function ShowMovieCards(){
@@ -202,13 +196,11 @@ function ShowMovieCards(){
     })
     .done(function(response){
         if(isJSONString(response)){
-            console.log(response);
             const result = JSON.parse(response);
             if(!result.status){
-                M.toast({html:'No hay peliculas en lista!', classes:'toasterror'});
+                M.toast({html:'No hay generos en lista!', classes:'toasterror'});
             }
             FillCardMovie(result.dataset);
-            console.log(result.dataset);
         }  
         else{
             console.log(response);
@@ -219,6 +211,7 @@ function ShowMovieCards(){
     });
 }
 
+//Create Movie
 $('#FormMovieCreate').submit(function (e) { 
     e.preventDefault();
     $.ajax({
@@ -231,11 +224,13 @@ $('#FormMovieCreate').submit(function (e) {
         processData:false
     })
     .done(function(response){
+        
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(result.status){
-                M.toast({html:'Pelicula agregada correctamente', classes:'toastsucess'});
-
+                M.toast({html:'Pelicula agregada correctamente', classes:'toastsuccess'});
+                ShowMovieCards();
+                $('#ModalAddMovie').modal('close');
             }
             else{
                 M.toast({html:result.exception})

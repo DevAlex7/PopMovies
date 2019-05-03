@@ -69,6 +69,33 @@
             </div>
         </div>
     </div>
+ 
+<!-- Add gender to Movies -->
+<div class="row">
+    <div>
+    <div class="divider"></div>
+        <div id="MoviesGender">
+        <div class="chip" id="TitleChip">¡Agrega generos a tus peliculas!</div>
+        <div class="row">
+            <form class="col s12" id="ListMoviesinGenders" name="ListMoviesinGenders" method="POST">
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">movie</i>
+                        <select name="GenderSelect" id="GenderSelect"></select>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">movie</i>
+                        <select name="MoviesSelect" id="MoviesSelect"></select>
+                    </div>
+                </div>
+                <div class="card-action center">
+                    <button type="submit" class="btn blue align-center">Agregar</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--Modal Delete -->
     <div id="ModalDeleteGender" class="modal">

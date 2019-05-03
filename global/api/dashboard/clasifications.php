@@ -1,13 +1,15 @@
 <?php 
 
-    require_once('../helpers/validator.php');
-    require_once('../models/clasifications.php');
-    require_once('../helpers/instance.php');
+    require_once('../../helpers/validator.php');
+    require_once('../../models/clasifications.php');
+    require_once('../../models/movies.php');
+    require_once('../../helpers/instance.php');
  
     
     if(isset($_GET['site']) && isset($_GET['action'])){
         session_start();
         $clasification = new Clasification();
+        $movie = new Movies();
         $result = array('status'=>0, 'exception'=>'');
         if($_GET['site']=='dashboard'){
             
@@ -30,7 +32,14 @@
                         $result['exception']='Nombre incorrecto o campo vacio';
                     }
                 break;
-
+                case 'getMovies':
+                    if($result['dataset']=$movie->all()){
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['exception']='No hay peliculas en lista';
+                    }
+                break;
                 //Show All Clasifications
                 case 'all':
                     if($result['dataset']=$clasification->all()){

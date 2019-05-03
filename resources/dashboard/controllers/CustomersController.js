@@ -5,7 +5,7 @@ $(document).ready(function () {
     $(".modal").modal();
 });
 
-const APICustomers = '../../global/api/customers.php?site=dashboard&action=';
+const APICustomers = '../../global/api/dashboard/customers.php?site=dashboard&action=';
 
 function FillCardsCustomers(cards){
 

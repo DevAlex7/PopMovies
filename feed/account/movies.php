@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.movies.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
 </head>
 <body>
 <header>
@@ -22,11 +20,9 @@
             <div class="card-content">
                 <span class="card-title">Peliculas</span>
                 <button 
-
                 data-target="ModalAddMovie" 
                 class="btn blue modal-trigger"
-
-                > <i class="material-icons left">movie</i> Agregar pelicula</button>
+                ><i class="material-icons left">movie</i> Agregar pelicula</button>
             </div>
         </div>
 
@@ -116,14 +112,34 @@
                         <input 
                         type="number" 
                         min="1" 
-                        max="100" 
                         placeholder="Cantidad de existencia"
                         name="CreateStockMovie"
-                        id="CreateStockMovie">
+                        id="CreateStockMovie"
+                        validate>
                       </div>
                       <div class="input-field col s12 m6">
                         <i class="material-icons prefix">person</i>
                         <select name="ComboCustomers" id="ComboCustomers"></select>
+                      </div>
+                      <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">calendar_today</i>
+                        <input 
+                        type="number"
+                        min="1000"
+                        max="2020" 
+                        name="YearMovie" 
+                        id="YearMovie"
+                        validate
+                        placeholder="Año">
+                      </div>
+                      <div class="input-field col s12 m6">
+                        <i class="material-icons prefix">live_tv</i>
+                        <textarea 
+                        name="TrailerMovie" 
+                        id="TrailerMovie"
+                        class="materialize-textarea" 
+                        cols="30" 
+                        rows="10" placeholder="HTML"></textarea>
                       </div>
                       <div class="input-field center col s12 m12">
                         <button type="submit" class="btn blue">Agregar</button>
@@ -142,7 +158,6 @@
 <script src="../../resources/globaljs/materialize.min.js"></script> 
 <script src="../../resources/dashboard/js/sidenav.js"></script>
 <script src="../../global/helpers/functions.js"></script>
-<script src="../../resources/dashboard/controllers/ViewMovieController.js"></script>
 <script src="../../resources/dashboard/controllers/MovieController.js"></script>
 
 </body>

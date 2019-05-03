@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-04-2019 a las 20:26:55
+-- Tiempo de generación: 03-05-2019 a las 16:00:40
 -- Versión del servidor: 10.1.38-MariaDB
--- Versión de PHP: 7.3.3
+-- Versión de PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -38,7 +38,11 @@ CREATE TABLE `actors` (
 --
 
 INSERT INTO `actors` (`id`, `name`) VALUES
-(2, 'Chris evas');
+(1, 'Chris Evans'),
+(2, 'Steven'),
+(3, 'Sas'),
+(4, 'Josh Brolin'),
+(5, 'Rolin Azmitia');
 
 -- --------------------------------------------------------
 
@@ -51,6 +55,15 @@ CREATE TABLE `actorsmovie` (
   `Actor` int(11) NOT NULL,
   `Movie` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `actorsmovie`
+--
+
+INSERT INTO `actorsmovie` (`id`, `Actor`, `Movie`) VALUES
+(14, 2, 17),
+(15, 4, 18),
+(16, 5, 18);
 
 -- --------------------------------------------------------
 
@@ -102,7 +115,27 @@ CREATE TABLE `clasifications` (
 --
 
 INSERT INTO `clasifications` (`id`, `clasification`, `description`) VALUES
-(6, 'AA', 'Todo Publico');
+(1, 'AA', 'Todo publico'),
+(2, 'C', 'Mayores de 15 años');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clasificationsmovie`
+--
+
+CREATE TABLE `clasificationsmovie` (
+  `id` int(11) NOT NULL,
+  `clasification` int(11) NOT NULL,
+  `movie` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `clasificationsmovie`
+--
+
+INSERT INTO `clasificationsmovie` (`id`, `clasification`, `movie`) VALUES
+(1, 1, 17);
 
 -- --------------------------------------------------------
 
@@ -116,6 +149,14 @@ CREATE TABLE `customers` (
   `email` varchar(70) NOT NULL,
   `enterprise` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `customers`
+--
+
+INSERT INTO `customers` (`id`, `name`, `email`, `enterprise`) VALUES
+(1, 'Alejandro', 'alexgve7@gmail.com', 'Walmart'),
+(2, 'Daniel Martinez', 'Dan@gmail.com', 'Curacao');
 
 -- --------------------------------------------------------
 
@@ -153,6 +194,25 @@ INSERT INTO `genders` (`id`, `gender`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `gendersmovie`
+--
+
+CREATE TABLE `gendersmovie` (
+  `id` int(11) NOT NULL,
+  `gender` int(11) NOT NULL,
+  `movie` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `gendersmovie`
+--
+
+INSERT INTO `gendersmovie` (`id`, `gender`, `movie`) VALUES
+(6, 28, 18);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `memberships`
 --
 
@@ -180,15 +240,22 @@ CREATE TABLE `movies` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `sinopsis` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `actors` int(11) NOT NULL,
   `time` varchar(8) COLLATE utf8_spanish_ci NOT NULL,
-  `gender` int(11) NOT NULL,
-  `clasification` int(11) NOT NULL,
-  `BackGround` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `price` float(2,2) NOT NULL,
+  `cover` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `year` int(11) NOT NULL,
+  `trailer` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `price` float(4,2) NOT NULL,
   `count` int(11) NOT NULL,
   `customer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `movies`
+--
+
+INSERT INTO `movies` (`id`, `name`, `sinopsis`, `time`, `cover`, `year`, `trailer`, `price`, `count`, `customer`) VALUES
+(17, 'Capitana Marvel', 'Capitana Marvel regresa a la tierra a conocer su propia vida pasada de ser una heroina', '01:21:51', '5ccaf5936493e.jpeg', 2019, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0LHxvxdRnYc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 25.25, 20, 2),
+(18, 'John Wick', 'Un mercenario', '01:42:25', '5ccb34f1be2a9.jpg', 2012, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0LHxvxdRnYc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 10.00, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -249,9 +316,8 @@ ALTER TABLE `actors`
 --
 ALTER TABLE `actorsmovie`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `Actor_2` (`Actor`),
-  ADD KEY `Actor` (`Actor`),
-  ADD KEY `Movie` (`Movie`);
+  ADD KEY `Movie` (`Movie`),
+  ADD KEY `Actor` (`Actor`);
 
 --
 -- Indices de la tabla `admins`
@@ -272,6 +338,14 @@ ALTER TABLE `binnacle`
 ALTER TABLE `clasifications`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indices de la tabla `clasificationsmovie`
+--
+ALTER TABLE `clasificationsmovie`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `movie` (`movie`),
+  ADD KEY `clasification` (`clasification`);
 
 --
 -- Indices de la tabla `customers`
@@ -295,6 +369,14 @@ ALTER TABLE `genders`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `gendersmovie`
+--
+ALTER TABLE `gendersmovie`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `movie` (`movie`),
+  ADD KEY `gender` (`gender`);
+
+--
 -- Indices de la tabla `memberships`
 --
 ALTER TABLE `memberships`
@@ -306,9 +388,6 @@ ALTER TABLE `memberships`
 --
 ALTER TABLE `movies`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `movies_ibfk_1` (`actors`),
-  ADD KEY `movies_ibfk_2` (`gender`),
-  ADD KEY `movies_ibfk_3` (`clasification`),
   ADD KEY `customer` (`customer`);
 
 --
@@ -331,7 +410,8 @@ ALTER TABLE `state`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `lastname` (`lastname`);
+  ADD UNIQUE KEY `lastname` (`lastname`),
+  ADD KEY `membership` (`membership`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -341,7 +421,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `actors`
 --
 ALTER TABLE `actors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `actorsmovie`
+--
+ALTER TABLE `actorsmovie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `admins`
@@ -359,13 +445,19 @@ ALTER TABLE `binnacle`
 -- AUTO_INCREMENT de la tabla `clasifications`
 --
 ALTER TABLE `clasifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `clasificationsmovie`
+--
+ALTER TABLE `clasificationsmovie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `favorites`
@@ -380,6 +472,12 @@ ALTER TABLE `genders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
+-- AUTO_INCREMENT de la tabla `gendersmovie`
+--
+ALTER TABLE `gendersmovie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `memberships`
 --
 ALTER TABLE `memberships`
@@ -389,7 +487,7 @@ ALTER TABLE `memberships`
 -- AUTO_INCREMENT de la tabla `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `shop`
@@ -417,8 +515,15 @@ ALTER TABLE `users`
 -- Filtros para la tabla `actorsmovie`
 --
 ALTER TABLE `actorsmovie`
-  ADD CONSTRAINT `actorsmovie_ibfk_1` FOREIGN KEY (`Actor`) REFERENCES `actors` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `actorsmovie_ibfk_2` FOREIGN KEY (`Movie`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `actorsmovie_ibfk_2` FOREIGN KEY (`Movie`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `actorsmovie_ibfk_3` FOREIGN KEY (`Actor`) REFERENCES `actors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `clasificationsmovie`
+--
+ALTER TABLE `clasificationsmovie`
+  ADD CONSTRAINT `clasificationsmovie_ibfk_1` FOREIGN KEY (`movie`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `clasificationsmovie_ibfk_2` FOREIGN KEY (`clasification`) REFERENCES `clasifications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `favorites`
@@ -428,13 +533,17 @@ ALTER TABLE `favorites`
   ADD CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`gender`) REFERENCES `genders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `gendersmovie`
+--
+ALTER TABLE `gendersmovie`
+  ADD CONSTRAINT `gendersmovie_ibfk_1` FOREIGN KEY (`movie`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `gendersmovie_ibfk_2` FOREIGN KEY (`gender`) REFERENCES `genders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `movies`
 --
 ALTER TABLE `movies`
-  ADD CONSTRAINT `movies_ibfk_1` FOREIGN KEY (`actors`) REFERENCES `actors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `movies_ibfk_2` FOREIGN KEY (`gender`) REFERENCES `genders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `movies_ibfk_3` FOREIGN KEY (`clasification`) REFERENCES `clasifications` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `movies_ibfk_4` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `movies_ibfk_1` FOREIGN KEY (`customer`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `shop`
@@ -443,6 +552,12 @@ ALTER TABLE `shop`
   ADD CONSTRAINT `shop_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `shop_ibfk_2` FOREIGN KEY (`state`) REFERENCES `state` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `shop_ibfk_3` FOREIGN KEY (`movie`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`membership`) REFERENCES `memberships` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

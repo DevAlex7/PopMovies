@@ -1,7 +1,7 @@
 <?php 
-        require_once('../helpers/validator.php');    
-        require_once('../models/adminusers.php');
-        require_once('../helpers/instance.php');
+        require_once('../../helpers/validator.php');    
+        require_once('../../models/adminusers.php');
+        require_once('../../helpers/instance.php');
         if(isset($_GET['site']) && isset($_GET['action']) )
         {
             session_start();
@@ -90,9 +90,9 @@
                     break;
                     case 'logOff':
                     if (session_destroy()) {
-                        header('location: ../../feed/account/');
+                        header('location: ../../../feed/account/');
                     } else {
-                        header('location: ../../feed/account/home.php');
+                        header('location: ../../../feed/account/home.php');
                     }
                     break;
                 }

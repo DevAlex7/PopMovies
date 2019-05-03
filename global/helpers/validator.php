@@ -38,7 +38,12 @@ class Validator{
 			return false;
 		}
 	}
-    public function validateForm($fields)
+
+	function isHTML($string){
+		return $string != strip_tags($string) ? true:false;
+	}
+
+  public function validateForm($fields)
 	{
 		foreach ($fields as $index => $value) {
 			$value = trim($value);
@@ -136,6 +141,14 @@ class Validator{
 		if (preg_match('/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{'.$minimum.','.$maximum.'}$/', $value)) {
 			return true;
 		} else {
+			return false;
+		}
+	}
+	public function ValidateInt($value){
+		if(preg_match('/^\d+$/', $value)){
+			return true;	
+		} 
+		else {
 			return false;
 		}
 	}

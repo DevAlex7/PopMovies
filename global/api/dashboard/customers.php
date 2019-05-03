@@ -1,8 +1,8 @@
 <?php 
 
-    require_once('../helpers/validator.php');    
-    require_once('../models/customers.php');
-    require_once('../helpers/instance.php');
+    require_once('../../helpers/validator.php');    
+    require_once('../../models/customers.php');
+    require_once('../../helpers/instance.php');
     
 
     if(isset($_GET['site']) && isset($_GET['action']) )
