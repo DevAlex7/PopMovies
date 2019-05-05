@@ -23,7 +23,7 @@
                 <span class="card-title"> Actores</span>
             </div>
         </div>       
-        <!--Barra de opciones --> 
+        <!-- Options bar --> 
         <div class="row">
             <div class="card blue">
                 <div class="card-content">
@@ -31,8 +31,23 @@
                 </div>
             </div>
         </div>
-
-        <!--Tabla de actores -->
+        <!--Search Bar -->
+        <div class="row">
+            <div class="col s12 m12">
+            <nav class="white">
+                <div class="nav-wrapper">
+                    <form  method="POST" id="SearchField">
+                        <div class="input-field">
+                            <input id="searchActors" name="searchActors" type="search" placeholder="Buscar actores...">
+                            <label class="label-icon " for="search"><i class="material-icons black-text">search</i></label>
+                            <i onclick="clearSearchField()" class="material-icons">close</i>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+            </div>
+        </div>
+        <!--Table actors -->
         <div class="row" id="ActorsList">
             <div class="card z-depht-3">
                 <div class="card-content">
@@ -40,6 +55,7 @@
                         <thead>
                             <tr>
                                 <th>Actor</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="ActorsRead">
@@ -87,44 +103,52 @@
             </div>
         </div>
 <!-- ---------- Modals Actors in movies ---------->
-
 <!--Modal edit Actors in Movies -->
 <div class="modal" id="ModalEditActorsInMovies">
     <div class="modal-content">
         <div class="card">
             <div class="card-content">
-                <form method="POST">
-                    <div class="row">
-                        <form class="col s12" id="FormEditActortoMovie">
-                            <div class="row">
-                            <span class="card-title">Editar Actor para</span>
-                                <div class="input-field col s6">
-                                    <i class="material-icons prefix">face</i>
-                                    <select name="SelectEditActortoMovie" id="SelectEditActortoMovie"></select>
-                                </div>
-                                <div class="input-field col s6">
-                                    <i class="material-icons prefix">movie</i>
-                                    <select name="SelectEditMovie" id="SelectEditMovie"></select>
-                                </div>
-                                <div class="center">
-                                    <button type="submit" class="btn blue center-align"> <i class="material-icons left">edit</i>Editar</button> 
-                                    <a class="btn grey modal-close"> <i class="material-icons left">close</i> Cancelar </a>
-                                </div>
+                <div class="row">
+                    <form class="col s12 m12" id="FormEditActortoMovie">
+                        <div class="row">
+                        <span class="card-title">Editar Actor para</span>
+                            <input class="hide" type="text" name="id_list" id="id_list">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">face</i>
+                                <select name="SelectEditActortoMovie" id="SelectEditActortoMovie"></select>
                             </div>
-                        </form>
-                    </div>
-                </form>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">movie</i>
+                                <select name="SelectEditMovie" id="SelectEditMovie"></select>
+                            </div>
+                            <div class="center">
+                                <button type="submit" class="btn blue center-align"> <i class="material-icons left">edit</i>Editar</button> 
+                                <a class="btn grey modal-close"> <i class="material-icons left">close</i> Cancelar </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <!--Modal delete Actors in Movies -->
-<div class="modal" id="DeleteActorsInMovies">
-
+<div class="modal red" id="DeleteActorsInMovies">
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-content">
+            <form method="POST" id="FormDeleteActorinMovie">    
+                <input type="hidden" name="idDeleteActorMovie" id="idDeleteActorMovie">
+                <div class="center">
+                    <span class="card-title">¿Desea eliminar este registro?</span>
+                    <button type="submit" class="btn red"> <i class="material-icons left">delete</i> Eliminar </button>
+                    <a  class="btn grey modal-close"> <i class="material-icons left">close</i> Cancelar </a>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 <!-- ---------- Modals  Actors in movies ---------->
         <!--Modal add Actor-->
         <div id="addactor" class="modal">
@@ -151,7 +175,6 @@
                                 <span class="card-title">Actualizar Actor</span>
                                 <input type="hidden" name="idUpdateActor" id="idUpdateActor" placeholder="id">
                                 <input type="text" name="UpdateNameActor" id="UpdateNameActor" placeholder="ingrese nombre de actor">
-                                
                                 <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Crear">Actualizar</button>
                             </div>
                         </form>

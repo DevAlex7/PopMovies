@@ -46,6 +46,55 @@
                         $result['exception']='No se ha encontrado resultados';
                     }
                 break;
+                case 'getList':
+                    if($result['dataset']=$gendermovie->getGenders()){
+                        $result['status']=1;
+                    }   
+                    else{
+                        $result['exception']='No hay generos en peliculas registradas';
+                    }
+                break;
+                case 'getListbyId':
+                  if($gendermovie->id($_POST['id_list'])){
+                    if($result['dataset'] = $gendermovie->getListbyId()){
+                        $result['status']=1;
+                    }   
+                    else{
+                        $result['exception']='No hay información';
+                    }    
+                  }   
+                  else{
+                    $result['exception']='Valor invalido o vacio';
+                  }          
+                break;
+                case 'editRow':
+                  if($gendermovie->id($_POST['id_list'])){
+                    if($gendermovie->gender_id($_POST['SelectEditGendertoMovie'])){
+                        if($gendermovie->movie_id($_POST['SelectEditMovie'])){
+                            $gendermovie->edit();
+                            $result['status']=1;
+                        }
+                        else{
+                            $result['exception']='No se ha seleccionado un valor de pelicula';
+                        }
+                    }
+                    else{
+                        $result['exception']='No se ha seleccionado un valor de genero';
+                    }
+                  }
+                  else{
+                    $result['exception']='Valor invalido o vacio';
+                  }
+                break;
+                case 'deleteRow':
+                  if($gendermovie->id($_POST['idDeleteGenderMovie'])){
+                        $gendermovie->destroy();
+                        $result['status']=1;
+                  }
+                  else{
+                    $result['exception']='Valor invalido o vacio';
+                  }
+                break;
                 default:
                 exit('acción no disponible');
             }

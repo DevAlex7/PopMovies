@@ -93,7 +93,19 @@ if(isset($_GET['site']) && isset($_GET['action'])){
                     $result['exception'] = 'No hay peliculas registradas';
                 }
             break;
-            
+            case 'search':
+                if($gender->searchbyInput($_POST['searchGenders'])){
+                    if($result['dataset']=$gender->search()){
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['exception']='Sin resultados';
+                    }
+                }
+                else{
+                    $result['exception']='Campo vacio';
+                }
+            break;
             default:
             exit('accion no disponible');
         }

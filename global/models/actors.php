@@ -4,6 +4,7 @@ class Actor extends Validator{
     
     public $id;
     public $name;
+    private $search;
 
     public function id($value){
       if($this->validateId($value)){
@@ -15,6 +16,16 @@ class Actor extends Validator{
         return false;
       }
     }
+    public function searchbyInput($value){
+      if($this->validateAlphanumeric($value, 1, 50)){
+        $this->search = $value;
+        return true;
+    }
+    else{
+        return false;
+    }
+    }
+    
 
 
     public function exists(){
@@ -51,6 +62,11 @@ class Actor extends Validator{
       $sql = 'DELETE FROM actors WHERE id = ?';
       $params = array($this->id);
       return Database::executeRow($sql, $params);
+    }
+    public function search(){
+      $sql='SELECT * FROM actors WHERE actors.name LIKE ?';
+      $params= array("%$this->search%");
+      return Database::getRows($sql,$params);
     }
 
 }

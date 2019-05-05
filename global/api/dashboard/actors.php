@@ -69,7 +69,6 @@
 
                 //Update Actor
                 case 'updateActor':
-
                     if(empty($_POST['idUpdateActor'])||empty($_POST['UpdateNameActor']))
                     {
                         print 'Campos Vacios';
@@ -82,10 +81,10 @@
                         $result['status']=1;
 
                     }
-                    break;
+                break;
                 
                     //Delete Actor
-                    case 'deleteActor':
+                case 'deleteActor':
                     if(empty($_POST['idDeleteNameActor']) )
                     {
                         print 'Codigo incorrecto';
@@ -95,17 +94,28 @@
                         $actor->id = $_POST['idDeleteNameActor'];
                         $actor->delete();
                         $result['status']=1;
-
                     }
-                    break;
-                    case 'getMovies':
-                        if ($result['dataset'] = $movie->all()) {
-                            $result['status'] = 1;
-                        } else {
-                            $result['exception'] = 'No hay peliculas registradas';
-                        }
-                    break;
-                
+                break;
+                case 'getMovies':
+                    if ($result['dataset'] = $movie->all()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'No hay peliculas registradas';
+                    }
+                break;
+                case 'search':
+                        if($actor->searchbyInput($_POST['searchActors'])) {
+                            if($result['dataset'] = $actor->search()){
+                                $result['status']=1;
+                            }
+                            else{
+                                $result['exception']='Sin resultados';
+                            }
+                        }   
+                        else{
+                            $result['exception']='Campo vacio';
+                        }                    
+                break;
                 default:
                     exit('accion no disponible');
             }

@@ -3,6 +3,7 @@
 class Gender extends Validator{  
     private $id;
     private $name;
+    private $search;
 
     public function id($value)
     {
@@ -21,6 +22,15 @@ class Gender extends Validator{
         }
         else
         {
+            return false;
+        }
+    }
+    public function searchbyInput($value){
+        if($this->validateAlphanumeric($value,1,50)){
+            $this->search=$value;
+            return true;
+        }
+        else{
             return false;
         }
     }
@@ -57,6 +67,11 @@ class Gender extends Validator{
         $sql ='DELETE FROM genders WHERE id=?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
+    }
+    public function search(){
+        $sql='SELECT * FROM genders WHERE genders.gender LIKE ?';
+        $params=array("%$this->search%");
+        return Database::getRows($sql,$params);
     }
 }
 
