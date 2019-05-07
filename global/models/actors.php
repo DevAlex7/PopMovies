@@ -6,6 +6,9 @@ class Actor extends Validator{
     public $name;
     private $search;
 
+    public function getname(){
+      return $this->name;
+    }
     public function id($value){
       if($this->validateId($value)){
           $this->id=$value;
@@ -20,13 +23,11 @@ class Actor extends Validator{
       if($this->validateAlphanumeric($value, 1, 50)){
         $this->search = $value;
         return true;
-    }
-    else{
+      }
+      else{
         return false;
+      }
     }
-    }
-    
-
 
     public function exists(){
       $sql = 'SELECT name FROM actors WHERE name=?';

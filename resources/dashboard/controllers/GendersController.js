@@ -310,6 +310,7 @@ $('#ListMoviesinGenders').submit(function()
               console.log(response);
               if (result.status) {
                   M.toast({html:'Se agrego correctamente'});
+                  ShowGendersInMovies();
               } else {
                   M.toast({html:result.exception});
               }
@@ -480,6 +481,7 @@ function ShowDeleteGendersInMoviesbyId(id_list){
       const result = JSON.parse(response);
       if(result.status){
         $('#idDeleteGenderMovie').val(result.dataset.id);
+        
       }
       else{
         M.toast({html:result.exception});

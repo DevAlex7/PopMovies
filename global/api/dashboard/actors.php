@@ -4,12 +4,14 @@
     require_once('../../helpers/validator.php');
     require_once('../../models/actors.php');
     require_once('../../models/movies.php');
+    require_once('../../models/binnacle.php');
 
     if(isset($_GET['site']) && isset($_GET['action']))
     {
         session_start();
         $actor = new Actor();
         $movie = new Movies();
+        $binnacle = new Binnacle();
         $result = array('status' => 0, 'exception' =>'');
         if($_GET['site']=='dashboard')
         {
@@ -26,8 +28,13 @@
                    {
                        //verify if Actor exists
                        if(! $actor->exists()){
-                        $actor->create();
-                        $result['status'] = 1;
+                            $message="Se ha registrado al actor".' '.$actor->name;
+
+                            $binnacle->actionperformed($message);
+                            $binnacle->admin_id($_SESSION['idUsername']);
+                            $binnacle->create();
+                            $actor->create();
+                            $result['status'] = 1;
                        }
                        else
                        {

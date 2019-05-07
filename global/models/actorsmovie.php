@@ -34,7 +34,14 @@ class Actormovie extends Validator{
             return false;
         }
     }
-
+    public function exist(){
+        $sql='
+        SELECT Actor, Movie 
+        FROM actorsmovie
+        WHERE Actor=? AND Movie=?';
+        $params=array($this->id_actor,$this->id_movie);
+        return Database::getRows($sql, $params);
+    }
     public function save(){
         $sql = 'INSERT INTO actorsmovie(Actor, Movie) VALUES(?,?)';
         $params = array($this->id_actor,$this->id_movie);

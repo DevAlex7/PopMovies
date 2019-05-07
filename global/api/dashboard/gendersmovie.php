@@ -15,8 +15,13 @@
                         if(isset($_POST['MoviesSelect'])){
                             if($gendermovie->gender_id($_POST['GenderSelect'])){
                                 if($gendermovie->movie_id($_POST['MoviesSelect'])){
-                                    $gendermovie->create();
-                                    $result['status']=1;
+                                    if(!$gendermovie->exist()){
+                                        $gendermovie->create();
+                                        $result['status']=1;
+                                    }
+                                    else{
+                                        $result['exception']='Este genero ya esta registrado con esa pelicula';
+                                    }
                                 }
                                 else{
                                     $result['exception']='No se ha encontrado un valor de identificador';

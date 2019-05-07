@@ -84,7 +84,7 @@
                             <div class="row">
                                 <div class="input-field col s12">
                                     <a href="homeviews/index.php"
-                                        class="btn waves-effect waves-light border-round black col s12">ENTRAR</a>
+                                        class="btn waves-effect waves-light border-round black col s12">Registrarme</a>
                                 </div>
                             </div>
                         </form>

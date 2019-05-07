@@ -33,6 +33,16 @@ class Gendermovie extends Validator{
             return false;
         }
     }
+
+    public function exist(){
+        $sql='
+            SELECT gender, movie
+            FROM gendersmovie
+            WHERE gender=? AND movie=?;
+        ';
+        $params=array($this->gender_id, $this->movie_id);
+        return Database::getRows($sql, $params);
+    }
     
     public function create()
     {   

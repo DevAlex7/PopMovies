@@ -17,8 +17,13 @@
                     if(isset($_POST['ActorsSelect']) && isset($_POST['MoviesSelect'])){
                         if($actormovie->id_actor($_POST['ActorsSelect'])){
                             if($actormovie->id_movie($_POST['MoviesSelect'])){
-                                $actormovie->save();
-                                $result['status']=1;
+                                if(!$actormovie->exist()){
+                                    $actormovie->save();
+                                    $result['status']=1;
+                                }
+                                else{
+                                    $result['exception']='Esta pelicula ya esta registrada con ese actor';
+                                }
                             }
                             else{
                                 $result['No se ha encontrado un identificador de pelicula'];

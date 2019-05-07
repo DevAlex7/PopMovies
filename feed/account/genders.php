@@ -89,39 +89,42 @@
     <div class="divider"></div>
         <div id="MoviesGender">
         <div class="chip" id="TitleChip">¡Agrega generos a tus peliculas!</div>
-        <div class="row">
-            <form class="col s12" id="ListMoviesinGenders" name="ListMoviesinGenders" method="POST">
-                <div class="row">
-                    <div class="input-field col s12 m6">
-                        <i class="material-icons prefix">movie</i>
-                        <select name="GenderSelect" id="GenderSelect"></select>
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <form class="col s12" id="ListMoviesinGenders" name="ListMoviesinGenders" method="POST">
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">movie</i>
+                                    <select name="GenderSelect" id="GenderSelect"></select>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">movie</i>
+                                    <select name="MoviesSelect" id="MoviesSelect"></select>
+                                </div>
+                            </div>
+                            <div class="card-action center">
+                                <button type="submit" class="btn blue align-center">Agregar</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="input-field col s12 m6">
-                        <i class="material-icons prefix">movie</i>
-                        <select name="MoviesSelect" id="MoviesSelect"></select>
+                    <div class="row">
+                        <div class="col s12 m12">
+                            <table class="highlight centered">
+                                <thead>
+                                    <tr>
+                                        <th>Genero</th>
+                                        <th>Pelicula</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="TableGendersInMovies">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div class="card-action center">
-                    <button type="submit" class="btn blue align-center">Agregar</button>
-                </div>
-            </form>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12 m12">
-            
-      <table class="highlight">
-        <thead>
-          <tr>
-                <th>Genero</th>
-                <th>Pelicula</th>
-                <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="TableGendersInMovies">
-        </tbody>
-      </table>
         </div>
     </div>
 </div>
@@ -214,7 +217,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>  
 </div>
 </main>    
 <footer>
