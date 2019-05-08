@@ -42,7 +42,7 @@ class Actormovie extends Validator{
         $params=array($this->id_actor,$this->id_movie);
         return Database::getRows($sql, $params);
     }
-    public function save(){
+    public function create(){
         $sql = 'INSERT INTO actorsmovie(Actor, Movie) VALUES(?,?)';
         $params = array($this->id_actor,$this->id_movie);
         return Database::executeRow($sql, $params);
@@ -83,6 +83,14 @@ class Actormovie extends Validator{
         $params=array($this->id_actor, $this->id_movie,$this->id);
         return Database::executeRow($sql, $params);
     }
+    public function getNames(){
+        $sql='  SELECT actors.name AS actor, movies.name AS movie 
+                FROM actors, actorsmovie, movies 
+                WHERE actorsmovie.Actor=actors.id AND actorsmovie.Movie=movies.id AND actors.id=? AND movies.id=?';
+        $params=array($this->id_actor,$this->id_movie);
+        return Database::getRow($sql, $params);
+    }
+    
     public function destroy(){
         $sql= 'DELETE FROM actorsmovie WHERE id=?';
         $params=array($this->id);

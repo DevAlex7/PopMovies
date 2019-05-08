@@ -25,6 +25,9 @@ class Gender extends Validator{
             return false;
         }
     }
+    public function getGendername(){
+        return $this->name;
+    }
     public function searchbyInput($value){
         if($this->validateAlphanumeric($value,1,50)){
             $this->search=$value;

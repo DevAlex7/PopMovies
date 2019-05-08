@@ -3,30 +3,39 @@
     require_once('../../helpers/validator.php');
     require_once('../../models/clasifications.php');
     require_once('../../models/movies.php');
+    require_once('../../models/binnacle.php');
     require_once('../../helpers/instance.php');
  
     
     if(isset($_GET['site']) && isset($_GET['action'])){
         session_start();
         $clasification = new Clasification();
+        $binnacle = new Binnacle();
         $movie = new Movies();
         $result = array('status'=>0, 'exception'=>'');
         if($_GET['site']=='dashboard'){
             
             switch($_GET['action']){
-                
                 //Create Clasification
                 case 'createClasification':
                     if($clasification->nameClasification($_POST['NameClasification'])){
                         if($clasification->descriptionClasification($_POST['DescriptionClasification']))
                         {
-                            $clasification->create();
-                            $result['status']=1;
+                            $message ="ha registrado la clasificación ".' '.$clasification->getClasification();
+                            $binnacle->actionperformed($message);
+                            $binnacle->admin_id($_SESSION['idUsername']);
+                            if($binnacle->site('clasifications')){
+                                $binnacle->create();
+                                $clasification->create();
+                                $result['status']=1;
+                            }
+                            else{
+                                $result['exception']='Hubo un problema, contacte al administrador';
+                            }
                         }
                         else{
                             $result['exception']='Campo vacio';
                         }
-                        
                     }
                     else{
                         $result['exception']='Nombre incorrecto o campo vacio';

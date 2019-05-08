@@ -443,6 +443,7 @@ function GetToEditActorinMovie(id_list){
                 $('#id_list').val(result.dataset.id);
                 SelectActorstoEdit('SelectEditActortoMovie', result.dataset.Actor);
                 SelectMovietoEdit('SelectEditMovie', result.dataset.Movie);
+                
             }
             else{
                 M.toast({html:result.exception});

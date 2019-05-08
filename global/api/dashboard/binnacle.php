@@ -14,13 +14,21 @@
                 case 'createAction':
 
                 break;
-                case 'getListActions':
-                    if($result['dataset']=$binnacle->all()){
+                case 'getListActionsbyAdmins':
+                    if($result['dataset']=$binnacle->actionsInAdmins()){
                         $result['status']=1;
                     }
                     else{
                         $result['exception']='No hay acciones en lista';
                     }
+                break;
+                case 'getListActionsbyClients':
+                if($result['dataset']=$binnacle->actionsInClients()){
+                    $result['status']=1;
+                }
+                else{
+                    $result['exception']='No hay acciones en lista';
+                }
                 break;
                 default:
                 exit('acción no disponible');

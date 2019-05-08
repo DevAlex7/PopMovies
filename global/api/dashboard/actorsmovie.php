@@ -3,11 +3,13 @@
     require_once('../../helpers/instance.php');
     require_once('../../helpers/validator.php');
     require_once('../../models/actorsmovie.php');
-    
+    require_once('../../models/binnacle.php');
+
     if(isset($_GET['site']) && isset($_GET['action'])){
         session_start();
         $actormovie = new Actormovie();
-        $result = array('status'=>0, 'exception'=>'');
+        $binnacle = new Binnacle();
+        $result = array('status'=>0, 'exception'=>'','actor'=>'');
         if($_GET['site']=='dashboard'){
             
             switch($_GET['action']){
@@ -18,8 +20,18 @@
                         if($actormovie->id_actor($_POST['ActorsSelect'])){
                             if($actormovie->id_movie($_POST['MoviesSelect'])){
                                 if(!$actormovie->exist()){
-                                    $actormovie->save();
-                                    $result['status']=1;
+                                    if($binnacle->site('actors')){
+                                        $actormovie->create();
+                                        $get = $actormovie->getNames();
+                                        $message="ha asignado el actor".' '.$get['actor'].' a la pelicula: '.$get['movie'];
+                                        $binnacle->actionperformed($message);
+                                        $binnacle->admin_id($_SESSION['idUsername']);
+                                        $binnacle->create();
+                                        $result['status']=1;
+                                    }
+                                    else{
+                                        $result['exception']='Ha ocurrido un error, llame al administrador';
+                                    }
                                 }
                                 else{
                                     $result['exception']='Esta pelicula ya esta registrada con ese actor';

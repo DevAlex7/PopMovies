@@ -175,7 +175,18 @@ class Validator{
 			} else {
 					return false;
 			}
-}
+	}
+	public function ValidateSite($site){
+		$file ='../../../feed/account/'.$site.'.php';
+		if(file_exists($file))  
+		{ 
+				return true;
+		} 
+		else 
+		{ 
+				return false;
+		} 
+	}
 }
 
 ?>

@@ -141,7 +141,7 @@
                             <input id="idEditClasification" name="idEditClasification" type="hidden" class="input-field" placeholder="Nombre de la clasificación">
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix black-text">view_list</i>
-                                <input id="EditNameClasification" name="EditNameClasification" type="text" class="input-field" placeholder="Nombre de la clasificación">
+                                <input id="EditNameClasification"  name="EditNameClasification" type="text" class="input-field" placeholder="Nombre de la clasificación">
                             </div>
                             <div class="input-field col s12 m12">
                                 <i class="material-icons prefix black-text">view_headline</i>

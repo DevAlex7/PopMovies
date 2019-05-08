@@ -6,9 +6,7 @@ class Actor extends Validator{
     public $name;
     private $search;
 
-    public function getname(){
-      return $this->name;
-    }
+    
     public function id($value){
       if($this->validateId($value)){
           $this->id=$value;
@@ -27,6 +25,9 @@ class Actor extends Validator{
       else{
         return false;
       }
+    }
+    public function getname(){
+      return $this->name;
     }
 
     public function exists(){

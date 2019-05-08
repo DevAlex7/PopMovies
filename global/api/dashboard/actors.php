@@ -28,13 +28,18 @@
                    {
                        //verify if Actor exists
                        if(! $actor->exists()){
-                            $message="Se ha registrado al actor".' '.$actor->name;
+                            $message="ha registrado al actor".' '.$actor->name;
 
                             $binnacle->actionperformed($message);
                             $binnacle->admin_id($_SESSION['idUsername']);
-                            $binnacle->create();
-                            $actor->create();
-                            $result['status'] = 1;
+                            if($binnacle->site('actors')){
+                                $binnacle->create();
+                                $actor->create();
+                                $result['status'] = 1;
+                            }
+                            else{
+                                $result['exception']='No existe el archivo';
+                            }
                        }
                        else
                        {

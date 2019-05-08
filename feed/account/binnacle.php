@@ -19,6 +19,29 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title">Registro de actividades</span>
+                
+                <div class="row" id="ContentBinnacle">
+                    <nav class="white">
+                        <div class="nav-wrapper">
+                            <form>
+                                <div class="input-field">
+                                    <input id="search" type="search" required>
+                                    <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="row">
+                    <div class="center">
+                        <div class="card-action">
+                            <a  onClick="GetActionsforAdmins()" class="transparent border-none blue-text">Bitacora de administradores</a>
+                            <a  onclick="GetActionsforClients()" class="transparent blue-text">Bitacora de Clientes</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="collection" id="ListBinnacle">
                     
                 </div>

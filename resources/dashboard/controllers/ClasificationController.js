@@ -141,7 +141,6 @@ $('#ClasificationAddForm').submit(function(e){
         processData:false
     })
     .done(function(response){
-        
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(result.status){
@@ -210,6 +209,7 @@ function ShowInformation(id){
     .done(function(response){
         if(isJSONString(response)){
             const result = JSON.parse(response);
+            console.log(result);
             if(result.status){
                 $('#idEditClasification').val(result.dataset.id);
                 $('#EditNameClasification').val(result.dataset.clasification);

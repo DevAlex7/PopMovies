@@ -4,12 +4,14 @@ require_once('../../helpers/instance.php');
 require_once('../../helpers/validator.php');
 require_once('../../models/genders.php');
 require_once('../../models/movies.php');
+require_once('../../models/binnacle.php');
 
 if(isset($_GET['site']) && isset($_GET['action'])){
  
     session_start();
     $gender= new Gender();
     $movie = new Movies();
+    $binnacle = new Binnacle();
     $result = array('status'=>0, 'exception'=>'');
     
     if($_GET['site']=='dashboard')
@@ -32,9 +34,17 @@ if(isset($_GET['site']) && isset($_GET['action'])){
             {   
                 //Verify if exist the Gender
                 if(! $gender->exist()){
-                    //Save the record
-                    $gender->create();
-                    $result['status'] = 1;
+                    $message = "ha registrado un nuevo genero:".' '.$gender->getGendername();
+                    $binnacle->actionperformed($message);
+                    $binnacle->admin_id($_SESSION['idUsername']);
+                    if($binnacle->site('genders')){
+                        $binnacle->create();
+                        $gender->create();
+                        $result['status'] = 1;
+                    }
+                    else{
+                        $result['exception']='Ha ocurrido un problema, contacte al administrador';
+                    }
                 }
                 else{
                     $result['exception'] = 'Genero ya existente';
