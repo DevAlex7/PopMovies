@@ -4,12 +4,14 @@
     require_once('../../helpers/validator.php');
     require_once('../../models/actors.php');
     require_once('../../models/movies.php');
+    require_once('../../models/binnacle.php');
 
     if(isset($_GET['site']) && isset($_GET['action']))
     {
         session_start();
         $actor = new Actor();
         $movie = new Movies();
+        $binnacle = new Binnacle();
         $result = array('status' => 0, 'exception' =>'');
         if($_GET['site']=='dashboard')
         {
@@ -26,8 +28,18 @@
                    {
                        //verify if Actor exists
                        if(! $actor->exists()){
-                        $actor->create();
-                        $result['status'] = 1;
+                            $message="ha registrado al actor".' '.$actor->name;
+
+                            $binnacle->actionperformed($message);
+                            $binnacle->admin_id($_SESSION['idUsername']);
+                            if($binnacle->site('actors')){
+                                $binnacle->create();
+                                $actor->create();
+                                $result['status'] = 1;
+                            }
+                            else{
+                                $result['exception']='No existe el archivo';
+                            }
                        }
                        else
                        {
@@ -69,7 +81,6 @@
 
                 //Update Actor
                 case 'updateActor':
-
                     if(empty($_POST['idUpdateActor'])||empty($_POST['UpdateNameActor']))
                     {
                         print 'Campos Vacios';
@@ -82,10 +93,10 @@
                         $result['status']=1;
 
                     }
-                    break;
+                break;
                 
                     //Delete Actor
-                    case 'deleteActor':
+                case 'deleteActor':
                     if(empty($_POST['idDeleteNameActor']) )
                     {
                         print 'Codigo incorrecto';
@@ -95,17 +106,28 @@
                         $actor->id = $_POST['idDeleteNameActor'];
                         $actor->delete();
                         $result['status']=1;
-
                     }
-                    break;
-                    case 'getMovies':
-                        if ($result['dataset'] = $movie->all()) {
-                            $result['status'] = 1;
-                        } else {
-                            $result['exception'] = 'No hay peliculas registradas';
-                        }
-                    break;
-                
+                break;
+                case 'getMovies':
+                    if ($result['dataset'] = $movie->all()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'No hay peliculas registradas';
+                    }
+                break;
+                case 'search':
+                        if($actor->searchbyInput($_POST['searchActors'])) {
+                            if($result['dataset'] = $actor->search()){
+                                $result['status']=1;
+                            }
+                            else{
+                                $result['exception']='Sin resultados';
+                            }
+                        }   
+                        else{
+                            $result['exception']='Campo vacio';
+                        }                    
+                break;
                 default:
                     exit('accion no disponible');
             }

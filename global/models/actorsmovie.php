@@ -34,8 +34,15 @@ class Actormovie extends Validator{
             return false;
         }
     }
-
-    public function save(){
+    public function exist(){
+        $sql='
+        SELECT Actor, Movie 
+        FROM actorsmovie
+        WHERE Actor=? AND Movie=?';
+        $params=array($this->id_actor,$this->id_movie);
+        return Database::getRows($sql, $params);
+    }
+    public function create(){
         $sql = 'INSERT INTO actorsmovie(Actor, Movie) VALUES(?,?)';
         $params = array($this->id_actor,$this->id_movie);
         return Database::executeRow($sql, $params);
@@ -46,7 +53,8 @@ class Actormovie extends Validator{
         return Database::getRow($sql, $params);
     }
     public function getActors_in_Movies(){
-        $sql='  SELECT 
+        $sql='  SELECT
+                actorsmovie.id, 
                 actors.id AS IdActor, actors.name AS Actorname, 
                 movies.id AS IdMovie, movies.name AS Moviename
                 FROM actors, movies, actorsmovie 
@@ -56,7 +64,7 @@ class Actormovie extends Validator{
         return Database::getRows($sql, $params);
     }
     public function getActors_in_MoviesbyId(){
-        $sql='  SELECT 
+        $sql='  SELECT
                 actors.id AS id_actor, 
                 actors.name AS actorname, 
                 movies.id AS id_movie, 
@@ -67,6 +75,25 @@ class Actormovie extends Validator{
                 AND movies.id=?';
         $params=array($this->id_movie);
         return Database::getRows($sql, $params);
+    }
+    public function edit(){
+        $sql='  UPDATE actorsmovie 
+                SET Actor=?, Movie=?
+                WHERE id=?';
+        $params=array($this->id_actor, $this->id_movie,$this->id);
+        return Database::executeRow($sql, $params);
+    }
+    public function getNames(){
+        $sql='  SELECT actors.name AS actor, movies.name AS movie 
+                FROM actors, actorsmovie, movies 
+                WHERE actorsmovie.Actor=actors.id AND actorsmovie.Movie=movies.id AND actors.id=? AND movies.id=?';
+        $params=array($this->id_actor,$this->id_movie);
+        return Database::getRow($sql, $params);
+    }
+    public function destroy(){
+        $sql= 'DELETE FROM actorsmovie WHERE id=?';
+        $params=array($this->id);
+        return Database::executeRow($sql, $params);
     }
 }
 

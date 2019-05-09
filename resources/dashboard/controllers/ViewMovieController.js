@@ -5,10 +5,12 @@ $(document).ready(function () {
     getMoviebyId();
     ActorTags();
     GenderTags();
+    ClasificationinMovie();
 });
 const APIViewMovies = '../../global/api/dashboard/movies.php?site=dashboard&action=';
 const APIactorsmovie ='../../global/api/dashboard/actorsmovie.php?site=dashboard&action=';
 const APIGendersMovie ='../../global/api/dashboard/gendersmovie.php?site=dashboard&action=';
+const APIClasificationsMovie='../../global/api/dashboard/clasificationsmovie.php?site=dashboard&action=';
 
 //Get all customers in ComboBox
 function SelectCustomers(Select, value){
@@ -78,7 +80,6 @@ function getMoviebyId(){
                 $('#EditCustomerMovie').html(content);
                 $('#TrailerMovieEdit').val(result.dataset.trailer);
                 $('select').formSelect();
-
             }
             else{
                 //redirect if id is not in the URL
@@ -188,7 +189,7 @@ function ActorTags(){
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(!result.status){
-                $('#exception').text("No hay actores registrados");
+                $('#exceptionActors').text("No hay actores registrados");
             }
             FillActorTags(result.dataset);
         }
@@ -228,8 +229,35 @@ function GenderTags(){
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(!result.status){
+                $('#exceptionGenders').text(result.exception);
             }
             FillGenders(result.dataset);
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+//Call clasification for Movie
+function ClasificationinMovie(){
+    $.ajax({
+        url:APIClasificationsMovie+'getClasificationinMovie',
+        type:'POST',
+        data:{
+            getId
+        },
+        datatype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(!result.status){
+                $('#exceptionClasification').text(result.exception);   
+            }
+            $('#clasification').text(result.dataset.clasification);
         }
         else{
             console.log(response);

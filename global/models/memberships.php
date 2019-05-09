@@ -5,6 +5,10 @@ class Membership{
     public $membership;
     public $price;
 
+    public function getMembership(){
+        return $this->membership;
+    }
+
     public function exist()
     {
         $sql = 'SELECT membership FROM memberships WHERE membership=?';

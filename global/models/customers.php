@@ -57,6 +57,10 @@ class Customers extends Validator{
                 return false;
             }
         }
+        public function getEnterprise(){
+            return $this->enterprise;
+        } 
+       
         
         public function all()
 	    {

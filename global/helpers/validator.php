@@ -168,6 +168,25 @@ class Validator{
 			return false;
 		}
 	}
+	function IsDateTime($DateTime) {
+
+			if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$DateTime)) {
+					return true;
+			} else {
+					return false;
+			}
+	}
+	public function ValidateSite($site){
+		$file ='../../../feed/account/'.$site.'.php';
+		if(file_exists($file))  
+		{ 
+				return true;
+		} 
+		else 
+		{ 
+				return false;
+		} 
+	}
 }
 
 ?>

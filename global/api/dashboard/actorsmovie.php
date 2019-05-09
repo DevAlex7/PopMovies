@@ -3,11 +3,13 @@
     require_once('../../helpers/instance.php');
     require_once('../../helpers/validator.php');
     require_once('../../models/actorsmovie.php');
-    
+    require_once('../../models/binnacle.php');
+
     if(isset($_GET['site']) && isset($_GET['action'])){
         session_start();
         $actormovie = new Actormovie();
-        $result = array('status'=>0, 'exception'=>'');
+        $binnacle = new Binnacle();
+        $result = array('status'=>0, 'exception'=>'','actor'=>'');
         if($_GET['site']=='dashboard'){
             
             switch($_GET['action']){
@@ -17,8 +19,23 @@
                     if(isset($_POST['ActorsSelect']) && isset($_POST['MoviesSelect'])){
                         if($actormovie->id_actor($_POST['ActorsSelect'])){
                             if($actormovie->id_movie($_POST['MoviesSelect'])){
-                                $actormovie->save();
-                                $result['status']=1;
+                                if(!$actormovie->exist()){
+                                    if($binnacle->site('actors')){
+                                        $actormovie->create();
+                                        $get = $actormovie->getNames();
+                                        $message="ha asignado el actor".' '.$get['actor'].' a la pelicula: '.$get['movie'];
+                                        $binnacle->actionperformed($message);
+                                        $binnacle->admin_id($_SESSION['idUsername']);
+                                        $binnacle->create();
+                                        $result['status']=1;
+                                    }
+                                    else{
+                                        $result['exception']='Ha ocurrido un error, llame al administrador';
+                                    }
+                                }
+                                else{
+                                    $result['exception']='Esta pelicula ya esta registrada con ese actor';
+                                }
                             }
                             else{
                                 $result['No se ha encontrado un identificador de pelicula'];
@@ -55,16 +72,54 @@
                 break;
                 //Get actor and movie id with the id
                 case 'getListbyId':
-                    if($actormovie->id($_POST['id'])){
+                    if($actormovie->id($_POST['id_list'])){
                         if($result['dataset']= $actormovie->getListbyId()){
-
+                            $result['status']=1;
                         }
                         else{
-                            $result['No se ha encontrado ']='';
+                            $result['exception']='No hay información';
                         }
                     }
                     else{
                         $result['exception']='Identificador no encontrado';
+                    }
+                break;
+                case 'editList':
+                    if(isset($_POST['SelectEditActortoMovie'])){
+                        if(isset($_POST['SelectEditMovie'])){
+                            if($actormovie->id($_POST['id_list'])){
+                                if($actormovie->id_actor($_POST['SelectEditActortoMovie'])){
+                                    if($actormovie->id_movie($_POST['SelectEditMovie'])){
+                                        $actormovie->edit();
+                                        $result['status']=1;
+                                    }   
+                                    else{
+                                        $result['exception']='Selección de pelicula invalido';    
+                                    }                                 
+                                }
+                                else{
+                                    $result['exception']='Selección de actor invalido';
+                                }
+                            }
+                            else{
+                                $result['exception']='Identificador no encontrado';
+                            }
+                        }
+                        else{
+                            $result['exception']='No ha seleccionado ninguna pelicula';
+                        }
+                    }
+                    else{
+                        $result['exception']='No ha seleccionado ningun actor';
+                    }
+                break;
+                case 'deleteRow':
+                    if($actormovie->id($_POST['idDeleteActorMovie'])){
+                        $actormovie->destroy();
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['exception']='Identificador no identificado';
                     }
                 break;
                 default:

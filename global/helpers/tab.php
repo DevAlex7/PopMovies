@@ -3,8 +3,9 @@ class publicSite
 {
 	public static function headerTemplate($title)
 	{
+		session_start();
 		ini_set('date.timezone', 'America/El_Salvador');
-        print('<!DOCTYPE html>
+		print('<!DOCTYPE html>
         <!-- IDIOMA DE LA PÁGINA -->
         <html lang="es">
             <head>
@@ -23,84 +24,62 @@ class publicSite
                 <link rel="stylesheet" type="text/css" href="../../resources/public/css/style.css">
                 <!-- ESTILO -->
                 <link rel="stylesheet" type="text/css" href="../../resources/public/css/users.css">
+                <!-- ESTILO MAIN.PHP -->
+                <link href="../../resources/public/css/page.css" rel="stylesheet">
                 <!-- FUENTE -->
                 <link href="../../../resources/public/css/font.css" rel="stylesheet">
                 <!-- ALLAX -->
                 <link href="../../../resources/public/css/public.css" rel="stylesheet">
                 <!-- END: Head-->
-            </head>
-        
-            <body class="Aki">
-                
-            <!-- BEGIN: Navbar -->
-                <header>
-                    <nav class="black">
-                        <div class="nav-wrapper">
-                            <div class="ico">
-                                <a href="#" class="brand-logo"><i class="tiny material-icons">movie</i>PopMovies</a>
-                            </div>
-                            <ul class="right">
-                                <li><a href="sass.html">Catálogo</a></li>
-                                <li><a href="sass.html">Acerca de</a></li>
-                                <li><a href="#">Iniciar Sesión</a></li>
-                                <li><a href="register.php">Registrarme</a></li>
-                                <li><a> </a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                </header>
-            <!-- END: Navbar -->');
-    }
-    
-    public static function headerTemplateTwo($style)
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            </head>'
+            );
+            if (isset($_SESSION['idUsuario'])) {
+                $filename = basename($_SERVER['PHP_SELF']);
+                if ($filename != 'index.php') {
+                    self::modals();
+                } else {
+                    header('location: main.php');
+                }
+            } else {
+                $filename = basename($_SERVER['PHP_SELF']);
+                if ($filename != 'index.php' && $filename != 'register.php') {
+                    header('location: index.php');
+                } else {
+                    print('
+                    <!-- BEGIN: Navbar -->
+                        <header>
+                            <nav class="black">
+                                <div class="nav-wrapper">
+                                    <div class="ico">
+                                        <a href="#" class="brand-logo"><i class="tiny material-icons">movie</i>PopMovies</a>
+                                    </div>
+                                    <ul class="right">
+                                        <li><a href="sass.html">Catálogo</a></li>
+                                        <li><a href="sass.html">Acerca de</a></li>
+                                        <li><a href="index.php">Iniciar Sesión</a></li>
+                                        <li><a href="register.php">Registrarme</a></li>
+                                        <li><a> </a></li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </header>
+                    <!-- END: Navbar -->
+				');
+                }
+            }
+        }
+
+    public static function footerTemplate($controller)
 	{
-		ini_set('date.timezone', 'America/El_Salvador');
-        print('<!DOCTYPE html>
-        <!-- IDIOMA DE LA PÁGINA -->
-        <html lang="es">
-            <head>
-                <!-- BEGIN: Head -->
-                <!-- CARACTERES ESPECIALES -->
-                <meta charset="UTF-8">
-                <!-- TÍTULO DE LA VENTANA -->
-                <title>PopMovies | Registrarme</title>
-                <!-- ÍCONO DE LA VENTANA -->
-                <link rel="shortcut icon" type="image/x-icon" href="../../resources/public/img/Logo.ico">
-                <!-- MATERIAL ICONS -->
-                <link href="../../resources/public/css/icon.css" rel="stylesheet">
-                <!-- MATERIALIZE.MIN -->
-                <link href="../../resources/public/css/materialize.min.css" rel="stylesheet">
-                <!-- TAMAÑO -->
-                <link rel="stylesheet" type="text/css" href="../../resources/public/css/style.css">
-                <!-- ESTILO -->
-                <link rel="stylesheet" type="text/css" href="../../resources/public/css/'.$style.'.css">
-                <!-- FUENTE -->
-                <link href="../../../resources/public/css/font.css" rel="stylesheet">
-                <!-- END: Head-->
-            </head>
-        
-            <body class="Aki">
-                
-            <!-- BEGIN: Navbar -->
-                <header>
-                    <nav class="black">
-                        <div class="nav-wrapper">
-                            <div class="ico">
-                                <a href="#" class="brand-logo"><i class="tiny material-icons">movie</i>PopMovies</a>
-                            </div>
-                            <ul class="right">
-                                <li><a href="sass.html">Catálogo</a></li>
-                                <li><a href="sass.html">Acerca de</a></li>
-                                <li><a href="login.php">Iniciar Sesión</a></li>
-                                <li><a href="#">Registrarme</a></li>
-                                <li><a> </a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                </header>
-            <!-- END: Navbar -->');
-        self::modals();
-    }
+		print('<!-- PLUGIN: Funciona para los TextBox dinámicos. -->
+                <script src="../../resources/public/js/plugin.js" type="text/javascript"></script>
+                <!-- CONTROLADOR. -->
+                <script src="../../resources/public/controllers/'.$controller.'" type="text/javascript"></script>
+            </body>
+        </html>
+        ');
+	}
 
     public static function modals()
 	{

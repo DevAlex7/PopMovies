@@ -16,12 +16,12 @@ if(isset($_GET['site']) && isset($_GET['action'])){
                 $result['status'] = 1;
             }
             else{
-                $result['exception'] = 'No hay generos registrados';
+                $result['exception'] = 'No hay géneros registrados';
             }
             break;
             
             default:
-            exit('accion no disponible');
+            exit('Acción no disponible');
         }
    }
    else{

@@ -1,47 +1,48 @@
-    <?php
+<?php
     require_once('../../global/helpers/tab.php');
     publicSite::headerTemplate('Iniciar Sesión');
-    ?>
-
-    <!-- BEGIN: Carousel -->
-    <div class="slider">
-            <ul class="slides">
-              <li>
-                <img src="https://farm3.staticflickr.com/2874/11764405465_dcd4378727_o.jpg"> 
-                <div class="caption center-align">
-                  <h3>Toda clase de géneros</h3>
-                  <h5 class="light grey-text text-lighten-3">Desde terror hasta romance.</h5>
+?>
+    <body class="Aki">
+        <div class="row">
+            <div class="col s12">
+                <div id="LoginStyle">
+                    <div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 Card">
+                        <form method="post" id="login-form">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <h5 class="ml-4">Iniciar Sesión</h5>
+                                </div>
+                            </div>
+                            <div class="row margin">
+                                <div class="input-field col s12">
+                                    <i class="material-icons black-text prefix pt-2">person_outline</i>
+                                    <input id="username" type="text" name="username" class="validate" required/>
+                                    <label for="username">Nombre de usuario</label>
+                                </div>
+                            </div>
+                            <div class="row margin">
+                                <div class="input-field col s12">
+                                    <i class="material-icons black-text prefix pt-2">lock_outline</i>
+                                    <input id="password" type="password" name="password" class="validate" required/>
+                                    <label for="password">Contraseña</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <button type="submit" class="btn waves-effect waves-light border-round black col s12 tooltipped"
+                                    data-tooltip="Ingresar">ENTRAR</button>
+                                </div>
+                            </div>
+                            <div class="row center">
+                                <div class="input-field col s12">
+                                    <p class="margin medium-small"><a href="forget.php">Olvidé mi contraseña</a></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-              </li>
-              <li>
-                  <img src="https://static0.cbrimages.com/wordpress/wp-content/uploads/2019/04/Avengers-Endgame-UK-poster-header.jpg?q=50&fit=crop&w=798&h=407">  
-                <div class="caption left-align">
-                <h3>¡Los mejores estrenos!</h3>
-                  <h5 class="light grey-text text-lighten-3">Siempre con la mejor calidad.</h5>
-                </div>
-              </li>
-              <li>
-                  <img src="https://stmed.net/sites/default/files/styles/1366x768/public/alice%3A-madness-returns-hd-wallpapers-32730-1946127.jpg?itok=YQ_fWtel"> 
-                <div class="caption right-align">
-                  <h3>Right Aligned Caption</h3>
-                  <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                </div>
-              </li>
-              <li>
-                  <img src="img/slider-4.jpg"> 
-                <div class="caption center-align">
-                  <h3>This is our big Tagline!</h3>
-                  <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                </div>
-              </li>
-            </ul>
-          </div>
-        <!-- END: Carousel -->
-
-
-
-        <!-- PLUGIN: Funciona para los TextBox dinámicos. -->
-        <script src="../../resources/public/js/plugin.js" type="text/javascript"></script>
-        <script src="../../resources/public/js/init-slider.js" type="text/javascript"></script>
-    </body>
-</html>
+            </div>
+        </div>
+        <?php
+publicSite::footerTemplate('index.js');
+?>

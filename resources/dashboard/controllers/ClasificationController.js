@@ -3,6 +3,7 @@ $(document).ready(function(){
     showTableClasifications();
     ListClasifications('ClasificationsSelect',null);
     ListMovies('MoviesSelect',null);
+    ShowClasificationsInMovies();
 });
 const APIClasifications = '../../global/api/dashboard/clasifications.php?site=dashboard&action=';
 const APIClasificationsMovie = '../../global/api/dashboard/clasificationsmovie.php?site=dashboard&action=';
@@ -140,7 +141,6 @@ $('#ClasificationAddForm').submit(function(e){
         processData:false
     })
     .done(function(response){
-        
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(result.status){
@@ -209,6 +209,7 @@ function ShowInformation(id){
     .done(function(response){
         if(isJSONString(response)){
             const result = JSON.parse(response);
+            console.log(result);
             if(result.status){
                 $('#idEditClasification').val(result.dataset.id);
                 $('#EditNameClasification').val(result.dataset.clasification);
@@ -332,7 +333,8 @@ $('#ListClasificationsinMovies').submit(function(){
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(result.status){
-                M.toast({html:'tiene valor'});
+                M.toast({html:'¡Clasificación agregada a la pelicula exitosamente!'});
+                ShowClasificationsInMovies();
             }
             else{
                 M.toast({html:result.exception});
@@ -346,3 +348,123 @@ $('#ListClasificationsinMovies').submit(function(){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 })
+//Get List clasifications in Movies
+function setClasificationsmoviesTable(rows){
+    let content ='';
+    if(rows.length>0){
+        rows.forEach(function(row){
+            content += `
+            <tr>
+                <td>${row.clasification}</td>
+                <td>${row.name}</td>
+                <td>
+                    <a href="" onclick="ShowEditList(${row.id})" class="blue-text tooltipped modal-trigger" data-target="ModalEditClasificationInMovie"><i class="material-icons">mode_edit</i></a>
+                    <a href="" onclick="ShowDeleteList(${row.id})" class="red-text tooltipped modal-trigger" data-target="ModalDeleteClasificationInMovie"><i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+            `;
+        }); 
+    }
+    $('#readClasificationsInMovies').html(content);
+}
+function ShowClasificationsInMovies(){
+    $.ajax({
+        url:APIClasificationsMovie+'getList',
+        type:'POST',
+        data:null,
+        dataype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(!result.status){
+                M.toast({html:result.exception});
+            }
+            setClasificationsmoviesTable(result.dataset);
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+//Show in modal to edit
+function ShowEditList(id_list){
+    $.ajax({
+        url:APIClasificationsMovie+'getListbyId',
+        type:'POST',
+        data:{
+            id_list
+        },
+        datatype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                $('#Id_List').val(result.dataset.id);
+                ListClasifications('EditSelectClasification',result.dataset.clasification);
+                ListMovies('EditSelectMovie',result.dataset.movie);
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+//Edit row List
+$('#FormEditClasificationInMovie').submit(function(){
+    event.preventDefault();
+    $.ajax({
+        url:APIClasificationsMovie+'editRowClasification',
+        type:'POST',
+        data:new FormData($('#FormEditClasificationInMovie')[0]),
+        datatype:'JSON',
+        cache:false,
+        contentType:false,
+        processData:false
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            console.log(1);
+            const result = JSON.parse(response);
+            if(result.status){
+                M.toast({html:'¡Registro actualizado correctamente!'});
+                ShowClasificationsInMovies();
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+})
+function ShowDeleteList(id_list){
+    $.ajax({
+        url:APIClasificationsMovie+'getListbyId',
+        type:'POST',
+        data:{
+            id_list
+        },
+        datatype:'JSON'
+    })
+    .done(function(response){
+
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}

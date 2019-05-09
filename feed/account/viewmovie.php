@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.movies.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 </head>
 <body>
@@ -32,7 +31,7 @@
                 </div>
                 <div class="col s12 m6">
                    <form method="post" id="EditFormMovie">
-                        <input id="MovieId" name="MovieId" class="hide" value="<?php print $_GET['movie'] ?>">
+                        <input id="MovieId" name="MovieId" class="" type="text" value="<?php print $_GET['movie'] ?>">
                         <span class="card-title">Descripción de la pelicula</span>
                         <span class="card-title"> Titulo </span>
                         <input type="text" id="TitleMovieEdit" name="TitleMovieEdit">
@@ -86,7 +85,7 @@
                     <div class="card">
                         <div class="card-content">
                             <p>Actores</p>
-                            <p id="exception"></p>
+                            <p id="exceptionActors"></p>
                             <div id="ActorsTags">
                                       
                             </div>
@@ -98,7 +97,7 @@
                     <div class="card">
                         <div class="card-content">
                             <p>Generos</p>
-                            <p id="exception"></p>
+                            <p id="exceptionGenders"></p>
                             <div id="GendersTags">
 
                             </div>
@@ -110,7 +109,7 @@
                     <div class="card">
                         <div class="card-content">
                             <p>Clasificación</p>
-                            <p id="exception"></p>
+                            <p id="exceptionClasification"></p>
                             <p id="clasification"></p>
                         </div>
                     </div>

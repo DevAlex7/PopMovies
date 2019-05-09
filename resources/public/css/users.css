@@ -18,6 +18,21 @@
     width: 500px;
 }
 
+#RegisterStyle
+{
+    display: flex;
+    height: 89vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#RegisterStyle .card-panel.border-radius-6.Card
+{
+    margin-left: 0 !important;
+    width: 800px;
+}
+
+
 .ico {
     margin: 0 auto 0 30px;
 }

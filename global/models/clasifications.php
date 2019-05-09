@@ -37,6 +37,9 @@ class Clasification extends Validator{
             return false;
         }
     }
+    public function getClasification(){
+        return $this->nameClasification;
+    }
     public function descriptionClasification($value){
         $this->descriptionClasification=$value;
         return true;

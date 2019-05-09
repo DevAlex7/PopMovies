@@ -35,6 +35,7 @@ $('#form-create').submit(async () =>{
     } else {
         console.log(response);
     }
+    
 })
 
 //Show all Actors
@@ -115,11 +116,12 @@ function ShowInformation(id)
 //Update Actor
 $('#ActorFormUpdate').submit(function()
 {
+    event.preventDefault();
     $.ajax({
         url: APIActors + 'updateActor',
-        type: 'post',
+        type: 'POST',
         data: new FormData($('#ActorFormUpdate')[0]),
-        datatype: 'json',
+        datatype: ' JSON',
         cache: false,
         contentType: false,
         processData: false
@@ -305,6 +307,8 @@ $('#ListMoviesinActors').submit(function()
             console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
         });
 })
+
+//Table actors in movies 
 function FillActorsInMovies(lines){
     let content = '';
     if(lines.length>0)
@@ -315,8 +319,8 @@ function FillActorsInMovies(lines){
                     <td>${line.Actorname}</td>
                     <td>${line.Moviename}</td>
                     <td>
-                        <a href="" onclick="ShowInformation(${line.id})" class="orange-text tooltipped modal-trigger" data-target="ModalEditActorsInMovies" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
-                        <a href="" onclick="ShowInformationDelete(${line.id})" class="red-text tooltipped modal-trigger" data-target="deleteActor" data-tooltip="Elimar"><i class="material-icons">delete</i></a>
+                        <a href="" onclick="GetToEditActorinMovie(${line.id})" class="orange-text tooltipped modal-trigger" data-target="ModalEditActorsInMovies" data-tooltip="Modificar"><i class="material-icons">mode_edit</i></a>
+                        <a href="" onclick="GetToDeleteActorinMovie(${line.id})" class="red-text tooltipped modal-trigger" data-target="DeleteActorsInMovies" data-tooltip="Elimar"><i class="material-icons">delete</i></a>
                     </td>
                 </tr>
             `;
@@ -385,15 +389,51 @@ function SelectActorstoEdit(Select, value){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 }
-
-
-//Edit Actor in movie
-function EditActorinMovie(id){
+//Fill Select Edit Movie to List
+function SelectMovietoEdit(Select, value){
     $.ajax({
-        url:APIactorsmovie+'',
+        url: APIActors + 'getMovies',
+        type: 'POST',
+        data: null,
+        datatype: 'JSON'
+    })
+    .done(function(response){
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            if (result.status) {
+                let content = '';
+                if (!value) {
+                    content += '<option value="" disabled selected>Seleccione Actor</option>';
+                }
+                result.dataset.forEach(function(row){
+                    if (row.id != value) {
+                        content += `<option value="${row.id}">${row.name}</option>`;
+                    } else {
+                        content += `<option value="${row.id}" selected>${row.name}</option>`;
+                    }
+                });
+                $('#' + Select).html(content);
+            } else {
+                $('#' + Select).html('<option value="">No hay actores en lista</option>');
+            }
+            $('select').formSelect();
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+
+
+//Show to Edit Actor in movie
+function GetToEditActorinMovie(id_list){
+    $.ajax({
+        url:APIactorsmovie+'getListbyId',
         type:'POST',
         data:{
-            id
+            id_list
         },
         datatype:'JSON'
     })
@@ -401,10 +441,74 @@ function EditActorinMovie(id){
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(result.status){
-
+                $('#id_list').val(result.dataset.id);
+                SelectActorstoEdit('SelectEditActortoMovie', result.dataset.Actor);
+                SelectMovietoEdit('SelectEditMovie', result.dataset.Movie);
+                
             }
             else{
-                console.log(result.exception);
+                M.toast({html:result.exception});
+            }
+        }else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+//Edit actor to movie
+$('#FormEditActortoMovie').submit(function()
+{
+    event.preventDefault();
+    $.ajax({
+        url:APIactorsmovie+'editList',
+        type:'POST',
+        data:new FormData($('#FormEditActortoMovie')[0]),
+        datatype: ' JSON',
+        cache: false,
+        contentType: false,
+        processData: false
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                M.toast({html:'¡Registro actualizado exitosamente!'});
+                ShowTableActorsinMovies();
+                $('#ModalEditActorsInMovies').modal('close');
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+})
+
+//Show to Delete Actor in movie
+function GetToDeleteActorinMovie(id_list){
+    $.ajax({
+        url:APIactorsmovie+'getListbyId',
+        type:'POST',
+        data:{
+            id_list
+        },
+        datatype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+               $('#idDeleteActorMovie').val(result.dataset.id);
+            }
+            else{
+                M.toast({html:result.exception});
             }
         }else{
             console.log(response);
@@ -415,8 +519,64 @@ function EditActorinMovie(id){
     });
 }
 //Delete Actor in movie
-function DeleteActorinMovie(id){
+$('#FormDeleteActorinMovie').submit(function(){
+    event.preventDefault();
+    $.ajax({
+        url:APIactorsmovie+'deleteRow',
+        type: 'POST',
+        data: $('#FormDeleteActorinMovie').serialize(),
+        datatype: 'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                M.toast({html:'¡Eliminado exitosamente!'});
+                ShowTableActorsinMovies();
+                $('#DeleteActorsInMovies').modal('close');
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+})
 
+$('#SearchField').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url:APIActors+'search',
+        type:'POST',
+        data:$('#SearchField').serialize(),
+        datatype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                fillTable(result.dataset);
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+})
+function clearSearchField(){
+    $('#searchActors').val('');
+    showTable();
 }
 
 

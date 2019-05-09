@@ -4,15 +4,15 @@
         <meta charset="UTF-8">
         <title>PopMovies - Bienvenido</title>
         <!-- ÍCONO DE LA VENTANA -->
-        <link rel="shortcut icon" type="image/x-icon" href="../../../resources/public/img/Logo.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="../../resources/public/img/Logo.ico">
         <!-- MATERIAL ICONS -->
-        <link href="../../../resources/public/css/material-icons.css" rel="stylesheet">
+        <link href="../../resources/public/css/material-icons.css" rel="stylesheet">
         <!-- MATERIALIZE.MIN -->
-        <link href="../../../resources/public/css/materialize.min.css" rel="stylesheet">
+        <link href="../../resources/public/css/materialize.min.css" rel="stylesheet">
         <!-- ESTILO -->
-        <link href="../../../resources/public/css/page.css" rel="stylesheet">
+        <link href="../../resources/public/css/page.css" rel="stylesheet">
         <!-- FUENTE -->
-        <link href="../../../resources/public/css/font.css" rel="stylesheet">
+        <link href="../../resources/public/css/font.css" rel="stylesheet">
     </head>
 
     <body class="oa">
@@ -29,7 +29,7 @@
                     <ul class="right">
                         <li><a href="sass.html">Trailers</a></li>
                         <li><a href="sass.html">Favoritos</a></li>
-                        <li><a href="../login.php"><i class="tiny material-icons">power_settings_new</i></a></li>
+                        <li><a href="index.php"><i class="tiny material-icons">power_settings_new</i></a></li>
                         <li><a> </a></li>
                     </ul>
                 </div>
@@ -66,10 +66,10 @@
             </div>
         </main>
 
-        <script src="../../../resources/globaljs/jquery-3.2.1.min.js" type="text/javascript"></script>
-        <script src="../../../resources/globaljs/materialize.min.js" type="text/javascript"></script>
-        <script src="../../../global/helpers/functions.js"></script>
-        <script src="../../../resources/public/js/init.js" type="text/javascript"></script>
-        <script src="../../../resources/public/controllers/indexpage.js" type="text/javascript"></script>
+        <script src="../../resources/globaljs/jquery-3.2.1.min.js" type="text/javascript"></script>
+        <script src="../../resources/globaljs/materialize.min.js" type="text/javascript"></script>
+        <script src="../../global/helpers/functions.js"></script>
+        <script src="../../resources/public/js/init.js" type="text/javascript"></script>
+        <script src="../../resources/public/controllers/indexpage.js" type="text/javascript"></script>
     </body>
 </html>

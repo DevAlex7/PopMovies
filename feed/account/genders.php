@@ -6,18 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard | Generos</title>
-
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.genders.css">
-
 </head>
 <body>
 <header>
 <?php  AdminSideNav::SideNav();?>
 </header>
 <main>
-
     <div class="row">
         <div class="card">
             <div class="card-panel">
@@ -25,7 +22,6 @@
             </div>
         </div>
     </div>
-
 <!--Add Gender -->
     <div class="row">
         <div class="col s12 m6">
@@ -51,6 +47,23 @@
 
 <!--Table Genders -->
         <div class="col s12 m6">
+           <!-- Search --> 
+            <div class="row">
+                <div class="col s12 m12">
+                    <nav class="white">
+                        <div class="nav-wrapper">
+                            <form  method="POST" id="SearchField">
+                                <div class="input-field">
+                                    <input id="searchGenders" name="searchGenders" type="search" placeholder="Buscar actores...">
+                                    <label class="label-icon " for="search"><i class="material-icons black-text">search</i></label>
+                                    <i onclick="clearSearchField()" class="material-icons">close</i>
+                                </div>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- ********-->
             <div class="card">
                 <div class="card-content">
                 <span class="card-title">Lista de Generos</span>
@@ -76,22 +89,41 @@
     <div class="divider"></div>
         <div id="MoviesGender">
         <div class="chip" id="TitleChip">¡Agrega generos a tus peliculas!</div>
-        <div class="row">
-            <form class="col s12" id="ListMoviesinGenders" name="ListMoviesinGenders" method="POST">
-                <div class="row">
-                    <div class="input-field col s12 m6">
-                        <i class="material-icons prefix">movie</i>
-                        <select name="GenderSelect" id="GenderSelect"></select>
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <form class="col s12" id="ListMoviesinGenders" name="ListMoviesinGenders" method="POST">
+                            <div class="row">
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">movie</i>
+                                    <select name="GenderSelect" id="GenderSelect"></select>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">movie</i>
+                                    <select name="MoviesSelect" id="MoviesSelect"></select>
+                                </div>
+                            </div>
+                            <div class="card-action center">
+                                <button type="submit" class="btn blue align-center">Agregar</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="input-field col s12 m6">
-                        <i class="material-icons prefix">movie</i>
-                        <select name="MoviesSelect" id="MoviesSelect"></select>
+                    <div class="row">
+                        <div class="col s12 m12">
+                            <table class="highlight centered">
+                                <thead>
+                                    <tr>
+                                        <th>Genero</th>
+                                        <th>Pelicula</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="TableGendersInMovies">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div class="card-action center">
-                    <button type="submit" class="btn blue align-center">Agregar</button>
-                </div>
-            </form>
             </div>
         </div>
     </div>
@@ -139,6 +171,53 @@
             </div>
         </div>
     </div>
+</div>
+<!-- Modals Genders in Movies -->
+
+<!--Modal Edit List -->
+<div class="modal" id="ModalEditListGenderInMovie">
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <form class="col s12 m12" id="FormEditGendertoMovie">
+                        <div class="row">
+                        <span class="card-title">Editar Genero para pelicula</span>
+                            <input class="hide" type="text" name="id_list" id="id_list">
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">face</i>
+                                <select name="SelectEditGendertoMovie" id="SelectEditGendertoMovie"></select>
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <i class="material-icons prefix">movie</i>
+                                <select name="SelectEditMovie" id="SelectEditMovie"></select>
+                            </div>
+                            <div class="center">
+                                <button type="submit" class="btn blue center-align"> <i class="material-icons left">edit</i>Editar</button> 
+                                <a class="btn grey modal-close"> <i class="material-icons left">close</i> Cancelar </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal red" id="ModalDeleteListGenderInMovie">
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-content">
+                <form method="POST" id="FormDeleteGenderinMovie">    
+                    <input type="hidden" name="idDeleteGenderMovie" id="idDeleteGenderMovie">
+                    <div class="center">
+                        <span class="card-title">¿Desea eliminar este registro?</span>
+                        <button type="submit" class="btn red"> <i class="material-icons left">delete</i> Eliminar </button>
+                        <a  class="btn grey modal-close"> <i class="material-icons left">close</i> Cancelar </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>  
 </div>
 </main>    
 <footer>

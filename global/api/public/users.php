@@ -13,9 +13,9 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'logout':
                 if (session_destroy()) {
-                    header('location: ../../../feed/public/login.php');
+                    header('location: ../../../feed/public/');
                 } else {
-                    header('location: ../../../feed/public/home/index.php');
+                    header('location: ../../../feed/public/main.php');
                 }
                 break;
             case 'readProfile':
@@ -223,12 +223,12 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'register':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNombres($_POST['nombres'])) {
-                    if ($usuario->setApellidos($_POST['apellidos'])) {
-                        if ($usuario->setCorreo($_POST['correo'])) {
-                            if ($usuario->setAlias($_POST['alias'])) {
-                                if ($_POST['clave1'] == $_POST['clave2']) {
-                                    if ($usuario->setClave($_POST['clave1'])) {
+                if ($usuario->setNombres($_POST['first_name'])) {
+                    if ($usuario->setApellidos($_POST['last_name'])) {
+                        if ($usuario->setCorreo($_POST['e_mail'])) {
+                            if ($usuario->setAlias($_POST['user_name'])) {
+                                if ($_POST['pass_word'] == $_POST['second_pass']) {
+                                    if ($usuario->setClave($_POST['pass_word'])) {
                                         if ($usuario->createUsuario()) {
                                             $result['status'] = 1;
                                         } else {

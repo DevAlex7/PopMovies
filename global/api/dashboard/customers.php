@@ -3,12 +3,14 @@
     require_once('../../helpers/validator.php');    
     require_once('../../models/customers.php');
     require_once('../../helpers/instance.php');
+    require_once('../../models/binnacle.php');
     
 
     if(isset($_GET['site']) && isset($_GET['action']) )
     {
         session_start();
         $customers = new Customers();
+        $binnacle = new Binnacle();
         $result = array('status' => 0, 'exception' => '');
 
         if($_GET['site'] == 'dashboard')
@@ -40,10 +42,18 @@
             case 'createCustomer':
                 if($customers->name($_POST['NameProvider'])){
                     if($customers->email($_POST['EmailProvider'])){
-                        
                         if($customers->enterprise($_POST['EnterpriseProvider'])){
-                            $customers->create();
-                            $result['status']=1;
+                            $message = "ha registrado a un nuevo proveedor".''.$customers->getEnterprise();
+                            $binnacle->actionperformed($message);
+                            $binnacle->admin_id($_SESSION['idUsername']);
+                            if($binnacle->site('customers')){
+                                $binnacle->create();
+                                $customers->create();
+                                $result['status']=1;
+                            }
+                            else{
+                                $result['exception']='Ha habido un error contacte al administrador';
+                            }
                         }
                         else{
                             $result['exception']='Campo vacio de empresa';

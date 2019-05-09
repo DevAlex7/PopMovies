@@ -68,7 +68,7 @@
                     <form class="col s12" id="ListClasificationsinMovies" name="ListClasificationsinMovies" method="POST">
                         <div class="row">
                             <div class="input-field col s12 m6">
-                                <i class="material-icons prefix">movie</i>
+                                <i class="material-icons prefix">view_list</i>
                                 <select name="ClasificationsSelect" id="ClasificationsSelect"></select>
                             </div>
                             <div class="input-field col s12 m6">
@@ -80,6 +80,21 @@
                         <button type="submit" class="btn blue align-center">Agregar</button>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m12">
+                <table class="centered">
+                    <thead>
+                    <tr>
+                        <th>Clasificación</th>
+                        <th>Pelicula</th>
+                        <th>Pelicula</th>
+                    </tr>
+                    </thead>
+                    <tbody id="readClasificationsInMovies">
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>
@@ -126,7 +141,7 @@
                             <input id="idEditClasification" name="idEditClasification" type="hidden" class="input-field" placeholder="Nombre de la clasificación">
                             <div class="input-field col s12 m6">
                                 <i class="material-icons prefix black-text">view_list</i>
-                                <input id="EditNameClasification" name="EditNameClasification" type="text" class="input-field" placeholder="Nombre de la clasificación">
+                                <input id="EditNameClasification"  name="EditNameClasification" type="text" class="input-field" placeholder="Nombre de la clasificación">
                             </div>
                             <div class="input-field col s12 m12">
                                 <i class="material-icons prefix black-text">view_headline</i>
@@ -162,6 +177,53 @@
                                     <button type="submit" class="btn red white-text"> <i class="material-icons left">delete</i> Eliminar</button>
                                     <a class="btn modal-close grey">Cancelar</a>
                                 </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal edit clasification in Movie -->
+    <div class="modal" id="ModalEditClasificationInMovie">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <form class="col s12 m12" method="POST" id="FormEditClasificationInMovie">
+                            <div class="row">
+                                <input type="hidden" id="Id_List" name="Id_List">
+                                <div class="input-field col s12 m12">
+                                    <i class="material-icons prefix">view_list</i>
+                                    <select name="EditSelectClasification" id="EditSelectClasification"></select>
+                                    <label for="icon_prefix">Clasificación</label>
+                                </div>
+                                <div class="input-field col s12 m12">
+                                    <i class="material-icons prefix">movie</i>
+                                   <select name="EditSelectMovie" id="EditSelectMovie" disabled></select>
+                                    <label for="icon_telephone">Pelicula</label>
+                                </div>
+                                <div class="center">
+                                    <button type="submit" class="btn green"> <i class="material-icons left">edit</i> Editar</button>
+                                    <a class="btn grey modal-close"> <i class="material-icons left">close</i> Cancelar</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal delete clasification in Movie -->
+    <div class="modal" id="ModalDeleteClasificationInMovie">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                
                             </div>
                         </form>
                     </div>

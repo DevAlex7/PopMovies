@@ -41,7 +41,6 @@ function ShowCustomers(){
         datatype: 'JSON'
     })
     .done(function (response){
-        console.log("hola");
         if(isJSONString(response))
         {
             const result = JSON.parse(response);
@@ -56,7 +55,6 @@ function ShowCustomers(){
         } 
     })
     .fail(function(jqXHR){
-        //Se muestran en consola los posibles errores de la solicitud AJAX
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 }

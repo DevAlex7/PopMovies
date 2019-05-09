@@ -1,12 +1,12 @@
 <?php
     require_once('../../global/helpers/tab.php');
-    publicSite::headerTemplateTwo('Register');
+    publicSite::headerTemplate('Registro');
     ?>
         <div class="row">
             <div class="col s12">
-                <div id="LoginStyle" class="row">
+                <div id="RegisterStyle" class="row">
                     <div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 Card">
-                        <form class="login-form" method="post">
+                        <form class="register-form" method="post">
                             <div class="row">
                                 <div class="input-field col s12 m6">
                                     <h5 class="ml-4">Registrarse</h5>
@@ -24,14 +24,14 @@
                                     <label for="lastname" class="center-align">Apellido</label>
                                 </div>
                                 <div class="input-field col s12 m6">
-                                    <i class="material-icons black-text prefix">insert_emoticon</i>
-                                    <input id="username" type="text" name="user_name" class="validate" required>
-                                    <label for="username" class="center-align">Nombre de usuario</label>
-                                </div>
-                                <div class="input-field col s12 m6">
                                     <i class="material-icons black-text prefix">email</i>
                                     <input id="email" type="text" name="e_mail" class="validate" required>
                                     <label for="email" class="center-align">Correo Electrónico</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons black-text prefix">insert_emoticon</i>
+                                    <input id="username" type="text" name="user_name" class="validate" required>
+                                    <label for="username" class="center-align">Nombre de usuario</label>
                                 </div>
                                 <div class="input-field col s12 m6">
                                     <i class="material-icons black-text prefix">lock_outline</i>
@@ -43,17 +43,15 @@
                                     <input id="repeat" type="password" name="second_pass" class="validate" required>
                                     <label for="repeat" class="">Repite la contraseña</label>
                                 </div>
-                                <label class="center-align col s12">
+                                <!--<label class="center-align col s12">
 					                <input id="condicion" type="checkbox" name="condicion">
 					                <span>Acepto <a href="#terminos" class="modal-trigger">términos y condiciones</a></span>
-				                </label>
+				                </label>-->
                             </div>
-                            <div class="row margin">
-                                <div class="input-field col s12">
-                                    <a  href="homeviews/index.php"
-                                        class="btn waves-effect waves-light border-round black col s12"
-                                        data-tooltip="Registrar">REGISTRAR</a>
-                                </div>
+                            <div class="row center-align">
+                                <button type="submit" class="btn waves-effect blue tooltipped"
+                                data-tooltip="Registrar">Registrarse
+                                </button>
                             </div>
                             <h6 class="white-text">.</h6>
                         </form>
@@ -67,8 +65,6 @@
                 <img id="parallax">
             </div>
         </div>
-        <!-- PLUGIN: Funciona para los textarea dinámicos. -->
-        <script src="../../resources/public/js/plugin.js" type="text/javascript"></script>
-        <script src="../../resources/public/controllers/account.js" type="text/javascript"></script>
-    </body>
-</html>
+        <?php
+publicSite::footerTemplate('register.js');
+?>

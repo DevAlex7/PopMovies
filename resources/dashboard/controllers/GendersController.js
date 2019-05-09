@@ -4,7 +4,7 @@ $(document).ready(function(){
     showTableGenders();
     ListMovies('MoviesSelect',null);
     ListGenders('GenderSelect',null)
-
+    ShowGendersInMovies();
   });
 
 const APIGenders = '../../global/api/dashboard/genders.php?site=dashboard&action=';
@@ -310,6 +310,7 @@ $('#ListMoviesinGenders').submit(function()
               console.log(response);
               if (result.status) {
                   M.toast({html:'Se agrego correctamente'});
+                  ShowGendersInMovies();
               } else {
                   M.toast({html:result.exception});
               }
@@ -322,9 +323,210 @@ $('#ListMoviesinGenders').submit(function()
       });
 })
 
+//Search
+$('#SearchField').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      url:APIGenders+'search',
+      type:'POST',
+      data:$('#SearchField').serialize(),
+      datatype:'JSON'
+    })
+    .done(function(response){
+      if(isJSONString(response)){
+        const result = JSON.parse(response);
+        if(result.status){
+          FillGenders(result.dataset);
+        }
+        else{
+          M.toast({html:result.exception});
+        }
+      }else{
+        console.log(response);
+      }
+    })
+    .fail(function(jqXHR){
+      console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+})
+//Clear search bar 
+function clearSearchField(){
+    $('#searchGenders').val('');
+    showTableGenders();
+}
+
+function setGendertoMovie(rows){
+  let content = '';
+  if(rows.length>0)
+  {
+    rows.forEach(function(row)
+    {
+      content += 
+      `
+      <tr>
+        <td>${row.gender}</td>
+        <td>${row.name}</td>
+        <td>
+            <a href="" onclick="ShowEditGendersInMoviesbyId(${row.id})" class="red-text tooltipped modal-trigger" data-target="ModalEditListGenderInMovie" data-tooltip="Editar"><i class="material-icons orange-text">edit</i></a>
+            <a href="" onclick="ShowDeleteGendersInMoviesbyId(${row.id})" class="red-text tooltipped modal-trigger" data-target="ModalDeleteListGenderInMovie" data-tooltip="Elimar"><i class="material-icons">delete</i></a>
+        </td>
+      </tr>
+      `;
+    });
+  }
+  $('#TableGendersInMovies').html(content);
+}
+
+function ShowGendersInMovies(){
+  $.ajax({
+    url:APIGendersMovies+'getList',
+    type:'POST',
+    data:null,
+    datatype:'JSON'
+  })
+  .done(function(response){
+    if(isJSONString(response)){
+      const result = JSON.parse(response);
+      if(!result.status){
+        M.toast({html:result.exception});
+      } 
+      setGendertoMovie(result.dataset);
+    }
+    else{
+      console.log(response);
+    }
+  })
+  .fail(function(jqXHR){
+    console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+  });
+}
 
 
+//Show Genders in Movies in Modals
+function ShowEditGendersInMoviesbyId(id_list){
+    $.ajax({
+      url:APIGendersMovies+'getListbyId',
+      type:'POST',
+      data:{
+        id_list
+      },
+      datatype:'JSON'
+    })
+    .done(function(response){
+      if(isJSONString(response)){
+        const result = JSON.parse(response);
+        if(result.status){
+          $('#id_list').val(result.dataset.id);
+          ListGenders('SelectEditGendertoMovie',result.dataset.gender);
+          ListMovies('SelectEditMovie',result.dataset.movie);
+        }
+        else{
+          M.toast({html:result.exception});
+        }
+      }
+      else{
+        console.log(response);
+      }
+    })
+    .fail(function(jqXHR){
+      console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
+//Edit row gender with movie by Id
+$('#FormEditGendertoMovie').submit(function(){
+  event.preventDefault();
+  $.ajax({
+    url:APIGendersMovies+'editRow',
+    type:'POST',
+    data:new FormData($('#FormEditGendertoMovie')[0]),
+    datatype: ' JSON',
+    cache: false,
+    contentType: false,
+    processData: false
 
+  })
+  .done(function(response){
+    if(isJSONString(response)){
+      const result =JSON.parse(response);
+      if(result.status){
+        $('#ModalEditListGenderInMovie').modal('close');
+        M.toast({html:'¡Registro actualizado satisfactoriamente'});
+        ShowGendersInMovies();
+      }
+      else{
+        M.toast({html:result.exception});
+      }
+    }
+    else{
+      console.log(response);
+    }
+  })
+  .fail(function(jqXHR){
+    console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+  });
+})
 
+//Show Delete gender in movie
+function ShowDeleteGendersInMoviesbyId(id_list){
+  $.ajax({
+    url:APIGendersMovies+'getListbyId',
+    type:'POST',
+    data:{
+      id_list
+    },
+    datatype:'JSON'
+  })
+  .done(function(response){
+    if(isJSONString(response)){
+      const result = JSON.parse(response);
+      if(result.status){
+        $('#idDeleteGenderMovie').val(result.dataset.id);
+        
+      }
+      else{
+        M.toast({html:result.exception});
+      }
+    }
+    else{
+      console.log(response);
+    }
+  })
+  .fail(function(jqXHR){
+    console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+  });
+}
+
+//Delete List
+$('#FormDeleteGenderinMovie').submit(function(){
+  event.preventDefault();
+  $.ajax({
+    url:APIGendersMovies+'deleteRow',
+    type:'POST',
+    data:new FormData($('#FormDeleteGenderinMovie')[0]),
+    datatype: ' JSON',
+    cache: false,
+    contentType: false,
+    processData: false
+  })
+  .done(function(response){
+    if(isJSONString(response)){
+      const result =JSON.parse(response);
+      if(result.status){
+        $('#ModalDeleteListGenderInMovie').modal('close');
+        M.toast({html:'¡Registro eliminado satisfactoriamente'});
+        ShowGendersInMovies();
+      }
+      else{
+        M.toast({html:result.exception});
+      }
+    }
+    else{
+      console.log(response);
+    }
+  })
+  .fail(function(jqXHR){
+    console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+  });
+})
 
 

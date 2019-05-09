@@ -65,7 +65,6 @@
                             if($userAdmin->checkUsername()){
                                 if($userAdmin->password($_POST['Password'])){
                                     if($userAdmin->checkPassword()){
-                                       
                                         $_SESSION['idUsername']= $userAdmin->getId();
                                         $_SESSION['AdminUsername']=$userAdmin->getUsername();
                                         $_SESSION['AdminName']=$userAdmin->getName();
