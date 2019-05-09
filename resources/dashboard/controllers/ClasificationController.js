@@ -462,9 +462,54 @@ function ShowDeleteList(id_list){
         datatype:'JSON'
     })
     .done(function(response){
-
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                $('#Notification').text("¿Deseas eliminar este registro?");
+                $('#id_listDelete').val(result.dataset.id);
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            console.log(response);
+        }
     })
     .fail(function(jqXHR){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 }
+$('#FormDeleteClasificationInMovie').submit(function(){
+    event.preventDefault();
+    $.ajax({
+        url: APIClasificationsMovie + 'destroy',
+        type:'POST',
+        data: new FormData($('#FormDeleteClasificationInMovie')[0]),
+        datatype:'JSON',
+        cache:false,
+        contentType:false,
+        processData:false
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                $('#ModalDeleteClasificationInMovie').modal('close');
+                M.toast({html:'Se ha eliminado correctamente'});
+                ShowClasificationsInMovies();
+                
+            }
+            else{
+             M.toast({html:result.exception});   
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+
+})

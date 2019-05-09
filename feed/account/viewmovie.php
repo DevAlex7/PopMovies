@@ -111,6 +111,7 @@
                             <p>Clasificación</p>
                             <p id="exceptionClasification"></p>
                             <p id="clasification"></p>
+                            <p id="clasificationDescription"></p>
                         </div>
                     </div>
                 </div> 

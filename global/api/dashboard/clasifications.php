@@ -21,7 +21,7 @@
                     if($clasification->nameClasification($_POST['NameClasification'])){
                         if($clasification->descriptionClasification($_POST['DescriptionClasification']))
                         {
-                            $message ="ha registrado la clasificación ".' '.$clasification->getClasification();
+                            $message ="registrado la clasificación ".' '.$clasification->getClasification();
                             $binnacle->actionperformed($message);
                             $binnacle->admin_id($_SESSION['idUsername']);
                             if($binnacle->site('clasifications')){

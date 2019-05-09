@@ -32,7 +32,7 @@
                        if(! $membership->exist())
                        {
                             if($binnacle->site('memberships')){
-                                $message="ha agregado una nueva membresia: ".' '.$membership->getMembership();
+                                $message="agregado una nueva membresia: ".' '.$membership->getMembership();
                                 $binnacle->actionperformed($message);
                                 $binnacle->admin_id($_SESSION['idUsername']);
                                 $binnacle->create();

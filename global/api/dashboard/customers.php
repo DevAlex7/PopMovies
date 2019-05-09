@@ -43,7 +43,7 @@
                 if($customers->name($_POST['NameProvider'])){
                     if($customers->email($_POST['EmailProvider'])){
                         if($customers->enterprise($_POST['EnterpriseProvider'])){
-                            $message = "ha registrado a un nuevo proveedor".''.$customers->getEnterprise();
+                            $message = "registrado a un nuevo proveedor".''.$customers->getEnterprise();
                             $binnacle->actionperformed($message);
                             $binnacle->admin_id($_SESSION['idUsername']);
                             if($binnacle->site('customers')){

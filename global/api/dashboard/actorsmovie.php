@@ -23,7 +23,7 @@
                                     if($binnacle->site('actors')){
                                         $actormovie->create();
                                         $get = $actormovie->getNames();
-                                        $message="ha asignado el actor".' '.$get['actor'].' a la pelicula: '.$get['movie'];
+                                        $message="asignado el actor".' '.$get['actor'].' a la pelicula: '.$get['movie'];
                                         $binnacle->actionperformed($message);
                                         $binnacle->admin_id($_SESSION['idUsername']);
                                         $binnacle->create();

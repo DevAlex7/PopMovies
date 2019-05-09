@@ -22,7 +22,7 @@
                                         if($binnacle->site('clasifications')){
                                             $clasificationsmovie->create();
                                             $get = $clasificationsmovie->getNames();
-                                            $message ="ha asignado la clasificación:".' '.$get['clasification'].' a la pelicula '.$get['name'];
+                                            $message ="asignado la clasificación:".' '.$get['clasification'].' a la pelicula '.$get['name'];
                                             $binnacle->actionperformed($message);
                                             $binnacle->admin_id($_SESSION['idUsername']);
                                             $binnacle->create();
@@ -83,6 +83,17 @@
                     }
                     else{
                         $result['exception']='No se ha encontrado un valor identificador';
+                    }
+                break;
+                case 'destroy':
+                    if($clasificationsmovie->id($_POST['id_listDelete'])){
+
+                        $clasificationsmovie->destroy();
+                        $result['status']=1;
+                    }
+                    else{
+                        print var_dump($_POST['id_listDelete']);
+                        $result['exception']='Identificador no existente';
                     }
                 break;
                 case 'editRowClasification':

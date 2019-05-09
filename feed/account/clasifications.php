@@ -221,9 +221,14 @@
             <div class="card">
                 <div class="card-content">
                     <div class="row">
-                        <form class="col s12">
+                        <form class="col s12" method="POST" id="FormDeleteClasificationInMovie">
                             <div class="row">
-                                
+                            <div class="center">
+                                <input type="hidden" id="id_listDelete" name="id_listDelete">
+                                <span class="card-title" id="Notification"></span>  
+                                <button type="submit" class="btn red">Eliminar</button>
+                                <a class="btn modal-close grey">Cancelar</a>
+                            </div>
                             </div>
                         </form>
                     </div>

@@ -21,7 +21,7 @@
                                         if($binnacle->site('genders')){
                                             $gendermovie->create();
                                             $get=$gendermovie->getNames();
-                                            $message = "ha asignado el genero ".' '.$get['Gender'].' a la pelicula: '.$get['Movie'];
+                                            $message = "asignado el genero ".' '.$get['Gender'].' a la pelicula: '.$get['Movie'];
                                             $binnacle->actionperformed($message);
                                             $binnacle->admin_id($_SESSION['idUsername']);
                                             $binnacle->create();                                        

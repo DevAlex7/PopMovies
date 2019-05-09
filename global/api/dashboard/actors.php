@@ -28,7 +28,7 @@
                    {
                        //verify if Actor exists
                        if(! $actor->exists()){
-                            $message="ha registrado al actor".' '.$actor->name;
+                            $message="registrado al actor".' '.$actor->name;
 
                             $binnacle->actionperformed($message);
                             $binnacle->admin_id($_SESSION['idUsername']);
