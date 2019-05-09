@@ -1,16 +1,18 @@
 $(document).ready(function () {
     ReadGenders();
 });
-const APIGenders = '../../../global/api/public/genders.php?site=commerce&acion=';
-function  FillOptions(rows){
+const APIGenders = '../../../global/api/public/publicgenders.php?site=commerce&action=';
+function FillOptions(rows){
     let content = '';
-    if(rows.lenght>0){
+    if(rows.length >=  0){
         rows.forEach(function(row){
-            content += `<li><a href="viewgender.php"><i class="material-icons">settings</i>${row.gender}</a></li>`;
+            content += `<li><a href="viewgender.php"><i class="material-icons">done</i>${row.gender}</a></li>`;
         })
     }
-    $('#gen').html(content);
+    $('div#generos').html(content)
+    
 }
+
 function ReadGenders(){
     //Peticion Ajax
     $.ajax({
@@ -22,14 +24,16 @@ function ReadGenders(){
       .done(function(response){
         if(isJSONString(response)){
           const result = JSON.parse(response);
+          
           if(!result.status){
+            console.log(response);
             M.toast({html:'No hay generos registrados'});
           }
           FillOptions(result.dataset);
         }
         else
         {
-          console.log(response);
+          console.log(APIGenders+'readGenders');
         }
       })
       .fail(function(jqXHR){

@@ -1,98 +1,74 @@
-<!DOCTYPE html>
-<!-- IDIOMA DE LA PÁGINA -->
-<html lang="es">
-
-    <head>
-        <!-- BEGIN: Head -->
-        <!-- CARACTERES ESPECIALES -->
-        <meta charset="UTF-8">
-        <!-- TÍTULO DE LA VENTANA -->
-        <title>PopMovies - Registro</title>
-        <!-- ÍCONO DE LA VENTANA -->
-        <link rel="shortcut icon" type="image/x-icon" href="../../resources/public/img/Logo.ico">
-        <!-- MATERIAL ICONS -->
-        <link rel="stylesheet" type="text/css" href="../../resources/public/css/icon.css">
-        <!-- ESTILO DEL FORMULARIO -->
-        <link rel="stylesheet" type="text/css" href="../../resources/public/css/materialize.css">
-        <!-- TAMAÑO DEL FORMULARIO -->
-        <link rel="stylesheet" type="text/css" href="../../resources/public/css/style.css">
-        <!-- POSICIÓN Y BG -->
-        <link rel="stylesheet" type="text/css" href="../../resources/public/css/register.css">
-        <!-- END: Head-->
-    </head>
-
-    <body class="login-bg">
-        <!-- BEGIN: Navbar -->
-        <header>
-            <nav class="">
-                <div class="brand-sidebar black">
-                    <div class="logo">
-                        <a class="brand-logo center" href="">
-                            <img src="../../resources/public/img/Logo.ico" alt="ico-pop">
-                            <span class="white-text">PopMovies</span>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <!-- END: Navbar -->
+<?php
+    require_once('../../global/helpers/tab.php');
+    publicSite::headerTemplateTwo('Register');
+    ?>
         <div class="row">
             <div class="col s12">
-                <div id="login-page" class="row">
-                    <div class="col s12 m6 l4 card-panel border-radius-6 login-card">
-                        <form class="login-form">
+                <div id="LoginStyle" class="row">
+                    <div class="col s12 m6 l4 z-depth-4 card-panel border-radius-6 Card">
+                        <form class="login-form" method="post">
                             <div class="row">
-                                <div class="input-field col s12">
+                                <div class="input-field col s12 m6">
                                     <h5 class="ml-4">Registrarse</h5>
                                 </div>
                             </div>
                             <div class="row margin">
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix pt-2">person_outline</i>
-                                    <input id="name" type="text">
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons black-text prefix">person_outline</i>
+                                    <input id="name" type="text" name="first_name" class="validate" required>
                                     <label for="name" class="center-align">Nombre</label>
                                 </div>
-                            </div>
-                            <div class="row margin">
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix pt-2">person</i>
-                                    <input id="lastname" type="text">
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons black-text prefix">person</i>
+                                    <input id="lastname" type="text" name="last_name" class="validate" required>
                                     <label for="lastname" class="center-align">Apellido</label>
                                 </div>
-                            </div>
-                            <div class="row margin">
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix pt-2">insert_emoticon</i>
-                                    <input id="username" type="text">
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons black-text prefix">insert_emoticon</i>
+                                    <input id="username" type="text" name="user_name" class="validate" required>
                                     <label for="username" class="center-align">Nombre de usuario</label>
                                 </div>
-                            </div>
-                            <div class="row margin">
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix pt-2">lock_outline</i>
-                                    <input id="password" type="password">
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons black-text prefix">email</i>
+                                    <input id="email" type="text" name="e_mail" class="validate" required>
+                                    <label for="email" class="center-align">Correo Electrónico</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons black-text prefix">lock_outline</i>
+                                    <input id="password" type="password" name="pass_word" class="validate" required>
                                     <label for="password" class="">Contraseña</label>
                                 </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons black-text prefix">replay</i>
+                                    <input id="repeat" type="password" name="second_pass" class="validate" required>
+                                    <label for="repeat" class="">Repite la contraseña</label>
+                                </div>
+                                <label class="center-align col s12">
+					                <input id="condicion" type="checkbox" name="condicion">
+					                <span>Acepto <a href="#terminos" class="modal-trigger">términos y condiciones</a></span>
+				                </label>
                             </div>
                             <div class="row margin">
                                 <div class="input-field col s12">
-                                    <i class="material-icons prefix pt-2">replay</i>
-                                    <input id="repeat" type="password">
-                                    <label for="repeat" class="">Repite la contraseña</label>
+                                    <a  href="homeviews/index.php"
+                                        class="btn waves-effect waves-light border-round black col s12"
+                                        data-tooltip="Registrar">REGISTRAR</a>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <a href="homeviews/index.php"
-                                        class="btn waves-effect waves-light border-round black col s12">ENTRAR</a>
-                                </div>
-                            </div>
+                            <h6 class="white-text">.</h6>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Efecto parallax con una altura de 300px -->
+        <div class="parallax-container">
+            <div class="parallax">
+                <img id="parallax">
+            </div>
+        </div>
         <!-- PLUGIN: Funciona para los textarea dinámicos. -->
         <script src="../../resources/public/js/plugin.js" type="text/javascript"></script>
+        <script src="../../resources/public/controllers/account.js" type="text/javascript"></script>
     </body>
 </html>

@@ -11,6 +11,8 @@
         <link href="../../../resources/public/css/materialize.min.css" rel="stylesheet">
         <!-- ESTILO -->
         <link href="../../../resources/public/css/page.css" rel="stylesheet">
+        <!-- FUENTE -->
+        <link href="../../../resources/public/css/font.css" rel="stylesheet">
     </head>
 
     <body class="oa">
@@ -20,7 +22,7 @@
                     <div class="ico">
                         <a href="#" class="brand-logo"><i class="tiny material-icons">movie</i>PopMovies</a>
                     </div>
-                    <div class="input-field search-field ">
+                    <div class="input-field search-field">
                         <input id="search" type="search" placeholder="Busca una película" class="search white-text" required>
                         <label class="label-icon" for="search"><i class="material-icons white-text ">search</i></label>
                     </div>
@@ -34,15 +36,14 @@
             </nav>
             <ul id="slide-out" class="sidenav sidenav-fixed">
                 <li><a class="subheader">Géneros</a></li>
-                <div id="gen">
-
+                <div id="generos">
+                    
                 </div>
                 <li><a class="subheader">Configuración</a></li>
                 <li><a href="account.php"><i class="material-icons">settings</i>Ajustes de la cuenta</a></li>
                 <li><a href="users.php"><i class="material-icons">people</i>Usuarios del sistema</a></li>
-                <li><a href="../login.php"><i class="material-icons">power_settings_new</i>Cerrar Sesión</a></li>
                 <div class="user-view center">
-                    <h6 class="white-text">.</h6>
+                    <h2 class="white-text">.</h2>
                 </div>
             </ul>
         </header>

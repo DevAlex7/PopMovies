@@ -19,6 +19,9 @@ if(isset($_GET['site']) && isset($_GET['action'])){
                 $result['exception'] = 'No hay generos registrados';
             }
             break;
+            
+            default:
+            exit('accion no disponible');
         }
    }
    else{
