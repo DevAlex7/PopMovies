@@ -4,7 +4,7 @@ $(document).ready(function () {
 const APIBinnacle ='../../global/api/dashboard/binnacle.php?site=dashboard&action=';
 
 //Admins list actions collection
-function setActionstoCollectionforAdmins(rows){
+function setActionstoCollectionforAdmins(rows,admin){
 
     let content ='';
    
