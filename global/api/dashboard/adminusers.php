@@ -87,6 +87,14 @@
                             $result['exception']='Campo vacio';
                         }
                     break;
+                    case 'all':
+                    if($result['dataset']=$userAdmin->all()){
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['exception']='No hay administradores además de usted :)';
+                    }
+                    break;
                     case 'logOff':
                     if (session_destroy()) {
                         header('location: ../../../feed/account/');

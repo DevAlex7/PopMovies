@@ -34,7 +34,7 @@ if(isset($_GET['site']) && isset($_GET['action'])){
             {   
                 //Verify if exist the Gender
                 if(! $gender->exist()){
-                    $message = "ha registrado un nuevo genero:".' '.$gender->getGendername();
+                    $message = "registrado un nuevo genero:".' '.$gender->getGendername();
                     $binnacle->actionperformed($message);
                     $binnacle->admin_id($_SESSION['idUsername']);
                     if($binnacle->site('genders')){

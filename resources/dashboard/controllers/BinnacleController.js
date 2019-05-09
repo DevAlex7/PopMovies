@@ -4,10 +4,9 @@ $(document).ready(function () {
 const APIBinnacle ='../../global/api/dashboard/binnacle.php?site=dashboard&action=';
 
 //Admins list actions collection
-function setActionstoCollectionforAdmins(rows){
+function setActionstoCollectionforAdmins(rows,admin){
 
     let content ='';
-   
     if(rows.length>0){
         let site='';
         rows.forEach(function(row){
@@ -28,10 +27,19 @@ function setActionstoCollectionforAdmins(rows){
                 case 'memberships':
                     site='membresias';
                 break;
+                case 'managers':
+                    site='administradores';
+                break;
                 default:
                 console.log("Fallo al declarar sitio");
             }
-            content+=`<a href="/PopMovies/feed/account/${row.site}.php" class=" blue-text collection-item"><span data-badge-caption="${site}" class="new badge green"></span>${row.adminUser} ${row.actionperformed}</a>`;
+            if(row.id===admin){
+                content+=`<a href="/PopMovies/feed/account/${row.site}.php" class=" blue-text collection-item"><span data-badge-caption="${site}" class="new badge green"></span>Tú has ${row.actionperformed}</a>`;    
+            }
+            else{
+                content+=`<a href="/PopMovies/feed/account/${row.site}.php" class=" blue-text collection-item"><span data-badge-caption="${site}" class="new badge green"></span>${row.adminUser} ha ${row.actionperformed}</a>`;
+            }
+            
         })        
     }
     else{
@@ -68,7 +76,7 @@ function GetActionsforAdmins(){
             const result = JSON.parse(response);
             if(!result.status){
             }
-            setActionstoCollectionforAdmins(result.dataset);
+            setActionstoCollectionforAdmins(result.dataset,result.admin);
         }
         
         else{

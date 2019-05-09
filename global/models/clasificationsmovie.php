@@ -55,6 +55,11 @@ class Clasificationsmovie extends Validator{
         $params=array($this->clasification_id,$this->id);
         return Database::executeRow($sql, $params); 
     }
+    public function destroy(){
+        $sql='DELETE FROM clasificationsmovie WHERE id=?';
+        $params=array($this->id);
+        return Database::executeRow($sql,$params);
+    }
     //Table
     public function GetClasificationsInMovies(){
         $sql='
@@ -73,7 +78,7 @@ class Clasificationsmovie extends Validator{
         return Database::getRow($sql, $params);
     }
     public function getClasificationsinMovie(){
-        $sql='  SELECT clasifications.clasification 
+        $sql='  SELECT clasifications.clasification, clasifications.description 
                 FROM clasifications, movies, clasificationsmovie 
                 WHERE clasifications.id=clasificationsmovie.clasification 
                 AND movies.id=clasificationsmovie.movie AND movies.id=?';

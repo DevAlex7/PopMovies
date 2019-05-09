@@ -257,7 +257,8 @@ function ClasificationinMovie(){
             if(!result.status){
                 $('#exceptionClasification').text(result.exception);   
             }
-            $('#clasification').text(result.dataset.clasification);
+            $('#clasification').text(result.dataset.clasification+' - '+result.dataset.description);
+           
         }
         else{
             console.log(response);

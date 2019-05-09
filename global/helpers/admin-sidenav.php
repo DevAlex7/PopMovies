@@ -25,7 +25,7 @@ class AdminSideNav{
                         </div>
                     </li>
                     <li><a href="/PopMovies/feed/account/home.php"><i class="material-icons">dashboard</i>Inicio</a></li>
-                    <li><a href=""><i class="material-icons">person</i>Mi perfil</a></li>
+                    <li><a href="/PopMovies/feed/account/profile.php"><i class="material-icons">person</i>Mi perfil</a></li>
                     <li><a href="/PopMovies/feed/account/binnacle.php"><i class="material-icons">drag_indicator</i>Bitacora</a></li>
                     <li><div class="divider"></div></li>
                     <li><a class="subheader white-text">Menu</a></li>

@@ -122,7 +122,27 @@ class adminusers extends Validator{
         $sql='INSERT INTO admins (name, lastname, username, email, password) VALUES (?,?,?,?,?)';
         $params=array($this->name, $this->lastname,$this->username,$this->email, $hash);
         return Database::executeRow($sql, $params);
-    }
+	}
+	public function all(){
+		$sql='SELECT * FROM admins WHERE admins.id NOT IN (?)';
+		$params=array($_SESSION['idUsername']);
+		return Database::getRows($sql, $params);
+	}
+	public function allbyId(){
+		$sql='SELECT * FROM admins WHERE id=?';
+		$params=array($this->id);
+		return Database::getRow($sql, $params);
+	}
+	public function edit(){
+		$sql='UPDATE admins SET name=?, lastname=?, username=?, email=? WHERE id=?';
+		$params=array($this->name, $this->lastname, $this->username, $this->email, $this->id);
+		return Database::executeRow($sql,$params);
+	}
+	public function destroy(){
+		$sql='DELETE FROM admins WHERE id=?';
+		$params=array($this->id);
+		return Database::executeRow($sql, $params);
+	}
 }
 
 ?>

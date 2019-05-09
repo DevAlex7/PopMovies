@@ -56,7 +56,7 @@ class Binnacle extends Validator{
         return Database::executeRow($sql, $params);
     }
     public function actionsInAdmins(){
-        $sql='SELECT admins.username AS adminUser, binnacle.actionperformed, binnacle.site FROM admins, binnacle WHERE admins.id=binnacle.admin_id ORDER BY binnacle.id DESC';
+        $sql='SELECT admins.id, admins.username AS adminUser, binnacle.actionperformed, binnacle.site FROM admins, binnacle WHERE admins.id=binnacle.admin_id ORDER BY binnacle.id DESC';
         $params=array(null);
         return Database::getRows($sql, $params);
     }

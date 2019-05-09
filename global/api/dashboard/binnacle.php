@@ -7,16 +7,18 @@
     if(isset($_GET['site']) && isset($_GET['action'])){
         session_start();
         $binnacle = new Binnacle();
-        $result=array('status'=>0,'exception'=>'');
+        $result=array('status'=>0,'exception'=>'','admin'=>'');
 
         if($_GET['site']=='dashboard'){
             switch($_GET['action']){
                 case 'createAction':
-
+                    
                 break;
                 case 'getListActionsbyAdmins':
                     if($result['dataset']=$binnacle->actionsInAdmins()){
+                        $result['admin']=$_SESSION['idUsername'];
                         $result['status']=1;
+
                     }
                     else{
                         $result['exception']='No hay acciones en lista';
