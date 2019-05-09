@@ -42,10 +42,10 @@
                 </div>
             </div>
             <div class="col s12 m6">
-                <div class="card  red accent-2">
+                <div class="card   red darken-3">
                     <div class="card-content">
-                        <span class="card-title">Acciones que puedes hacer con tu cuenta</span>
-                        <div class="divider black"></div>
+                        <span class="card-title white-text">Acciones que puedes hacer con tu cuenta</span>
+                        <div class="divider white"></div>
                         <div class="row">
                             <div class="col s12 m12">
                                 <div class="card-panel">
