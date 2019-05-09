@@ -90,7 +90,6 @@ class Actormovie extends Validator{
         $params=array($this->id_actor,$this->id_movie);
         return Database::getRow($sql, $params);
     }
-    
     public function destroy(){
         $sql= 'DELETE FROM actorsmovie WHERE id=?';
         $params=array($this->id);

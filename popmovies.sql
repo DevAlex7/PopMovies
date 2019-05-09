@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2019 a las 16:30:36
+-- Tiempo de generación: 09-05-2019 a las 04:24:17
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -131,42 +131,12 @@ CREATE TABLE `binnacle` (
 --
 
 INSERT INTO `binnacle` (`id`, `actionperformed`, `user_id`, `admin_id`, `date`, `year`, `site`) VALUES
-(14, 'ha registrado al actor Anuel', NULL, 3, '2019-05-07', 2019, 'actors'),
-(15, 'ha registrado la clasificación  adada', NULL, 3, '2019-05-08', 2019, 'clasifications'),
-(16, 'ha registrado la clasificación  C15', NULL, 3, '2019-05-08', 2019, 'clasifications'),
-(17, 'ha registrado al proveedor Curacao', NULL, 3, '2019-05-08', 2019, 'customers'),
-(18, 'ha registrado un nuevo genero:Rap', NULL, 3, '2019-05-08', 2019, 'genders'),
-(19, 'ha registrado un nuevo genero: Country', NULL, 3, '2019-05-08', 2019, 'genders'),
-(20, 'ha registrado al actor asdasdasd', NULL, 3, '2019-05-08', 2019, 'actors'),
-(21, 'ha añadido al actor: ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(22, 'ha registrado al actor Hee Hee', NULL, 3, '2019-05-08', 2019, 'actors'),
-(23, 'ha registrado al actor asdadASSas', NULL, 3, '2019-05-08', 2019, 'actors'),
-(24, 'ha registrado al actor asdADADAD', NULL, 3, '2019-05-08', 2019, 'actors'),
-(25, 'ha añadido al actor: Array', NULL, 3, '2019-05-08', 2019, 'actors'),
-(26, 'ha añadido al actor: ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(27, 'ha añadido al actor: Array', NULL, 3, '2019-05-08', 2019, 'actors'),
-(28, 'ha añadido al actor: ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(29, 'ha añadido al actor: Calvin Klein', NULL, 3, '2019-05-08', 2019, 'actors'),
-(30, 'ha añadido al actor:  a la pelicula ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(31, 'ha añadido al actor:  a la pelicula ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(32, 'ha añadido al actor:  a la pelicula ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(33, 'ha añadido al actor:  a la pelicula ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(34, 'ha añadido al actor:  a la pelicula ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(35, 'ha registrado un nuevo genero: Culo', NULL, 3, '2019-05-08', 2019, 'genders'),
-(36, 'ha añadido al actor:  a la pelicula ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(37, 'ha añadido al actor:  a la pelicula ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(38, 'ha añadido al actor:  a la pelicula ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(39, 'ha añadido al actor:  a la pelicula', NULL, 3, '2019-05-08', 2019, 'actors'),
-(40, 'ha añadido al actor:  a la pelicula', NULL, 3, '2019-05-08', 2019, 'actors'),
-(41, 'ha añadido al actor:  a la pelicula', NULL, 3, '2019-05-08', 2019, 'actors'),
-(42, 'ha añadido al actor:  a la pelicula ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(43, 'ha añadido al actor:  a la pelicula ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(44, 'ha añadido al actor:  a la pelicula ', NULL, 3, '2019-05-08', 2019, 'actors'),
-(45, 'ha registrado un nuevo genero: Tu madre', NULL, 3, '2019-05-08', 2019, 'genders'),
-(46, 'ha asignado el actor Rolin Azmitia', NULL, 3, '2019-05-08', 2019, 'actors'),
-(47, 'ha asignado el actor asd John Wick', NULL, 3, '2019-05-08', 2019, 'actors'),
-(48, 'ha asignado el actor Tom Holland Capitana Marvel', NULL, 3, '2019-05-08', 2019, 'actors'),
-(49, 'ha asignado el actor Calvin Klein a la pelicula: John Wick', NULL, 3, '2019-05-08', 2019, 'actors');
+(50, 'ha asignado el genero  ', NULL, 3, '2019-05-08', 2019, 'genders'),
+(51, 'ha asignado el genero  ', NULL, 3, '2019-05-08', 2019, 'genders'),
+(52, 'ha asignado el genero  Aventura', NULL, 3, '2019-05-08', 2019, 'genders'),
+(53, 'ha asignado el genero  Country a la pelicula: John Wick', NULL, 3, '2019-05-08', 2019, 'genders'),
+(54, 'ha asignado la clasificación: B12 a la pelicula John Wick', NULL, 3, '2019-05-09', 2019, 'clasifications'),
+(55, 'ha agregado una nueva membresia:  Pink', NULL, 3, '2019-05-09', 2019, 'memberships');
 
 -- --------------------------------------------------------
 
@@ -209,8 +179,8 @@ CREATE TABLE `clasificationsmovie` (
 --
 
 INSERT INTO `clasificationsmovie` (`id`, `clasification`, `movie`) VALUES
-(7, 1, 17),
-(8, 3, 18);
+(1, 6, 17),
+(2, 4, 18);
 
 -- --------------------------------------------------------
 
@@ -299,7 +269,9 @@ CREATE TABLE `gendersmovie` (
 --
 
 INSERT INTO `gendersmovie` (`id`, `gender`, `movie`) VALUES
-(1, 29, 17);
+(1, 29, 17),
+(2, 26, 17),
+(3, 34, 17);
 
 -- --------------------------------------------------------
 
@@ -319,7 +291,8 @@ CREATE TABLE `memberships` (
 
 INSERT INTO `memberships` (`id`, `membership`, `price`) VALUES
 (1, 'Gold', 10.99),
-(2, 'Black', 20.00);
+(2, 'Black', 20.00),
+(3, 'Pink', 10.20);
 
 -- --------------------------------------------------------
 
@@ -384,13 +357,20 @@ CREATE TABLE `state` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `uname` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `lastname` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `username` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `username` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `upassword` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `membership` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `uname`, `lastname`, `email`, `username`, `upassword`, `membership`) VALUES
+(1, 'Gaby', 'Ramos', 'akat@gmail.com', 'Akat', '$2y$10$o2BwkT0LgC/RQ7dVU0TLC.RBd0QvPHQ7RAQa1PwV/7s...', 2);
 
 --
 -- Índices para tablas volcadas
@@ -533,7 +513,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT de la tabla `binnacle`
 --
 ALTER TABLE `binnacle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de la tabla `clasifications`
@@ -545,7 +525,7 @@ ALTER TABLE `clasifications`
 -- AUTO_INCREMENT de la tabla `clasificationsmovie`
 --
 ALTER TABLE `clasificationsmovie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `customers`
@@ -569,13 +549,13 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT de la tabla `gendersmovie`
 --
 ALTER TABLE `gendersmovie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `memberships`
 --
 ALTER TABLE `memberships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `movies`
@@ -599,7 +579,7 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas

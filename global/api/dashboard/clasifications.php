@@ -117,7 +117,8 @@
                         $result['exception']='identificador incorrecto';
                     } 
                 break;
-
+                case 'getClasications':
+                break;
                 default:
                 exit('accion no disponible');
             }

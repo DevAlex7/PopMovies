@@ -72,6 +72,22 @@ class Clasificationsmovie extends Validator{
         $params=array($this->id);
         return Database::getRow($sql, $params);
     }
+    public function getClasificationsinMovie(){
+        $sql='  SELECT clasifications.clasification 
+                FROM clasifications, movies, clasificationsmovie 
+                WHERE clasifications.id=clasificationsmovie.clasification 
+                AND movies.id=clasificationsmovie.movie AND movies.id=?';
+        $params=array($this->movie_id);
+        return Database::getRow($sql, $params);
+    }
+    public function getNames(){
+        $sql='  SELECT clasifications.clasification, movies.name
+                FROM movies, clasifications, clasificationsmovie
+                WHERE clasifications.id=clasificationsmovie.clasification 
+                AND movies.id=clasificationsmovie.movie AND clasifications.id=? AND movies.id=?';
+        $params=array($this->clasification_id,$this->movie_id);
+        return Database::getRow($sql,$params);
+    }
 }
 
 ?>

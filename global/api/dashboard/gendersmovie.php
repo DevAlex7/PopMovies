@@ -3,10 +3,12 @@
     require_once('../../helpers/instance.php');
     require_once('../../helpers/validator.php');
     require_once('../../models/gendersmovie.php');
+    require_once('../../models/binnacle.php');
 
     if(isset($_GET['site']) && isset($_GET['action'])){
         session_start();
         $gendermovie = new Gendermovie();
+        $binnacle = new Binnacle();
         $result = array('status'=>0, 'exception'=>'');
         if($_GET['site']=='dashboard'){
             switch($_GET['action']){
@@ -16,8 +18,18 @@
                             if($gendermovie->gender_id($_POST['GenderSelect'])){
                                 if($gendermovie->movie_id($_POST['MoviesSelect'])){
                                     if(!$gendermovie->exist()){
-                                        $gendermovie->create();
-                                        $result['status']=1;
+                                        if($binnacle->site('genders')){
+                                            $gendermovie->create();
+                                            $get=$gendermovie->getNames();
+                                            $message = "ha asignado el genero ".' '.$get['Gender'].' a la pelicula: '.$get['Movie'];
+                                            $binnacle->actionperformed($message);
+                                            $binnacle->admin_id($_SESSION['idUsername']);
+                                            $binnacle->create();                                        
+                                            $result['status']=1;
+                                        }
+                                        else{
+                                            $result['exception']='Ha ocurrido un problema, contacte al administrador';
+                                        }
                                     }
                                     else{
                                         $result['exception']='Este genero ya esta registrado con esa pelicula';
@@ -44,7 +56,7 @@
                         if($result['dataset'] = $gendermovie->getGenders_in_MoviesbyId()) {
                             $result['status']=1;
                         }else{
-                            $result['exception']='No hay información';
+                            $result['exception']='No hay información de generos en esta pelicula';
                         }
                     }   
                     else{
