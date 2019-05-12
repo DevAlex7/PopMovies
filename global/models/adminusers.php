@@ -112,6 +112,20 @@ class adminusers extends Validator{
 		}
 	}
 
+	public function LogOff(){
+		if(isset($_SESSION['idUsername'])){
+			unset($_SESSION['idUsername']);
+			unset($_SESSION['AdminUsername']);
+			unset($_SESSION['AdminName']);
+			unset($_SESSION['AdminLastname']);
+			return true;
+		}	
+		else
+		{
+			return false;
+		}	
+	}
+
     public function checkUsers(){
         $sql='SELECT name, lastname, username, email FROM admins ORDER BY lastname';
         $params = array(null);
