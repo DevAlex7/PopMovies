@@ -72,25 +72,25 @@ class Database
     {
         switch ($code) {
             case 1045:
-                $message = 'Autenticación desconocida';
+                $message = 'Autenticación desconocida.';
                 break;
             case 1049:
-                $message = 'Base de datos desconocida';
+                $message = 'Base de datos desconocida.';
                 break;
             case 1054:
-                $message = 'Nombre de campo desconocido';
+                $message = 'Nombre de campo desconocido.';
                 break;
             case 1062:
-                $message = 'Dato duplicado, no se puede guardar';
+                $message = 'Dato duplicado, no se puede guardar.';
                 break;
             case 1146:
-                $message = 'Nombre de tabla desconocido';
+                $message = 'Nombre de tabla desconocido.';
                 break;
             case 1451:
-                $message = 'Registro ocupado, no se puede eliminar';
+                $message = 'Registro ocupado, no se puede eliminar.';
                 break;
             case 2002:
-                $message = 'Servidor desconocido';
+                $message = 'Servidor desconocido.';
                 break;
             default:
                 $message = 'Ocurrió un problema, contacte al administrador :(';
