@@ -52,7 +52,7 @@ class Binnacle extends Validator{
     }
     public function create(){
         $sql='INSERT INTO binnacle(actionperformed, user_id, admin_id, date , year, site) VALUES(?,?,?,?,?,?)';
-        $params=array($this->actionperformed, $this->user_id,$this->admin_id, $today=date("Y-m-d"), $year=date("Y"),$this->site);
+        $params=array($this->actionperformed, $this->user_id, $this->admin_id, $today=date("Y-m-d"), $year=date("Y"),$this->site);
         return Database::executeRow($sql, $params);
     }
     public function actionsInAdmins(){

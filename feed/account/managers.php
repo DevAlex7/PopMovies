@@ -33,19 +33,20 @@
                     <div class="center">
                         <span class="card-title">Administradores</span>
                     </div>
-                    <div class="row" id="SearchRow">
-                            <nav class="white">
-                                <div class="nav-wrapper">
-                                <form>
-                                    <div class="input-field">
-                                    <input id="search" type="search" placeholder="Buscar...">
-                                    <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
-                                    <i class="material-icons">close</i>
-                                    </div>
-                                </form>
+                    <!--<div class="row" id="SearchRow">
+                        <nav class="white">
+                            <div class="nav-wrapper">
+                            <form>
+                                <div class="input-field">
+                                <input id="search" type="search" placeholder="Buscar...">
+                                <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+                                <i class="material-icons">close</i>
                                 </div>
-                            </nav>
+                            </form>
+                            </div>
+                        </nav>
                     </div>
+-->
                     <div class="row" id="TableAdmins">
                     <table class="responsive-table">
                         <thead>

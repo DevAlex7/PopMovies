@@ -75,7 +75,7 @@ class adminusers extends Validator{
 
     public function password($value){
         if ($this->validatePassword($value)) {
-			$this->password = $value;
+			$this->upassword = $value;
 			return true;
 		} else {
 			return false;

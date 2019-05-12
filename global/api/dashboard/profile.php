@@ -60,7 +60,17 @@
                 }
                 break;
                 case 'deleteProfile':
-                
+                    if($admin->id($_POST['id'])){
+                        if (session_destroy()) {
+                            $admin->destroy();
+                            header('location: ../../../feed/account/');
+                        } else {
+                            header('location: ../../../feed/account/home.php');
+                        }
+                    }
+                    else{
+                        $result['exception']='No se hay información para realizar acción';
+                    }
                 break;
                 default:
                 exit('acción no disponible');

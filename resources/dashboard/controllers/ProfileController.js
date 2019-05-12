@@ -78,6 +78,9 @@ $('#FormEditAdminUser').submit(function(){
         if(isJSONString(response)){
             const result=JSON.parse(response);
             if(result.status){
+             
+              $(location).attr('href','profile.php');
+              location.reload(); 
               M.toast({html:'Su perfil ha sido actualizado satisfactoriamente'});
               readProfile();
             }
@@ -96,19 +99,18 @@ $('#FormEditAdminUser').submit(function(){
 })
 function DeletebyId(){
     $.ajax({
-        url:APIAdministrators+'readProfile',
+        url:APIAdministrators+'deleteProfile',
         type:'POST',
-        data:null,
+        data:{
+            id
+        },
         datatype:'JSON'
     })
     .done(function(response){
         if(isJSONString(response)){
             const result=JSON.parse(response);
             if(result.status){
-                id=result.dataset.id;
-                $('#NameUser').text(result.dataset.name+' '+result.dataset.lastname);
-                $('#Username').text(result.dataset.username);
-                $('#UsernameEmail').text(result.dataset.email);
+                $(location).attr('href','index.php');
             }
             else{
                 M.toast({html:result.exception});

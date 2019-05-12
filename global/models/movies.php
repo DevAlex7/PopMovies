@@ -150,6 +150,9 @@ class Movies extends Validator{
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+    public function FavoriteMovies(){
+        
+    }
 }
 
 ?>

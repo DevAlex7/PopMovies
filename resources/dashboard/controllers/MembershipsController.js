@@ -38,12 +38,10 @@ function ShowAllMemberships()
     data: null,
     datatype: 'json'
 })
-.done(function (response){
-    
+.done(function(response){
     if(isJSONString(response))
     {
         const result = JSON.parse(response);
-
         if(!result.status){
             M.toast({html: 'No hay membresias registradas'})
         }
@@ -100,7 +98,6 @@ $('#form-createMembership').submit(function(){
 
 //Show Membership - Edit
 function ShowMembership(id){
-    console.log(id);
     $.ajax({
         url: APIMemberships + 'GetMembershipbyId',
         type: 'POST',
@@ -110,9 +107,7 @@ function ShowMembership(id){
         datatype: 'json',
     })
     .done(function(response){
-        console.log(response);
         if (isJSONString(response)) {
-
             const result = JSON.parse(response);
             if (result.status) {
                 $('#idUpdateMembership').val(result.dataset.id);  
@@ -153,7 +148,7 @@ $('#UpdateMembership').submit(function()
                 $('#ShowMembership').modal('close');
             }
             else
-            {
+            {0
                 console.log(result.exception);
             }
             ShowAllMemberships();
@@ -180,9 +175,7 @@ function ShowMembershipDelete(id){
         datatype: 'json',
     })
     .done(function(response){
-        console.log(response);
         if (isJSONString(response)) {
-
             const result = JSON.parse(response);
             if (result.status) {
                 $('#idDeleteMembership').val(result.dataset.id);  

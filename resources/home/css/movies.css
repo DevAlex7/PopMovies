@@ -1,0 +1,12 @@
+.nav-extended{
+    background-color: #0E1C36;
+  }
+  html{
+    background-image: url(../img/Cover.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;    
+    background-attachment: fixed;
+  }
+  #SearchContent{
+  margin-top: 1rem;
+  }

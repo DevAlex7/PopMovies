@@ -11,9 +11,7 @@
 
         if($_GET['site']=='dashboard'){
             switch($_GET['action']){
-                case 'createAction':
-                    
-                break;
+               
                 case 'getListActionsbyAdmins':
                     if($result['dataset']=$binnacle->actionsInAdmins()){
                         $result['admin']=$_SESSION['idUsername'];

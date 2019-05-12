@@ -27,7 +27,7 @@
         </div>
 
         <!--Search Bar -->
-        <div class="container">
+      <!--<div class="container">
           <nav class="white">
             <div class="nav-wrapper">
               <form>
@@ -40,7 +40,7 @@
             </div>
           </nav>
         </div>                
-
+        -->   
         
         <!-- All Movies -->
         <div class="row" id="AllMovies">

@@ -254,11 +254,13 @@ function ClasificationinMovie(){
     .done(function(response){
         if(isJSONString(response)){
             const result = JSON.parse(response);
-            if(!result.status){
-                $('#exceptionClasification').text(result.exception);   
+            if(result.status){
+                $('#clasification').text(result.dataset.clasification+' - '+result.dataset.description);   
             }
-            $('#clasification').text(result.dataset.clasification+' - '+result.dataset.description);
-           
+            else{
+                $('#exceptionClasification').text(result.exception);
+               
+            }
         }
         else{
             console.log(response);

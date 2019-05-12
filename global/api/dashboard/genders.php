@@ -28,27 +28,44 @@ if(isset($_GET['site']) && isset($_GET['action'])){
             }
             break;
             
-            //Create Actor
+            //Create Gender
             case 'createGender':
             if($gender->name($_POST['GenderName']))
             {   
-                //Verify if exist the Gender
-                if(! $gender->exist()){
-                    $message = "registrado un nuevo genero:".' '.$gender->getGendername();
-                    $binnacle->actionperformed($message);
-                    $binnacle->admin_id($_SESSION['idUsername']);
-                    if($binnacle->site('genders')){
-                        $binnacle->create();
-                        $gender->create();
-                        $result['status'] = 1;
+                if(is_uploaded_file($_FILES['FileGenderCover']['tmp_name'])){
+                    if($gender->cover($_FILES['FileGenderCover'],null)){
+                        if($gender->saveFile($_FILES['FileGenderCover'],$gender->getRoot(),$gender->getImage())){
+                            if(! $gender->exist()){
+                                $message = "registrado un nuevo genero:".' '.$gender->getGendername();
+                                $binnacle->actionperformed($message);
+                                $binnacle->admin_id($_SESSION['idUsername']);
+                                if($binnacle->site('genders')){
+                                    $binnacle->create();
+                                    $gender->create();
+                                    $result['status'] = 1;
+                                }
+                                else{
+                                    $result['exception']='Ha ocurrido un problema, contacte al administrador';
+                                }
+                            }
+                            else{
+                                $result['exception'] = 'Genero ya existente';
+                            }
+                        }
+                        else{
+                            $result['status'] = 2;
+                            $result['exception'] = 'No se guardó el archivo';
+                        }
                     }
                     else{
-                        $result['exception']='Ha ocurrido un problema, contacte al administrador';
+                        $result['exception']=$gender->getImageError();
                     }
+                    
                 }
                 else{
-                    $result['exception'] = 'Genero ya existente';
+                    $result['exception'] = 'Seleccione una imagen';
                 }
+               
             }
             else{
                 $result['exception'] = 'Campo Vacio :v';
@@ -72,9 +89,35 @@ if(isset($_GET['site']) && isset($_GET['action'])){
             case 'edit':
                 if($gender->id($_POST['idEditGender'])){
                     if($gender->name($_POST['NameEditGender'])){
-                        
-                        $gender->edit();
-                        $result['status']=1;
+                        if (is_uploaded_file($_FILES['FileEditCover']['tmp_name'])) {
+                            if ($gender->cover($_FILES['FileEditCover'], $_POST['ImageEditGender'])) {
+                                $file = true;
+                            } else {
+                                $result['exception'] = $gender->getImageError();
+                                $file = false;
+                            }
+                        } else {
+                            if ($gender->cover(null, $_POST['ImageEditGender'])) {
+                                $result['exception'] = 'No se subió ningún archivo';
+                            } else {
+                                $result['exception'] = $gender->getImageError();
+                            }
+                            $file = false;
+                        }
+                        if ($gender->edit()) {
+                            if ($file) {
+                                if ($gender->saveFile($_FILES['FileEditCover'], $gender->getRoot(), $gender->getImage())) {
+                                    $result['status'] = 1;
+                                } else {
+                                    $result['status'] = 2;
+                                    $result['exception'] = 'No se guardó el archivo';
+                                }
+                            } else {
+                                $result['status'] = 3;
+                            }
+                        } else {
+                            $result['exception'] = 'Operación fallida';
+                        }
                     }
                     else{
                         $result['nombre incorrecto o campo vacio'];
@@ -87,9 +130,16 @@ if(isset($_GET['site']) && isset($_GET['action'])){
             //Delete Gender
             case 'destroy':
                 if($gender->id($_POST['idGender'])){
-                    
-                    $gender->delete();
-                    $result['status']=1;
+                    if ($gender->delete()) {
+                        if ($gender->deleteFile($gender->getRoot(), $_POST['DeleteImage'])) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['status'] = 2;
+                            $result['exception'] = 'No se borró el archivo';
+                        }
+                    } else {
+                        $result['exception'] = 'Operación fallida';
+                    }
                 }
                 else{
                     $result['exception']='Operacion fallida';
@@ -118,6 +168,20 @@ if(isset($_GET['site']) && isset($_GET['action'])){
             break;
             default:
             exit('accion no disponible');
+        }
+    }
+    else if($_GET['site']=='commerce'){
+        switch($_GET['action']){
+            case 'GetGenders':
+                if($result['dataset'] = $gender->all()){
+                    $result['status'] = 1;
+                }
+                else{
+                    $result['exception'] = 'No hay disponibilidad por el momento, lo arreglaremos pronto :)';
+                }
+            break;
+            default:
+            exit('acción no disponible');
         }
     }
     else{

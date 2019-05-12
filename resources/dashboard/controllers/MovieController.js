@@ -174,7 +174,7 @@ function FillCardMovie(rows){
                 </div>
                 <div class="card-content">
                 <span class="card-title">${row.name}</span>
-                    <p>${row.sinopsis}</p>
+                    <p class="truncate">${row.sinopsis}</p>
                 </div>
                 <div class="card-action">
                     <a class="btn blue" href="/PopMovies/feed/account/viewmovie.php?category=movies&movie=${row.id}" onClick=SetID(${row.id})>Ver detalles</a>

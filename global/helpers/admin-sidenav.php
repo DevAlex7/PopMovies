@@ -18,7 +18,7 @@ class AdminSideNav{
                     <li>
                         <div class="user-view">
                             <a href="#name"><span class="black-text name">'. $_SESSION['AdminUsername'].'</span></a>
-                            <a href="#email"><span class="black-text email">'. $_SESSION['AdminName'].$_SESSION['AdminLastname'] .'</span></a>
+                            <a href="#email"><span class="black-text email">'. $_SESSION['AdminName'].' '.$_SESSION['AdminLastname'] .'</span></a>
                             <div class="card center">
                                 <span class="card-title">PopMovies</span>
                             </div>
@@ -35,7 +35,7 @@ class AdminSideNav{
                     <li><a href="#!"><i class="material-icons">shop</i>Ventas</a></li>
                     <li><a href="/PopMovies/feed/account/customers.php"><i class="material-icons">business</i>Proveedores</a></li>
                     <li><a href="/PopMovies/feed/account/managers.php"><i class="material-icons">account_circle</i>Administradores</a></li>
-                    <li><a href=""><i class="material-icons">accessibility</i>Clientes</a></li>
+                    <li><a href="/PopMovies/feed/account/clients.php"><i class="material-icons">accessibility</i>Clientes</a></li>
                     <li><a href="/PopMovies/feed/account/memberships.php"><i class="material-icons">bookmark</i>Membresias</a></li>
                     <li><a href="/PopMovies/feed/account/actors.php"><i class="material-icons">face</i>Actores</a></li>
                     <li><div class="divider"></div></li>
@@ -69,8 +69,6 @@ class AdminSideNav{
                 ');
             }
         }
-
-      
     }
     private function modals(){
         print('
@@ -89,8 +87,5 @@ class AdminSideNav{
         </div>
         ');
     }
-
 }
-
-
 ?>

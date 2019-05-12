@@ -109,7 +109,7 @@
                                             }
                                     }
                                     else{
-                                        $result['exception'] = $producto->getImageError();
+                                        $result['exception'] = $movie->getImageError();
                                     }
                                 }
                                 else{
