@@ -26,9 +26,11 @@ class MovieNavBar{
             
             <!-- SideNav -->
             <ul class="sidenav" id="mobile-demo">
-              <li><a>Generos</a></li>
-              <li><a>Clasificaciónes</a></li>
-              <li><a>Actores</a></li>
+            <li><a href="#!"> <i class="material-icons">home</i> Inicio </a></li>
+            <li><div class="divider"></div></li>
+              <li><a> <i class="material-icons left">sentiment_satisfied_alt</i> Generos</a></li>
+              <li><a> <i class="material-icons">view_list</i> Clasificaciónes</a></li>
+              <li><a> <i class="material-icons">face</i>  Actores</a></li>
             </ul>
           ');
         }else{

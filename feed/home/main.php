@@ -30,17 +30,15 @@
     </nav>
   </div>
 </div>      
-<div class="container">
+  <div class="col s12 m12">
     <div class="row" id="ContentCards">
-        
     </div>
-</div>
-
+  </div>
 
 <script src="../../resources/globaljs/jquery-3.2.1.min.js"></script>
 <script src="../../resources/globaljs/materialize.min.js"></script> 
 <script src="../../resources/home/js/sidenav.js"></script> 
 <script src="../../global/helpers/functions.js"></script>
-<script src="../../resources/home/controllers/FeedController.js"></script>
+<script src="../../resources/home/controllers/MainController.js"></script>
 </body>
 </html>

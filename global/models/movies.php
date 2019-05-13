@@ -150,8 +150,28 @@ class Movies extends Validator{
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+    public function getMoviesbyGender(){
+        $sql='  SELECT 
+                genders.id, 
+                genders.gender,
+                movies.id, 
+                movies.name,
+                movies.sinopsis,
+                movies.cover 
+                FROM movies, genders, gendersmovie 
+                WHERE genders.id=gendersmovie.gender 
+                AND movies.id=gendersmovie.movie 
+';
+        $params=array(null);
+        return Database::getRows($sql, $params);
+    }
     public function FavoriteMovies(){
         
+    }
+    public function existsite(){
+        $sql='SELECT * FROM movies WHERE id=? AND name=?';
+        $params=array($this->id,$this->name);
+        return Database::getRow($sql,$params);
     }
 }
 

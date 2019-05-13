@@ -2,7 +2,6 @@ var id;
 var chips;
 $(document).ready(function()
 {
-   
     /*SelectActors('ActorMovie', null);
     SelectGenders('GendersCombo', null);
     SelectClasifications('ComboClasifications', null);*/
@@ -183,7 +182,6 @@ function FillCardMovie(rows){
         </div>
         `;
         })
-       
     }
     $('#AllMovies').html(content);
 }

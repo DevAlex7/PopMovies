@@ -66,6 +66,11 @@ class Gender extends Validator{
         $params=array($this->id);
         return Database::getRow($sql, $params);
     }
+    public function getMoviesbyGenders(){
+        $sql='SELECT movies.name FROM movies, genders, gendersmovie WHERE movies.id=gendersmovie.movie AND genders.id=gendersmovie.gender AND genders.id=?';
+        $params=array($this->id);
+        return Database::getRows($sql, $params);
+    }
     public function all()
     {
          $sql='SELECT * FROM genders';

@@ -142,6 +142,7 @@ function DeleteMoviebyId(){
             if(result.status){
                    if(result.status == 1){
                         M.toast({html:'Producto eliminado correctamente'});
+                        $(location).attr('href','movies.php');
                    }
                    else{
                     M.toast({html:'Producto eliminado'});
