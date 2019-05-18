@@ -91,7 +91,12 @@
                 
                     //Delete Actor
                 case 'deleteActor':
-                   
+                   if($actor->id($_POST['idDeleteNameActor'])){
+                    $actor->delete();
+                    $result['status']=1;
+                   }else{
+                       $result['exception']='No hay información del actor';
+                   }
                 break;
                 case 'getMovies':
                     if ($result['dataset'] = $movie->all()) {

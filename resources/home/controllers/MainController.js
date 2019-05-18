@@ -44,7 +44,7 @@ function setMoviesMain(rows, genders)
                             <p class="truncate">${itemRow.sinopsis}</p>
                         </div>
                         <div class="card-action">
-                            <a href="/PopMovies/feed/home/viewmovie.php?movie=${itemRow.id}&name=${itemRow.name}" class="btn">Ver</a>
+                            <a href="/PopMovies/feed/home/viewmovie.php?movie=${itemRow.id}" class="btn blue">Ver</a>
                         </div>
                     </div>
                   </div>

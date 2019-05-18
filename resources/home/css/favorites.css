@@ -1,0 +1,28 @@
+.nav-extended{
+    background-color: #0E1C36;
+  }
+  html{
+    background-image: url(../img/Cover.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;    
+    background-attachment: fixed;
+    
+  }
+  #Title{
+    font-weight: 500;
+  }
+  #collection{
+    border: none;
+  }
+  #cardPanel{
+    border: none;
+  }
+  #PicMovie{
+    margin-top: 0.5rem;
+  }
+  #titlemovie{
+    margin-top: 0.2rem;
+  }
+  #Iconquit{
+    margin-top: 0.5rem;
+  }

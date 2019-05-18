@@ -18,7 +18,7 @@ class Actor extends Validator{
       }
     }
     public function name($value){
-      if($this->validateAlphabetic($value,5,50)){
+      if($this->validateAlphabetic($value,5,200)){
         $this->name=$value;
         return true;
       }

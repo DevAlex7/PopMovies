@@ -114,6 +114,7 @@ class adminusers extends Validator{
 
 	public function LogOff(){
 		if(isset($_SESSION['idUsername'])){
+			
 			unset($_SESSION['idUsername']);
 			unset($_SESSION['AdminUsername']);
 			unset($_SESSION['AdminName']);

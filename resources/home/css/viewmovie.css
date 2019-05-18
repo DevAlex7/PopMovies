@@ -1,0 +1,46 @@
+.nav-extended{
+    background-color: #0E1C36;
+}
+#Favoritepart{
+  margin-top: 2rem;
+}
+#IconLove{
+  margin-top: 1rem;
+}
+#GendersinMovie{
+  margin-top: 1rem;
+}
+#GendersPart{
+  margin-top: 1rem;
+}
+#ActorsinMovie{
+  margin-top: 1rem;
+}
+#ActorsPart{
+  margin-top: 1rem;
+}
+#ChipComment{
+  margin-top: 0.5rem;
+  border-radius: 20px;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  
+}
+#TitleComment{
+  margin-top: 1.2rem;
+}
+#IconPerson{
+  margin-top: 0.5rem;
+}
+#ShopPart{
+  margin-top: 2rem;
+}
+#Counter{
+  margin-top: 1rem;
+}
+#BtnShop{
+  margin-top: 1.2rem;
+  margin-left: 1rem;
+}
