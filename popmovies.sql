@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-05-2019 a las 04:24:17
+-- Tiempo de generación: 12-05-2019 a las 06:19:50
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -38,28 +38,7 @@ CREATE TABLE `actors` (
 --
 
 INSERT INTO `actors` (`id`, `name`) VALUES
-(1, 'Chris Evans'),
-(2, 'Steven Diaz'),
-(3, 'Carranza'),
-(5, 'Rolin Azmitia'),
-(6, 'Sara Ventura'),
-(7, 'Fabiola'),
-(8, 'Calvin Klein'),
-(9, 'Tom Holland'),
-(10, 'sada'),
-(11, 'asd'),
-(12, 'Alisson'),
-(13, 'asdsa'),
-(14, 'Bermudez'),
-(15, 'Manuel'),
-(16, 'Diaz'),
-(17, 'Daniel'),
-(18, 'ass'),
-(19, 'Anuel'),
-(20, 'asdasdasd'),
-(21, 'Hee Hee'),
-(22, 'asdadASSas'),
-(23, 'asdADADAD');
+(36, 'Chris Eva');
 
 -- --------------------------------------------------------
 
@@ -72,20 +51,6 @@ CREATE TABLE `actorsmovie` (
   `Actor` int(11) NOT NULL,
   `Movie` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `actorsmovie`
---
-
-INSERT INTO `actorsmovie` (`id`, `Actor`, `Movie`) VALUES
-(35, 1, 17),
-(36, 8, 17),
-(37, 2, 17),
-(38, 3, 17),
-(39, 5, 18),
-(40, 11, 18),
-(41, 9, 17),
-(42, 8, 18);
 
 -- --------------------------------------------------------
 
@@ -107,8 +72,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `lastname`, `username`, `email`, `password`) VALUES
-(3, 'Alejandro ', 'Gonzalez', 'Alexgve7', 'alexgve7@gmail.com', '$2y$10$K5xbF5Eo5n9mIgl2YE3F3.e52kzNUFf6YOlH8TZ0kC749dK.ow2JK'),
-(4, 'Gaby', 'Ramos', 'Akat', 'wen@gmail.com', '$2y$10$K5xbF5Eo5n9mIgl2YE3F3.e52kzNUFf6YOlH8TZ0kC749dK.ow2JK');
+(15, 'Alejandro ', 'Gonzalez', 'Alexgve7', 'alexgve7@gmail.com', '$2y$10$.Ax3yiK0J0c5XjS5d5EMQOmRb1vywWwnf2ilAAs4QCarpv/Cu8N/y');
 
 -- --------------------------------------------------------
 
@@ -126,18 +90,6 @@ CREATE TABLE `binnacle` (
   `site` varchar(15) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `binnacle`
---
-
-INSERT INTO `binnacle` (`id`, `actionperformed`, `user_id`, `admin_id`, `date`, `year`, `site`) VALUES
-(50, 'ha asignado el genero  ', NULL, 3, '2019-05-08', 2019, 'genders'),
-(51, 'ha asignado el genero  ', NULL, 3, '2019-05-08', 2019, 'genders'),
-(52, 'ha asignado el genero  Aventura', NULL, 3, '2019-05-08', 2019, 'genders'),
-(53, 'ha asignado el genero  Country a la pelicula: John Wick', NULL, 3, '2019-05-08', 2019, 'genders'),
-(54, 'ha asignado la clasificación: B12 a la pelicula John Wick', NULL, 3, '2019-05-09', 2019, 'clasifications'),
-(55, 'ha agregado una nueva membresia:  Pink', NULL, 3, '2019-05-09', 2019, 'memberships');
-
 -- --------------------------------------------------------
 
 --
@@ -147,20 +99,9 @@ INSERT INTO `binnacle` (`id`, `actionperformed`, `user_id`, `admin_id`, `date`, 
 CREATE TABLE `clasifications` (
   `id` int(11) NOT NULL,
   `clasification` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `description` varchar(100) COLLATE utf8_spanish_ci NOT NULL
+  `description` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `age` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `clasifications`
---
-
-INSERT INTO `clasifications` (`id`, `clasification`, `description`) VALUES
-(1, 'AA', 'Todo publico'),
-(2, 'C', 'Mayores de 15 años'),
-(3, 'B', 'Pelicula apta para niños de 12 en adelante'),
-(4, 'B12', 'Peliculas para mayores de 19 años'),
-(5, 'adada', 'dasd'),
-(6, 'C15', 'Pelicula mayores de 19 años');
 
 -- --------------------------------------------------------
 
@@ -173,14 +114,6 @@ CREATE TABLE `clasificationsmovie` (
   `clasification` int(11) NOT NULL,
   `movie` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `clasificationsmovie`
---
-
-INSERT INTO `clasificationsmovie` (`id`, `clasification`, `movie`) VALUES
-(1, 6, 17),
-(2, 4, 18);
 
 -- --------------------------------------------------------
 
@@ -200,7 +133,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `email`, `enterprise`) VALUES
-(2, 'Daniel Martinez', 'Dan@gmail.com', 'Curacao'),
+(2, 'Daniel Martinez', 'Dan@gmail.es', 'Curacao'),
 (3, 'Alejandro', 'alexgve7@gmail.com', 'Curacao');
 
 -- --------------------------------------------------------
@@ -223,34 +156,18 @@ CREATE TABLE `favorites` (
 
 CREATE TABLE `genders` (
   `id` int(11) NOT NULL,
-  `gender` varchar(25) COLLATE utf8_spanish_ci NOT NULL
+  `gender` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `cover` varchar(255) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `genders`
 --
 
-INSERT INTO `genders` (`id`, `gender`) VALUES
-(26, 'Acción'),
-(41, 'Animados'),
-(32, 'Aventura'),
-(34, 'Ciencia Ficción'),
-(35, 'Clásico'),
-(29, 'Comedia'),
-(44, 'Country'),
-(45, 'Culo'),
-(40, 'Documentales'),
-(27, 'Drama'),
-(37, 'Fantasía'),
-(39, 'Historia'),
-(25, 'Miedo'),
-(33, 'Musicales'),
-(42, 'Pornografico'),
-(43, 'Rap'),
-(38, 'Romance'),
-(30, 'Suspenso'),
-(28, 'Terror'),
-(46, 'Tu madre');
+INSERT INTO `genders` (`id`, `gender`, `cover`) VALUES
+(73, 'Miedo', '5cd62c4b84db3.jpg'),
+(74, 'Accion', '5cd62c5589683.jpg'),
+(75, 'Aventura', '5cd62c661108e.jpeg');
 
 -- --------------------------------------------------------
 
@@ -264,15 +181,6 @@ CREATE TABLE `gendersmovie` (
   `movie` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `gendersmovie`
---
-
-INSERT INTO `gendersmovie` (`id`, `gender`, `movie`) VALUES
-(1, 29, 17),
-(2, 26, 17),
-(3, 34, 17);
-
 -- --------------------------------------------------------
 
 --
@@ -284,15 +192,6 @@ CREATE TABLE `memberships` (
   `membership` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `price` float(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `memberships`
---
-
-INSERT INTO `memberships` (`id`, `membership`, `price`) VALUES
-(1, 'Gold', 10.99),
-(2, 'Black', 20.00),
-(3, 'Pink', 10.20);
 
 -- --------------------------------------------------------
 
@@ -310,16 +209,19 @@ CREATE TABLE `movies` (
   `trailer` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `price` float(4,2) NOT NULL,
   `count` int(11) NOT NULL,
-  `customer` int(11) NOT NULL
+  `customer` int(11) NOT NULL,
+  `likes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `movies`
 --
 
-INSERT INTO `movies` (`id`, `name`, `sinopsis`, `time`, `cover`, `year`, `trailer`, `price`, `count`, `customer`) VALUES
-(17, 'Capitana Marvel', 'Capitana Marvel regresa a la tierra a conocer su propia vida pasada de ser una heroina', '01:21:51', '5ccaf5936493e.jpeg', 2019, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0LHxvxdRnYc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 25.25, 20, 2),
-(18, 'John Wick', 'Mercenario en busca de venganza quienes destruyeron su casa.', '01:25:55', '5ccf15f5d0cc8.jpg', 2010, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/-CVqvdgLHm8\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 10.25, 10, 2);
+INSERT INTO `movies` (`id`, `name`, `sinopsis`, `time`, `cover`, `year`, `trailer`, `price`, `count`, `customer`, `likes`) VALUES
+(17, 'Capitana Marvel', 'Capitana Marvel regresa a la tierra a conocer su propia vida pasada de ser una heroina', '01:21:51', '5ccaf5936493e.jpeg', 2019, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0LHxvxdRnYc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 25.25, 20, 2, 0),
+(18, 'John Wick', 'Mercenario en busca de venganza quienes destruyeron su casa.', '01:25:55', '5ccf15f5d0cc8.jpg', 2010, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/-CVqvdgLHm8\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 10.25, 10, 2, 0),
+(19, 'Averga', 'Los averga cuidando el mundo de thanos', '03:01:25', '5cd4675be1bef.jpeg', 2019, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/SF832fGsNxo\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 25.00, 5, 2, 0),
+(20, ' ', 'Fabiola dice guacala y Candray dice que rico ayyyyyyyyyyyyyyyyyyyyyyyyyyy.', '05:15:04', '5cd47e077bd5d.jpg', 2000, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/0LHxvxdRnYc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 8.00, 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -358,11 +260,11 @@ CREATE TABLE `state` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `uname` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `lastname` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `lastname` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `username` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `upassword` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `membership` int(11) NOT NULL
+  `membership` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -370,7 +272,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `uname`, `lastname`, `email`, `username`, `upassword`, `membership`) VALUES
-(1, 'Gaby', 'Ramos', 'akat@gmail.com', 'Akat', '$2y$10$o2BwkT0LgC/RQ7dVU0TLC.RBd0QvPHQ7RAQa1PwV/7s...', 2);
+(3, 'Alejandro', 'Gonzalez', 'alexgve7@gmail.com', 'Alexgve7', '$2y$10$IDaDNgrvKlwsgb6LVPhqDutQ.5XIvtVKPYMLceVo9ZlhU0M0.EYIW', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -380,7 +282,8 @@ INSERT INTO `users` (`id`, `uname`, `lastname`, `email`, `username`, `upassword`
 -- Indices de la tabla `actors`
 --
 ALTER TABLE `actors`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
 -- Indices de la tabla `actorsmovie`
@@ -410,7 +313,8 @@ ALTER TABLE `binnacle`
 --
 ALTER TABLE `clasifications`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
+  ADD UNIQUE KEY `id` (`id`),
+  ADD UNIQUE KEY `clasification` (`clasification`);
 
 --
 -- Indices de la tabla `clasificationsmovie`
@@ -484,7 +388,8 @@ ALTER TABLE `state`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `lastname` (`lastname`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`),
   ADD KEY `membership` (`membership`);
 
 --
@@ -495,37 +400,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `actors`
 --
 ALTER TABLE `actors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `actorsmovie`
 --
 ALTER TABLE `actorsmovie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `binnacle`
 --
 ALTER TABLE `binnacle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT de la tabla `clasifications`
 --
 ALTER TABLE `clasifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `clasificationsmovie`
 --
 ALTER TABLE `clasificationsmovie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `customers`
@@ -543,25 +448,25 @@ ALTER TABLE `favorites`
 -- AUTO_INCREMENT de la tabla `genders`
 --
 ALTER TABLE `genders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `gendersmovie`
 --
 ALTER TABLE `gendersmovie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `memberships`
 --
 ALTER TABLE `memberships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `shop`
@@ -579,7 +484,7 @@ ALTER TABLE `state`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

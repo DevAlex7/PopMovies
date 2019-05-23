@@ -180,8 +180,10 @@ function InformationbyId(id){
     .done(function(response){
       if(isJSONString(response)){
         const result = JSON.parse(response);
+      
         if(result.status){
           $('#idGender').val(result.dataset.id);
+          $('#DeleteImage').val(result.dataset.cover);
           $('#ShowNameGender').text("Genero seleccionado: "+result.dataset.gender);
         }
         else{
@@ -212,6 +214,8 @@ function InformationbyIdEdit(id){
       if(result.status){
         $('#idEditGender').val(result.dataset.id);
         $('#NameEditGender').val(result.dataset.gender);
+        $('#ImageEditGender').val(result.dataset.cover);
+        $('#Image').val(result.dataset.cover);
       }
       else{
         console.log(result.exception);
@@ -226,7 +230,6 @@ function InformationbyIdEdit(id){
     console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
   })
 } 
-
 
 //Update Gender
 $('#FormEditGender').submit(function(e){
@@ -245,9 +248,15 @@ $('#FormEditGender').submit(function(e){
     if(isJSONString(response)){
       const result = JSON.parse(response);
       if(result.status){
-        M.toast({html:'Genero Actualizado correctamente', classes:'toastsuccess'});
         $('#EditModalGender').modal('close');
-        $('#FormEditGender')[0].reset();
+         $('#FormEditGender')[0].reset();
+        if (result.status == 1) {
+            M.toast({html:'Genero Actualizado correctamente', classes:'toastsuccess'});
+        } else if(result.status == 2) {
+            M.toast({html:'Genero modificado. ' + result.exception});
+        } else {
+            M.toast({html:'Genero modificado. ' + result.exception});
+        }
         showTableGenders();
       }
       else{
@@ -528,5 +537,3 @@ $('#FormDeleteGenderinMovie').submit(function(){
     console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
   });
 })
-
-

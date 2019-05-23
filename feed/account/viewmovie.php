@@ -31,7 +31,7 @@
                 </div>
                 <div class="col s12 m6">
                    <form method="post" id="EditFormMovie">
-                        <input id="MovieId" name="MovieId" class="" type="text" value="<?php print $_GET['movie'] ?>">
+                        <input id="MovieId" name="MovieId" type="hidden" value="<?php print $_GET['movie'] ?>">
                         <span class="card-title">Descripción de la pelicula</span>
                         <span class="card-title"> Titulo </span>
                         <input type="text" id="TitleMovieEdit" name="TitleMovieEdit">
@@ -133,6 +133,7 @@
             </div>
         </div>
     </div>
+    
 </main>
 <footer>
 

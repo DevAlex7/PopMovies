@@ -9,28 +9,23 @@
     {
         session_start();
         $membership = new Membership();
-        $binnacle= new Binnacle();
-        $result = array('status'=>0, 'exception'=>'');
-        if($_GET['site'] == 'dashboard')
-        {
+        $binnacle = new Binnacle();
+        $message='';
+        $result = array('status'=>0,'exception'=>'');
+        if($_GET['site']=='dashboard'){
             switch($_GET['action']){
-            //Get Memberships
-            case 'GetMemberships':
-                if ($result['dataset'] = $membership->all()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = 'No hay customers disponibles';
-                }
-            break;
-            
-            //Add Membership
-            case 'addMembership':
-                if(!empty($membership->membership = $_POST['NameMembership']))
-                {
-                    if(!empty($membership->price = $_POST['priceMembership'])){
-                        //verify if memberships exists
-                       if(! $membership->exist())
-                       {
+                //List of Memberships
+                case 'GetMemberships':
+                    if($result['dataset']=$membership->all()){
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['exception']='No hay membresias registradas';
+                    }
+                break;
+                case 'addMembership':
+                    if($membership->namemembership($_POST['NameMembership'])){
+                        if($membership->price($_POST['priceMembership'])){
                             if($binnacle->site('memberships')){
                                 $message="agregado una nueva membresia: ".' '.$membership->getMembership();
                                 $binnacle->actionperformed($message);
@@ -42,87 +37,101 @@
                             else{
                                 $result['exception']='Ha ocurrido un problema, contacte al administrador';
                             }
-                       }
-                       else{
-                        $result['exception']='Membresia existente';
-                       }
+                        }
+                        else{
+                            $result['exception']='Mal formato de precio o campo vacio';
+                        }
                     }
-                    else
-                    {
-                        $result['exception']='precio vacio';
+                    else{
+                        $result['exception']='Nombre incorrecto o campo vacio';
                     }
-                }
-                else
-                {
-                    $result['exception']='Nombre vacio';
-                }
-            break;
-
-            //Show Information by Id
-            case 'GetMembershipbyId':
-                if(empty($_POST['id']))
-                {
-                    $result['exception'] = 'Membresia incorrecta o identificador invalido';
-                }
-                else
-                {
-                    $membership->id = $_POST['id'];
-                    if($result['dataset'] = $membership->find())
-                    {
-                        $result['status'] = 1;
+                break;
+                case 'GetMembershipbyId':
+                    if($membership->id($_POST['id'])){
+                        if($result['dataset']=$membership->find()){
+                            $result['status']=1;
+                        }
+                        else{
+                            $result['exception']='No hay información recopilada';
+                        }
                     }
-                    else
-                    {
-                        $result['exception'] = 'Membresia inexistente';
+                    else{
+                        $result['exception']='Selección invalida';
                     }
-                }
-            break;
-
-            //Update Membership
-            case 'UpdateMembership':
-
-                if(!empty($membership->membership = $_POST['NameUpdateMembership']))
-                {
-                    if(!empty($membership->price = $_POST['UpdatePriceMembership'])){
-                        $membership->id = $_POST['idUpdateMembership'];
-                        $membership->update();
+                break;
+                case 'UpdateMembership':
+                    if($membership->id($_POST['idUpdateMembership'])){
+                        if($membership->namemembership($_POST['NameUpdateMembership'])){
+                            if($membership->price($_POST['UpdatePriceMembership'])){
+                                if($binnacle->site('memberships')){
+                                   $get=$membership->getbyId();
+                                   if( $get['membership']!=$membership->getMembership() && $get['price']!=$membership->getPrice() )
+                                   {
+                                    $message="modificado toda la membresia de: ".$get['membership'].' a '.$membership->getMembership();
+                                   }
+                                   else
+                                    {
+                                        if($get['membership']!=$membership->getMembership()){
+                                            $message="modificado la membresia de: ".$get['membership'].' a '.$membership->getMembership();
+                                        }
+                                        else{
+                                            if($get['price']!=$membership->getPrice()){
+                                                $message="modificado el precio de la membresia:".' '.$get['membership'].' de '.$get['price'].' a '.$membership->getPrice();
+                                            }
+                                        }
+                                    }
+                                    $binnacle->actionperformed($message);
+                                    $binnacle->admin_id($_SESSION['idUsername']);
+                                    $binnacle->create();
+                                    $membership->update();
+                                    $result['status'] = 1;
+                                }
+                                else{
+                                    $result['exception']='Ha ocurrido un problema, contacte al administrador';
+                                }
+                            }
+                            else{
+                                $result['exception']='Mal formato de precio o campo vacio';
+                            }
+                        }
+                        else{
+                            $result['exception']='Nombre incorrecto o campo vacio';
+                        }
+                    }
+                    else{
+                        $result['exception']='No hay información para realizar la operación';
+                    }
+                break;
+                case 'DeleteMembership':
+                if($membership->id($_POST['idDeleteMembership'])){
+                    if($binnacle->site('memberships')){
+                        $get=$membership->getbyId();
+                        $message="eliminado la membresia: ".$get['membership'];
+                        $binnacle->actionperformed($message);
+                        $binnacle->admin_id($_SESSION['idUsername']);
+                        $binnacle->create();
+                        $membership->delete();
                         $result['status']=1;
                     }
-                    else
-                    {
-                        $result['exception']='precio vacio';
+                    else{
+                        $result['exception']='Ha ocurrido un problema, contacte al administrador';
                     }
                 }
-                else
-                {
-                    $result['exception']='Nombre vacio';
+                else{
+                    $result['exception']='No se ha podido recopilar información';
                 }
-            break;
-
-            case 'DeleteMembership':
-
-            if(!empty($membership->id = $_POST['idDeleteMembership'])){
-                $membership->id = $_POST['idDeleteMembership'];
-                $membership->delete();
-                $result['status']=1;
-            }
-            else
-            {
-                $result['exception']='identificador vacio';
-            }
-        break;
-            default:
-            exit('accion no disponible');
+                break;
+                default:
+                exit('acción no disponible');
+                break;
             }
         }
-        else
-        {
-            exit('acceso no disponible');
+        else{
+            exit('recurso denegado');
         }
         print(json_encode($result));
     }
-    else
-    {
+    else{
         exit('recurso denegado');
     }
 ?>

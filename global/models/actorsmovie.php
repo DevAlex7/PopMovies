@@ -53,26 +53,24 @@ class Actormovie extends Validator{
         return Database::getRow($sql, $params);
     }
     public function getActors_in_Movies(){
-        $sql='  SELECT
-                actorsmovie.id, 
-                actors.id AS IdActor, actors.name AS Actorname, 
-                movies.id AS IdMovie, movies.name AS Moviename
-                FROM actors, movies, actorsmovie 
-                WHERE actors.id=actorsmovie.Actor 
-                  AND movies.id=actorsmovie.Movie';
+        $sql='  SELECT 
+                actorsmovie.id, actors.id AS IdActor, actors.name AS Actorname, 
+                movies.id AS IdMovie, movies.name AS Moviename 
+                FROM ((actorsmovie 
+                INNER JOIN actors ON actors.id=actorsmovie.Actor) 
+                INNER JOIN movies ON movies.id=actorsmovie.Movie)';
         $params=array(null);
         return Database::getRows($sql, $params);
     }
+   
     public function getActors_in_MoviesbyId(){
-        $sql='  SELECT
-                actors.id AS id_actor, 
-                actors.name AS actorname, 
-                movies.id AS id_movie, 
-                movies.name AS moviename 
-                FROM actors, movies, actorsmovie 
-                WHERE actors.id=actorsmovie.Actor 
-                AND movies.id=actorsmovie.Movie 
-                AND movies.id=?';
+        $sql='  SELECT 
+                actors.id AS id_actor, actors.name AS actorname, 
+                movies.id AS id_movie, movies.name AS moviename 
+                FROM ((actorsmovie 
+                INNER JOIN actors ON actors.id=actorsmovie.Actor) 
+                INNER JOIN movies ON movies.id=actorsmovie.Movie 
+                AND movies.id=?)';
         $params=array($this->id_movie);
         return Database::getRows($sql, $params);
     }
@@ -84,9 +82,12 @@ class Actormovie extends Validator{
         return Database::executeRow($sql, $params);
     }
     public function getNames(){
-        $sql='  SELECT actors.name AS actor, movies.name AS movie 
-                FROM actors, actorsmovie, movies 
-                WHERE actorsmovie.Actor=actors.id AND actorsmovie.Movie=movies.id AND actors.id=? AND movies.id=?';
+        $sql='  SELECT 
+                actors.name AS actor, 
+                movies.name AS movie 
+                FROM ((actorsmovie 
+                INNER JOIN actors on actorsmovie.Actor=actors.id AND actors.id=?) 
+                INNER JOIN movies ON actorsmovie.Movie=movies.id AND movies.id=?)';
         $params=array($this->id_actor,$this->id_movie);
         return Database::getRow($sql, $params);
     }

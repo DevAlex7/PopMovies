@@ -2,7 +2,6 @@ var id;
 var chips;
 $(document).ready(function()
 {
-   
     /*SelectActors('ActorMovie', null);
     SelectGenders('GendersCombo', null);
     SelectClasifications('ComboClasifications', null);*/
@@ -174,7 +173,7 @@ function FillCardMovie(rows){
                 </div>
                 <div class="card-content">
                 <span class="card-title">${row.name}</span>
-                    <p>${row.sinopsis}</p>
+                    <p class="truncate">${row.sinopsis}</p>
                 </div>
                 <div class="card-action">
                     <a class="btn blue" href="/PopMovies/feed/account/viewmovie.php?category=movies&movie=${row.id}" onClick=SetID(${row.id})>Ver detalles</a>
@@ -183,7 +182,6 @@ function FillCardMovie(rows){
         </div>
         `;
         })
-       
     }
     $('#AllMovies').html(content);
 }
@@ -243,5 +241,4 @@ $('#FormMovieCreate').submit(function (e) {
     .fail(function(jqXHR){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
-    
 });

@@ -3,7 +3,10 @@
 class Gender extends Validator{  
     private $id;
     private $name;
+    private $cover;
+    private $imageroot='../../../resources/home/img/';
     private $search;
+
 
     public function id($value)
     {
@@ -22,6 +25,21 @@ class Gender extends Validator{
         }
         else
         {
+            return false;
+        }
+    }
+    public function getImage(){
+        return $this->cover;
+    }
+    public function getRoot(){
+        return $this->imageroot;
+    }
+    public function cover($file, $name){
+        if($this->validateImageFile($file,$this->imageroot,$name,500,500)){
+            $this->cover=$this->getImageName();
+            return true;
+        }
+        else{
             return false;
         }
     }
@@ -44,9 +62,14 @@ class Gender extends Validator{
         return Database::getRow($sql, $params);
     }
     public function find(){
-        $sql='SELECT id, gender FROM genders WHERE id=?';
+        $sql='SELECT id, gender,cover FROM genders WHERE id=?';
         $params=array($this->id);
         return Database::getRow($sql, $params);
+    }
+    public function getMoviesbyGenders(){
+        $sql='SELECT movies.name FROM movies, genders, gendersmovie WHERE movies.id=gendersmovie.movie AND genders.id=gendersmovie.gender AND genders.id=?';
+        $params=array($this->id);
+        return Database::getRows($sql, $params);
     }
     public function all()
     {
@@ -56,13 +79,13 @@ class Gender extends Validator{
     }
     public function create()
     {
-        $sql = 'INSERT INTO genders(gender) VALUES(?)';
-        $params = array($this->name);
+        $sql = 'INSERT INTO genders(gender, cover) VALUES(?,?)';
+        $params = array($this->name,$this->cover);
         return Database::executeRow($sql, $params);
     }
     public function edit(){
-        $sql='UPDATE genders SET gender=? WHERE id=?';
-        $params=array($this->name, $this->id);
+        $sql='UPDATE genders SET gender=?, cover=? WHERE id=?';
+        $params=array($this->name, $this->cover, $this->id);
         return Database::executeRow($sql, $params);
     }
     public function delete()

@@ -49,7 +49,7 @@
                         <div class="row">
                             <div class="col s12 m12">
                                 <div class="card-panel">
-                                    <button class="btn red">Eliminar mi cuenta</button>
+                                    <button class="btn red modal-trigger" data-target="ConfirmDelete">Eliminar mi cuenta</button>
                                 </div>
                             </div>
                             <div class="col s12 m12">
@@ -59,7 +59,7 @@
                             </div>
                             <div class="col s12 m12">
                                 <div class="card-panel">
-                                    <button class="btn indigo darken-2 modal-trigger" onclick="DeletebyId()" data-target="ModalEditProfile">Cambiar contraseña</button>
+                                    <a class="btn indigo darken-2">Cambiar contraseña</a>
                                 </div>
                             </div>
                         </div>
@@ -70,33 +70,50 @@
         <!--Modals -->
         <div class="modal" id="ModalEditProfile">
             <div class="modal-content">
-            <div class="row">
-                            <form class="col s12" method="POST" id="FormEditAdminUser">
-                                <div class="row">
-                                    <input type="hidden" id="id_listEdit" name="id_listEdit">
-                                    <div class="input-field col s12 m6">
-                                        <i class="material-icons prefix">account_circle</i>
-                                        <input  name="EditNameUser" id="EditNameUser" type="text" class="validate" placeholder="Nombre">
-                                    </div>
-                                    <div class="input-field col s12 m6">
-                                        <i class="material-icons prefix">account_circle</i>
-                                        <input  type="text" name="EditLastNameUser" id="EditLastNameUser" class="validate" placeholder="Apellido">
-                                    </div>
-                                    <div class="input-field col s12 m6">
-                                        <i class="material-icons prefix">assignment_ind</i>
-                                        <input  name="EditUsername" id="EditUsername" type="text" class="validate" placeholder="Usuario">
-                                    </div>
-                                    <div class="input-field col s12 m6">
-                                        <i class="material-icons prefix">mail</i>
-                                        <input  type="text" name="EditEmailUser" id="EditEmailUser" class="validate" placeholder="Email">
-                                    </div>
+                <div class="row">
+                    <form class="col s12" method="POST" id="FormEditAdminUser">
+                            <div class="row">
+                                <input type="hidden" id="id_listEdit" name="id_listEdit">
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input  name="EditNameUser" id="EditNameUser" type="text" class="validate" placeholder="Nombre">
                                 </div>
-                                <div class="center">
-                                    <button type="submit" class="btn orange"> <i class="material-icons left">edit</i>Editar</button>
-                                    <a class="btn red modal-close"> <i class="material-icons left">close</i>Cancelar</a>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input  type="text" name="EditLastNameUser" id="EditLastNameUser" class="validate" placeholder="Apellido">
                                 </div>
-                            </form>
-                        </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">assignment_ind</i>
+                                    <input  name="EditUsername" id="EditUsername" type="text" class="validate" placeholder="Usuario">
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    <i class="material-icons prefix">mail</i>
+                                    <input  type="text" name="EditEmailUser" id="EditEmailUser" class="validate" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="center">
+                                <button type="submit" class="btn orange"> <i class="material-icons left">edit</i>Editar</button>
+                                <a class="btn red modal-close"> <i class="material-icons left">close</i>Cancelar</a>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal red" id="ConfirmDelete">
+            <div class="modal-content">
+                <div class="card">
+                    <div class="card-content">
+                        <form method="POST">
+                            <div class="center">
+                                <span class="card-title">¿Desea eliminar su perfil?</span>
+                                <div id="confirms">
+                                    <button type="submit" onclick="DeletebyId()" class="btn red">Aceptar</button>
+                                    <a class="btn modal-close grey">Cancelar</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

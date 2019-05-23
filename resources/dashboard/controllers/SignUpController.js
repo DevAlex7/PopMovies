@@ -34,5 +34,4 @@ $('#CreateUserForm').submit(function(e){
     .fail(function(jqXHR){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
-
 })

@@ -134,6 +134,11 @@ class Movies extends Validator{
         $params = array(null);
         return Database::getRows($sql, $params);
     }
+    public function allbyId(){
+        $sql='SELECT * FROM movies WHERE id=?';
+        $params=array($this->id);
+        return Database::getRow($sql,$params);
+    }
     public function create(){
         $sql = 'INSERT INTO movies(name, sinopsis, time, cover, price, count, year, trailer, customer) VALUES (?,?,?,?,?,?,?,?,?)';
         $params= array($this->name, $this->sipnosis, $this->time, $this->cover, $this->price, $this->count, $this->year, $this->trailer, $this->customer);
@@ -143,12 +148,39 @@ class Movies extends Validator{
         $sql = 'UPDATE movies SET name =?, sinopsis=?, time=?, cover=?, price=?, count=?, year=?, trailer=?, customer=? WHERE id=?';
         $params= array($this->name, $this->sipnosis, $this->time, $this->cover, $this->price, $this->count, $this->year, $this->trailer, $this->customer, $this->id);
         return Database::executeRow($sql , $params);
-
+    }
+    public function updateCount(){
+        $sql='UPDATE movies SET count=? WHERE id=?';
+        $params=array($this->count,$this->id);
+        return Database::executeRow($sql,$params);
     }
     public function destroy(){
         $sql = 'DELETE FROM movies WHERE id=?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);
+    }
+    public function getMoviesbyGender(){
+        $sql='  SELECT 
+                genders.id, 
+                genders.gender,
+                movies.id, 
+                movies.name,
+                movies.sinopsis,
+                movies.cover 
+                FROM movies, genders, gendersmovie 
+                WHERE genders.id=gendersmovie.gender 
+                AND movies.id=gendersmovie.movie 
+';
+        $params=array(null);
+        return Database::getRows($sql, $params);
+    }
+    public function FavoriteMovies(){
+        
+    }
+    public function existsite(){
+        $sql='SELECT * FROM movies WHERE id=?';
+        $params=array($this->id);
+        return Database::getRow($sql,$params);
     }
 }
 

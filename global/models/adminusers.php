@@ -75,7 +75,7 @@ class adminusers extends Validator{
 
     public function password($value){
         if ($this->validatePassword($value)) {
-			$this->password = $value;
+			$this->upassword = $value;
 			return true;
 		} else {
 			return false;
@@ -110,6 +110,21 @@ class adminusers extends Validator{
 		} else {
 			return false;
 		}
+	}
+
+	public function LogOff(){
+		if(isset($_SESSION['idUsername'])){
+			
+			unset($_SESSION['idUsername']);
+			unset($_SESSION['AdminUsername']);
+			unset($_SESSION['AdminName']);
+			unset($_SESSION['AdminLastname']);
+			return true;
+		}	
+		else
+		{
+			return false;
+		}	
 	}
 
     public function checkUsers(){

@@ -26,8 +26,7 @@
             </div>
         </div>
 
-        <!--Search Bar -->
-        <div class="container">
+      <div class="container">
           <nav class="white">
             <div class="nav-wrapper">
               <form>
@@ -40,7 +39,7 @@
             </div>
           </nav>
         </div>                
-
+           
         
         <!-- All Movies -->
         <div class="row" id="AllMovies">
@@ -67,8 +66,8 @@
                       </div>
                       <div class="input-field col s10">
                         <i class="material-icons prefix black-text">reorder</i>
-                        <input 
-                          type="text"
+                        <input
+                            type="text"
                           placeholder="Sipnosis de la pelicula"
                           name="CreateSipnosisMovie"
                           id="CreateSipnosisMovie">

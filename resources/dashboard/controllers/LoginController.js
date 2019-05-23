@@ -27,9 +27,7 @@ function CheckUsers(){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 }
-
 $('#LoginForm').submit(function(){
-
     event.preventDefault();
     $.ajax({
         url:APIAdminusers+'login',
@@ -51,7 +49,5 @@ $('#LoginForm').submit(function(){
         }
     })
     .fail(function(){
-
     });
-
 });

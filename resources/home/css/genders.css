@@ -1,0 +1,19 @@
+html{
+    background-image: url(../img/Cover.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;    
+    background-attachment: fixed;
+  }
+.container{
+    background: rgba(241, 32, 32, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+#SearchContent
+{
+  margin-top: 1rem;
+}
+.nav-extended{
+    background-color: #0E1C36;
+  }

@@ -96,7 +96,7 @@
                     }
                     break;
                     case 'logOff':
-                    if (session_destroy()) {
+                    if ($userAdmin->LogOff()) {
                         header('location: ../../../feed/account/');
                     } else {
                         header('location: ../../../feed/account/home.php');

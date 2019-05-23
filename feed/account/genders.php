@@ -34,6 +34,19 @@
                                     <div class="col s6">
                                         <input type="text" id="GenderName" name="GenderName" placeholder="Ingrese genero">
                                     </div>
+                                    <div class="file-field input-field col s12 m9" id="TimeSection">
+                                        <div class="btn waves-effect">
+                                            <span><i class="material-icons">image</i></span>
+                                            <input 
+                                            id="FileGenderCover" 
+                                            type="file" 
+                                            name="FileGenderCover" 
+                                            required/>
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input type="text" class="file-path validate" placeholder="Seleccione una imagen"/>
+                                        </div>
+                                    </div>
                                     <div class="col s6">
                                         <button class="btn-small blue" type="submit" id="ButtonAdd">Agregar</button>
                                     </div>
@@ -142,6 +155,7 @@
                                 <span class="card-title">¿Desea eliminar el genero seleccionado?</span>
                                 <span class="card-title" name="ShowNameGender" id="ShowNameGender"></span>
                                 <input type="hidden" name="idGender" id="idGender" placeholder="Id">
+                                <input type="hidden" name="DeleteImage" id="DeleteImage">
                             </div>
                         </div> 
                         <button type="submit" class="btn small red white-text tooltipped" data-tooltip="Eliminar"> <i class="material-icons left">check</i> Eliminar</button>
@@ -161,10 +175,24 @@
                 <p>Genero seleccionado:</p>
                     <div class="row">
                         <div class="col s4">
+                            <input type="hidden" name="ImageEditGender" id="ImageEditGender">
                             <input type="hidden" id="idEditGender" name="idEditGender">
                             <input type="text" id="NameEditGender" name="NameEditGender">
                         </div>
-                    </div>
+                            <div class="file-field input-field col s12 m9" id="TimeSection">
+                                <div class="btn waves-effect">
+                                    <span><i class="material-icons">image</i></span>
+                                    <input 
+                                    id="FileEditCover" 
+                                    type="file" 
+                                    name="FileEditCover" 
+                                    />
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input type="text" class="file-path validate" id="Image" placeholder="Seleccione una imagen"/>
+                                </div>
+                            </div>
+                        </div>
                     <button type="submit" class="btn blue"> <i class="material-icons left">edit</i> Editar</button>
                     <a class="btn red modal-close"> <i class="material-icons left">close</i>Cancelar</a>
                 </form>

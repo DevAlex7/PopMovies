@@ -2,8 +2,8 @@
 
 class Actor extends Validator{
     
-    public $id;
-    public $name;
+    private $id;
+    private $name;
     private $search;
 
     
@@ -17,6 +17,16 @@ class Actor extends Validator{
         return false;
       }
     }
+    public function name($value){
+      if($this->validateAlphabetic($value,5,200)){
+        $this->name=$value;
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+
     public function searchbyInput($value){
       if($this->validateAlphanumeric($value, 1, 50)){
         $this->search = $value;

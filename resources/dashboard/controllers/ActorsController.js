@@ -102,7 +102,7 @@ function ShowInformation(id)
                 $('#idUpdateActor').val(result.dataset.id);                
                 $('#UpdateNameActor').val(result.dataset.name);
             } else {
-                console.log(result.exception);
+                M.toast({html:result.exception});
             }
         } else {
             console.log(response);
@@ -196,7 +196,7 @@ $('#DeleteActorForm').submit(function()
                 M.toast({html: 'Actor Eliminado Correctamente!'});
                 showTable();
             } else {
-                console.log(result.exception);
+                M.toast({html:result.exception});
             }
         } else {
             console.log(response);
@@ -578,8 +578,3 @@ function clearSearchField(){
     $('#searchActors').val('');
     showTable();
 }
-
-
-
-
-

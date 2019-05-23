@@ -1,0 +1,23 @@
+html{
+  background-image: url(../img/Cover.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;    
+  background-attachment: fixed;
+  
+}
+#SearchContent
+{
+margin-top: 1rem;
+}
+#Menubar{
+    margin-top: -0.5rem;
+}
+#ContentCards{
+  margin-top: 1rem;
+}
+#centerTitle{
+  margin-top: 2rem;
+}
+.nav-extended{
+  background-color: #0E1C36;
+}

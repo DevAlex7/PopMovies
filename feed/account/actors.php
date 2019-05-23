@@ -157,7 +157,7 @@
                     <div class="card-content">
                         <form method="post" id="form-create" enctype="multipart/form-data">
                                 <span class="card-title">Agregar Actor</span>
-                                <input type="text" name="NameActor" class="" id="NameActor" placeholder="ingrese nombre de actor">
+                                <input type="text" name="NameActor" id="NameActor" placeholder="ingrese nombre de actor">
                                 <button type="submit" class="btn small blue white-text tooltipped" data-tooltip="Crear">Agregar</button>
                                 <a class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
                         </form>

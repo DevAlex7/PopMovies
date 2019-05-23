@@ -20,93 +20,83 @@
                 
                 //Create Actor
                 case 'createActor':
-
-                   if(empty($actor->name = $_POST['NameActor'])){
-                        $result['exception'] = 'Nombre incorrecto';
-                   }
-                   else
-                   {
-                       //verify if Actor exists
-                       if(! $actor->exists()){
-                            $message="registrado al actor".' '.$actor->name;
-
+                    if($actor->name($_POST['NameActor'])){
+                        if($binnacle->site('actors')){
+                            $message="agregado al actor:".' '.$actor->getname();
                             $binnacle->actionperformed($message);
                             $binnacle->admin_id($_SESSION['idUsername']);
-                            if($binnacle->site('actors')){
-                                $binnacle->create();
-                                $actor->create();
-                                $result['status'] = 1;
-                            }
-                            else{
-                                $result['exception']='No existe el archivo';
-                            }
-                       }
-                       else
-                       {
-                        $result['exception']  = 'Actor existente';
-                       }
-                    }
+                            $binnacle->create();
+                            $actor->create();
+                            $result['status']=1;
+                        }
+                        else{
+                            $result['exception']='Ha ocurrido un error, contacte con el administrador';
+                        }
+                    }   
+                    else{
+                        $result['exception']='Nombre incorrecto';
+                    }                
                 break;
                 
                 //Table
                 case 'showActors':
-                
-                    if ($result['dataset'] = $actor->all()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'No hay Actores registradas';
+                    if($result['dataset']=$actor->all()){
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['exception']='No hay actores registrados';
                     }
                 break;
                 
                 //Show Information Actor in Modal
                 case 'showActor':
-                    
-                    if(empty($_POST['id']))
-                    {
-                        $result['exception'] = 'Actor incorrecto';
+                    if($actor->id($_POST['id'])){
+                        if($result['dataset']=$actor->find()){
+                            $result['status']=1;
+                        }
+                        else{
+                            $result['exception']='No hay actores registrados';
+                        }
                     }
-                    else
-                    {
-                        $actor->id = $_POST['id'];
-                        if($result['dataset'] = $actor->find())
-                        {
-                            $result['status'] = 1;
-                        }
-                        else
-                        {
-                            $result['exception'] = 'Actor inexistente';
-                        }
+                    else{
+                        $result['exception']='No se ha encontrado información del actor seleccionado';
                     }
                 break;
 
                 //Update Actor
                 case 'updateActor':
-                    if(empty($_POST['idUpdateActor'])||empty($_POST['UpdateNameActor']))
-                    {
-                        print 'Campos Vacios';
-                    }
-                    else
-                    {
-                        $actor->id = $_POST['idUpdateActor'];
-                        $actor->name = $_POST['UpdateNameActor'];
-                        $actor->update();
-                        $result['status']=1;
-
-                    }
+                   if($actor->id($_POST['idUpdateActor'])){
+                    if($actor->name($_POST['UpdateNameActor'])){
+                        if($binnacle->site('actors')){
+                            $get=$actor->find();
+                            $message="actualizado el nombre del actor:".' '.$get['name'].' a '.$actor->getname();
+                            $binnacle->actionperformed($message);
+                            $binnacle->admin_id($_SESSION['idUsername']);
+                            $actor->update();
+                            $binnacle->create();
+                            $result['status']=1;
+                        }
+                        else{
+                            $result['exception']='Ha ocurrido un error, contacte con el administrador';
+                        }
+                    }   
+                    else{
+                        $result['exception']='Nombre incorrecto';
+                    }          
+                   }    
+                   else{
+                       $result['exception']='No hay información para realizar dicha acción';
+                   }
                 break;
                 
                     //Delete Actor
                 case 'deleteActor':
-                    if(empty($_POST['idDeleteNameActor']) )
-                    {
-                        print 'Codigo incorrecto';
-                    }
-                    else
-                    {
-                        $actor->id = $_POST['idDeleteNameActor'];
-                        $actor->delete();
-                        $result['status']=1;
-                    }
+                   if($actor->id($_POST['idDeleteNameActor'])){
+                    $actor->delete();
+                    $result['status']=1;
+                   }else{
+                       $result['exception']='No hay información del actor';
+                   }
                 break;
                 case 'getMovies':
                     if ($result['dataset'] = $movie->all()) {
