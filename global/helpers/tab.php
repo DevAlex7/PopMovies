@@ -20,14 +20,10 @@ class publicSite
                 <link href="../../resources/public/css/icon.css" rel="stylesheet">
                 <!-- MATERIALIZE.MIN -->
                 <link href="../../resources/public/css/materialize.min.css" rel="stylesheet">
-                <!-- TAMAÑO -->
+                <!-- TAMAÑO Y FUENTE -->
                 <link rel="stylesheet" type="text/css" href="../../resources/public/css/style.css">
                 <!-- ESTILO -->
                 <link rel="stylesheet" type="text/css" href="../../resources/public/css/users.css">
-                <!-- ESTILO MAIN.PHP -->
-                <link href="../../resources/public/css/page.css" rel="stylesheet">
-                <!-- FUENTE -->
-                <link href="../../../resources/public/css/font.css" rel="stylesheet">
                 <!-- ALLAX -->
                 <link href="../../../resources/public/css/public.css" rel="stylesheet">
                 <!-- END: Head-->
@@ -38,13 +34,14 @@ class publicSite
                 $filename = basename($_SERVER['PHP_SELF']);
                 if ($filename != 'index.php') {
                     self::modals();
+                    
                 } else {
                     header('location: main.php');
                 }
             } else {
                 $filename = basename($_SERVER['PHP_SELF']);
                 if ($filename != 'index.php' && $filename != 'register.php') {
-                    header('location: index.php');
+                    header('location: home.php');
                 } else {
                     print('
                     <!-- BEGIN: Navbar -->

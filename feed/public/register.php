@@ -2,6 +2,7 @@
     require_once('../../global/helpers/tab.php');
     publicSite::headerTemplate('Registro');
     ?>
+    <body class='Aki'>
         <div class="row">
             <div class="col s12">
                 <div id="RegisterStyle" class="row">

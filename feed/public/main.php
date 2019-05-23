@@ -15,8 +15,8 @@
         <link href="../../resources/public/css/font.css" rel="stylesheet">
     </head>
 
-    <body class="oa">
-        <header>
+<body class="oa">
+    <header>
             <nav class="black">
                 <div class="nav-wrapper">
                     <div class="ico">
@@ -27,27 +27,27 @@
                         <label class="label-icon" for="search"><i class="material-icons white-text ">search</i></label>
                     </div>
                     <ul class="right">
-                        <li><a href="sass.html">Trailers</a></li>
-                        <li><a href="sass.html">Favoritos</a></li>
-                        <li><a href="index.php"><i class="tiny material-icons">power_settings_new</i></a></li>
+                        <li><a href="trailers.php">Trailers</a></li>
+                        <li><a href="#">Favoritos</a></li>
+                        <li><a href="#" onclick="signOff()"><i class="tiny material-icons">power_settings_new</i></a></li>
                         <li><a> </a></li>
                     </ul>
                 </div>
             </nav>
-            <ul id="slide-out" class="sidenav sidenav-fixed">
-                <li><a class="subheader">Géneros</a></li>
+                <ul id="slide-out" class="sidenav sidenav-fixed">
+                    <li><a class="subheader">Géneros</a></li>
                 <div id="generos">
-                    
+                        
                 </div>
-                <li><a class="subheader">Configuración</a></li>
-                <li><a href="account.php"><i class="material-icons">settings</i>Ajustes de la cuenta</a></li>
-                <li><a href="users.php"><i class="material-icons">people</i>Usuarios del sistema</a></li>
+                    <li><a class="subheader">Configuración</a></li>
+                    <li><a href="account.php"><i class="material-icons">settings</i>Ajustes de la cuenta</a></li>
+                    <li><a href="users.php"><i class="material-icons">people</i>Usuarios del sistema</a></li>
                 <div class="user-view center">
-                    <h2 class="white-text">.</h2>
-                </div>
-            </ul>
-        </header>
-
+                <h2 class="white-text">.</h2>
+            </div>
+        </ul>
+    </header>
+    <body class="oa">
         <main>
             <div class="row">
                 <div class="card col s12 m6 l4">
