@@ -1,0 +1,18 @@
+.nav-extended{
+    background-color: #0E1C36;
+  }
+  #OptionsPart{
+      margin-top: 1rem;
+  }
+  #TableInformation{
+      margin-top: 3rem;
+  }
+  #Divider{
+      margin-top: 0.8rem;
+  }
+  #DetailCart{
+      margin-top: 0.2rem;
+  }
+  #ConfirmPayment{
+      margin-top: 0.5rem;
+  }

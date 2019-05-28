@@ -4,112 +4,174 @@
     require_once('../../helpers/instance.php');
     require_once('../../models/car.php');
     require_once('../../models/movies.php');
+    require_once('../../models/detailcar.php');
 
     if(isset($_GET['site'])&&isset($_GET['action'])){
         session_start();
+
         $car = new Car();
         $lastId= new Database();
         $movie = new Movies();
+        $detail = new detailCar();
         $result = array('status'=>0,'exception'=>'','id'=>'');
 
         if($_GET['site']=='ecommerce'){
             switch($_GET['action']){
                 case 'createCar':
-                if($car->id_user($_SESSION['idClient'])){
-                    if($car->id_movie($_POST['idMovie'])){
-                        if($movie->id($_POST['idMovie'])){
-                            if($car->exist()){
-                                if($_POST['countUser']==(int)0 || $_POST['countUser'] < 1){
-                                    $result['exception']='Cantidad no disponible';
-                                }
-                                else{
-                                    $getCar = $car->getListbyId();
-                                    $get = $movie->allbyId();
-                                    
-                                    if($_POST['countUser'] <= $get['count']){
-                                        $countUser= $getCar['count'] + $_POST['countUser'];
-                                        if($car->count($countUser)){
-                                            //Calculate the total price
-                                            $total = $get['price'] * $countUser;
-                                            //Calculate the total stock
-                                            $totalStock=$get['count'] - $_POST['countUser'];
+                   if(($_POST['countUser']) >=1 ){
+                        if($car->client($_SESSION['idClient'])){
+                            if($car->existOrder()){
+                                if($detail->id_movie($_POST['idMovie'])){
+                                    if($detail->count($_POST['countUser'])){
+                                        if($movie->id($_POST['idMovie'])){
+                                            $get = $movie->allbyId();
+                                            if($get['count']>$_POST['countUser']){
+                                                $stock = $get['count'] - $_POST['countUser'];
+                                                $price = $_POST['countUser'] * $get['price'];
+                                                if($detail->price($price)){
+                                                    if($movie->count($stock)){
+                                                        $getCar = $car->existOrder();
+                                                        if($detail->id_car($getCar['id'])){
+                                                            if($detail->existMovieinCart()){
+                                                                $count = $detail->getCount();
+                                                                $countDetail= $count['count']+$_POST['countUser'];
+                                                                if($detail->count($countDetail)){
+                                                                    $movie->updateCount();
+                                                                    $detail->updateCountbyId();
+                                                                    $result['status']=3;
+                                                                }
+                                                                else{
+                                                                    $result['exception']='No se puedo añadir a la lista :(';
+                                                                }
+                                                            }
+                                                            else{
+                                                                $movie->updateCount();
+                                                                $detail->createDetailOrder();
+                                                                $result['status']=2;
+                                                            }
+                                                        }
+                                                        else{
+                                                            $result['exception']='error al obtener información';
+                                                        }
 
-                                            if($movie->count($totalStock)){
-                                                if($car->total($total)){
-                                                    //Update stock of movie
-                                                    $movie->updateCount();
-                                                    //Update the count list in the car with the same movie
-                                                    $car->updateList();  
-                                                    $result['status']=2;     
-                                                }else{
-                                                    $result['exception']='Falló al realizar la compra';
+                                                    }else{
+                                                        $result['exception']='Cantidad invalida para stock';
+                                                    }
+                                                }
+                                                else{
+                                                    $result['exception']='Dato invalido de precio';
                                                 }
                                             }
                                             else{
-                                                $result['exception']='Dato invalido numerico';
+                                                $result['exception']='Cantidad ingresada no disponible en stock';
                                             }
                                         }
                                         else{
-                                            $result['exception']='Cantidad invalida';
-                                        }
-                                    }else{
-                                        $result['exception']='No hay stock disponible para esa pelicula';
+                                            $result['exception']='No hay información de la pelicula';
+                                        }   
                                     }
+                                    else{
+                                        $result['exception']='Dato invalido de cantidad';
+                                    }
+                                }
+                                else{
+                                    $result['exception']='No hay información de la pelicula';
                                 }
                             }
                             else{
-                                if($_POST['countUser']==(int)0 || $_POST['countUser'] < 1){
-                                    $result['exception']='Cantidad no disponible';
-                                }
-                                else{
-                                    $get = $movie->allbyId();
-                                    if( $_POST['countUser'] <= $get['count'] ){
-                                        if($car->count($_POST['countUser'])){
-                                            
-                                            //Total price
-                                            $total=$get['price']*$_POST['countUser'];
-                                            //Total stock
-                                            $totalStock = $get['count']-$_POST['countUser'];
-                                            
-                                            if($movie->count($totalStock)){
-                                                if($car->total($total)){
-                                                    $movie->updateCount();
-                                                    $car->create();  
-                                                    $result['status']=1;     
-                                                }else{
-                                                    $result['exception']='Falló la compra';
+                                //If not exist Order
+                                if($detail->id_movie($_POST['idMovie'])){
+                                    if($detail->count($_POST['countUser'])){
+                                        if($movie->id($_POST['idMovie'])){
+                                            $get = $movie->allbyId();
+                                            if($get['count']>$_POST['countUser']){
+
+                                                $price = $_POST['countUser'] * $get['price'];
+                                                $stock = $get['count']-$_POST['countUser'];
+
+                                                if($movie->count($stock)){
+                                                    if($detail->price($price)){
+                                                        $car->createOrder();
+                                                        $getCar = $car->existOrder();
+                                                            if($detail->id_car($getCar['id'])){
+                                                                $movie->updateCount();
+                                                                $detail->createDetailOrder();
+                                                                $result['status']=1;
+                                                            }
+                                                            else{
+                                                                $result['exception']='error al obtener información';
+                                                            }
+                                                    }
+                                                    else{
+                                                        $result['exception']='Dato invalido de precio';
+                                                    }
+                                                }
+                                                else{
+                                                    $result['exception']='Cantidad invalido';
                                                 }
                                             }
                                             else{
-                                                $result['exception']='Fallo la operación de la compra';
+                                                $result['exception']='Cantidad ingresada no existente en stock';
                                             }
+                                        }else{
+                                            $result['exception']='No hay información de la pelicula';
                                         }
-                                        else{
-                                            $result['exception']='Dato invalido numerico';
-                                        }
+
                                     }
                                     else{
-                                        $result['exception']='No hay stock de esta pelicula para esa cantidad';
+                                        $result['exception']='Dato invalido de cantidad';
                                     }
+                                }
+                                else{
+                                    $result['exception']='No hay información de la pelicula';
                                 }
                             }
                         }
                         else{
-                            $result['exception']='No hay información de la pelicula para la compra';
+                            $result['exception']='No hay información del usuario';
                         }
-                    }   
-                    else{
-                        $result['exception']='Dato de pelicula invalido';
+                   }
+                   else{
+                       $result['exception']='Cantidad invalida';
+                   }
+                break;
+                case 'viewmyListToday':
+                    if($car->client($_SESSION['idClient'])){
+                        $idCar = $car->getIdOrder();
+                        if($detail->id_car($idCar['id'])){
+                            if($result['dataset']=$detail->getTodayList()){
+                                $result['status']=1;
+                            }
+                            else{
+                                $result['exception']='No hay información de carrito de hoy';    
+                            }
+                        }
+                        else{
+                            $result['exception']='No hay información de carrito';
+                        }
                     }
-                }
-                else{
-                    $result['exception']='Dato de usuario invalido';
-                }
+                    else{
+                        $result['exception']='No se encontro información, datos incorrectos';
+                    }
+                break;
+                case 'viewmyPendings':
+                    //ver mis ordenes pendientes
+                break;
+                case 'viewPaids':
+                    //ver mis ordenes pagadas
+                break;
+                case 'updateStatus':
+                    //Actualizar el estado de la orden
+                break;
+                case 'getInformationCart':
+                    //Obtener la información de la orden
+                break;
+                case 'deleteTodayOrder':
+                    
                 break;
                 default:
                 exit('acción no disponible');
             }
-
         }else{
             exit('recurso no disponible');
         }

@@ -26,12 +26,13 @@ class MovieNavBar{
             
             <!-- SideNav -->
             <ul class="sidenav red" id="mobile-demo">
-            <li><a href="/PopMovies/feed/home/main.php" class="white-text"> <i class="material-icons white-text">home</i> Inicio </a></li>
-            <li><div class="divider white-text"></div></li>
-              <li><a class="white-text"> <i class="material-icons white-text">sentiment_satisfied_alt</i> Generos</a></li>
-              <li><a class="white-text"> <i class="material-icons white-text">whatshot</i>Tendencias</a></li>
-              <li><a class="white-text"> <i class="material-icons white-text">face</i>Actores</a></li>
-              <li><a href="/PopMovies/feed/home/favorites.php" class="white-text"> <i class="material-icons white-text">star</i>Favoritos </a></li>
+                <li><a href="/PopMovies/feed/home/main.php" class="white-text"> <i class="material-icons white-text">home</i> Inicio </a></li>
+                <li><div class="divider white-text"></div></li>
+                <li><a class="white-text"> <i class="material-icons white-text">sentiment_satisfied_alt</i> Generos</a></li>
+                <li><a href="/PopMovies/feed/home/trending.php" class="white-text"> <i class="material-icons white-text">whatshot</i>Tendencias</a></li>
+                <li><a class="white-text"> <i class="material-icons white-text">face</i>Actores</a></li>
+                <li><a href="/PopMovies/feed/home/favorites.php" class="white-text"> <i class="material-icons white-text">star</i>Favoritos </a></li>
+                <li><a href="/PopMovies/feed/home/mycar.php" class="white-text"> <i class="material-icons white-text">shopping_cart</i>Carrito </a></li>
             </ul>
           ');
         }else{

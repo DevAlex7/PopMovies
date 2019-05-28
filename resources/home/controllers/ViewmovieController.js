@@ -441,7 +441,6 @@ $('#FormCommentUser').submit(function(){
     });
 })
 function addtoCar(){
-
     var countUser = $('#Counter').val();
     $.ajax({
         url:APICar+'createCar',
@@ -455,10 +454,16 @@ function addtoCar(){
         if(isJSONString(response)){
             const result = JSON.parse(response);
             if(result.status==1){
-                M.toast({html:'Se agrego al carrito'});
+                M.toast({html:'Se agrego correctamente al carrito'})
+                $('#Counter').trigger(':reset');
             }
             else if(result.status==2){
-                M.toast({html:'Se agrego a su lista de carrito'});
+                M.toast({html:'Se agrego correctamente a la lista del carrito'})
+                $('#Counter').trigger(':reset');
+            }
+            else if(result.status==3){
+                M.toast({html:'Agregado a su lista del carrito de esta pelicula'})
+                $('#Counter').trigger(':reset');
             }
             else{
                 M.toast({html:result.exception});

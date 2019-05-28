@@ -54,7 +54,7 @@ if(isset($_GET['site'])&&isset($_GET['action'])){
                             $result['user']=$_SESSION['idClient'];
                         }
                         else{
-                            $result['No hay comentarios en esta pelicula'];
+                            $result['exception']='No hay comentarios en esta pelicula';
                         }
                 }else{
                     $result['exception']='Fallo al adquirir los comentarios';
