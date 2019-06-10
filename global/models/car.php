@@ -1,86 +1,60 @@
 <?php 
-
+date_default_timezone_set("America/El_Salvador");
 class Car extends Validator{
     private $id;
-    private $id_user;
-    private $id_movie;
-    private $count;
     private $date;
     private $status;
-    private $total;
+    private $client;
 
     public function id($value){
         if($this->validateId($value)){
             $this->id=$value;
             return true;
         }
-        else{
+        else
+        {
             return false;
         }
     }
-    public function id_user($value){
-            if($this->validateId($value)){
-                $this->id_user=$value;
-                return true;
-            }
-            else{
-                return false;
-            }
-    }
-    public function id_movie($value){
+    public function status($value){
         if($this->validateId($value)){
-            $this->id_movie=$value;
+            $this->status=$value;
             return true;
         }
         else{
             return false;
         }
     }
-    public function count($value){
+    public function client($value){
         if($this->validateId($value)){
-            $this->count=$value;
+            $this->client=$value;
             return true;
         }
         else{
             return false;
         }
     }
-    public function total($value)
-    {
-        if($this->validateMoney($value)){
-            $this->total=$value;
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    public function create(){
-        $sql='INSERT INTO car(id_user,id_movie,count, date, status, total) VALUES (?,?,?,?,?,?)';
-        $params = array($this->id_user,$this->id_movie, $this->count, $today=date("Y-m-d") , 0, $this->total);
-        return Database::executeRow($sql,$params);
-    }
-    public function updateList(){
-        $sql='UPDATE car SET count=?, total=? WHERE id_user=? AND id_movie=? AND date=?';
-        $params=array($this->count, $this->total ,$this->id_user, $this->id_movie, date("Y-m-d"));
-        return Database::executeRow($sql,$params);
-    }
-    public function exist(){
-        $sql='SELECT id_user, id_movie, date FROM car WHERE id_user=? AND id_movie=? AND date=?';
-        $params=array($this->id_user,$this->id_movie, date("Y-m-d"));
+    public function existOrder(){
+        $sql='  SELECT car.id, car.client
+                FROM ((car INNER JOIN users ON car.client=users.id AND users.id=?) 
+                INNER JOIN shopstatus ON car.status=shopstatus.id AND shopstatus.id=0)';
+        $params=array($this->client);
         return Database::getRow($sql,$params);
     }
-    public function delete(){
-
+    public function createOrder(){
+        $sql='INSERT INTO car (date, status, client) VALUES (?,?,?)';
+        $params=array($today = date("Y-m-d"), 0 , $this->client);
+        return Database::executeRow($sql,$params);
     }
-    public function getListbyId(){
-        $sql='SELECT * FROM car WHERE id_user=? AND id_movie=? AND date=?';
-        $params=array($this->id_user,$this->id_movie, date("Y-m-d"));
+    public function getTodayCart(){
+        $sql='SELECT';
+    }
+    public function getIdOrder(){
+        $sql='SELECT car.id FROM (car INNER JOIN users ON car.client=users.id AND users.id=?)';
+        $params=array($this->client);
         return Database::getRow($sql,$params);
-    }
-    public function all(){
-
     }
 }
+
 
 ?>
