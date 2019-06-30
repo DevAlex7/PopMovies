@@ -1,8 +1,6 @@
 $(document).ready(function()
 {
-    //ViewCustomers();
     CountCustomers();
-  
     CountsShops();
     GetProductsMovies();
 })
@@ -38,6 +36,7 @@ function ViewCustomers(){
                                     <p>Empresa: ${row.enterprise}</p>
                                 </div>
                             </div>
+                            
                         </div>
                     
                     `;
@@ -125,14 +124,42 @@ function GetProductsMovies()
     .done(function(response){
         if(isJSONString(response)){
             const result = JSON.parse(response);
-            console.log(result.dataset['COUNT(*)']);
-            let content = '';
-            content = `Productos disponibles: ${result.dataset['COUNT(*)']}`
-            $('#Products').text(content);
+            if(result.status){
+                var movie = [];
+                var count =[];
+
+                for(var i in result.dataset){
+
+                    movie.push(result.dataset[i].name);
+                    count.push(result.dataset[i].count);
+                
+                }
+                var chartdata = {
+                    labels: movie,
+                    datasets : [
+                      {
+                        label: 'Peliculas',
+                        backgroundColor: 'rgba(200, 200, 200, 0.75)',
+                        borderColor: 'rgba(200, 200, 200, 0.75)',
+                        hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+                        hoverBorderColor: 'rgba(200, 200, 200, 1)',
+                        data: count
+                      }
+                    ]
+                  };
+            
+                  var ctx = $("#myChart");
+            
+                  var barGraph = new Chart(ctx, {
+                    type: 'bar',
+                    data: chartdata
+                  });
+            }
+            else{
+            }
         }
         else
         {
-            
             console.log(response);
         }
     })

@@ -58,7 +58,7 @@
                         }
                         else{
                                 $result['exception'] = '../../feed/account/signup.php';
-                            }
+                        }
                     break;
                     case 'login':
                         if($userAdmin->username($_POST['Username'])){

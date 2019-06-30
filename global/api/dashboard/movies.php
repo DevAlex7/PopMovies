@@ -28,7 +28,7 @@
 
                 case 'GetMovies':
                     if($result['dataset'] = $movie->GetMovies()){
-                            $result['status']= 1;
+                        $result['status']= 1;
                     }
                     else
                     {

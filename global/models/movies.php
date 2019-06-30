@@ -114,9 +114,9 @@ class Movies extends Validator{
 
     public function GetMovies()
 	{
-        $sql = 'SELECT COUNT(*) FROM movies AS shop';
+        $sql = 'SELECT movies.name as name, movies.count FROM movies';
         $params = array(null);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
     public function findbyId(){
         $sql='SELECT movies.id, movies.name, movies.sinopsis, movies.time, 

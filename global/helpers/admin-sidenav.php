@@ -9,7 +9,9 @@ class AdminSideNav{
 
         session_start();
         if(isset($_SESSION['idUsername'])){
+            
             $filename = basename($_SERVER['PHP_SELF']);
+            
             if($filename != '../../feed/account/')
             {
                 self::modals();

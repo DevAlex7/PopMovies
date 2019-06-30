@@ -10,21 +10,30 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.home.css">
-
+    <link rel="stylesheet" href="../../resources/dashboard/css/Chart.min.css">
 </head>
 <body>
 <header>
     <?php AdminSideNav::SideNav();?>    
 </header>
 
-<main class="blue">
+<main>
 
 <div class="card">
     <div class="card-content">
         <span class="card-title">Bienvenido</span>
     </div>
 </div>
-    
+<div class="row">
+    <div class="col m5">
+        <div class="card">
+            <div class="card-content">
+            <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
 </main>
 
 <footer>
@@ -34,6 +43,8 @@
 <script src="../../resources/dashboard/js/sidenav.js"></script> 
 <script src="../../global/helpers/functions.js"></script>
 <script src="../../resources/dashboard/controllers/MainDashboard.js"></script>
+<script src="../../resources/dashboard/js/Chart.min.js"></script>
+<script src="../../resources/dashboard/controllers/ChartController.js"></script>
 
 </body>
 </html>
