@@ -170,12 +170,19 @@ class Movies extends Validator{
                 FROM movies, genders, gendersmovie 
                 WHERE genders.id=gendersmovie.gender 
                 AND movies.id=gendersmovie.movie 
-';
+        ';
         $params=array(null);
         return Database::getRows($sql, $params);
     }
-    public function FavoriteMovies(){
-        
+    public function getCountMoviesbyProveeder(){
+        $sql='
+        SELECT COUNT(*) AS countM, 
+        customers.enterprise 
+        FROM movies 
+        INNER JOIN customers ON movies.customer=customers.id 
+        GROUP BY customers.id';
+        $params=array(null);
+        return Database::getRows($sql,$params);
     }
     public function existsite(){
         $sql='SELECT * FROM movies WHERE id=?';

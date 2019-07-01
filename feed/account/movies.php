@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.movies.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/sidenav.css">
 </head>
 <body>
 <header>
@@ -21,7 +22,8 @@
                 <span class="card-title">Peliculas</span>
                 <button 
                 data-target="ModalAddMovie" 
-                class="btn blue modal-trigger"
+                
+                class="btn blue   modal-trigger"
                 ><i class="material-icons left">movie</i> Agregar pelicula</button>
             </div>
         </div>

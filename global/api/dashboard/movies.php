@@ -43,6 +43,14 @@
                         $result['exception']='No hay actores registrados';
                     }
                 break;
+                case 'getCountMoviesbyProveeder':
+                    if($result['dataset']=$movie->getCountMoviesbyProveeder()){
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['exception']='No hay registros';
+                    }
+                break;
                 case 'getGenders':
                     if($result['dataset']=$gender->all()){
                         $result['status']=1;
