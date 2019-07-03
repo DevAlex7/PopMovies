@@ -13,26 +13,37 @@
 <body>
 <?php MovieNavBar::NavBar();?>
 <div class="row">
-    <div class="col s12 m3">
-        <div class="card ">
-            <div class="card-content">
-                <span class="card-title">Opciones</span>
-                <div class="collection" id="OptionsPart">
-                    <a onclick="viewTodayCart();" class="collection-item blue-text" id="TodayItem">Hoy</a>
-                    <a onclick="viewPendingCart();" class="collection-item blue-text" id="PendingItem">Ver pendientes</a>
-                    <a onclick="viewCarPaid();" class="collection-item blue-text" id="PaidsItem">Ver pagados</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col s12 m9">
+   
+    <div class="col s12 m12">
         <div class="card">
             <div class="card-content">
-                <span class="card-title" id="Title"></span>
+                <span class="card-title" id="Title">Tu lista de orden</span>
                 <div id="TableInformation">
                     <table class="responsive-table" id="Information">
-                        
+                        <thead>
+                            <tr>
+                                <th>Pelicula</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                                <th>Fecha</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="readList">
+                        </tbody>      
                     </table>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12">
+                        <div class="card">
+                            <div class="card-content">
+                                <p id="TextCardPay" class="card-title left-align"></p>
+                                <a class="btn green right-align accent-4">Pagar</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

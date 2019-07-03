@@ -27,8 +27,7 @@
                                             $get = $movie->allbyId();
                                             if($get['count']>$_POST['countUser']){
                                                 $stock = $get['count'] - $_POST['countUser'];
-                                                $price = $_POST['countUser'] * $get['price'];
-                                                if($detail->price($price)){
+                                                if($detail->price($get['price'])){
                                                     if($movie->count($stock)){
                                                         $getCar = $car->existOrder();
                                                         if($detail->id_car($getCar['id'])){
@@ -135,27 +134,31 @@
                        $result['exception']='Cantidad invalida';
                    }
                 break;
-                case 'viewmyListToday':
+                case 'getCarId':
                     if($car->client($_SESSION['idClient'])){
-                        $idCar = $car->getIdOrder();
-                        if($detail->id_car($idCar['id'])){
-                            if($result['dataset']=$detail->getTodayList()){
-                                $result['status']=1;
-                            }
-                            else{
-                                $result['exception']='No hay información de carrito de hoy';    
-                            }
+                        if($result['dataset']=$car->getIdOrder()){
+                            $result['status']=1;
                         }
                         else{
-                            $result['exception']='No hay información de carrito';
+                            $result['exception']='Carro inexistente';
                         }
                     }
                     else{
-                        $result['exception']='No se encontro información, datos incorrectos';
+                        $result['exception']='No hay información del usuario';
                     }
                 break;
-                case 'viewmyPendings':
-                    //ver mis ordenes pendientes
+                case 'viewmyList':
+                    if($detail->id_car($_POST['id_car'])){
+                        if($result['dataset']=$detail->getListOrder()){
+                            $result['status']=1;
+                        }
+                        else{
+                            $result['exception']='No hay ningun producto en tu lista';
+                        }
+                    }
+                    else{
+                        $result['exception']='No hay información de carrito disponible';
+                    }
                 break;
                 case 'viewPaids':
                     //ver mis ordenes pagadas

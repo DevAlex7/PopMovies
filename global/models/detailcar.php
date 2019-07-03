@@ -84,8 +84,18 @@ class detailCar extends Validator{
                 AND detail_order.id_car=? 
                 AND detail_order.date=?)';
         $params=array($this->id_car, $today=date("Y-m-d"));
+        return Database::getRows($sql,$params); 
+    }
+    public function getListOrder(){
+        $sql ='SELECT   detail_order.id, 
+                        movies.name, detail_order.count, 
+                        detail_order.price, 
+                        detail_order.date 
+                        FROM ((detail_order 
+                        INNER JOIN car ON car.id=detail_order.id_car AND car.id=?) 
+                        INNER JOIN movies ON movies.id=detail_order.id_movie)';
+        $params=array($this->id_car);
         return Database::getRows($sql,$params);
-        
     }
 }
 
