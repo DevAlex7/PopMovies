@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/home/css/favorites.css">
+    <link rel="stylesheet" href="../../resources/home/css/sidenav.css">
 </head>
 <body>
     <!--Dropdown -->

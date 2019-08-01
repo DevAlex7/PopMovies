@@ -22,9 +22,11 @@
                 <span class="card-title">Peliculas</span>
                 <button 
                 data-target="ModalAddMovie" 
-                
                 class="btn blue   modal-trigger"
                 ><i class="material-icons left">movie</i> Agregar pelicula</button>
+                <a href="Reportproducts.php" class="btn red">Ver en pdf</a>
+                <a href="Reportfavorites_movies.php" class="btn red">Ver favoritos</a>
+                <a href="Reportsails_movies.php" class="btn red">Ver ventas</a>
             </div>
         </div>
 

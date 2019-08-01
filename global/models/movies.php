@@ -184,6 +184,11 @@ class Movies extends Validator{
         $params=array(null);
         return Database::getRows($sql,$params);
     }
+    public function getMoviesbyProveeder(){
+        $sql='SELECT movies.name AS Moviename, customers.enterprise, customers.name FROM movies INNER JOIN customers ON movies.customer=customers.id';
+        $params = array(null);
+        return Database::getRows($sql,$params);
+    }
     public function existsite(){
         $sql='SELECT * FROM movies WHERE id=?';
         $params=array($this->id);

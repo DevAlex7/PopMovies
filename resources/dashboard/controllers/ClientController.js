@@ -12,7 +12,6 @@ function setClients(rows){
                 <td>${row.lastname}</td>
                 <td>${row.email}</td>
                 <td>${row.username}</td>
-                <td>${row.membership}</td>
             <td>
                
             </td>

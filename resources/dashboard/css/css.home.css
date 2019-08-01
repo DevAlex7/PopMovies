@@ -17,12 +17,29 @@ header, main, footer {
     position: relative;
     top:0.5rem;
 }
+
 #ChartMovies{
     background-color: #2a2a72;
     
     background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
 }
 #CakeGraphic{
-    background-color: #7fcec5;
-background-image: linear-gradient(315deg, #7fcec5 0%, #14557b 74%);
+    background-color: #2a2a72;
+    
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+}
+#chartTopFav{
+    background-color: #2a2a72;
+    
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+}
+#ChartTop{
+    background-color: #2a2a72;
+    
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+}
+#SailsCard{
+    background-color: #2a2a72;
+    
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
 }

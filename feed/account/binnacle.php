@@ -20,7 +20,7 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title">Registro de actividades</span>
-                
+                <a href="Reportbinnacle.php" class="btn red">ver en pdf</a>
                 <div class="row" id="ContentBinnacle">
                     <nav class="white">
                         <div class="nav-wrapper">

@@ -25,7 +25,7 @@
                                     if($detail->count($_POST['countUser'])){
                                         if($movie->id($_POST['idMovie'])){
                                             $get = $movie->allbyId();
-                                            if($get['count']>$_POST['countUser']){
+                                            if($get['count']>=$_POST['countUser']){
                                                 $stock = $get['count'] - $_POST['countUser'];
                                                 if($detail->price($get['price'])){
                                                     if($movie->count($stock)){
@@ -83,7 +83,7 @@
                                     if($detail->count($_POST['countUser'])){
                                         if($movie->id($_POST['idMovie'])){
                                             $get = $movie->allbyId();
-                                            if($get['count']>$_POST['countUser']){
+                                            if($get['count']>=$_POST['countUser']){
 
                                                 $price = $_POST['countUser'] * $get['price'];
                                                 $stock = $get['count']-$_POST['countUser'];
@@ -92,6 +92,7 @@
                                                     if($detail->price($price)){
                                                         $car->createOrder();
                                                         $getCar = $car->existOrder();
+                                                        $_SESSION['idcar'] = $getCar['id'];
                                                             if($detail->id_car($getCar['id'])){
                                                                 $movie->updateCount();
                                                                 $detail->createDetailOrder();
@@ -160,11 +161,44 @@
                         $result['exception']='No hay información de carrito disponible';
                     }
                 break;
-                case 'viewPaids':
-                    //ver mis ordenes pagadas
+                case 'deleteItem':
+                    if($detail->id($_POST['id'])){
+                        if($movie->id($_POST['Movie_id'])){
+                            $get = $movie->allbyId();
+                            $cart = $detail->allbyId();
+                            
+                            $newStock = $get['count'] + $cart['count'];
+                            
+                            if($movie->count($newStock)){
+                                $movie->updateCount();
+                                $detail->deleteItemList();
+                                $result['status']=1;
+                            }  
+                            else{
+                                $result['exception']='Dato invalido';
+                            }
+                        }
+                        else{
+                            $result['exception']='No se encontro información de la pelicula';
+                        }
+                    }
+                    else{
+                        $result['exception']='No se encontro información del producto';
+                    }
                 break;
                 case 'updateStatus':
-                    //Actualizar el estado de la orden
+                    if($car->id($_POST['idCar'])){
+                        if($car->status(1)){
+                            $car->updateOrderStatus();
+                            $result['status']=1;
+                        }
+                        else{
+                            $result['exception']='Dato invalido de estado';
+                        }
+                    }
+                    else{
+                        $result['exception']='No se encontro información de su orden';
+                    }
                 break;
                 case 'getInformationCart':
                     //Obtener la información de la orden

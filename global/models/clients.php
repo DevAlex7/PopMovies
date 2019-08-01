@@ -128,9 +128,8 @@ class Clients extends Validator{
     }
 
     public function all(){
-        $sql='  SELECT users.id, uname, lastname, email, username, memberships.membership 
-                FROM users,memberships 
-                WHERE users.membership=memberships.id';
+        $sql='  SELECT users.id, uname, lastname, email, username 
+                FROM users';
         $params=array(null);
         return Database::getRows($sql,$params);
     }

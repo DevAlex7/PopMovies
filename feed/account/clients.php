@@ -35,7 +35,6 @@
                         <th>Apellido</th>
                         <th>Correo</th>
                         <th>Usuario</th>
-                        <th>Membresia</th>
                     </tr>
                     </thead>
 

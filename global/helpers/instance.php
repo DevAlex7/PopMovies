@@ -12,8 +12,8 @@ class Database
     {
         $server = 'localhost';
         $database = 'popmovies';
-        $username = 'root';
-        $password = '';
+        $username = 'alexgve7';
+        $password = 'chtuJtCWEUBRVPJq';
         try {
             @self::$connection = new PDO('mysql:host='.$server.'; dbname='.$database.'; charset=utf8', $username, $password);
         } catch(PDOException $error) {

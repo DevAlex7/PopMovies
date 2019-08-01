@@ -47,9 +47,14 @@ class Car extends Validator{
         return Database::executeRow($sql,$params);
     }
     public function getIdOrder(){
-        $sql='SELECT car.id FROM (car INNER JOIN users ON car.client=users.id AND users.id=?)';
+        $sql='SELECT car.id FROM ((car INNER JOIN users ON car.client=users.id AND users.id=?) INNER JOIN shopstatus ON car.status=shopstatus.id AND car.status=0)';
         $params=array($this->client);
         return Database::getRow($sql,$params);
+    }
+    public function updateOrderStatus(){
+        $sql='UPDATE car SET status=? WHERE id=?';
+        $params=array($this->status,$this->id);
+        return Database::executeRow($sql,$params);
     }
     
 }
