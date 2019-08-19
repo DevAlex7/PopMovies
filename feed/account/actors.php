@@ -89,7 +89,7 @@
                        </form>
                     </div>
                 </div>
-                <table class="highlight centered">
+                <table>
                     <thead>
                         <tr>
                             <th>Pelicula</th>

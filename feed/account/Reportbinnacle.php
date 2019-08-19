@@ -1,6 +1,5 @@
 <?php 
 require_once('../../Reports/PDF.php');
-
 date_default_timezone_set('America/El_Salvador');
 class myPDF extends PDF {
 

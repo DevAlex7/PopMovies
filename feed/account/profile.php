@@ -58,11 +58,6 @@
                                     <button class="btn orange modal-trigger" onclick="EditbyId()" data-target="ModalEditProfile">Editar mi cuenta</button>
                                 </div>
                             </div>
-                            <div class="col s12 m12">
-                                <div class="card-panel">
-                                    <a class="btn indigo darken-2">Cambiar contraseña</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

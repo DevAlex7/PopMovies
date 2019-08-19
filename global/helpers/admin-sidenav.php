@@ -9,7 +9,27 @@ class AdminSideNav{
 
         session_start();
         if(isset($_SESSION['idUsername'])){
-            
+
+            /*$inactivo = 30;
+
+            $vida_session = time() - $_SESSION['tiempo'];
+        
+            if($vida_session > $inactivo)
+            {
+                unset($_SESSION['idUsername']);
+                unset($_SESSION['AdminUsername']);
+                unset($_SESSION['AdminName']);
+                unset($_SESSION['AdminLastname']);
+                unset($_SESSION['tiempo']);
+        
+                header("Location: index.php");
+        
+            } else {
+        
+                $_SESSION['tiempo'] = time();
+                
+            }
+            */
             $filename = basename($_SERVER['PHP_SELF']);
             
             if($filename != '../../feed/account/')
@@ -29,6 +49,7 @@ class AdminSideNav{
                     <li><a href="/PopMovies/feed/account/home.php"><i class="material-icons">dashboard</i>Inicio</a></li>
                     <li><a href="/PopMovies/feed/account/profile.php"><i class="material-icons">person</i>Mi perfil</a></li>
                     <li><a href="/PopMovies/feed/account/binnacle.php"><i class="material-icons">drag_indicator</i>Bitacora</a></li>
+                    <li><a href="/PopMovies/feed/account/settings.php"><i class="material-icons">lock</i>Seguridad</a></li>
                     <li><div class="divider"></div></li>
                     <li><a class="subheader white-text">Menu</a></li>
                     <li><a href="/PopMovies/feed/account/movies.php"><i class="material-icons">movies</i>Stock</a></li>
@@ -38,7 +59,6 @@ class AdminSideNav{
                     <li><a href="/PopMovies/feed/account/customers.php"><i class="material-icons">business</i>Proveedores</a></li>
                     <li><a href="/PopMovies/feed/account/managers.php"><i class="material-icons">account_circle</i>Administradores</a></li>
                     <li><a href="/PopMovies/feed/account/clients.php"><i class="material-icons">accessibility</i>Clientes</a></li>
-                    <li><a href="/PopMovies/feed/account/memberships.php"><i class="material-icons">bookmark</i>Membresias</a></li>
                     <li><a href="/PopMovies/feed/account/actors.php"><i class="material-icons">face</i>Actores</a></li>
                     <li><div class="divider"></div></li>
                     <li><a href="#ModalCloseSession" class="modal-trigger"><i class="material-icons">exit_to_app</i>Cerrar Sesión</a></li>

@@ -69,6 +69,7 @@
                                         $_SESSION['AdminUsername']=$userAdmin->getUsername();
                                         $_SESSION['AdminName']=$userAdmin->getName();
                                         $_SESSION['AdminLastname']=$userAdmin->getLastname();
+                                        $_SESSION['tiempo'] = time();
                                         $result['status']=1;
                                         $result['site']='../../feed/account/home.php';
                                     }
