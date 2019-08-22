@@ -11,3 +11,20 @@ function isJSONString(string)
         return false;
     }
 }
+
+function arrayRemove(arr, index) {
+
+    var value = arr.indexOf(index);
+ 
+    if (value > -1) {
+        arr.splice(value, 1);
+        return true;
+    }
+    else{
+        return false;
+    }
+
+ 
+ }
+ 
+ 

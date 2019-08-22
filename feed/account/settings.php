@@ -21,56 +21,90 @@ require_once('../../global/helpers/settings-template.php');
         ?>
     </header>
     <main>
-        <div class="row" id="options">
-            <div class="col s12 m12">
-                <ul class="tabs">
-                    <li class="tab col s3"><a href="#test1" class="black-text"> <i class="material-icons" id="iconFigure">fingerprint</i> Contraseña </a></li>
-                    <li class="tab col s3"><a href="#test2" class="black-text">Test 2</a></li>
-                    <li class="tab col s3"><a href="#test3" class="black-text">Test 2</a></li>
-                    <li class="tab col s3"><a href="#test4" class="black-text">Test 4</a></li>
-                </ul>
-            </div>
-        <div id="test1" class="col s12">
-            <div class="row center" id="cardcp">
-                <div class="col s12 m5 offset-m3">
-                    <div class="card" id="card-changeP">
-                        <div class="card-content">
-                            <span class="card-title center" id="titleBold">Cambiar contraseña</span>
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title"> <i class="material-icons left">edit</i> Cambiar contraseña</span>
+                        <div class="divider"></div>
+                        <div class="row" id="passwordsForm">
+                            <form class="col s12" id="formChangePassword">
                                 <div class="row">
-                                    <form class="col s12">
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <i class="material-icons prefix">lock</i>
-                                                <input id="icon_prefix" type="password">
-                                                <label for="icon_prefix">Ingrese su antigua contraseña</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <i class="material-icons prefix">lock</i>
-                                                <input id="sepass" type="password">
-                                                <label for="sepass">Ingrese una nueva contraseña</label>
-                                            </div>
-                                            <div class="input-field col s12">
-                                                <i class="material-icons prefix">lock</i>
-                                                <input id="sepass2" type="password">
-                                                <label for="sepass2">Repita la contraseña</label>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <div class="input-field col s12 m6 offset-m3">
+                                        <i class="material-icons prefix">lock</i>
+                                        <input id="actualpass" name="actualpass" type="password">
+                                        <label for="actualpass">Ingrese su contraseña actual</label>
+                                    </div>
+                                    <div class="input-field col s12 m6 offset-m3">
+                                        <i class="material-icons prefix">lock</i>
+                                        <input id="passuser1" name="passuser1" type="password">
+                                        <label for="passuser1">Ingrese nueva contraseña</label>
+                                    </div>
+                                    <div class="input-field col s12 m6 offset-m3">
+                                        <i class="material-icons prefix">lock</i>
+                                        <input id="passuser2" name="passuser2" type="password">
+                                        <label for="passuser2">Repita la nueva contraseña  </label>
+                                    </div>
                                 </div>
+                                <div class="row center">
+                                    <button type="submit" class="btn blue">Cambiar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m8 offset-m2">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title"> <i class="material-icons left">people</i> Usuarios de confianza</span>
+                        <div class="divider"></div>
+                        <div class="center">
+                            <a class="btn blue modal-trigger" href="#viewUsers" id="btnUsers"> <i class="material-icons left">people</i> Ver usuarios</a>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 m12">
+                            <table class="centered">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Item Name</th>
+                                    <th>Item Price</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Alvin</td>
+                                        <td>Eclair</td>
+                                        <td>$0.87</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alan</td>
+                                        <td>Jellybean</td>
+                                        <td>$3.76</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jonathan</td>
+                                        <td>Lollipop</td>
+                                        <td>$7.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="test2" class="col s12">
-            Test 2
-        </div>
-        <div id="test3" class="col s12">
-            Test 3
-        </div>
-        <div id="test4" class="col s12">
-            Test 4
-        </div>
+        <div class="modal" id="viewUsers">
+            <div class="modal-content">
+                <div class="card-panel blue">
+                    <h5 id="textBold">Usuarios</h5>
+                </div>
+                <div class="row" id="result">
+                </div>
+            </div>
         </div>
     </main>
     <footer>

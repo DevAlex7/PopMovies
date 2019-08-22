@@ -75,7 +75,7 @@ class adminusers extends Validator{
 
     public function password($value){
         if ($this->validatePassword($value)) {
-			$this->upassword = $value;
+			$this->password = $value;
 			return true;
 		} else {
 			return false;
@@ -87,13 +87,14 @@ class adminusers extends Validator{
 
     public function checkUsername()
 	{
-		$sql = 'SELECT id, name, lastname FROM admins WHERE username = ?';
+		$sql = 'SELECT id, name, lastname, email FROM admins WHERE username = ?';
 		$params = array($this->username);
 		$data = Database::getRow($sql, $params);
 		if ($data) {
 			$this->id = $data['id'];
 			$this->name = $data['name'];
 			$this->lastname = $data['lastname'];
+			$this->email = $data['email'];
 			return true;
 		} else {
 			return false;
@@ -114,7 +115,6 @@ class adminusers extends Validator{
 
 	public function LogOff(){
 		if(isset($_SESSION['idUsername'])){
-			
 			unset($_SESSION['idUsername']);
 			unset($_SESSION['AdminUsername']);
 			unset($_SESSION['AdminName']);
@@ -157,6 +157,12 @@ class adminusers extends Validator{
 		$sql='DELETE FROM admins WHERE id=?';
 		$params=array($this->id);
 		return Database::executeRow($sql, $params);
+	}
+	public function changePassword(){
+		$hash = password_hash($this->password , PASSWORD_DEFAULT);
+		$sql='UPDATE admins SET password=? WHERE id=?';
+		$params=array($hash, $this->id);
+		return Database::executeRow($sql,$params);
 	}
 }
 

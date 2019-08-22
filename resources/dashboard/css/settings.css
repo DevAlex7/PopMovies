@@ -15,6 +15,9 @@ header, main, footer {
 #card-changeP{
     border-radius: 10px;
 }
+#passwordsForm{
+    margin-top:1rem;
+}
 #cardcp{
     margin-top:1rem;
 }
@@ -23,6 +26,13 @@ header, main, footer {
     top:5px;
     right: 15px;
     font-size: 20px;
+}
+#btnUsers{
+    margin-top:1rem;
+}
+#textBold{
+    font-weight: bold;
+    color: white;
 }
 .tabs .tab a {
     color: black;

@@ -1,11 +1,15 @@
 <?php 
         require_once('../../helpers/validator.php');    
         require_once('../../models/adminusers.php');
+        require_once('../../models/user_trusts.php');
+        require_once('../../helpers/Mail.php');
         require_once('../../helpers/instance.php');
+
         if(isset($_GET['site']) && isset($_GET['action']) )
         {
             session_start();
             $userAdmin = new adminusers();
+            $trust = new user_Trusts();
             
             $result = array('status'=>0,'exception'=>'','site'=>'');
 
@@ -68,6 +72,7 @@
                                         $_SESSION['idUsername']= $userAdmin->getId();
                                         $_SESSION['AdminUsername']=$userAdmin->getUsername();
                                         $_SESSION['AdminName']=$userAdmin->getName();
+                                        $_SESSION['AdminEmail']=$userAdmin->getEmail();
                                         $_SESSION['AdminLastname']=$userAdmin->getLastname();
                                         $_SESSION['tiempo'] = time();
                                         $result['status']=1;
@@ -102,6 +107,65 @@
                     } else {
                         header('location: ../../../feed/account/home.php');
                     }
+                    break;
+                    case 'changePassword':
+                        if($userAdmin->password($_POST['actualpass'])){
+                            if($userAdmin->id($_SESSION['idUsername'])){
+                                if($userAdmin->checkPassword()){
+                                    if($_POST['actualpass'] != $_POST['passuser1']){
+                                        if($_POST['passuser1'] == $_POST['passuser2'] ){
+                                            if(strlen($_POST['passuser1']) >= 8 ){
+                                                if($userAdmin->password($_POST['passuser1'])){
+                                                    if($userAdmin->changePassword()){
+                                                        $result['status']=1;
+                                                    }
+                                                    else{
+                                                        $result['exception']='No se cambió la contraseña';
+                                                    }
+                                                }
+                                                else{
+                                                    $result['exception']='La contraseña no cumple con los carácteres solicitados';
+                                                }
+                                            }
+                                            else{
+                                                $result['exception']='La longitud de la contraseña es menor a 8 carácteres';
+                                            }
+                                        }
+                                        else{
+                                            $result['exception']='Las contraseñas no son iguales';
+                                        }
+                                    }
+                                    else{
+                                        $result['exception']='La nueva contraseña no puede ser igual que la actual';
+                                    }
+
+                                }
+                                else{
+                                    $result['exception']='La contraseña ingresada no es la actual.';
+                                }
+                            }
+                            else{
+                                $result['exception']='No se ha encontrado información del usuario.';
+                            }
+                        }
+                        else{
+                            $result['exception']='La contraseña no cumple con lo requerido.';
+                        }   
+                    break;
+                    case 'sendEmail':  
+                    break;
+                    case 'listTrusts':
+                        if($trust->id_user($_SESSION['idUsername'])){
+                            if($trust->getTrustUsersbyId()){
+                                $result['status']=1;
+                            }
+                            else{
+                                $result['exception']='No hay usuarios de confianza';
+                            }
+                        }
+                        else{   
+                            $result['exception']='El usuario no se ha definido';
+                        }
                     break;
                 }
             }
