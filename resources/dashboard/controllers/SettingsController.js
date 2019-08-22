@@ -91,7 +91,7 @@ const setTrusts = (rows) => {
         rows.map(function(row){
             content+=`
                 <tr>
-                    <td>${}</td>    
+                    <td>${row.name}</td>    
                 <tr>
             `;
         })
