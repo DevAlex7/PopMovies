@@ -1,9 +1,11 @@
 $(document).ready(function () {
     $('.modal').modal();
     listAdmins();
+    listTrusts();
 });
 var trustUsers = [];
 const apiUsers = '../../global/api/dashboard/adminusers.php?site=dashboard&action='; 
+
 $('#formChangePassword').submit(function(){
     event.preventDefault();
     $.ajax({
@@ -30,6 +32,7 @@ $('#formChangePassword').submit(function(){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 })
+
 const setList = (rows) => {
     let content = '';
     if(rows.length > 0){
@@ -49,8 +52,8 @@ const setList = (rows) => {
 }
 const listAdmins = () => {
     $.ajax({
-        url:apiUsers+'all',
-        type:'GET',
+        url:apiUsers+'listInTrust',
+        type:'POST',
         data:null,
         datatype:'JSON'
     })
@@ -69,22 +72,6 @@ const listAdmins = () => {
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 }
-const thisCard = (id) => {
-    
-    alert(id);
-    if($('#cardUser-'+id).hasClass('blue white-text')){
-
-        $('#cardUser-'+id).removeClass('blue white-text');
-        arrayRemove(trustUsers, id);
-        console.log(trustUsers);
-    }
-    else{
-        $('#cardUser-'+id).addClass('blue white-text');
-        trustUsers.push(id);
-    }
-    console.log(trustUsers);
-}
-
 const setTrusts = (rows) => {
     let content = '';
     if(rows.length > 0){
@@ -92,17 +79,19 @@ const setTrusts = (rows) => {
             content+=`
                 <tr>
                     <td>${row.name}</td>    
+                    <td>${row.lastname}</td>    
+                    <td>${row.email}</td>    
                 <tr>
             `;
         })
     }
-    $('#result').html(content);
+    $('#tableTrust').html(content);
 }
 
 const listTrusts = () => {
     $.ajax({
         url:apiUsers+'listTrusts',
-        type:'GET',
+        type:'POST',
         data:null,
         datatype:'JSON'
     })
@@ -111,7 +100,7 @@ const listTrusts = () => {
             const result = JSON.parse(response);
             if(!result.status){
             }
-            setList(result.dataset);
+            setTrusts(result.dataset);
         }
         else{
             console.log(response);
@@ -120,4 +109,51 @@ const listTrusts = () => {
     .fail(function(jqXHR){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
+}
+
+const thisCard = (id) => {
+    alert(id);
+    if($('#cardUser-'+id).hasClass('blue white-text')){
+        $('#cardUser-'+id).removeClass('blue white-text');
+    }
+    else{
+        $('#cardUser-'+id).addClass('blue white-text');
+        InsertTrust(id);
+        listAdmins();
+        listTrusts();
+    }
+}
+
+const InsertTrust = (idTrust) => {
+    alert(idTrust);
+    $.ajax({
+        url:apiUsers+'insertTrust',
+        type:'POST',
+        data:{
+            idTrust
+        },
+        datatype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result = JSON.parse(response);
+            if(result.status){
+                M.toast({
+                    html:'Se ha insertado su contacto de confianza exitosamente'
+                })
+            }
+            else{
+                M.toast({
+                    html:result.exception
+                })
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    
 }

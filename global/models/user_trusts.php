@@ -15,7 +15,7 @@ class user_Trusts extends Validator{
     }
     public function id_user($value){
         if($this->validateId($value)){
-            $this->id = $value;
+            $this->id_user = $value;
             return true;
         }
         else{
@@ -24,7 +24,7 @@ class user_Trusts extends Validator{
     }
     public function id_user_trust($value){
         if($this->validateId($value)){
-            $this->id = $value;
+            $this->id_user_trust = $value;
             return true;
         }
         else{
@@ -33,8 +33,10 @@ class user_Trusts extends Validator{
     }
 
     public function save(){
-        $sql='INSERT INTO users_trusts VALUES (NULL, ?, ?)';
-        $params = array($this->id_user,$this->id_user_trust);
+        $sql='INSERT INTO users_trusts (id_user, id_user_trust) VALUES (?, ?)';
+        
+        $params = array($this->id_user, $this->id_user_trust);
+        print var_dump($params);
         return Database::executeRow($sql,$params);
     }
     public function getTrustUsersbyId(){

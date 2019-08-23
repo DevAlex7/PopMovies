@@ -10,7 +10,7 @@
             session_start();
             $userAdmin = new adminusers();
             $trust = new user_Trusts();
-            
+            $mail = new Mail();
             $result = array('status'=>0,'exception'=>'','site'=>'');
 
             if($_GET['site']=='dashboard'){
@@ -154,9 +154,22 @@
                     break;
                     case 'sendEmail':  
                     break;
+                    case 'listInTrust':
+                        if($userAdmin->id($_SESSION['idUsername'])){
+                            if($result['dataset']=$userAdmin->existsInTrusts()){
+                                $result['status']=1;
+                            }
+                            else{
+                                $result['exception']='No hay usuarios disponibles';
+                            }
+                        }
+                        else{
+                            $result['exception']='Sesión desconocida';
+                        }
+                    break;
                     case 'listTrusts':
                         if($trust->id_user($_SESSION['idUsername'])){
-                            if($trust->getTrustUsersbyId()){
+                            if($result['dataset']=$trust->getTrustUsersbyId()){
                                 $result['status']=1;
                             }
                             else{
@@ -165,6 +178,28 @@
                         }
                         else{   
                             $result['exception']='El usuario no se ha definido';
+                        }
+                    break;
+                    case 'insertTrust':
+                        var_dump($_POST);
+                        if($trust->id_user($_SESSION['idUsername'])){
+                            if($trust->id_user_trust($_POST['idTrust'])){
+                                if($trust->save()){
+                                    $result['status']=1;
+                                    $mail->from('popmoviesshop@gmail.com','Popmovies');
+                                    $mail->to($_SESSION['AdminEmail'],'Alejandro');
+                                    $mail->sendMail();
+                                }
+                                else{
+                                    $result['exception']='Fallo al asignar usuario de confianza';
+                                }
+                            }
+                            else{
+                                $result['exception']='No se ha seleccionado un usuario';
+                            }
+                        }
+                        else{
+                            $result['exception']='No se ha definido el usuario principal';
                         }
                     break;
                 }

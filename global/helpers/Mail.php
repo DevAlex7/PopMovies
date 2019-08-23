@@ -7,42 +7,51 @@
     require '../../../Mail/src/SMTP.php';
     
     class Mail{
-        private static $from_email;
-        private static $from_username;
-        private static $to_email;
-        private static $to_username;
+        private  $from_email;
+        private  $from_username;
+        private  $to_email;
+        private  $to_username;
+
+        public function from($from_mail, $from_user){
+            $this->from_email = $from_mail;
+            $this->from_username = $from_user;
+        }
+
+        public function to($to_mail, $to_user){
+            $this->to_email=$to_mail;
+            $this->to_username=$to_user;
+        }
         
-        public static function send(){
+        public function sendMail(){
             $mail = new PHPMailer(true);
 
             try {
-                //Server settings
-                $mail->SMTPDebug = 2;                                       // Enable verbose debug output
-                $mail->isSMTP();                                            // Set mailer to use SMTP
-                $mail->Host       = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
-                $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-                $mail->Username   = 'user@example.com';                     // SMTP username
-                $mail->Password   = 'secret';                               // SMTP password
-                $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
-                $mail->Port       = 587;                                    // TCP port to connect to
+                $mail = new PHPMailer(true);
 
-                //Recipients
-                $mail->setFrom('from@example.com', 'Mailer');
-                $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-                $mail->addAddress('ellen@example.com');               // Name is optional
-                $mail->addReplyTo('info@example.com', 'Information');
-                $mail->addCC('cc@example.com');
-                $mail->addBCC('bcc@example.com');
+                $mail->isSMTP();// Set mailer to use SMTP
+                $mail->CharSet = "utf-8";// set charset to utf8
+                $mail->SMTPAuth = true;// Enable SMTP authentication
+                $mail->SMTPSecure = 'tls';// Enable TLS encryption, `ssl` also accepted
 
-                // Attachments
-                $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-                $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+                $mail->Host = 'smtp.gmail.com';// Specify main and backup SMTP servers
+                $mail->Port = 25;// TCP port to connect to
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+                $mail->isHTML(true);// Set email format to HTML
 
-                // Content
-                $mail->isHTML(true);                                  // Set email format to HTML
-                $mail->Subject = 'Here is the subject';
-                $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+                $mail->Username = 'popmoviesshop@gmail.com';// SMTP username
+                $mail->Password = 'shopOnline@2018$';// SMTP password
+
+                $mail->setFrom('popmoviesshop@gmail.com', 'John Smith');//Your application NAME and EMAIL
+                $mail->Subject = 'Test';//Message subject
+                $mail->MsgHTML('HTML code');// Message body
+                $mail->addAddress('alexgve7@gmail.com', 'User Name');// Target email
+
 
                 $mail->send();
                 echo 'Message has been sent';

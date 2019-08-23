@@ -164,6 +164,11 @@ class adminusers extends Validator{
 		$params=array($hash, $this->id);
 		return Database::executeRow($sql,$params);
 	}
+	public function existsInTrusts(){
+		$sql='SELECT admins.id, admins.name, admins.lastname FROM admins WHERE NOT EXISTS (SELECT 1 FROM users_trusts WHERE admins.id = users_trusts.id_user_trust AND users_trusts.id_user=?) AND admins.id NOT IN (?)';
+		$params = array($this->id, $this->id);
+		return Database::getRows($sql,$params);
+	}
 }
 
 ?>
