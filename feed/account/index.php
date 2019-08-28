@@ -27,7 +27,7 @@
                 <form id="LoginForm" method="POST">
                     <span class="card-title col s10 offset-s1 red-text">Iniciar Sesion</span>
                     <div class="input-field col s10 offset-s1">
-                        <input id="Username" name="Username"  class="red-text" type="text">
+                        <input id="Username" name="Username" autocomplete="new-password"  class="red-text" type="text">
                         <label for="icon_prefix">Usuario</label>
                     </div>
                     <div class="input-field col s10 offset-s1">

@@ -3,12 +3,16 @@
         require_once('../../models/adminusers.php');
         require_once('../../models/user_trusts.php');
         require_once('../../helpers/Mail.php');
+        require_once('../../helpers/spendTime.php');
         require_once('../../helpers/instance.php');
 
         if(isset($_GET['site']) && isset($_GET['action']) )
         {
             session_start();
+            $_SESSION['triesUser'] = '';            
             $userAdmin = new adminusers();
+            $spend = new spendTime();
+            $validate = new Validator();
             $trust = new user_Trusts();
             $mail = new Mail();
             $result = array('status'=>0,'exception'=>'','site'=>'');
@@ -16,27 +20,36 @@
             if($_GET['site']=='dashboard'){
                 
                 switch($_GET['action']){
-
-                    case 'createAdminUser':
+                        case 'createAdminUser':
                         if($userAdmin->name($_POST['AdminUserName'])){
                             if($userAdmin->lastname($_POST['AdminUserLastName'])){
                                 if($userAdmin->username($_POST['Username'])){
                                     if($userAdmin->email($_POST['AdminUserEmail'])){
-                                        if($_POST['AdminUserPassword'] == $_POST['AdminUserRepeatPassword']){
-                                            if($userAdmin->password($_POST['AdminUserPassword'])){
-                                                if($userAdmin->create()){
-                                                    $result['status']=1;
+                                        if($_POST['Username'] != $_POST['AdminUserPassword'] ){
+                                            if($_POST['AdminUserPassword'] == $_POST['AdminUserRepeatPassword']){
+                                                if($userAdmin->password($_POST['AdminUserPassword'])){
+                                                    if($validate->validateRecaptcha($_POST['tokken'])){
+                                                        if($userAdmin->create()){
+                                                            $result['status']=1;
+                                                        }
+                                                        else{
+                                                            $result['exception'] = 'Operación fallida';
+                                                        }
+                                                    }
+                                                    else{
+                                                        $result['exception']='Recaptcha Invalido';
+                                                    }
                                                 }
                                                 else{
-                                                    $result['exception'] = 'Operación fallida';
+                                                    $result['exception'] = 'Clave menor a 6 caracteres';
                                                 }
                                             }
                                             else{
-                                                $result['exception'] = 'Clave menor a 6 caracteres';
+                                                $result['exception'] = 'Las contraseñas son diferentes';
                                             }
                                         }
                                         else{
-                                            $result['exception'] = 'Las contraseñas son diferentes';
+                                            $result['exception']='La contraseña no puede ser igual que el usuario';
                                         }
                                     }
                                     else{
@@ -54,8 +67,8 @@
                         else{
                             $result['exception']= 'Nombre incorrecto o campo vacio';
                         }
+                        
                     break;
-             
                     case 'checkUsers':
                         if($result['dataset']=$userAdmin->checkUsers()){
                             $result['status']=1;
@@ -65,33 +78,54 @@
                         }
                     break;
                     case 'login':
-                        if($userAdmin->username($_POST['Username'])){
-                            if($userAdmin->checkUsername()){
-                                if($userAdmin->password($_POST['Password'])){
-                                    if($userAdmin->checkPassword()){
-                                        $_SESSION['idUsername']= $userAdmin->getId();
-                                        $_SESSION['AdminUsername']=$userAdmin->getUsername();
-                                        $_SESSION['AdminName']=$userAdmin->getName();
-                                        $_SESSION['AdminEmail']=$userAdmin->getEmail();
-                                        $_SESSION['AdminLastname']=$userAdmin->getLastname();
-                                        $_SESSION['tiempo'] = time();
-                                        $result['status']=1;
-                                        $result['site']='../../feed/account/home.php';
+                                if($userAdmin->username($_POST['Username'])){
+                                    if($userAdmin->checkUsername()){
+                                        if($userAdmin->password($_POST['Password'])){
+                                            if($userAdmin->checkPassword()){
+                                                if($userAdmin->checkSession()){
+                                                    if($userAdmin->checkStatus()){
+                                                        $_SESSION['idUsername']= $userAdmin->getId();
+                                                        $_SESSION['AdminUsername']=$userAdmin->getUsername();
+                                                        $_SESSION['AdminName']=$userAdmin->getName();
+                                                        $_SESSION['AdminEmail']=$userAdmin->getEmail();
+                                                        $_SESSION['AdminLastname']=$userAdmin->getLastname();
+                                                        $_SESSION['role']=$userAdmin->getRole();
+                                                        $_SESSION['status']=$userAdmin->getStatus();
+                                                        $_SESSION['tiempo'] = time();
+                                                        $result['status']=1;
+                                                        $result['site']='../../feed/account/home.php';
+                                                    }
+                                                    else{
+                                                        $result['exception']='Este usuario esta inactivo o bloqueado';
+                                                    }
+                                                }
+                                                else{
+                                                    $result['exception']='Este usuario ya esta logueado';
+                                                }
+                                            }
+                                            else{
+                                                $_SESSION['triesUser'] = $_POST['tries'];   
+
+                                                if( $_POST['tries'] < 3 ){
+                                                    $result['exception']='Datos incorrectos';       
+                                                }
+                                                else{
+                                                    $result['exception'] = 'Intente más tarde, su usuario ha sida bloqueada';
+                                                    $userAdmin->setBlockUser();
+                                                    $result['status']=2;
+                                                }
+                                            }
+                                        }
+                                        else{
+                                            $result['exception']='Campo vacio';
+                                        }
                                     }
                                     else{
-                                        $result['exception']='Contraseña o usuario incorrecto';
+                                        $result['exception']='Usuario inexistente';
                                     }
-                                }
-                                else{
+                                }else{
                                     $result['exception']='Campo vacio';
                                 }
-                            }
-                            else{
-                                $result['exception']='Usuario inexistente';
-                            }
-                        }else{
-                            $result['exception']='Campo vacio';
-                        }
                     break;
                     case 'all':
                     if($result['dataset']=$userAdmin->all()){
@@ -186,9 +220,9 @@
                             if($trust->id_user_trust($_POST['idTrust'])){
                                 if($trust->save()){
                                     $result['status']=1;
-                                    $mail->from('popmoviesshop@gmail.com','Popmovies');
+                                    /*$mail->from('popmoviesshop@gmail.com','Popmovies');
                                     $mail->to($_SESSION['AdminEmail'],'Alejandro');
-                                    $mail->sendMail();
+                                    $mail->sendMail();*/
                                 }
                                 else{
                                     $result['exception']='Fallo al asignar usuario de confianza';

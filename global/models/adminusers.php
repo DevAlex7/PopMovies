@@ -7,7 +7,9 @@ class adminusers extends Validator{
     private $lastname;
     private $username;
     private $email;
-    private $password;
+	private $password;
+	private $role;
+	private $status;
 
     public function id($value)
     {
@@ -71,8 +73,17 @@ class adminusers extends Validator{
     }
     public function getEmail(){
         return $this->email;
-    }
+	}
+	
+    public function getRole()
+	{
+		return $this->role;
+	}
 
+    public function getStatus()
+	{
+		return $this->status;
+	}
     public function password($value){
         if ($this->validatePassword($value)) {
 			$this->password = $value;
@@ -87,7 +98,7 @@ class adminusers extends Validator{
 
     public function checkUsername()
 	{
-		$sql = 'SELECT id, name, lastname, email FROM admins WHERE username = ?';
+		$sql = 'SELECT id, name, lastname, email, role, status FROM admins WHERE username = ?';
 		$params = array($this->username);
 		$data = Database::getRow($sql, $params);
 		if ($data) {
@@ -95,6 +106,8 @@ class adminusers extends Validator{
 			$this->name = $data['name'];
 			$this->lastname = $data['lastname'];
 			$this->email = $data['email'];
+			$this->role = $data['role'];
+			$this->status = $data['status'];
 			return true;
 		} else {
 			return false;
@@ -126,16 +139,50 @@ class adminusers extends Validator{
 			return false;
 		}	
 	}
-
+	public function checkStatus(){
+		$sql='SELECT status FROM admins WHERE id=?';
+		$params = array($this->id);
+		$response =  Database::getRow(
+			$sql, $params
+		);
+		if($response['status'] == 0){
+			return true;
+		}
+		else if($response['status'] == 1 || 2){
+			return false;
+		}
+	}
+	public function checkSession(){
+		$value = $this->getId();
+		if($value == ''){
+			if(isset($_SESSION['idUsername'])){
+				if($_SESSION['idUsername'] != $value ){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+		}
+		else{
+			return true;
+		}
+		
+	}
     public function checkUsers(){
         $sql='SELECT name, lastname, username, email FROM admins ORDER BY lastname';
         $params = array(null);
         return Database::getRows($sql, $params);
-    }
+	}
+	public function setBlockUser(){
+		$sql = 'UPDATE admins SET status=? WHERE id=?';
+		$params = array(1,$this->id);
+		return Database::executeRow($sql,$params);
+	}	
     public function create(){
         $hash=password_hash($this->password, PASSWORD_DEFAULT);
-        $sql='INSERT INTO admins (name, lastname, username, email, password) VALUES (?,?,?,?,?)';
-        $params=array($this->name, $this->lastname,$this->username,$this->email, $hash);
+        $sql='INSERT INTO admins (name, lastname, username, email, password, created_profile_at, role, status ) VALUES (?,?,?,?,?,?,?,?)';
+        $params=array($this->name, $this->lastname,$this->username,$this->email, $hash,date('Y-m-d'),0,0);
         return Database::executeRow($sql, $params);
 	}
 	public function all(){

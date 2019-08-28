@@ -1,3 +1,4 @@
+var userTries = 0;
 $(document).ready(function () {
     CheckUsers();
 });
@@ -28,21 +29,33 @@ function CheckUsers(){
     });
 }
 $('#LoginForm').submit(function(){
+
+    var information = {
+        Username : $('#Username').val(),
+        Password : $('#Password').val(),
+        tries : userTries
+    }
+
     event.preventDefault();
     $.ajax({
         url:APIAdminusers+'login',
         type:'POST',
-        data:$('#LoginForm').serialize(),
+        data: information,
         dataype:'JSON'
     })
     .done(function(response){
         if(isJSONString(response)){
             const dataset = JSON.parse(response);
-            if(dataset.status){
+            if(dataset.status == 1){
                 $(location).attr('href',dataset.site);
+            }
+            else if(dataset.status == 2){
+                M.toast({html:dataset.exception})
             }
             else{
                 M.toast({html:dataset.exception})
+                parseInt(userTries++);
+                alert(userTries);
             }
         }else{
             console.log(response);
