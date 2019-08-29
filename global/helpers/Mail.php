@@ -30,13 +30,21 @@
 
                 $mail->Host = 'smtp.gmail.com';
 
-                $mail->Port = 465;
+                $mail->Port = 587;
 
-                $mail->SMTPSecure = 'ssl';
-
+                $mail->SMTPSecure = 'tls';
+                $mail->SMTPOptions = array(
+                    'ssl' => [
+                        'verify_peer' => true,
+                        'verify_depth' => 3,
+                        'allow_self_signed' => true,
+                        'peer_name' => 'smtp.example.com',
+                        'cafile' => '/etc/ssl/ca_cert.pem',
+                    ],
+                );
                 $mail->SMTPAuth = true;
 
-                $mail->SMTPDebug = 2;
+                $mail->SMTPDebug = 1;
 
                 $mail->Username = '';
 

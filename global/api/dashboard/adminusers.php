@@ -159,6 +159,7 @@
                             if($userAdmin->date_created($_POST['datecreated'])){
                                 $userAdmin->insertAnswer();
                                 $result['status']=1;
+                                $mail->sendMail();
                             }
                             else{
                                 $result['exception']='La fecha ingresada no puede ser mayor a la actual';
@@ -188,7 +189,7 @@
                         if($userAdmin->username($_POST['userRecover'])){
                             if($userAdmin->checkUsers()){
                                 $result['status']=1;
-                                $mail->sendMail();
+                                
                             }
                             else{
                                 $result['exception']='Usuario inexistente';
