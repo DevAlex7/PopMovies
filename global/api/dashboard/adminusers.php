@@ -9,7 +9,8 @@
         if(isset($_GET['site']) && isset($_GET['action']) )
         {
             session_start();
-            $_SESSION['triesUser'] = '';            
+            $_SESSION['triesUser'] = '';          
+            $_SESSION['Usertrie'] ='';  
             $userAdmin = new adminusers();
             $spend = new spendTime();
             $validate = new Validator();
@@ -69,6 +70,14 @@
                         }
                         
                     break;
+                    case 'verifyDays' : 
+                        if($result['dataset']=$userAdmin->differenceDays()){
+                            $result['status']=1;
+                        }
+                        else{
+                            $result['exception']='Algo ha fallado';
+                        }
+                    break;
                     case 'checkUsers':
                         if($result['dataset']=$userAdmin->checkUsers()){
                             $result['status']=1;
@@ -78,54 +87,64 @@
                         }
                     break;
                     case 'login':
-                                if($userAdmin->username($_POST['Username'])){
-                                    if($userAdmin->checkUsername()){
-                                        if($userAdmin->password($_POST['Password'])){
-                                            if($userAdmin->checkPassword()){
-                                                if($userAdmin->checkSession()){
-                                                    if($userAdmin->checkStatus()){
-                                                        $_SESSION['idUsername']= $userAdmin->getId();
-                                                        $_SESSION['AdminUsername']=$userAdmin->getUsername();
-                                                        $_SESSION['AdminName']=$userAdmin->getName();
-                                                        $_SESSION['AdminEmail']=$userAdmin->getEmail();
-                                                        $_SESSION['AdminLastname']=$userAdmin->getLastname();
-                                                        $_SESSION['role']=$userAdmin->getRole();
-                                                        $_SESSION['status']=$userAdmin->getStatus();
-                                                        $_SESSION['tiempo'] = time();
-                                                        $result['status']=1;
-                                                        $result['site']='../../feed/account/home.php';
-                                                    }
-                                                    else{
-                                                        $result['exception']='Este usuario esta inactivo o bloqueado';
-                                                    }
-                                                }
-                                                else{
-                                                    $result['exception']='Este usuario ya esta logueado';
-                                                }
+                        if($userAdmin->username($_POST['Username'])){
+                            if($userAdmin->checkUsername()){
+
+                                if($userAdmin->password($_POST['Password'])){
+
+                                    if($userAdmin->checkStatus()){
+
+                                        if($userAdmin->checkPassword()){
+
+                                            if($userAdmin->checkSession()){
+                                                $_SESSION['idUsername']= $userAdmin->getId();
+                                                $_SESSION['AdminUsername']=$userAdmin->getUsername();
+                                                $_SESSION['AdminName']=$userAdmin->getName();
+                                                $_SESSION['AdminEmail']=$userAdmin->getEmail();
+                                                $_SESSION['AdminLastname']=$userAdmin->getLastname();
+                                                $_SESSION['role']=$userAdmin->getRole();
+                                                $_SESSION['status']=$userAdmin->getStatus();
+                                                $_SESSION['created']=$userAdmin->getCreated();
+                                                $_SESSION['tiempo'] = time();
+                                                $result['status']=1;
+                                                $result['site']='../../feed/account/home.php';
+                                                $_SESSION['triesUser'] = '';
                                             }
                                             else{
-                                                $_SESSION['triesUser'] = $_POST['tries'];   
-
-                                                if( $_POST['tries'] < 3 ){
-                                                    $result['exception']='Datos incorrectos';       
-                                                }
-                                                else{
-                                                    $result['exception'] = 'Intente más tarde, su usuario ha sida bloqueada';
-                                                    $userAdmin->setBlockUser();
-                                                    $result['status']=2;
-                                                }
+                                                $result['exception']='Este usuario ya esta logueado';    
                                             }
                                         }
                                         else{
-                                            $result['exception']='Campo vacio';
+                                            $_SESSION['triesUser'] = $_POST['tries'];   
+                                            if($_SESSION['triesUser'] < 3 ){
+                                                $result['exception'] = 'Usuario o contraseña incorrectos';
+                                            }  
+                                            else if($_SESSION['triesUser'] == 3){
+                                                $_SESSION['Usertry'] = $_POST['Username'];
+                                                $userAdmin->setBlockUser();
+                                                $result['status']=2;
+                                                $result['exception'] = 'Se ha bloqueado el acceso';
+                                                $_SESSION['triesUser'] = 0;
+                                            } 
+                                            else{
+                                                $result['exception']='Ya no puede realizar más intentos';
+                                            }
                                         }
                                     }
                                     else{
-                                        $result['exception']='Usuario inexistente';
+                                        $result['exception']='Bloqueo al accesar';
                                     }
-                                }else{
+                                }
+                                else{
                                     $result['exception']='Campo vacio';
                                 }
+                            }else{
+                                $result['exception']='Usuario inexistente';
+                            }
+                        }
+                        else{
+                            $result['exception']='Campo vacio';
+                        }
                     break;
                     case 'all':
                     if($result['dataset']=$userAdmin->all()){
@@ -135,12 +154,70 @@
                         $result['exception']='No hay administradores además de usted :)';
                     }
                     break;
+                    case 'sendDateCreated':
+                        if($userAdmin->username($_POST['username'])){
+                            if($userAdmin->date_created($_POST['datecreated'])){
+                                $userAdmin->insertAnswer();
+                                $result['status']=1;
+                            }
+                            else{
+                                $result['exception']='La fecha ingresada no puede ser mayor a la actual';
+                            }
+                        }
+                        else{
+                            $result['exception']='No valido';
+                        }
+                        
+                    break;
+                    case 'getAnswers':
+                        if($result['dataset'] = $userAdmin->getAnswers()){
+                            $result['status']=1;
+                        }
+                        else{
+                            $result['exception']='No hay solicitudes que revisar.';
+                        }
+                    break;
                     case 'logOff':
                     if ($userAdmin->LogOff()) {
                         header('location: ../../../feed/account/');
                     } else {
                         header('location: ../../../feed/account/home.php');
                     }
+                    break;
+                    case 'recover':
+                        if($userAdmin->username($_POST['userRecover'])){
+                            if($userAdmin->checkUsers()){
+                                $result['status']=1;
+                                $mail->sendMail();
+                            }
+                            else{
+                                $result['exception']='Usuario inexistente';
+                            }
+                        }
+                        else{
+                            $result['exception']='Datos invalidos';
+                        }
+                    break;
+                    case 'blockUsers':
+                        if($result['dataset'] = $userAdmin->blockUsers()){
+                            $result['status']=1;
+                        }
+                        else{
+                            $result['exception']='No hay usuarios bloqueados';
+                        }
+                    break;
+                    case 'setActiveUser':
+                        if($userAdmin->id($_POST['idUser'])){
+                            if($userAdmin->setActiveUser()){
+                                $result['status']=1;
+                            }
+                            else{
+                                $result['exception']='No se pudo restaturar el estatus';
+                            }   
+                        }
+                        else{
+                            $result['exception']='No se ha identificado al usuario seleccionado';
+                        }
                     break;
                     case 'changePassword':
                         if($userAdmin->password($_POST['actualpass'])){

@@ -195,7 +195,7 @@ class Validator{
 		//configuración para validación
 		$data = [
 			//llave secreta
-			'secret' => '6LcSs7QUAAAAAGFck0x8F732eb7_YvlzJFrqhJu2',
+			'secret' => '',
 			//token a recibir
 			'response' => $token, //$_POST['tokken'],
 			//ip del cliente

@@ -5,7 +5,7 @@ recaptcha();
 const APIUsers = '../../global/api/dashboard/adminusers.php?site=dashboard&action=';
 const recaptcha = () => {
     grecaptcha.ready(function() {
-        grecaptcha.execute('6LcSs7QUAAAAAPrJs_FR0v9KAsUJkxBWv0_P9C98', {action: 'homepage'}).then(function(token) {
+        grecaptcha.execute('', {action: 'homepage'}).then(function(token) {
             $('#tokken').val(token);            
         });
     });

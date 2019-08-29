@@ -8,6 +8,10 @@ header, main, footer {
         }
     
     }
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: black;
+}
+      
 #titleBold{
     font-weight: bold;
     font-size: 20px;
@@ -23,6 +27,10 @@ header, main, footer {
 }
 #cardcp{
     margin-top:1rem;
+}
+#searchField{
+    margin-top:1rem;
+    border-radius: 15px;
 }
 #iconFigure{
     position: relative;

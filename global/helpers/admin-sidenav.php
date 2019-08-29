@@ -83,7 +83,7 @@ class AdminSideNav{
                         <li><a href="/PopMovies/feed/account/profile.php"><i class="material-icons">person</i>Mi perfil</a></li>
                         <li><a href="/PopMovies/feed/account/binnacle.php"><i class="material-icons">drag_indicator</i>Bitacora</a></li>
                         <li><a href="/PopMovies/feed/account/settings.php"><i class="material-icons">lock</i>Seguridad</a></li>
-                        <li><a href="/PopMovies/feed/account/settings.php"><i class="material-icons">lock</i>Bloqueos</a></li>
+                        <li><a href="/PopMovies/feed/account/blocks.php"><i class="material-icons">lock</i>Bloqueos</a></li>
                         <li><div class="divider"></div></li>
                         <li><a class="subheader white-text">Menu</a></li>
                         <li><a href="/PopMovies/feed/account/movies.php"><i class="material-icons">movies</i>Stock</a></li>

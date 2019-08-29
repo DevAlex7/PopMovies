@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.signup.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
-    <script src="https://www.google.com/recaptcha/api.js?render=6LcSs7QUAAAAAPrJs_FR0v9KAsUJkxBWv0_P9C98"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render="></script>
 </head>
 <body>
 

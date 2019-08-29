@@ -39,6 +39,8 @@
                         <p class="white-text" id="Username"></p>
                         <span class="card-title white-text" style="margin-top:1rem">Correo electronico:</span>
                         <p class="white-text" id="UsernameEmail"></p>
+                        <span class="card-title white-text" style="margin-top:1rem">Dias restantes para restablecer contraseña:</span>
+                        <p class="white-text" id="countDays"></p>
                     </div>
                 </div>
             </div>

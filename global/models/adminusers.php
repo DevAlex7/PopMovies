@@ -1,5 +1,5 @@
 <?php 
-
+date_default_timezone_set("America/El_Salvador");
 class adminusers extends Validator{
     
     private $id;
@@ -8,6 +8,7 @@ class adminusers extends Validator{
     private $username;
     private $email;
 	private $password;
+	private $date_created;
 	private $role;
 	private $status;
 
@@ -94,11 +95,24 @@ class adminusers extends Validator{
     }
     public function getPassword(){
         return $this->password;
-    }
+	}
+	public function date_created($value)
+	{
+		if($value < date('Y-m-d')){
+			$this->date_created = $value;
+			return true;
+		}
+		else{
+			return false;
+		}
+	}	
+	public function getCreated(){
+		return $this->date_created;
+	}
 
     public function checkUsername()
 	{
-		$sql = 'SELECT id, name, lastname, email, role, status FROM admins WHERE username = ?';
+		$sql = 'SELECT id, name, lastname, email, role, status, created_profile_at FROM admins WHERE username = ?';
 		$params = array($this->username);
 		$data = Database::getRow($sql, $params);
 		if ($data) {
@@ -108,6 +122,7 @@ class adminusers extends Validator{
 			$this->email = $data['email'];
 			$this->role = $data['role'];
 			$this->status = $data['status'];
+			$this->date_created = $data['created_profile_at'];
 			return true;
 		} else {
 			return false;
@@ -215,6 +230,41 @@ class adminusers extends Validator{
 		$sql='SELECT admins.id, admins.name, admins.lastname FROM admins WHERE NOT EXISTS (SELECT 1 FROM users_trusts WHERE admins.id = users_trusts.id_user_trust AND users_trusts.id_user=?) AND admins.id NOT IN (?)';
 		$params = array($this->id, $this->id);
 		return Database::getRows($sql,$params);
+	}
+	public function blockUsers(){
+		$sql='SELECT admins.id AS idUser, name, lastname, username, email, status.status FROM (admins INNER JOIN status ON status.id = admins.status) WHERE status.id =1';
+		$params = array(null);
+		return Database::getRows($sql,$params);
+	}
+	public function setActiveUser(){
+		$sql ='UPDATE admins SET status=? WHERE id=?';
+		$params=array(0,$this->id);
+		return Database::executeRow($sql,$params);
+	}
+	public function insertAnswer(){
+		$sql='INSERT INTO answers_reset (username, date_answer) VALUES (?,?)';
+		$params = array($this->username, $this->date_created);
+		return Database::executeRow($sql,$params);
+	}
+	public function getAnswers(){
+		$sql ='SELECT * FROM answers_reset';
+		$params = array(null);
+		return Database::getRows($sql,$params);
+	}
+	public function differenceDays(){
+		$today = date('Y-m-d');
+
+		//Conseguir la fecha de cambio
+		$dateChange = strtotime ( '+90 day' , strtotime ( $today ) ) ;
+		$dateChange = date ( 'Y-m-d' , $dateChange );
+
+		//fecha de creación
+		$dateCreated= new DateTime($today);
+		$dateChangeP = new DateTime($dateChange);
+		$diff = $dateCreated->diff($dateChangeP);
+
+		return $diff->days;
+		
 	}
 }
 

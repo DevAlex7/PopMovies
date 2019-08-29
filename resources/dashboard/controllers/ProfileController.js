@@ -1,9 +1,35 @@
 $(document).ready(function () {
     readProfile();
+    getDays();
 });
 var id;
 const APIAdministrators='../../global/api/dashboard/profile.php?site=dashboard&action=';
-
+const APIAdmin='../../global/api/dashboard/adminusers.php?site=dashboard&action=';
+function getDays(){
+    $.ajax({
+        url:APIAdmin+'verifyDays',
+        type:'POST',
+        data:null,
+        datatype:'JSON'
+    })
+    .done(function(response){
+        if(isJSONString(response)){
+            const result=JSON.parse(response);
+            if(result.status){
+                $('#countDays').text(result.dataset);                
+            }
+            else{
+                M.toast({html:result.exception});
+            }
+        }
+        else{
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}
 function readProfile(){
     $.ajax({
         url:APIAdministrators+'readProfile',

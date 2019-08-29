@@ -55,7 +55,6 @@ $('#LoginForm').submit(function(){
             else{
                 M.toast({html:dataset.exception})
                 parseInt(userTries++);
-                alert(userTries);
             }
         }else{
             console.log(response);
