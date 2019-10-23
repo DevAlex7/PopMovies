@@ -1,13 +1,33 @@
-    <?php
-    require_once('../../global/helpers/tab.php');
-    publicSite::headerTemplate('Iniciar Sesión');
-    ?>
+<!DOCTYPE html>
+      <!-- IDIOMA DE LA PÁGINA -->
+      <html lang="es">
+          <head>
+                <!-- BEGIN: Head -->
+                <!-- CARACTERES ESPECIALES -->
+                <meta charset="UTF-8">
+                <!-- TÍTULO DE LA VENTANA -->
+                <title>PopMovies | '.$title.'</title>
+                <!-- ÍCONO DE LA VENTANA -->
+                <link rel="shortcut icon" type="image/x-icon" href="../../resources/public/img/Logo.ico">
+                <!-- MATERIAL ICONS -->
+                <link href="../../resources/public/css/icon.css" rel="stylesheet">
+                <!-- MATERIALIZE.MIN -->
+                <link href="../../resources/public/css/materialize.min.css" rel="stylesheet">
+                <!-- TAMAÑO Y FUENTE -->
+                <link rel="stylesheet" type="text/css" href="../../resources/public/css/style.css">
+                <!-- ESTILO -->
+                <link rel="stylesheet" type="text/css" href="../../resources/public/css/users.css">
+                <!-- ALLAX -->
+                <link href="../../../resources/public/css/public.css" rel="stylesheet">
+                <!-- END: Head-->
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            </head>'
 
     <!-- BEGIN: Carousel -->
     <div class="slider">
             <ul class="slides">
               <li>
-                <img src="https://farm3.staticflickr.com/2874/11764405465_dcd4378727_o.jpg"> 
+                <img src="slider-1.jpg">
                 <div class="caption center-align">
                   <h3>Toda clase de géneros</h3>
                   <h5 class="light grey-text text-lighten-3">Desde terror hasta romance.</h5>
@@ -37,8 +57,6 @@
             </ul>
           </div>
         <!-- END: Carousel -->
-
-
 
         <!-- PLUGIN: Funciona para los TextBox dinámicos. -->
         <script src="../../resources/public/js/plugin.js" type="text/javascript"></script>
