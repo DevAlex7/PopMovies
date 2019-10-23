@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/privatelogin.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
-    
 </head>
 <body>
     
@@ -27,11 +26,11 @@
                 <form id="LoginForm" method="POST">
                     <span class="card-title col s10 offset-s1 red-text">Iniciar Sesion</span>
                     <div class="input-field col s10 offset-s1">
-                        <input id="Username" name="Username"  class="red-text" type="text">
+                        <input id="Username" name="Username" autocomplete="new-password"  class="red-text" type="text">
                         <label for="icon_prefix">Usuario</label>
                     </div>
                     <div class="input-field col s10 offset-s1">
-                         <input id="Password" name="Password" class="red-text" type="password" >
+                         <input id="Password" name="Password" class="red-text" type="password">
                          <label for="icon_telephone">Contraseña</label>
                     </div>
                    <div class="col s10 offset-s1">

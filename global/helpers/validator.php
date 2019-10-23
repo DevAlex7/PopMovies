@@ -171,21 +171,63 @@ class Validator{
 	function IsDateTime($DateTime) {
 
 			if (preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$DateTime)) {
-					return true;
+				return true;
 			} else {
-					return false;
+				return false;
 			}
 	}
 	public function ValidateSite($site){
 		$file ='../../../feed/account/'.$site.'.php';
 		if(file_exists($file))  
 		{ 
-				return true;
+			return true;
 		} 
 		else 
 		{ 
-				return false;
+			return false;
 		} 
+	}
+	public function validateRecaptcha($token){
+		
+		//url de google		
+		$url = "https://www.google.com/recaptcha/api/siteverify";
+
+		//configuración para validación
+		$data = [
+			//llave secreta
+			'secret' => '',
+			//token a recibir
+			'response' => $token, //$_POST['tokken'],
+			//ip del cliente
+			'remoteip' => '127.0.0.1'
+		];
+		
+		//configuración de headers para google
+		$options = array(
+			'http' => array(
+				'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method' => 'POST',
+				'content' => http_build_query($data)
+			),
+			'ssl'=>array(
+				'verify_peer'=>false,
+				
+				'verify_peer_name'=>false,
+			),
+		);
+
+		$context = stream_context_create($options);
+
+		$response = file_get_contents($url, false, $context);
+
+		$res = json_decode($response);
+
+		if($res == true){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }
 

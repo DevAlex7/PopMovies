@@ -1,5 +1,5 @@
 header, main, footer {
-padding-left: 300px;
+    padding-left: 300px;
 }
 
 @media only screen and (max-width : 992px) {
@@ -16,4 +16,30 @@ padding-left: 300px;
 #ShowProducts{
     position: relative;
     top:0.5rem;
+}
+
+#ChartMovies{
+    background-color: #2a2a72;
+    
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+}
+#CakeGraphic{
+    background-color: #2a2a72;
+    
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+}
+#chartTopFav{
+    background-color: #2a2a72;
+    
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+}
+#ChartTop{
+    background-color: #2a2a72;
+    
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+}
+#SailsCard{
+    background-color: #2a2a72;
+    
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
 }

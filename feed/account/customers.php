@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.customers.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/sidenav.css">
 </head>
 <body>
     
@@ -35,6 +36,7 @@
                                 </div>
                                 <div class="input-field col s12">
                                     <a href="" id="BtnAddCustomer" data-target="ModalCreateCustomer" class="btn modal-trigger blue white-text">Agregar Proveedor</a>
+                                    <a href="Reportcustomer_movies.php" class="btn red white-text">Ver compras</a>
                                 </div>
                             </div>
                         </form>

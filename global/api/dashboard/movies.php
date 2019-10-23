@@ -7,6 +7,8 @@
     require_once('../../models/genders.php');
     require_once('../../models/clasifications.php');
     require_once('../../models/customers.php');
+    require_once('../../models/detailcar.php');
+    require_once('../../models/trending.php');
     require_once('../../models/gendersmovie.php');
 
     
@@ -16,7 +18,9 @@
         session_start();
         $movie = new Movies();
         $actor = new Actor();
+        $trending = new Trending();
         $gender = new Gender();
+        $detail = new detailCar();
         $clasification = new Clasification();
         $customer = new Customers();
         $gendermovie = new Gendermovie();
@@ -28,11 +32,35 @@
 
                 case 'GetMovies':
                     if($result['dataset'] = $movie->GetMovies()){
-                            $result['status']= 1;
+                        sleep(1);
+                        $result['status']= 1;
                     }
                     else
                     {
                         $result['exception'] = 'No hay Peliculas Disponibles';
+                    }
+                break;
+                case 'mostSails':
+                    if($result['dataset']=$detail->getMostSails()){
+                        $result['status']=1;
+                    }else{
+                        $result['exception']='No hay información';
+                    }
+                break;
+                case 'sailsPerDate':
+                    if($result['dataset']=$detail->getCountSailinDates()){
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['exception']='No hay datos de venta';
+                    }
+                break;
+                case 'TopFavorites':
+                    if($result['dataset']=$trending->getTrendings()){
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['exception']='No hay información';
                     }
                 break;
                 case 'getActors':
@@ -41,6 +69,14 @@
                     }
                     else{
                         $result['exception']='No hay actores registrados';
+                    }
+                break;
+                case 'getCountMoviesbyProveeder':
+                    if($result['dataset']=$movie->getCountMoviesbyProveeder()){
+                        $result['status']=1;
+                    }
+                    else{
+                        $result['exception']='No hay registros';
                     }
                 break;
                 case 'getGenders':

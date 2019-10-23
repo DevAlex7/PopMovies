@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.profile.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/sidenav.css">
 
 </head>
 <body>
@@ -38,6 +39,8 @@
                         <p class="white-text" id="Username"></p>
                         <span class="card-title white-text" style="margin-top:1rem">Correo electronico:</span>
                         <p class="white-text" id="UsernameEmail"></p>
+                        <span class="card-title white-text" style="margin-top:1rem">Dias restantes para restablecer contraseña:</span>
+                        <p class="white-text" id="countDays"></p>
                     </div>
                 </div>
             </div>
@@ -55,11 +58,6 @@
                             <div class="col s12 m12">
                                 <div class="card-panel">
                                     <button class="btn orange modal-trigger" onclick="EditbyId()" data-target="ModalEditProfile">Editar mi cuenta</button>
-                                </div>
-                            </div>
-                            <div class="col s12 m12">
-                                <div class="card-panel">
-                                    <a class="btn indigo darken-2">Cambiar contraseña</a>
                                 </div>
                             </div>
                         </div>

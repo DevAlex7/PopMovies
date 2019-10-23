@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+    recaptcha();
 });
 const APIClients='../../global/api/home/users.php?site=ecommerce&action=';
 function Open(){
@@ -33,3 +33,10 @@ $('#FormClientRegistrer').submit(function(){
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
 })
+const recaptcha = () => {
+    grecaptcha.ready(function() {
+        grecaptcha.execute('', {action: 'homepage'}).then(function(token) {
+            $('#token').val(token);            
+        });
+    });
+}

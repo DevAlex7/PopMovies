@@ -30,3 +30,11 @@ html{
     box-shadow: 0 1px 0 0 red !important;
    }
 
+#card-reset{
+    margin-top:5rem;    
+}
+#btnGmail{
+    background-color:rgb(31, 31, 192);
+    margin-top:1rem;
+}
+

@@ -124,15 +124,7 @@ function getQueryVariable(variable)
        }
        return(false);
 }
-/*function getURLParameters() {
-    var parameters = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        parameters[key] = value;
-    });
-    return parameters;
-    
-}
-*/
+
 function exist(){
         if(getQueryVariable("movie")){
             idMovie=getQueryVariable("movie");

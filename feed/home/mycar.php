@@ -9,30 +9,40 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/home/css/car.css">
+    <link rel="stylesheet" href="../../resources/home/css/sidenav.css">
 </head>
 <body>
-<?php MovieNavBar::NavBar();?>
+    <?php MovieNavBar::NavBar();?>
 <div class="row">
-    <div class="col s12 m3">
-        <div class="card ">
-            <div class="card-content">
-                <span class="card-title">Opciones</span>
-                <div class="collection" id="OptionsPart">
-                    <a onclick="viewTodayCart();" class="collection-item blue-text" id="TodayItem">Hoy</a>
-                    <a onclick="viewPendingCart();" class="collection-item blue-text" id="PendingItem">Ver pendientes</a>
-                    <a onclick="viewCarPaid();" class="collection-item blue-text" id="PaidsItem">Ver pagados</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col s12 m9">
+    <div class="col s12 m12">
         <div class="card">
             <div class="card-content">
-                <span class="card-title" id="Title"></span>
+                <span class="card-title" id="Title">Tu lista de orden</span>
                 <div id="TableInformation">
                     <table class="responsive-table" id="Information">
-                        
+                        <thead>
+                            <tr>
+                                <th>Pelicula</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                                <th>Fecha</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="readList">
+                        </tbody>      
                     </table>
+                </div>
+                <div class="row">
+                    <div class="col s12 m12">
+                        <div class="card">
+                            <div class="card-content">
+                                <p id="TextCardPay" class="card-title left-align"></p>
+                                <a class="btn green right-align accent-4 modal-trigger"  href="#ConfirmBuy">Pagar</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,62 +50,14 @@
 </div>
 <!-- Confirm pay the order -->
 <div class="modal" id="ConfirmBuy">
-    <div class="modal-content">
-        <div class="row">
-            <div class="card">
-                <div class="card-content">
-                    <div class="center">
-                    <span class="card-title"> <i class="material-icons green-text accent-4">shopping_cart</i> Detalles de su carrito</span>
-                    </div>
-                    <span>Nombre de la pelicula:</span>
-                    <span class="card-title" id="SpanNameMovie"></span>
-                    <span>Precio:</span>
-                    <span id="SpanPriceMovie" class="card-title"></span>
-                    <div id="Divider" class="divider"></div>
-                    <div id="DetailCart">
-                        <span>Cantidad solicitada:</span>
-                        <span id="SpanCountCart" class="card-title"> </span>
-                        <span>Total de compra:</span>
-                        <span id="SpanTotalOrder" class="card-title"></span>
-                        <span>Fecha de pedido:</span>
-                        <span id="SpanDateOrder" class="card-title"></span>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="center">
-                    <a onclick="confirmPay()" class="btn green accent-4" id="ConfirmPayment">Pagar</a>
-                    <a class="btn grey  modal-close" id="ConfirmPayment"> <i class="material-icons left">close</i> Cancelar</a>
-                    </div>
-                </div>
+    <div class="row">
+        <div class="col s12 m12">
+            <div class="card-panel">
+                <p> <i class="material-icons left">shopping_cart</i> ¿Desea cancelar esta orden?</p>
             </div>
-        </div>
-    </div>
-</div>
-<div class="modal red" id="ConfirmCancel">
-    <div class="modal-content">
-        <div class="card red">
-            <div class="card-content">
-                <div class="center">
-                    <span class="card-title white-text">¿Desea borrar esta orden de su lista de carrito?</span>
-                    <div class="card-action">
-                    <a onclick="cancelOrderToday();" class="btn green accent-4">Si, borrar</a>
-                    <a class="grey modal-close btn">Cancelar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal red" id="ConfirmCancelPending">
-    <div class="modal-content">
-        <div class="card red">
-            <div class="card-content">
-                <div class="center">
-                    <span class="card-title white-text">¿Desea borrar esta orden de su lista de carrito?</span>
-                    <div class="card-action">
-                    <a onclick="cancelOrderPending();" class="btn green accent-4">Si, borrar</a>
-                    <a class="grey modal-close btn">Cancelar</a>
-                    </div>
-                </div>
+            <div class="center">
+                <a class="btn green accent-4" id="btnPay" onClick="confirmPay()">Si, cancelar</a>
+                <a class="btn red modal-close">No, cerrar</a>
             </div>
         </div>
     </div>

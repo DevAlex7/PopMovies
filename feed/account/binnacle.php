@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.binnacle.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/sidenav.css">
 </head>
 <body>
 <header>
@@ -19,7 +20,7 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title">Registro de actividades</span>
-                
+                <a href="Reportbinnacle.php" class="btn red">ver en pdf</a>
                 <div class="row" id="ContentBinnacle">
                     <nav class="white">
                         <div class="nav-wrapper">

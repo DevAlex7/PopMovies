@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/home/css/signup.css">
+    <script src="https://www.google.com/recaptcha/api.js?render="></script>
 </head>
 <body>
 <div class="navbar-fixed">
@@ -33,6 +34,7 @@
             <div class="row">
                 <form class="col s12" id="FormClientRegistrer">
                     <div class="row">
+                        <input type="hidden" name="token" id="token">
                         <div class="input-field col s12">
                             <i class="material-icons prefix black-text">account_circle</i>
                             <input id="NameUser" name="NameUser" type="text">

@@ -114,9 +114,9 @@ class Movies extends Validator{
 
     public function GetMovies()
 	{
-        $sql = 'SELECT COUNT(*) FROM movies AS shop';
+        $sql = 'SELECT movies.name as name, movies.count FROM movies';
         $params = array(null);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
     public function findbyId(){
         $sql='SELECT movies.id, movies.name, movies.sinopsis, movies.time, 
@@ -170,12 +170,24 @@ class Movies extends Validator{
                 FROM movies, genders, gendersmovie 
                 WHERE genders.id=gendersmovie.gender 
                 AND movies.id=gendersmovie.movie 
-';
+        ';
         $params=array(null);
         return Database::getRows($sql, $params);
     }
-    public function FavoriteMovies(){
-        
+    public function getCountMoviesbyProveeder(){
+        $sql='
+        SELECT COUNT(*) AS countM, 
+        customers.enterprise 
+        FROM movies 
+        INNER JOIN customers ON movies.customer=customers.id 
+        GROUP BY customers.id';
+        $params=array(null);
+        return Database::getRows($sql,$params);
+    }
+    public function getMoviesbyProveeder(){
+        $sql='SELECT movies.name AS Moviename, customers.enterprise, customers.name FROM movies INNER JOIN customers ON movies.customer=customers.id';
+        $params = array(null);
+        return Database::getRows($sql,$params);
     }
     public function existsite(){
         $sql='SELECT * FROM movies WHERE id=?';

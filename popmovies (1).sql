@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2019 a las 07:11:27
+-- Tiempo de generación: 29-08-2019 a las 16:04:28
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -73,17 +73,49 @@ CREATE TABLE `admins` (
   `lastname` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `username` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_spanish_ci NOT NULL
+  `password` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `created_profile_at` date NOT NULL,
+  `role` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `admins`
 --
 
-INSERT INTO `admins` (`id`, `name`, `lastname`, `username`, `email`, `password`) VALUES
-(15, 'Alejandro ', 'Gonzalez', 'Alexgve7', 'alexgve7@gmail.com', '$2y$10$.Ax3yiK0J0c5XjS5d5EMQOmRb1vywWwnf2ilAAs4QCarpv/Cu8N/y'),
-(16, 'Alejandro', 'Gonzalez', 'Ale1234', 'alexgve7sv@gmail.com', '$2y$10$SLEUG0X2XoMJl35bNR7khu8VrBID.Np//jWubM3dev/WevJgCH94.'),
-(17, 'Steven', 'Diaz', 'StevenD', 'Steven@gmail.com', '$2y$10$KghCT8S86iAEbcHIT/8LS.2hFlDB18/ti3puPSa2jkveKqL8chSEW');
+INSERT INTO `admins` (`id`, `name`, `lastname`, `username`, `email`, `password`, `created_profile_at`, `role`, `status`) VALUES
+(16, 'Alejandro', 'Gonzalez', 'Ale1234', 'alexgve7sv@gmail.com', '$2y$10$oNFhGwLkPVWHt5YpxczHO.h6iHzGr1VU5I03AhcS6TvvjeXeoslsS', '2019-08-22', 0, 0),
+(17, 'Steven', 'Diaz', 'StevenD', 'Steven@gmail.com', '$2y$10$KghCT8S86iAEbcHIT/8LS.2hFlDB18/ti3puPSa2jkveKqL8chSEW', '2019-08-22', 0, 0),
+(18, 'Alejandro ', 'Manuel', 'Alexgve7', 'alexgve7@gmail.com', '$2y$10$oNFhGwLkPVWHt5YpxczHO.h6iHzGr1VU5I03AhcS6TvvjeXeoslsS', '2019-08-22', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `answers_reset`
+--
+
+CREATE TABLE `answers_reset` (
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `date_answer` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `answers_reset`
+--
+
+INSERT INTO `answers_reset` (`id`, `username`, `date_answer`) VALUES
+(5, 'Alexgve7', '2019-08-27'),
+(6, 'Alexgve7', '2019-08-28'),
+(7, 'Alexgve7', '2019-08-28'),
+(8, 'Alexgve7', '2019-08-28'),
+(9, 'Alexgve7', '2019-08-28'),
+(10, 'Alexgve7', '2019-08-28'),
+(11, 'Alexgve7', '2019-08-28'),
+(12, 'Alexgve7', '2019-08-28'),
+(13, 'Alexgve7', '2019-08-28'),
+(14, 'Alexgve7', '2019-08-28'),
+(15, 'Alexgve7', '2019-08-28');
 
 -- --------------------------------------------------------
 
@@ -106,17 +138,7 @@ CREATE TABLE `binnacle` (
 --
 
 INSERT INTO `binnacle` (`id`, `actionperformed`, `user_id`, `admin_id`, `date`, `year`, `site`) VALUES
-(93, 'asignado el genero  Miedo a la pelicula: IT', NULL, 15, '2019-05-12', 2019, 'genders'),
-(94, 'asignado el genero  Accion a la pelicula: Capitana Marvel', NULL, 15, '2019-05-12', 2019, 'genders'),
-(95, 'asignado el genero  Accion a la pelicula: Hangover', NULL, 15, '2019-05-12', 2019, 'genders'),
-(96, 'asignado el genero  Accion a la pelicula: John Wick', NULL, 15, '2019-05-12', 2019, 'genders'),
-(97, 'asignado el genero  Accion a la pelicula: IT', NULL, 15, '2019-05-12', 2019, 'genders'),
-(98, 'asignado el genero  Aventura a la pelicula: Capitana Marvel', NULL, 15, '2019-05-12', 2019, 'genders'),
-(99, 'agregado un nuevo administrador: Ale1234', NULL, 15, '2019-05-13', 2019, 'managers'),
 (100, 'registrado un nuevo genero: Ciencia Ficción', NULL, 16, '2019-05-13', 2019, 'genders'),
-(101, 'actualizado el nombre del actor: Chris Eva a Chris Evans', NULL, 15, '2019-05-14', 2019, 'actors'),
-(102, 'asignado el actor Chris Evans a la pelicula: Capitana Marvel', NULL, 15, '2019-05-14', 2019, 'actors'),
-(103, 'asignado el genero  Accion a la pelicula: Hangover', NULL, 15, '2019-05-14', 2019, 'genders'),
 (104, 'ha comentado: Hola como estan', 3, NULL, '2019-05-16', 2019, 'comments'),
 (105, 'ha comentado: Hola chicos', 3, NULL, '2019-05-16', 2019, 'comments'),
 (106, 'ha comentado: Hola pequeños :V', 3, NULL, '2019-05-16', 2019, 'comments'),
@@ -129,38 +151,23 @@ INSERT INTO `binnacle` (`id`, `actionperformed`, `user_id`, `admin_id`, `date`, 
 (113, 'ha comentado: Madres :v en la pelicula: Hangover', 3, NULL, '2019-05-16', 2019, 'comments'),
 (114, 'ha comentado: Arten mierda todos la capitana es vergona D: en la pelicula: Hangover', 3, NULL, '2019-05-16', 2019, 'comments'),
 (115, 'ha comentado: Alexgve7 me la pela  en la pelicula: Hangover', 4, NULL, '2019-05-16', 2019, 'comments'),
-(116, 'asignado el genero  Ciencia Ficción a la pelicula: Capitana Marvel', NULL, 15, '2019-05-16', 2019, 'genders'),
-(117, 'asignado el actor Chris Evans a la pelicula: Hangover', NULL, 15, '2019-05-16', 2019, 'actors'),
 (118, 'ha comentado: Candray me la pela en la pelicula: Hangover', 4, NULL, '2019-05-16', 2019, 'comments'),
 (119, 'ha comentado: Pendejos en la pelicula: Hangover', 3, NULL, '2019-05-17', 2019, 'comments'),
 (120, 'ha comentado: Ojete en la pelicula: Capitana Marvel', 3, NULL, '2019-05-17', 2019, 'comments'),
-(121, 'agregado al actor: Brie Larson', NULL, 15, '2019-05-17', 2019, 'actors'),
-(122, 'asignado el actor Brie Larson a la pelicula: Capitana Marvel', NULL, 15, '2019-05-17', 2019, 'actors'),
 (123, 'ha comentado: jajajaja en la pelicula: Hangover', 3, NULL, '2019-05-17', 2019, 'comments'),
 (124, 'ha comentado: Esa pelicula me la recomendo mi hijo, buenisima! en la pelicula: Hangover', 3, NULL, '2019-05-17', 2019, 'comments'),
 (125, 'ha comentado: Hoy la vi y super buenisima \r\n en la pelicula: Hangover', 3, NULL, '2019-05-17', 2019, 'comments'),
 (126, 'ha comentado: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui ea dolore sit, saepe laudantium illum necessitatibus explicabo eveniet vel nihil hic eum cumque beatae modi architecto tempore incidunt praesentium. Commodi. en la pelicula: Hango', 3, NULL, '2019-05-17', 2019, 'comments'),
-(127, 'agregado al actor: asdsakasdñkasñkasdñasñdañsdkñasdkñasdkñasdklkasjdlkasjdlkasjdlkjasdljlasdjlkasd', NULL, 15, '2019-05-17', 2019, 'actors'),
-(128, 'asignado el actor asdsakasdñkasñkasdñasñdañsdkñasdkñasdkñasdklkasjdl a la pelicula: Hangover', NULL, 15, '2019-05-17', 2019, 'actors'),
-(129, 'actualizado el nombre del actor: asdsakasdñkasñkasdñasñdañsdkñasdkñasdkñasdklkasjdl a asdsakasdñkasñkasdñasñdañsdkñasdkñasdkñasdklkasjdlaasdpjasdljasdlkjaslkdjaskldjaslkdjasdlkjsadlkjlksajlksd', NULL, 15, '2019-05-17', 2019, 'actors'),
-(130, 'actualizado el nombre del actor: asdsakasdñkasñkasdñasñdañsdkñasdkñasdkñasdklkasjdl a asdsakasdñkasñkasdñasñdañsdkñasdkñasdkñasdklkasjdlasdjasllaksdjlkasjlkasdjlkasdjlkasjlkasdjklasdj', NULL, 15, '2019-05-17', 2019, 'actors'),
-(131, 'actualizado el nombre del actor: asdsakasdñkasñkasdñasñdañsdkñasdkñasdkñasdklkasjdl a asdsakasdñkasñkasdñasñdañsdkñasdkñasdkñasdklkasjdlasasdasdsadasdmkkjhkjhkjhkhkjhkjhjhhfhgfj', NULL, 15, '2019-05-17', 2019, 'actors'),
-(132, 'actualizado el nombre del actor: asdsakasdñkasñkasdñasñdañsdkñasdkñasdkñasdklkasjdlasasdasdsadasdmkkjhkjhkjhkhkjhkjhjhhfhgfj a asdsakasdñkasñkasdñasñdañsdkñasdkñasdkñasdklkasjdlasasdasdsadasdmkkjhkjhkjhkhkjhkjhjkhkhkjjhjhhhfhgfjkj', NULL, 15, '2019-05-17', 2019, 'actors'),
-(133, 'agregado un nuevo administrador: StevenD', NULL, 15, '2019-05-17', 2019, 'managers'),
 (134, 'ha comentado: Hola jjajaja en la pelicula: Hangover', 3, NULL, '2019-05-17', 2019, 'comments'),
 (135, 'ha comentado: Hola jaja xd en la pelicula: Hangover', 3, NULL, '2019-05-17', 2019, 'comments'),
 (136, 'ha comentado: Ceroteeeees en la pelicula: Hangover', 3, NULL, '2019-05-18', 2019, 'comments'),
-(137, 'registrado la clasificación  AA', NULL, 15, '2019-05-18', 2019, 'clasifications'),
-(138, 'asignado la clasificación: AA a la pelicula Capitana Marvel', NULL, 15, '2019-05-18', 2019, 'clasifications'),
 (139, 'ha comentado: Buena pelicula! en la pelicula: Capitana Marvel', 3, NULL, '2019-05-18', 2019, 'comments'),
-(140, 'asignado el genero  Accion a la pelicula: Avengers', NULL, 15, '2019-05-18', 2019, 'genders'),
-(141, 'asignado el genero  Accion a la pelicula: John Wick', NULL, 15, '2019-05-18', 2019, 'genders'),
 (142, 'ha comentado: Pendejooo xd\r\n en la pelicula: Hangover', 3, NULL, '2019-05-20', 2019, 'comments'),
-(143, 'agregado al actor: Steven', NULL, 15, '2019-05-23', 2019, 'actors'),
-(144, 'asignado el actor Steven a la pelicula: Hangover', NULL, 15, '2019-05-23', 2019, 'actors'),
 (145, 'ha comentado: Pendejos :v\r\n en la pelicula: Avengers', 3, NULL, '2019-05-23', 2019, 'comments'),
 (146, 'ha comentado: JAJAJA xd\r\n en la pelicula: Avengers', 4, NULL, '2019-05-23', 2019, 'comments'),
-(147, 'ha comentado: Hola como estan :D en la pelicula: John Wick', 4, NULL, '2019-05-25', 2019, 'comments');
+(147, 'ha comentado: Hola como estan :D en la pelicula: John Wick', 4, NULL, '2019-05-25', 2019, 'comments'),
+(148, 'ha comentado: Hola :v en la pelicula: Avengers', 3, NULL, '2019-06-03', 2019, 'comments'),
+(149, 'ha comentado: sasad en la pelicula: Avengers', 3, NULL, '2019-06-09', 2019, 'comments');
 
 -- --------------------------------------------------------
 
@@ -180,8 +187,26 @@ CREATE TABLE `car` (
 --
 
 INSERT INTO `car` (`id`, `date`, `status`, `client`) VALUES
-(2, '2019-05-22', 0, 3),
-(3, '2019-05-25', 0, 4);
+(3, '2019-05-25', 0, 4),
+(4, '2019-07-03', 1, 3),
+(5, '2019-07-05', 1, 3),
+(6, '2019-07-05', 1, 3),
+(7, '2019-07-06', 1, 3),
+(8, '2019-07-06', 1, 3),
+(9, '2019-07-06', 1, 3),
+(10, '2019-07-06', 1, 3),
+(11, '2019-07-06', 1, 3),
+(12, '2019-07-06', 1, 3),
+(13, '2019-07-06', 1, 3),
+(14, '2019-07-06', 1, 3),
+(15, '2019-07-06', 1, 3),
+(16, '2019-07-06', 1, 3),
+(17, '2019-07-10', 1, 3),
+(18, '2019-07-10', 1, 3),
+(19, '2019-07-10', 1, 3),
+(20, '2019-07-11', 1, 3),
+(21, '2019-07-11', 1, 3),
+(22, '2019-07-11', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -234,7 +259,9 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`id`, `name`, `email`, `enterprise`) VALUES
 (2, 'Daniel Martinez', 'Dan@gmail.es', 'Curacao'),
-(3, 'Alejandro', 'alexgve7@gmail.com', 'Curacao');
+(4, 'Manuel Gonzalez', 'manue@gmail.com', 'Elaniin'),
+(5, 'Alejandro', 'alexgve7@gmail.com', 'Walmart'),
+(6, 'Leche', 'gaby@gmail.com', 'Leche industries');
 
 -- --------------------------------------------------------
 
@@ -256,8 +283,30 @@ CREATE TABLE `detail_order` (
 --
 
 INSERT INTO `detail_order` (`id`, `id_movie`, `count`, `price`, `id_car`, `date`) VALUES
-(29, 26, 5, 16.00, 2, '2019-05-26'),
-(30, 25, 3, 10.00, 2, '2019-05-27');
+(3, 28, 2, 5.00, 4, '2019-07-05'),
+(4, 28, 7, 10.00, 5, '2019-07-05'),
+(5, 26, 2, 8.00, 5, '2019-07-05'),
+(6, 25, 1, 10.00, 5, '2019-07-05'),
+(7, 25, 2, 20.00, 6, '2019-07-05'),
+(8, 26, 2, 16.00, 7, '2019-07-06'),
+(9, 28, 1, 5.00, 7, '2019-07-06'),
+(10, 25, 2, 20.00, 8, '2019-07-06'),
+(11, 25, 1, 10.00, 9, '2019-07-06'),
+(12, 26, 1, 8.00, 10, '2019-07-06'),
+(13, 26, 1, 8.00, 11, '2019-07-06'),
+(14, 26, 1, 8.00, 12, '2019-07-06'),
+(15, 25, 1, 10.00, 13, '2019-07-06'),
+(16, 25, 1, 10.00, 14, '2019-07-06'),
+(17, 26, 1, 8.00, 15, '2019-07-06'),
+(18, 25, 1, 10.00, 16, '2019-07-06'),
+(19, 26, 2, 16.00, 17, '2019-07-10'),
+(20, 25, 2, 20.00, 18, '2019-07-10'),
+(21, 26, 2, 16.00, 19, '2019-07-10'),
+(22, 25, 1, 10.00, 19, '2019-07-10'),
+(23, 26, 2, 16.00, 20, '2019-07-11'),
+(24, 25, 2, 20.00, 21, '2019-07-11'),
+(25, 25, 3, 20.00, 22, '2019-07-11'),
+(26, 29, 2, 18.00, 22, '2019-07-11');
 
 -- --------------------------------------------------------
 
@@ -276,10 +325,9 @@ CREATE TABLE `favorites` (
 --
 
 INSERT INTO `favorites` (`id`, `user`, `movies`) VALUES
-(31, 3, 27),
 (36, 5, 26),
 (41, 3, 26),
-(42, 4, 27);
+(43, 3, 25);
 
 -- --------------------------------------------------------
 
@@ -322,7 +370,8 @@ CREATE TABLE `gendersmovie` (
 INSERT INTO `gendersmovie` (`id`, `gender`, `movie`) VALUES
 (7, 74, 25),
 (9, 74, 26),
-(10, 74, 27);
+(10, 73, 28),
+(11, 74, 29);
 
 -- --------------------------------------------------------
 
@@ -359,7 +408,8 @@ INSERT INTO `moviecomments` (`id`, `id_movie`, `id_user`, `comment`) VALUES
 (43, 25, 3, 'Pendejooo xd\r\n'),
 (44, 26, 3, 'Pendejos :v\r\n'),
 (45, 26, 4, 'JAJAJA xd\r\n'),
-(46, 27, 4, 'Hola como estan :D');
+(47, 26, 3, 'Hola :v'),
+(48, 26, 3, 'sasad');
 
 -- --------------------------------------------------------
 
@@ -386,9 +436,31 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`id`, `name`, `sinopsis`, `time`, `cover`, `year`, `trailer`, `price`, `count`, `customer`, `likes`) VALUES
-(25, 'Hangover', 'Una pelicula de locos ', '01:05:15', '5cda4dab3a455.jpg', 2014, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/6Htn1x-_-is\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 10.00, 71, 2, 0),
-(26, 'Avengers', 'Los vengadores más poderosos del mundo', '05:32:04', '5ce076f7c212e.jpeg', 2012, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/FdSlm7GtTp8\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 8.00, 22, 2, 0),
-(27, 'John Wick', 'Un mercenario en busca de venganza por la muerte de su perro', '01:21:51', '5ce07c434498e.jpg', 2010, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Hia9-o_djLY\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 10.00, 76, 3, 0);
+(25, 'Hangover', 'Una pelicula de locos ', '01:05:15', '5cda4dab3a455.jpg', 2014, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/6Htn1x-_-is\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 10.00, 55, 2, 0),
+(26, 'Avengers', 'Los vengadores más poderosos del mundo', '05:32:04', '5ce076f7c212e.jpeg', 2012, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/FdSlm7GtTp8\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 8.00, 0, 2, 0),
+(28, 'IT', 'Miedo', '01:21:51', '5d18d0fe8fdbf.jpg', 2017, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/3d_ACcf0rDc\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 5.00, 0, 4, 0),
+(29, 'Capitana Marvel', 'Una mujer', '01:21:51', '5d196b63d10a5.jpeg', 2017, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/W1eYh59VzEs\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', 18.00, 48, 5, 0),
+(30, 'La leche ataca', 'una caja de leche ataca a la ciudad', '01:21:51', '5d1cb5941597c.jpg', 2017, '<iframe></iframe>', 10.00, 20, 4, 0),
+(31, 'La leche ataca 2', 'La leche se levanto', '01:21:51', '5d1cb66f20344.jpg', 2010, '<iframe></iframe>', 10.00, 20, 6, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `role` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `role`) VALUES
+(0, 'Administrador'),
+(1, 'Super');
 
 -- --------------------------------------------------------
 
@@ -408,6 +480,37 @@ CREATE TABLE `shopstatus` (
 INSERT INTO `shopstatus` (`id`, `status`) VALUES
 (0, 'Pendiente'),
 (1, 'Pagado');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `status`
+--
+
+CREATE TABLE `status` (
+  `id` int(11) NOT NULL,
+  `status` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `status`
+--
+
+INSERT INTO `status` (`id`, `status`) VALUES
+(0, 'Activo'),
+(1, 'Inactivo'),
+(2, 'Bloqueado');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `status_admins`
+--
+
+CREATE TABLE `status_admins` (
+  `id` int(11) NOT NULL,
+  `status` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -432,7 +535,29 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `uname`, `lastname`, `email`, `username`, `upassword`, `membership`) VALUES
 (3, 'Alejandro', 'Gonzalez', 'alexgve7@gmail.com', 'Alexgve7', '$2y$10$IDaDNgrvKlwsgb6LVPhqDutQ.5XIvtVKPYMLceVo9ZlhU0M0.EYIW', NULL),
 (4, 'Steven', 'Diaz Hernandez', 'Steven@gmail.com', 'StevenD', '$2y$10$5DyYQ5MnXLmCs//bdZXmeuxuoXufaz4KO.KVJzrFlclG48lBDrEIq', NULL),
-(5, 'Manuel ', 'Gonzalez', 'man@gmail.com', 'ManGon7', '$2y$10$F8rKDFtkuZcPNHPO2g00pusYeqeJtRK/jmsXHsNPPFg4W3WUHxmUa', NULL);
+(5, 'Manuel ', 'Gonzalez', 'man@gmail.com', 'ManGon7', '$2y$10$F8rKDFtkuZcPNHPO2g00pusYeqeJtRK/jmsXHsNPPFg4W3WUHxmUa', NULL),
+(6, 'Sara Yamilet', 'Gonzalez', 'saragon_7@gmail.com', 'Sara7Gonzalez', '$2y$10$UWz4LBD75x2pCqj8invoqOwDlvXTGJY1wa0xgEBajobsbYeL3BIKO', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users_trusts`
+--
+
+CREATE TABLE `users_trusts` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_user_trust` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `users_trusts`
+--
+
+INSERT INTO `users_trusts` (`id`, `id_user`, `id_user_trust`) VALUES
+(4, 16, 17),
+(6, 18, 17),
+(16, 18, 16);
 
 --
 -- Índices para tablas volcadas
@@ -458,7 +583,15 @@ ALTER TABLE `actorsmovie`
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `role` (`role`),
+  ADD KEY `status` (`status`);
+
+--
+-- Indices de la tabla `answers_reset`
+--
+ALTER TABLE `answers_reset`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `binnacle`
@@ -497,7 +630,8 @@ ALTER TABLE `clasificationsmovie`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `enterprise` (`enterprise`);
 
 --
 -- Indices de la tabla `detail_order`
@@ -553,9 +687,27 @@ ALTER TABLE `movies`
   ADD KEY `customer` (`customer`);
 
 --
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `shopstatus`
 --
 ALTER TABLE `shopstatus`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `status_admins`
+--
+ALTER TABLE `status_admins`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -566,6 +718,14 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`),
   ADD KEY `membership` (`membership`);
+
+--
+-- Indices de la tabla `users_trusts`
+--
+ALTER TABLE `users_trusts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `users_trusts_ibfk_2` (`id_user_trust`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -587,19 +747,25 @@ ALTER TABLE `actorsmovie`
 -- AUTO_INCREMENT de la tabla `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT de la tabla `answers_reset`
+--
+ALTER TABLE `answers_reset`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `binnacle`
 --
 ALTER TABLE `binnacle`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
 -- AUTO_INCREMENT de la tabla `car`
 --
 ALTER TABLE `car`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `clasifications`
@@ -617,19 +783,19 @@ ALTER TABLE `clasificationsmovie`
 -- AUTO_INCREMENT de la tabla `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `detail_order`
 --
 ALTER TABLE `detail_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `favorites`
 --
 ALTER TABLE `favorites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `genders`
@@ -641,7 +807,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT de la tabla `gendersmovie`
 --
 ALTER TABLE `gendersmovie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `memberships`
@@ -653,13 +819,13 @@ ALTER TABLE `memberships`
 -- AUTO_INCREMENT de la tabla `moviecomments`
 --
 ALTER TABLE `moviecomments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `shopstatus`
@@ -668,10 +834,22 @@ ALTER TABLE `shopstatus`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `status_admins`
+--
+ALTER TABLE `status_admins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `users_trusts`
+--
+ALTER TABLE `users_trusts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas
@@ -683,6 +861,13 @@ ALTER TABLE `users`
 ALTER TABLE `actorsmovie`
   ADD CONSTRAINT `actorsmovie_ibfk_2` FOREIGN KEY (`Movie`) REFERENCES `movies` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `actorsmovie_ibfk_3` FOREIGN KEY (`Actor`) REFERENCES `actors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `admins`
+--
+ALTER TABLE `admins`
+  ADD CONSTRAINT `admins_ibfk_1` FOREIGN KEY (`role`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `admins_ibfk_2` FOREIGN KEY (`status`) REFERENCES `status` (`id`);
 
 --
 -- Filtros para la tabla `binnacle`
@@ -744,6 +929,12 @@ ALTER TABLE `movies`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`membership`) REFERENCES `memberships` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `users_trusts`
+--
+ALTER TABLE `users_trusts`
+  ADD CONSTRAINT `users_trusts_ibfk_2` FOREIGN KEY (`id_user_trust`) REFERENCES `admins` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

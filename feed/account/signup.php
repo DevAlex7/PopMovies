@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.signup.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
-
+    <script src="https://www.google.com/recaptcha/api.js?render="></script>
 </head>
 <body>
 
@@ -23,23 +23,24 @@
       <div class="card-content">
       <span class="card-title center">¡Registrate!</span>
         <div class="row">
-          <form class="col s12 m12" method="POST" id="CreateUserForm">
+          <form class="col s12 m12" method="POST" id="CreateUserForm" autocomplete="off">
             <div class="row">
+              <input id="tokken" type="hidden" name="tokken">
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix black-text">account_circle</i>
-                <input id="AdminUserName" type="text" name="AdminUserName" placeholder="Ingrese su nombre">
+                <input id="AdminUserName" type="text" autocomplete="new-password"  name="AdminUserName" placeholder="Ingrese su nombre">
               </div>
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix  black-text">account_circle</i>
-                <input id="AdminUserLastName" type="text" name="AdminUserLastName" placeholder="Ingrese sus apellidos">
+                <input id="AdminUserLastName" autocomplete="new-password"  type="text" name="AdminUserLastName" placeholder="Ingrese sus apellidos">
               </div>
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix  black-text">assignment_ind</i>
-                <input id="Username" name="Username" type="text" placeholder="Ingrese su nombre de usuario">
+                <input id="Username" autocomplete="new-password"  name="Username" type="text" placeholder="Ingrese su nombre de usuario">
               </div>
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix  black-text">mail</i>
-                <input id="AdminUserEmail" name="AdminUserEmail" type="text" placeholder="Ingrese su correo">
+                <input id="AdminUserEmail" autocomplete="new-password" name="AdminUserEmail" type="text" placeholder="Ingrese su correo">
               </div>
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix  black-text">vpn_key</i>
@@ -48,8 +49,8 @@
               <div class="input-field col s10 offset-s1">
                 <i class="material-icons prefix  black-text">vpn_key</i>
                 <input id="AdminUserRepeatPassword" name="AdminUserRepeatPassword"  type="password" placeholder="Repita su contraseña">
-              </div>
-                <button type="submit" class="btn col s12 red">Registrarme</button>
+              </div>    
+              <button type="submit" class="btn col s12 red">Registrarme</button>
             </div>
           </form>
         </div>
@@ -57,7 +58,6 @@
   </div>
 </div>
 </main>
-
 <script src="../../resources/globaljs/jquery-3.2.1.min.js"></script>
 <script src="../../resources/globaljs/materialize.min.js"></script>
 <script src="../../global/helpers/functions.js"></script>

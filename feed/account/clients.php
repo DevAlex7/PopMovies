@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../resources/dashboard/css/materialize.min.css">
     <link rel="stylesheet" href="../../resources/public/css/material-icons.css">
     <link rel="stylesheet" href="../../resources/dashboard/css/css.clients.css">
+    <link rel="stylesheet" href="../../resources/dashboard/css/sidenav.css">
 </head>
 <body>
     <header>
@@ -34,7 +35,6 @@
                         <th>Apellido</th>
                         <th>Correo</th>
                         <th>Usuario</th>
-                        <th>Membresia</th>
                     </tr>
                     </thead>
 
@@ -45,6 +45,7 @@
             </div>
         </div>
     </main>
+    
     <footer>
 
     </footer>

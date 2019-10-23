@@ -13,6 +13,7 @@ function isJSONString(string)
     }
 }
 
+<<<<<<< HEAD
 //Función para manejar los mensajes de notificación al usuario
 function sweetAlert(type, text, url)
 {
@@ -57,3 +58,21 @@ function sweetAlert(type, text, url)
         });
     }
 }
+=======
+function arrayRemove(arr, index) {
+
+    var value = arr.indexOf(index);
+ 
+    if (value > -1) {
+        arr.splice(value, 1);
+        return true;
+    }
+    else{
+        return false;
+    }
+
+ 
+ }
+ 
+ 
+>>>>>>> 7ea7fa445de38baf4c8dbbbd5cf78b8f89de8e55

@@ -1,7 +1,15 @@
-//Create User-Admin
+$(document).ready(function () {
+recaptcha();    
+});
 
 const APIUsers = '../../global/api/dashboard/adminusers.php?site=dashboard&action=';
-
+const recaptcha = () => {
+    grecaptcha.ready(function() {
+        grecaptcha.execute('', {action: 'homepage'}).then(function(token) {
+            $('#tokken').val(token);            
+        });
+    });
+}
 $('#CreateUserForm').submit(function(e){
 
     e.preventDefault();
